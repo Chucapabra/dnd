@@ -1,0 +1,67 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\program\\DnD\\DND\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8BF09154-2AAE-4E9D-910F-0FD444F452FC}|DND\\DND.csproj|d:\\program\\dnd\\dnd\\dnd\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8BF09154-2AAE-4E9D-910F-0FD444F452FC}|DND\\DND.csproj|solutionrelative:dnd\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8BF09154-2AAE-4E9D-910F-0FD444F452FC}|DND\\DND.csproj|D:\\program\\DnD\\DND\\dnd\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8BF09154-2AAE-4E9D-910F-0FD444F452FC}|DND\\DND.csproj|solutionrelative:dnd\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|DND||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DND",
+              "DocumentMoniker": "D:\\program\\DnD\\DND\\DND\\DND.csproj",
+              "RelativeDocumentMoniker": "DND\\DND.csproj",
+              "ToolTip": "D:\\program\\DnD\\DND\\DND\\DND.csproj",
+              "RelativeToolTip": "DND\\DND.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-08-31T18:38:39.416Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "D:\\program\\DnD\\DND\\DND\\Form1.cs",
+              "RelativeDocumentMoniker": "DND\\Form1.cs",
+              "ToolTip": "D:\\program\\DnD\\DND\\DND\\Form1.cs",
+              "RelativeToolTip": "DND\\Form1.cs",
+              "ViewState": "AgIAABUCAAAAAAAAAAAawCMCAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-31T17:23:02.114Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "D:\\program\\DnD\\DND\\DND\\Form1.cs",
+              "RelativeDocumentMoniker": "DND\\Form1.cs",
+              "ToolTip": "D:\\program\\DnD\\DND\\DND\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "RelativeToolTip": "DND\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-31T17:09:47.688Z",
+              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

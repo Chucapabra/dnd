@@ -1,0 +1,17 @@
+D:\program\DnD\DND\DND\bin\Release\DND.exe.config
+D:\program\DnD\DND\DND\bin\Release\DND.exe.manifest
+D:\program\DnD\DND\DND\bin\Release\DND.application
+D:\program\DnD\DND\DND\bin\Release\DND.exe
+D:\program\DnD\DND\DND\bin\Release\DND.pdb
+D:\program\DnD\DND\DND\bin\Release\MaterialSkin.dll
+D:\program\DnD\DND\DND\obj\Release\DND.csproj.AssemblyReference.cache
+D:\program\DnD\DND\DND\obj\Release\DND.Form1.resources
+D:\program\DnD\DND\DND\obj\Release\DND.Properties.Resources.resources
+D:\program\DnD\DND\DND\obj\Release\DND.csproj.GenerateResource.cache
+D:\program\DnD\DND\DND\obj\Release\DND.csproj.CoreCompileInputs.cache
+D:\program\DnD\DND\DND\obj\Release\DND.TrustInfo.xml
+D:\program\DnD\DND\DND\obj\Release\DND.exe.manifest
+D:\program\DnD\DND\DND\obj\Release\DND.application
+D:\program\DnD\DND\DND\obj\Release\DND.csproj.Up2Date
+D:\program\DnD\DND\DND\obj\Release\DND.exe
+D:\program\DnD\DND\DND\obj\Release\DND.pdb
