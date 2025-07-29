@@ -1,15 +1,30 @@
-﻿<Application x:Class="DNDHelper.App"
+﻿ <Application x:Class="DNDHelper.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:DNDHelper"
              StartupUri="Windows/Main.xaml"
+			 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 			 xmlns:ui="http://schemas.modernwpf.com/2019">
 	<Application.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
-				<ui:ThemeResources RequestedTheme="Dark"/>
-				<ui:XamlControlsResources />
+				<materialDesign:CustomColorTheme BaseTheme="Dark" PrimaryColor="DarkOrange" SecondaryColor="Green" />
+				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
 			</ResourceDictionary.MergedDictionaries>
+			<SolidColorBrush x:Key="CustomBackgroundBrush" Color="#FF121212" />
+
+			<Style TargetType="Window">
+				<Setter Property="Background" Value="{DynamicResource CustomBackgroundBrush}" />
+			</Style>
+
+			<Style x:Key="{x:Static materialDesign:Spelling.IgnoreAllMenuItemStyleKey}"  TargetType="{x:Type MenuItem}" BasedOn="{StaticResource MaterialDesignMenuItem}">
+				<Setter Property="Header" Value="Localized Ignore All" />
+			</Style>
+
+			<Style x:Key="{x:Static materialDesign:Spelling.NoSuggestionsMenuItemStyleKey}" TargetType="{x:Type MenuItem}" BasedOn="{StaticResource MaterialDesignMenuItem}">
+				<Setter Property="Header" Value="Localized (no spelling suggestions)" />
+				<Setter Property="IsEnabled" Value="False" />
+			</Style>
 		</ResourceDictionary>
 	</Application.Resources>
 </Application>

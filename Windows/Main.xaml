@@ -4,27 +4,27 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DNDHelper.Windows"
-		xmlns:ui="http://schemas.modernwpf.com/2019"
-		ui:WindowHelper.UseModernWindowStyle="True"
+		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+		Style="{StaticResource MaterialDesignWindow}"
         mc:Ignorable="d"
         Title="DNDHelper" Height="560" Width="1090" ResizeMode="NoResize">
 	<Window.Resources>
+
 		<Style TargetType="TextBlock">
 			<Setter Property="FontSize" Value="18"/>
 			<Setter Property="FontFamily" Value="Bahnschrift"/>
 		</Style>
-		<SolidColorBrush Color="Brown" x:Key="Dark"/>
 	</Window.Resources>
 	<Grid>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="300"/>
+			<ColumnDefinition Width="270"/>
 			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="120"/>
 			<RowDefinition Height="120"/>
 		</Grid.RowDefinitions>
-		<Menu Height="Auto" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" Grid.ColumnSpan="2" FontSize="10">
+		<Menu Height="Auto" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" Grid.ColumnSpan="2" FontSize="15">
 			<MenuItem Header="Персонаж">
 				<MenuItem Header="Новый..."/>
 				<MenuItem Header="Загрузить..."/>
@@ -44,7 +44,11 @@
 				<MenuItem Header="О программе"/>
 			</MenuItem>
 			<MenuItem Header="Ссылки">
+				<MenuItem Header="Правила Гюнтера" Click="UrlGunter"/>
 				<MenuItem Header="Правила Туши" Click="UrlTusha"/>
+				<MenuItem Header="Оружие и броня Туши" Click="UrlWeapons"/>
+				<MenuItem Header="Расы Туши" Click="UrlRaces"/>
+				<MenuItem Header="Классы Туши" Click="UrlClasses"/>
 			</MenuItem>
 		</Menu>
 
@@ -53,19 +57,178 @@
 		<TextBlock Text="Имя:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,40,0,0" />
 		<TextBlock Text="Раса:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,60,0,0" />
 		<TextBlock Text="Класс:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,80,0,0" />
-		<TextBlock Text="13.0  " Height="18" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Margin="0,9,0,93"/>
+		<TextBlock Text="13.0  " Height="18" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Margin="0,13,0,89" RenderTransformOrigin="0.457,3.169"/>
 
-		<TabControl HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" Height="424" Width="790">
+		<TabControl Grid.Row="1" Grid.Column="1" Width="Auto" Height="Auto" Margin="0,0,0,-304">
 			<TabItem Header="Инвентарь">
+				<ListBox Grid.Row="2" Grid.Column="0" Height="385">
+					<ListBoxItem>dasasdasd</ListBoxItem>
+					<ListBoxItem>dasasdasd</ListBoxItem>
+					<ListBoxItem>dasasdasd</ListBoxItem>
+					<ListBoxItem>dasasdasd</ListBoxItem>
+					<ListBoxItem>dasasdasd</ListBoxItem>
+					<ListBoxItem>dasasdasd</ListBoxItem>
+					<ListBoxItem>dasasdasd</ListBoxItem>
+					<ListBoxItem>dasasdasd</ListBoxItem>
+
+				</ListBox>
 			</TabItem>
 			<TabItem Header="Способности">
 			</TabItem>
 			<TabItem Header="Магия">
 			</TabItem>
 			<TabItem Header="Дневник">
+				<Grid>
+					<Grid.Resources>
+						<Style TargetType="{x:Type Button}" x:Key="formatTextStyle">
+							<Setter Property="FontFamily" Value="Palatino Linotype"></Setter>
+							<Setter Property="Width" Value="30"></Setter>
+							<Setter Property="FontSize" Value ="14"></Setter>
+							<Setter Property="CommandTarget" Value="{Binding ElementName=mainRTB}"></Setter>
+						</Style>
+
+						<Style TargetType="{x:Type Button}" x:Key="formatImageStyle">
+							<Setter Property="Width" Value="30"></Setter>
+							<Setter Property="CommandTarget" Value="{Binding ElementName=mainRTB}"></Setter>
+						</Style>
+					</Grid.Resources>
+
+					<DockPanel Name="mainPanel" Grid.Column="1" Grid.RowSpan="3">
+						<ToolBar Name="mainToolBar" Height="30" DockPanel.Dock="Top">
+
+							<Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Cut" ToolTip="Cut">
+								<materialDesign:PackIcon Kind="ContentCut"/>
+							</Button>
+							<Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Copy" ToolTip="Copy">
+								<materialDesign:PackIcon Kind="ContentCopy"/>
+							</Button>
+							<Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Paste" ToolTip="Paste">
+								<materialDesign:PackIcon Kind="ContentPaste"/>
+							</Button>
+							<Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Undo" ToolTip="Undo">
+								<materialDesign:PackIcon Kind="Undo"/>
+							</Button>
+							<Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Redo" ToolTip="Redo">
+								<materialDesign:PackIcon Kind="Redo"/>
+							</Button>
+
+							<Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleBold" ToolTip="Bold">
+								<TextBlock FontWeight="Bold">B</TextBlock>
+							</Button>
+							<Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleItalic" ToolTip="Italic">
+								<TextBlock FontStyle="Italic" FontWeight="Bold">I</TextBlock>
+							</Button>
+							<Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleUnderline" ToolTip="Underline">
+								<TextBlock TextDecorations="Underline" FontWeight="Bold">U</TextBlock>
+							</Button>
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.IncreaseFontSize" ToolTip="Grow Font">
+								<materialDesign:PackIcon Kind="FormatFontSizeIncrease"/>
+							</Button>
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.DecreaseFontSize" ToolTip="Shrink Font">
+								<materialDesign:PackIcon Kind="FormatFontSizeDecrease"/>
+							</Button>
+
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.ToggleBullets" ToolTip="Bullets">
+								<materialDesign:PackIcon Kind="FormatListBulleted"/>
+							</Button>
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.ToggleNumbering" ToolTip="Numbering">
+								<materialDesign:PackIcon Kind="FormatListNumbered"/>
+							</Button>
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignLeft" ToolTip="Align Left">
+								<materialDesign:PackIcon Kind="FormatAlignLeft"/>
+							</Button>
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignCenter" ToolTip="Align Center">
+								<materialDesign:PackIcon Kind="FormatAlignCenter"/>
+							</Button>
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignRight" ToolTip="Align Right">
+								<materialDesign:PackIcon Kind="FormatAlignRight"/>
+							</Button>
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignJustify" ToolTip="Align Justify">
+								<materialDesign:PackIcon Kind="FormatAlignJustify"/>
+							</Button>
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.IncreaseIndentation" ToolTip="Increase Indent">
+								<materialDesign:PackIcon Kind="FormatIndentIncrease"/>
+							</Button>
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.DecreaseIndentation" ToolTip="Decrease Indent">
+								<materialDesign:PackIcon Kind="FormatIndentDecrease"/>
+							</Button>
+
+						</ToolBar>
+						<RichTextBox Name="mainRTB" AcceptsTab="True" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"></RichTextBox>
+					</DockPanel>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="40*"/>
+						<RowDefinition Height="40*"/>
+						<RowDefinition Height="303*"/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="141*"/>
+						<ColumnDefinition Width="649*"/>
+					</Grid.ColumnDefinitions>
+					<!--<TextBox x:Name="NameNote" materialDesign:HintAssist.Hint="Название записи"/>
+					<Button Grid.Column="0" Grid.Row="1" x:Name="CreateNote" Content="Создать запись"/>
+					<ListBox Grid.Row="2" Grid.Column="0">
+						<ListBoxItem>dasasdasd</ListBoxItem>
+						<ListBoxItem>dasasdasd</ListBoxItem>
+						<ListBoxItem>dasasdasd</ListBoxItem>
+						<ListBoxItem>dasasdasd</ListBoxItem>
+					</ListBox>-->
+				</Grid>
 			</TabItem>
 			<TabItem Header="Справочники">
 			</TabItem>
 		</TabControl>
+
+
+
+		        <DataGrid Grid.Row="1" SelectionMode="Single" FontSize="12" x:Name="DataGridCharacterisctics" ItemsSource="{Binding Characteristics}" AutoGenerateColumns="False" Margin="0,0,0,-304" IsReadOnly="True"              
+              HeadersVisibility="Column"
+              RowHeaderWidth="0"
+              CanUserAddRows="False"
+              CanUserDeleteRows="False"
+              CanUserReorderColumns="False"
+              CanUserResizeRows="False"
+              CanUserResizeColumns="False"
+              CanUserSortColumns="False"
+              GridLinesVisibility="None"
+              BorderThickness="0"
+>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Навык" Binding="{Binding Name}" Width="150" FontSize="12"/>
+                <DataGridTemplateColumn Header="Значение" Width="70">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <TextBlock Text="{Binding Value}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Button Content="+" Command="{Binding IncrementCommand}" Foreground="DarkGreen" Background="DarkGreen"  Width="12" Height="12" Margin="2" />
+                                    <Button Content="-" Command="{Binding DecrementCommand}" Foreground="DarkRed" Background="DarkRed" Width="12" Height="12" Margin="2" />
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Ролл" Binding="{Binding Value}" Width="50"/>
+            </DataGrid.Columns>
+
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Height" Value="15"/>
+                    <Setter Property="Margin" Value="0"/>
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
+                </Style>
+            </DataGrid.RowStyle>
+
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Padding" Value="5,0"/>
+                    <Setter Property="Margin" Value="0"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                </Style>
+            </DataGrid.CellStyle>
+        </DataGrid>
 	</Grid>
 </Window>

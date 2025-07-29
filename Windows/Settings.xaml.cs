@@ -12,6 +12,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MaterialDesignColors;
+using MaterialDesignThemes.Wpf;
+using DarkThem = DNDHelper.Modules.Settings.Settings;
 
 namespace DNDHelper.Windows
 {
@@ -33,15 +36,24 @@ namespace DNDHelper.Windows
 			{
 				int selectionIndex = comboBox.SelectedIndex;
 				object selectionItem = ComboBoxTheme.SelectedItem;
+				
+				Main main = new Main();
+				var paletteHelper = new PaletteHelper();
+				Theme theme = paletteHelper.GetTheme();
 				switch (selectionIndex)
 				{
 					case 0:
-						ThemeManager.Current.ApplicationTheme = ApplicationTheme.Light;
+						DarkThem.IsDarkTheme = false;
+						Main.Instance.SetTheme(DarkThem.Theme[1], DarkThem.Theme[0]);
+                        theme.SetBaseTheme(BaseTheme.Light);
 						break;
 					case 1:
-						ThemeManager.Current.ApplicationTheme = ApplicationTheme.Dark;
+						DarkThem.IsDarkTheme = true;
+                        Main.Instance.SetTheme(DarkThem.Theme[0], DarkThem.Theme[1]);
+                        theme.SetBaseTheme(BaseTheme.Dark);
 						break;
 				}
+				paletteHelper.SetTheme(theme);
 			}
         }
 

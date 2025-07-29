@@ -1,11 +1,11 @@
-﻿<Window x:Class="DNDHelper.Windows.Settings"
+﻿ <Window x:Class="DNDHelper.Windows.Settings"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DNDHelper.Windows"
-        xmlns:ui="http://schemas.modernwpf.com/2019"
-		ui:WindowHelper.UseModernWindowStyle="True"
+		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+		Style="{StaticResource MaterialDesignWindow}"
         mc:Ignorable="d"
         Title="Настройки" Height="300" Width="550" ResizeMode="NoResize">
 	<Grid>
@@ -25,9 +25,9 @@
 						<ColumnDefinition Width="Auto"/>
 					</Grid.ColumnDefinitions>
 
-					<TextBox x:Name="NameProfile" Grid.Row="0" Grid.Column="0" Text="Название"/>
+					<TextBox x:Name="NameProfile" Grid.Row="0" Grid.Column="0" materialDesign:HintAssist.Hint="Название"/>
 					<Button x:Name="AddProfile" Grid.Row="0" Grid.Column="1" Content="Добавить" Click="AddProfile_Click"/>
-					<TextBox x:Name="UrlProfile" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="Ссылка" TextWrapping="Wrap" />
+					<TextBox x:Name="UrlProfile" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Ссылка"/>
 					<ListBox x:Name="ListProfiles" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
 						<ListBoxItem Grid.ColumnSpan="2">
 							<StackPanel>

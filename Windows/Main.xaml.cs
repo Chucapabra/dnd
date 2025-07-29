@@ -13,6 +13,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using DNDHelper.Modules.Specifications;
+
+using DarkThem = DNDHelper.Modules.Settings.Settings;
 
 namespace DNDHelper.Windows
 {
@@ -21,22 +24,77 @@ namespace DNDHelper.Windows
 	/// </summary>
 	public partial class Main : Window
 	{
+        private readonly TestGrid testGrid;
 
-		public Main()
+		public static Main Instance;
+
+        public Main()
 		{
 			InitializeComponent();
-			
+
+			Instance = this;
+
+            testGrid = new TestGrid
+            {
+                Characteristics = new List<Characteristics>()
+                {
+                    new Characteristics
+                    {
+                        Name = "A",
+                        Value = "21",
+
+                    },
+                    new Characteristics
+                    {
+                        Name = "B",
+                        Value = "B",
+                    }
+                }
+            };
+
+            DataContext = testGrid;
+
+            Resources["StandartBackColor"] = new SolidColorBrush(DarkThem.Theme[0]);
+            Resources["StandartForeColor"] = new SolidColorBrush(DarkThem.Theme[1]);
+        }
+
+        public void SetTheme(Color Background, Color Foreground)
+        {
+            Resources["StandartBackColor"] = new SolidColorBrush(Background);
+            Resources["StandartForeColor"] = new SolidColorBrush(Foreground);
+			MessageBox.Show("asdasdasdsasa");
 		}
 
-		private void UrlTusha(object sender, RoutedEventArgs e)
+        private void UrlTusha(object sender, RoutedEventArgs e)
 		{
 			Process.Start(new ProcessStartInfo("https://docs.google.com/document/d/1rUMWdTp645Zy80d09ZMoJ6dmcw9lAP25tqxsdNkftaY/edit?usp=sharing") { UseShellExecute = true });
+		}
+		private void UrlGunter(object sender, RoutedEventArgs e)
+		{
+			Process.Start(new ProcessStartInfo("https://sites.google.com/view/rulesdndgunter/%D0%BF%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0") { UseShellExecute = true });
+		}
+		private void UrlWeapons(object sender, RoutedEventArgs e)
+		{
+			Process.Start(new ProcessStartInfo("https://docs.google.com/document/d/1QRy-6NgwGB81BE0QE1DT_mO7DUGCf-PWrM9csBKEuno/edit?usp=sharing") { UseShellExecute = true });
+		}
+		private void UrlRaces(object sender, RoutedEventArgs e)
+		{
+			Process.Start(new ProcessStartInfo("https://docs.google.com/document/d/1V5B_7he-2i8BzMviCW9aqQoo831FIbKfi0uRwVEJ4VY/edit?usp=sharing") { UseShellExecute = true });
+		}
+		private void UrlClasses(object sender, RoutedEventArgs e)
+		{
+			Process.Start(new ProcessStartInfo("https://docs.google.com/document/d/19zM6JnIa5TNag2Adf22SV7ZI7uZUzzWZLvZbKvLylB0/edit?usp=sharing") { UseShellExecute = true });
 		}
 
 		private void Settings_Click(object sender, RoutedEventArgs e)
 		{
 			Settings settings = new Settings();
-			settings.Show();
+			settings.Show();	
+		}
+
+		private void CreateWrite_Click(object sender, RoutedEventArgs e)
+		{
+
 		}
 	}
 }
