@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
@@ -31,6 +32,7 @@ namespace DNDHelper.Windows
         public Main()
 		{
 			InitializeComponent();
+			fontSizeComboBox.SelectedValue = 12.0; // Размер шрифта в дневнике по умолчанию
 
 			Instance = this;
 
@@ -64,7 +66,7 @@ namespace DNDHelper.Windows
             Resources["StandartForeColor"] = new SolidColorBrush(Foreground);
 			MessageBox.Show("asdasdasdsasa");
 		}
-
+		// Меню
         private void UrlTusha(object sender, RoutedEventArgs e)
 		{
 			Process.Start(new ProcessStartInfo("https://docs.google.com/document/d/1rUMWdTp645Zy80d09ZMoJ6dmcw9lAP25tqxsdNkftaY/edit?usp=sharing") { UseShellExecute = true });
@@ -91,10 +93,52 @@ namespace DNDHelper.Windows
 			Settings settings = new Settings();
 			settings.Show();	
 		}
-
-		private void CreateWrite_Click(object sender, RoutedEventArgs e)
+		// Дневник
+		private void CreateNote_Click(object sender, RoutedEventArgs e)
 		{
+			FlowDocument flowDocument = diaryTB.Document;
 
+			string text = new TextRange(
+				flowDocument.ContentStart,
+				flowDocument.ContentEnd
+				).Text;
+			MessageBox.Show(text);
+		}
+
+		// Размер шрифта надо починить!
+		private void FontSizeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			if (fontSizeComboBox.SelectedItem is double fontSize && diaryTB.Selection != null)
+			{
+				diaryTB.Selection.ApplyPropertyValue(TextElement.FontSizeProperty, fontSize);
+			}
+		}
+
+		private void DiaryTB_SelectionChanged(object sender, RoutedEventArgs e)
+		{
+			UpdateFontSizeComboBox();
+		}
+
+		private void UpdateFontSizeComboBox()
+		{
+			if (diaryTB.CaretPosition == null) return;
+			
+			TextRange range = new TextRange(diaryTB.CaretPosition, diaryTB.CaretPosition);
+			object fontSizeValue = range.GetPropertyValue(TextElement.FontSizeProperty);
+
+			if (fontSizeValue is double fontSize)
+			{
+				fontSizeComboBox.SelectedValue = fontSize;
+			}
+			else
+			{
+				fontSizeComboBox.SelectedValue = 12.0; 
+			}
+		}
+
+		private void DiaryTB_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			UpdateFontSizeComboBox();
 		}
 	}
 }

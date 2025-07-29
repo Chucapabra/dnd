@@ -94,8 +94,8 @@
 					</Grid.Resources>
 
 					<DockPanel Name="mainPanel" Grid.Column="1" Grid.RowSpan="3">
-						<ToolBar Name="mainToolBar" Height="30" DockPanel.Dock="Top">
-
+						<ToolBar Name="mainToolBar" Height="30" DockPanel.Dock="Top" Foreground="DarkOrange">
+							
 							<Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Cut" ToolTip="Cut">
 								<materialDesign:PackIcon Kind="ContentCut"/>
 							</Button>
@@ -121,6 +121,31 @@
 							<Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleUnderline" ToolTip="Underline">
 								<TextBlock TextDecorations="Underline" FontWeight="Bold">U</TextBlock>
 							</Button>
+							<Separator/>
+							<ComboBox x:Name="fontSizeComboBox" Width="60" ToolTip="Размер шрифта" SelectionChanged="FontSizeComboBox_SelectionChanged">
+								<ComboBox.ItemsSource>
+									<x:Array Type="sys:Double" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+										<sys:Double>4</sys:Double>
+										<sys:Double>6</sys:Double>
+										<sys:Double>8</sys:Double>
+										<sys:Double>9</sys:Double>
+										<sys:Double>10</sys:Double>
+										<sys:Double>11</sys:Double>
+										<sys:Double>12</sys:Double>
+										<sys:Double>14</sys:Double>
+										<sys:Double>16</sys:Double>
+										<sys:Double>18</sys:Double>
+										<sys:Double>20</sys:Double>
+										<sys:Double>22</sys:Double>
+										<sys:Double>24</sys:Double>
+										<sys:Double>26</sys:Double>
+										<sys:Double>28</sys:Double>
+										<sys:Double>36</sys:Double>
+										<sys:Double>48</sys:Double>
+										<sys:Double>72</sys:Double>
+									</x:Array>
+								</ComboBox.ItemsSource>
+							</ComboBox>
 							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.IncreaseFontSize" ToolTip="Grow Font">
 								<materialDesign:PackIcon Kind="FormatFontSizeIncrease"/>
 							</Button>
@@ -154,8 +179,17 @@
 							</Button>
 
 						</ToolBar>
-						<RichTextBox Name="mainRTB" AcceptsTab="True" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"></RichTextBox>
+						<RichTextBox x:Name="diaryTB" AcceptsTab="True" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" Margin="10,0,0,0" SelectionChanged="DiaryTB_SelectionChanged" TextChanged="DiaryTB_TextChanged"></RichTextBox>
 					</DockPanel>
+					<GridSplitter Grid.RowSpan="3" IsEnabled="False" Grid.Column="1" ShowsPreview="False" Width="3" Height="400" HorizontalAlignment="Left" VerticalAlignment="Top" Cursor="SizeWE" />
+					<TextBox Grid.Row="0" Grid.Column="0" x:Name="NameNote" materialDesign:HintAssist.Hint="Название записи"/>
+					<Button Grid.Column="0" Grid.Row="1" x:Name="CreateNote" Content="Создать запись" Click="CreateNote_Click"/>
+					<ListBox Grid.Row="2" Grid.Column="0">
+						<ListBoxItem>dasasdasd</ListBoxItem>
+						<ListBoxItem>dasasdasd</ListBoxItem>
+						<ListBoxItem>dasasdasd</ListBoxItem>
+						<ListBoxItem>dasasdasd</ListBoxItem>
+					</ListBox>
 					<Grid.RowDefinitions>
 						<RowDefinition Height="40*"/>
 						<RowDefinition Height="40*"/>
@@ -165,14 +199,6 @@
 						<ColumnDefinition Width="141*"/>
 						<ColumnDefinition Width="649*"/>
 					</Grid.ColumnDefinitions>
-					<!--<TextBox x:Name="NameNote" materialDesign:HintAssist.Hint="Название записи"/>
-					<Button Grid.Column="0" Grid.Row="1" x:Name="CreateNote" Content="Создать запись"/>
-					<ListBox Grid.Row="2" Grid.Column="0">
-						<ListBoxItem>dasasdasd</ListBoxItem>
-						<ListBoxItem>dasasdasd</ListBoxItem>
-						<ListBoxItem>dasasdasd</ListBoxItem>
-						<ListBoxItem>dasasdasd</ListBoxItem>
-					</ListBox>-->
 				</Grid>
 			</TabItem>
 			<TabItem Header="Справочники">
