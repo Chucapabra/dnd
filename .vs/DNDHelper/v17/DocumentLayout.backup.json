@@ -76,8 +76,7 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "OverriddenGroupName": "Modules\\Settings",
               "OverriddenToolTip": "Modules/Settings/Settings.cs",
-              "WhenOpened": "2025-07-29T09:26:15.326Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-29T09:26:15.326Z"
             },
             {
               "$type": "Document",
@@ -90,8 +89,7 @@
               "ViewState": "AgIAABcAAAAAAAAAAAAxwCcAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "OverriddenGroupName": "Windows",
-              "WhenOpened": "2025-07-28T10:10:38.542Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-28T10:10:38.542Z"
             },
             {
               "$type": "Document",
@@ -113,7 +111,7 @@
               "RelativeDocumentMoniker": "Windows\\Main.xaml.cs",
               "ToolTip": "E:\\Project\\DND-github\\dnd\\Windows\\Main.xaml.cs",
               "RelativeToolTip": "Windows\\Main.xaml.cs",
-              "ViewState": "AgIAAGAAAAAAAAAAAAAAwHQAAAA4AAAAAAAAAA==",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAuwG4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "OverriddenGroupName": "Windows",
               "WhenOpened": "2025-07-28T06:46:09.412Z",
@@ -130,8 +128,7 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "OverriddenGroupName": "Modules\\Specifications",
               "OverriddenToolTip": "Modules/Specifications/SpecificationsMain.cs",
-              "WhenOpened": "2025-07-29T06:20:55.489Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-29T06:20:55.489Z"
             }
           ]
         }

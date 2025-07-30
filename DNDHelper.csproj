@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <Folder Include="Characters\" />
+    <Folder Include="Modules\Diary\" />
   </ItemGroup>
 
   <ItemGroup>

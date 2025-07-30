@@ -95,34 +95,26 @@
 
 					<DockPanel Name="mainPanel" Grid.Column="1" Grid.RowSpan="3">
 						<ToolBar Name="mainToolBar" Height="30" DockPanel.Dock="Top" Foreground="DarkOrange">
-							
-							<Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Cut" ToolTip="Cut">
-								<materialDesign:PackIcon Kind="ContentCut"/>
-							</Button>
-							<Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Copy" ToolTip="Copy">
-								<materialDesign:PackIcon Kind="ContentCopy"/>
-							</Button>
-							<Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Paste" ToolTip="Paste">
-								<materialDesign:PackIcon Kind="ContentPaste"/>
-							</Button>
-							<Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Undo" ToolTip="Undo">
+							<Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Undo" ToolTip="Отменить">
 								<materialDesign:PackIcon Kind="Undo"/>
 							</Button>
-							<Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Redo" ToolTip="Redo">
+							<Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Redo" ToolTip="Вернуть">
 								<materialDesign:PackIcon Kind="Redo"/>
 							</Button>
 
-							<Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleBold" ToolTip="Bold">
-								<TextBlock FontWeight="Bold">B</TextBlock>
+							<Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleBold" ToolTip="Жирный">
+								<materialDesign:PackIcon Kind="FormatBold"/>
 							</Button>
-							<Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleItalic" ToolTip="Italic">
-								<TextBlock FontStyle="Italic" FontWeight="Bold">I</TextBlock>
+							<Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleItalic" ToolTip="Курсив">
+								<materialDesign:PackIcon Kind="FormatItalic"/>
 							</Button>
-							<Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleUnderline" ToolTip="Underline">
-								<TextBlock TextDecorations="Underline" FontWeight="Bold">U</TextBlock>
+							<Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleUnderline" ToolTip="Подчёркнутый">
+								<materialDesign:PackIcon Kind="FormatUnderline"/>
 							</Button>
-							<Separator/>
-							<ComboBox x:Name="fontSizeComboBox" Width="60" ToolTip="Размер шрифта" SelectionChanged="FontSizeComboBox_SelectionChanged">
+							<Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleUnderline" ToolTip="Подчёркнутый">
+								<materialDesign:PackIcon Kind="FormatStrikethrough"/>
+							</Button>
+							<ComboBox x:Name="fontSizeComboBox" Width="38" ToolTip="Размер шрифта" SelectionChanged="FontSizeComboBox_SelectionChanged">
 								<ComboBox.ItemsSource>
 									<x:Array Type="sys:Double" xmlns:sys="clr-namespace:System;assembly=mscorlib">
 										<sys:Double>4</sys:Double>
@@ -146,40 +138,40 @@
 									</x:Array>
 								</ComboBox.ItemsSource>
 							</ComboBox>
-							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.IncreaseFontSize" ToolTip="Grow Font">
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.IncreaseFontSize" ToolTip="Увеличить размер шрифта">
 								<materialDesign:PackIcon Kind="FormatFontSizeIncrease"/>
 							</Button>
-							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.DecreaseFontSize" ToolTip="Shrink Font">
-								<materialDesign:PackIcon Kind="FormatFontSizeDecrease"/>
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.DecreaseFontSize" ToolTip="Уменьгить размер шрифта">
+								<materialDesign:PackIcon Height="15" Kind="FormatFontSizeDecrease"/>
 							</Button>
 
-							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.ToggleBullets" ToolTip="Bullets">
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.ToggleBullets" ToolTip="Маркеры">
 								<materialDesign:PackIcon Kind="FormatListBulleted"/>
 							</Button>
-							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.ToggleNumbering" ToolTip="Numbering">
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.ToggleNumbering" ToolTip="Нумерация">
 								<materialDesign:PackIcon Kind="FormatListNumbered"/>
 							</Button>
-							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignLeft" ToolTip="Align Left">
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignLeft" ToolTip="Выровнять по левому краю">
 								<materialDesign:PackIcon Kind="FormatAlignLeft"/>
 							</Button>
-							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignCenter" ToolTip="Align Center">
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignCenter" ToolTip="Выровнять по центру">
 								<materialDesign:PackIcon Kind="FormatAlignCenter"/>
 							</Button>
-							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignRight" ToolTip="Align Right">
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignRight" ToolTip="Выровнять по правому краю">
 								<materialDesign:PackIcon Kind="FormatAlignRight"/>
 							</Button>
-							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignJustify" ToolTip="Align Justify">
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignJustify" ToolTip="Выровнять по ширине">
 								<materialDesign:PackIcon Kind="FormatAlignJustify"/>
 							</Button>
-							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.IncreaseIndentation" ToolTip="Increase Indent">
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.IncreaseIndentation" ToolTip="Увеличить отступ">
 								<materialDesign:PackIcon Kind="FormatIndentIncrease"/>
 							</Button>
-							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.DecreaseIndentation" ToolTip="Decrease Indent">
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.DecreaseIndentation" ToolTip="Уменшить отступ">
 								<materialDesign:PackIcon Kind="FormatIndentDecrease"/>
 							</Button>
 
 						</ToolBar>
-						<RichTextBox x:Name="diaryTB" AcceptsTab="True" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" Margin="10,0,0,0" SelectionChanged="DiaryTB_SelectionChanged" TextChanged="DiaryTB_TextChanged"></RichTextBox>
+						<RichTextBox x:Name="diaryTB" AcceptsTab="True" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" Margin="10,0,0,0" SelectionChanged="DiaryTB_SelectionChanged" TextChanged="DiaryTB_TextChanged" MouseMove="DiaryTB_MouseMove"></RichTextBox>
 					</DockPanel>
 					<GridSplitter Grid.RowSpan="3" IsEnabled="False" Grid.Column="1" ShowsPreview="False" Width="3" Height="400" HorizontalAlignment="Left" VerticalAlignment="Top" Cursor="SizeWE" />
 					<TextBox Grid.Row="0" Grid.Column="0" x:Name="NameNote" materialDesign:HintAssist.Hint="Название записи"/>

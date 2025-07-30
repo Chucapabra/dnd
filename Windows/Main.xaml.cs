@@ -105,10 +105,11 @@ namespace DNDHelper.Windows
 			MessageBox.Show(text);
 		}
 
-		// Размер шрифта надо починить!
 		private void FontSizeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			if (fontSizeComboBox.SelectedItem is double fontSize && diaryTB.Selection != null)
+			if (isUpdatingFontSize || !(fontSizeComboBox.SelectedItem is double fontSize)) return;
+
+			if (!diaryTB.Selection.IsEmpty)
 			{
 				diaryTB.Selection.ApplyPropertyValue(TextElement.FontSizeProperty, fontSize);
 			}
@@ -116,29 +117,74 @@ namespace DNDHelper.Windows
 
 		private void DiaryTB_SelectionChanged(object sender, RoutedEventArgs e)
 		{
-			UpdateFontSizeComboBox();
+			UpdateFontSizeDisplay();
+		}
+
+		private void DiaryTB_MouseMove(object sender, MouseEventArgs e)
+		{
+			if (diaryTB.Selection.IsEmpty)
+			{
+				UpdateFontSizeDisplay();
+			}
 		}
 
 		private void UpdateFontSizeComboBox()
 		{
 			if (diaryTB.CaretPosition == null) return;
-			
-			TextRange range = new TextRange(diaryTB.CaretPosition, diaryTB.CaretPosition);
+
+			TextPointer caretPos = diaryTB.CaretPosition;
+
+			TextRange range = new TextRange(caretPos, caretPos);
+
 			object fontSizeValue = range.GetPropertyValue(TextElement.FontSizeProperty);
 
-			if (fontSizeValue is double fontSize)
+			if (fontSizeValue != DependencyProperty.UnsetValue && fontSizeValue is double fontSize)
 			{
+				fontSizeComboBox.SelectionChanged -= FontSizeComboBox_SelectionChanged;
 				fontSizeComboBox.SelectedValue = fontSize;
-			}
-			else
-			{
-				fontSizeComboBox.SelectedValue = 12.0; 
+				fontSizeComboBox.SelectionChanged += FontSizeComboBox_SelectionChanged;
 			}
 		}
 
 		private void DiaryTB_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			UpdateFontSizeComboBox();
+			if (diaryTB.Selection.IsEmpty)
+			{
+				UpdateFontSizeComboBox();
+			}
+		}
+		private bool isUpdatingFontSize = false;
+
+		private void UpdateFontSizeDisplay()
+		{
+			if (isUpdatingFontSize || diaryTB == null) return;
+
+			isUpdatingFontSize = true;
+
+			try
+			{
+				TextPointer caretPos = diaryTB.CaretPosition;
+				if (caretPos == null) return;
+
+				if (!diaryTB.Selection.IsEmpty)
+				{
+					caretPos = diaryTB.Selection.Start;
+				}
+
+				TextRange range = new TextRange(caretPos, caretPos);
+				object fontSizeValue = range.GetPropertyValue(TextElement.FontSizeProperty);
+
+				if (fontSizeValue != DependencyProperty.UnsetValue && fontSizeValue is double fontSize)
+				{
+					fontSizeComboBox.SelectionChanged -= FontSizeComboBox_SelectionChanged;
+					fontSizeComboBox.SelectedValue = fontSize;
+					fontSizeComboBox.SelectionChanged += FontSizeComboBox_SelectionChanged;
+				}
+			}
+			finally
+			{
+				isUpdatingFontSize = false;
+			}
 		}
 	}
 }
