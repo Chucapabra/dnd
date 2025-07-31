@@ -1,6 +1,10 @@
-﻿using System;
+﻿using DNDHelper.Modules.Diary;
+using DNDHelper.Modules.Сharacteristics;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
 using System.Security.Policy;
@@ -14,7 +18,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using DNDHelper.Modules.Specifications;
 
 using DarkThem = DNDHelper.Modules.Settings.Settings;
 
@@ -25,42 +28,86 @@ namespace DNDHelper.Windows
 	/// </summary>
 	public partial class Main : Window
 	{
-        private readonly TestGrid testGrid;
+
 
 		public static Main Instance;
+        public static GridCharacteristics Characteristics;
 
         public Main()
 		{
 			InitializeComponent();
+			LoadData();
 			fontSizeComboBox.SelectedValue = 12.0; // Размер шрифта в дневнике по умолчанию
 
 			Instance = this;
 
-            testGrid = new TestGrid
-            {
-                Characteristics = new List<Characteristics>()
-                {
-                    new Characteristics
-                    {
-                        Name = "A",
-                        Value = "21",
+            Resources["IsEdit"] = Visibility.Hidden;
 
-                    },
-                    new Characteristics
-                    {
-                        Name = "B",
-                        Value = "B",
-                    }
-                }
-            };
-
-            DataContext = testGrid;
+            Characteristics = new();
+            GridCharacteristics.SetChars();
 
             Resources["StandartBackColor"] = new SolidColorBrush(DarkThem.Theme[0]);
             Resources["StandartForeColor"] = new SolidColorBrush(DarkThem.Theme[1]);
-        }
 
-        public void SetTheme(Color Background, Color Foreground)
+
+        }
+		public class InventoryItem
+		{
+			public string Название { get; set; }
+			public int Вес { get; set; }
+			public string Качество { get; set; } // Для ComboBox
+			public double Рубящий { get; set; }
+			public double Колющий { get; set; }
+			public double Дробяший { get; set; }
+			public double Тяжесть { get; set; }
+			public double КД { get; set; }
+			public int Количество { get; set; }
+			public double СчётВеса { get; set; }
+			public string Описание { get; set; }
+			public double СчётКД { get; set; }
+			public double СчётКДШлема { get; set; }
+		}
+		public ObservableCollection<InventoryItem> InventoryItems { get; set; }
+		private void LoadData()
+		{
+			InventoryItems = new ObservableCollection<InventoryItem>();
+			InventoryItems.Add(new InventoryItem
+			{
+				Название = "Меч рыцаря",
+				Вес = 1,
+				Качество = "Хорошо", // Убедитесь, что это значение есть в вашем списке для ComboBox
+				Рубящий = 15,
+				Колющий = 10,
+				Дробяший = 0,
+				Тяжесть = 0.5,
+				КД = 1.2,
+				Количество = 1,
+				СчётВеса = 1.5,
+				Описание = "Старый добрый меч.",
+				СчётКД = 0,
+				СчётКДШлема = 0
+			});
+
+			InventoryItems.Add(new InventoryItem
+			{
+				Название = "Щит деревянный",
+				Вес = 3,
+				Качество = "Удовлетворительно",
+				Рубящий = 0,
+				Колющий = 0,
+				Дробяший = 5,
+				Тяжесть = 1.0,
+				КД = 2.5,
+				Количество = 1,
+				СчётВеса = 3.0,
+				Описание = "Простой деревянный щит.",
+				СчётКД = 0,
+				СчётКДШлема = 0
+			});
+			DataGridInventory.ItemsSource = InventoryItems;
+		}
+
+		public void SetTheme(Color Background, Color Foreground)
         {
             Resources["StandartBackColor"] = new SolidColorBrush(Background);
             Resources["StandartForeColor"] = new SolidColorBrush(Foreground);
@@ -87,14 +134,32 @@ namespace DNDHelper.Windows
 		{
 			Process.Start(new ProcessStartInfo("https://docs.google.com/document/d/19zM6JnIa5TNag2Adf22SV7ZI7uZUzzWZLvZbKvLylB0/edit?usp=sharing") { UseShellExecute = true });
 		}
+		private void EditMode_click(object sender, RoutedEventArgs e)
+		{
+            if (EditMode_button.IsChecked == false)
+                Resources["IsEdit"] = Visibility.Hidden;
+            else
+                Resources["IsEdit"] = Visibility.Visible;
+        }
 
 		private void Settings_Click(object sender, RoutedEventArgs e)
 		{
-			Settings settings = new Settings();
-			settings.Show();	
+			Settings settings = new();
+			settings.ShowDialog();
+	
 		}
-		// Дневник
-		private void CreateNote_Click(object sender, RoutedEventArgs e)
+        // Характеристики
+        private void AddCharacteristic_Click(object sender, RoutedEventArgs e)
+        {
+            Characteristics.AddCharacteristic_Click();
+        }
+
+        private void SubtractCharacteristic_Click(object sender, RoutedEventArgs e)
+        {
+            Characteristics.SubtractCharacteristic_Click();
+        }
+        // Дневник
+        private void CreateNote_Click(object sender, RoutedEventArgs e)
 		{
 			FlowDocument flowDocument = diaryTB.Document;
 
@@ -105,44 +170,20 @@ namespace DNDHelper.Windows
 			MessageBox.Show(text);
 		}
 
-		private void FontSizeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			if (isUpdatingFontSize || !(fontSizeComboBox.SelectedItem is double fontSize)) return;
 
-			if (!diaryTB.Selection.IsEmpty)
-			{
-				diaryTB.Selection.ApplyPropertyValue(TextElement.FontSizeProperty, fontSize);
-			}
-		}
 
 		private void DiaryTB_SelectionChanged(object sender, RoutedEventArgs e)
 		{
-			UpdateFontSizeDisplay();
+			TextChanges textChanges = new();
+			textChanges.UpdateFontSizeDisplay();
 		}
 
 		private void DiaryTB_MouseMove(object sender, MouseEventArgs e)
 		{
 			if (diaryTB.Selection.IsEmpty)
 			{
-				UpdateFontSizeDisplay();
-			}
-		}
-
-		private void UpdateFontSizeComboBox()
-		{
-			if (diaryTB.CaretPosition == null) return;
-
-			TextPointer caretPos = diaryTB.CaretPosition;
-
-			TextRange range = new TextRange(caretPos, caretPos);
-
-			object fontSizeValue = range.GetPropertyValue(TextElement.FontSizeProperty);
-
-			if (fontSizeValue != DependencyProperty.UnsetValue && fontSizeValue is double fontSize)
-			{
-				fontSizeComboBox.SelectionChanged -= FontSizeComboBox_SelectionChanged;
-				fontSizeComboBox.SelectedValue = fontSize;
-				fontSizeComboBox.SelectionChanged += FontSizeComboBox_SelectionChanged;
+				TextChanges textChanges = new();
+				textChanges.UpdateFontSizeDisplay();
 			}
 		}
 
@@ -150,40 +191,8 @@ namespace DNDHelper.Windows
 		{
 			if (diaryTB.Selection.IsEmpty)
 			{
-				UpdateFontSizeComboBox();
-			}
-		}
-		private bool isUpdatingFontSize = false;
-
-		private void UpdateFontSizeDisplay()
-		{
-			if (isUpdatingFontSize || diaryTB == null) return;
-
-			isUpdatingFontSize = true;
-
-			try
-			{
-				TextPointer caretPos = diaryTB.CaretPosition;
-				if (caretPos == null) return;
-
-				if (!diaryTB.Selection.IsEmpty)
-				{
-					caretPos = diaryTB.Selection.Start;
-				}
-
-				TextRange range = new TextRange(caretPos, caretPos);
-				object fontSizeValue = range.GetPropertyValue(TextElement.FontSizeProperty);
-
-				if (fontSizeValue != DependencyProperty.UnsetValue && fontSizeValue is double fontSize)
-				{
-					fontSizeComboBox.SelectionChanged -= FontSizeComboBox_SelectionChanged;
-					fontSizeComboBox.SelectedValue = fontSize;
-					fontSizeComboBox.SelectionChanged += FontSizeComboBox_SelectionChanged;
-				}
-			}
-			finally
-			{
-				isUpdatingFontSize = false;
+				TextChanges textChanges = new();
+				textChanges.UpdateFontSizeComboBox();
 			}
 		}
 	}

@@ -37,7 +37,7 @@ namespace DNDHelper.Windows
 				int selectionIndex = comboBox.SelectedIndex;
 				object selectionItem = ComboBoxTheme.SelectedItem;
 				
-				Main main = new Main();
+				Main main = new();
 				var paletteHelper = new PaletteHelper();
 				Theme theme = paletteHelper.GetTheme();
 				switch (selectionIndex)

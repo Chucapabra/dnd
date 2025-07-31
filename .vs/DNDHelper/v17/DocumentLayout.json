@@ -3,32 +3,28 @@
   "WorkspaceRootPath": "E:\\Project\\DND-github\\dnd\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd\\windows\\main.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:windows\\main.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd\\modules\\\u0441haracteristics\\gridcharacteristics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\\u0441haracteristics\\gridcharacteristics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd\\windows\\main.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:windows\\main.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd\\windows\\settings.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:windows\\settings.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd\\modules\\specifications\\specificationsmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\specifications\\specificationsmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd\\modules\\settings\\settings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\settings\\settings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd\\modules\\\u0441haracteristics\\characteristictable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\\u0441haracteristics\\characteristictable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd\\windows\\settings.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:windows\\settings.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd\\windows\\main.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:windows\\main.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,11 +34,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "App.xaml",
               "DocumentMoniker": "E:\\Project\\DND-github\\dnd\\App.xaml",
               "RelativeDocumentMoniker": "App.xaml",
@@ -55,7 +51,35 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
+              "Title": "Settings.xaml.cs",
+              "DocumentMoniker": "E:\\Project\\DND-github\\dnd\\Windows\\Settings.xaml.cs",
+              "RelativeDocumentMoniker": "Windows\\Settings.xaml.cs",
+              "ToolTip": "Windows/Settings.xaml.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACkAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "OverriddenGroupName": "Windows",
+              "OverriddenToolTip": "Windows/Settings.xaml.cs",
+              "WhenOpened": "2025-07-28T10:10:38.542Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Main.xaml.cs",
+              "DocumentMoniker": "E:\\Project\\DND-github\\dnd\\Windows\\Main.xaml.cs",
+              "RelativeDocumentMoniker": "Windows\\Main.xaml.cs",
+              "ToolTip": "E:\\Project\\DND-github\\dnd\\Windows\\Main.xaml.cs",
+              "RelativeToolTip": "Windows\\Main.xaml.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAA1wEwAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "OverriddenGroupName": "Windows",
+              "WhenOpened": "2025-07-28T06:46:09.412Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Main.xaml",
               "DocumentMoniker": "E:\\Project\\DND-github\\dnd\\Windows\\Main.xaml",
               "RelativeDocumentMoniker": "Windows\\Main.xaml",
@@ -67,68 +91,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Settings.cs",
-              "DocumentMoniker": "E:\\Project\\DND-github\\dnd\\Modules\\Settings\\Settings.cs",
-              "RelativeDocumentMoniker": "Modules\\Settings\\Settings.cs",
-              "ToolTip": "Modules/Settings/Settings.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA6AAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "GridCharacteristics.cs",
+              "DocumentMoniker": "E:\\Project\\DND-github\\dnd\\Modules\\\u0421haracteristics\\GridCharacteristics.cs",
+              "RelativeDocumentMoniker": "Modules\\\u0421haracteristics\\GridCharacteristics.cs",
+              "ToolTip": "E:\\Project\\DND-github\\dnd\\Modules\\\u0421haracteristics\\GridCharacteristics.cs",
+              "RelativeToolTip": "Modules\\\u0421haracteristics\\GridCharacteristics.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "OverriddenGroupName": "Modules\\Settings",
-              "OverriddenToolTip": "Modules/Settings/Settings.cs",
-              "WhenOpened": "2025-07-29T09:26:15.326Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Settings.xaml.cs",
-              "DocumentMoniker": "E:\\Project\\DND-github\\dnd\\Windows\\Settings.xaml.cs",
-              "RelativeDocumentMoniker": "Windows\\Settings.xaml.cs",
-              "ToolTip": "E:\\Project\\DND-github\\dnd\\Windows\\Settings.xaml.cs",
-              "RelativeToolTip": "Windows\\Settings.xaml.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAxwCcAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "OverriddenGroupName": "Windows",
-              "WhenOpened": "2025-07-28T10:10:38.542Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Settings.xaml",
-              "DocumentMoniker": "E:\\Project\\DND-github\\dnd\\Windows\\Settings.xaml",
-              "RelativeDocumentMoniker": "Windows\\Settings.xaml",
-              "ToolTip": "E:\\Project\\DND-github\\dnd\\Windows\\Settings.xaml",
-              "RelativeToolTip": "Windows\\Settings.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-07-28T08:55:37.077Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Main.xaml.cs",
-              "DocumentMoniker": "E:\\Project\\DND-github\\dnd\\Windows\\Main.xaml.cs",
-              "RelativeDocumentMoniker": "Windows\\Main.xaml.cs",
-              "ToolTip": "E:\\Project\\DND-github\\dnd\\Windows\\Main.xaml.cs",
-              "RelativeToolTip": "Windows\\Main.xaml.cs",
-              "ViewState": "AgIAAF0AAAAAAAAAAAAuwG4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "OverriddenGroupName": "Windows",
-              "WhenOpened": "2025-07-28T06:46:09.412Z",
+              "OverriddenGroupName": "Modules\\\u0421haracteristics",
+              "WhenOpened": "2025-07-31T05:01:54.909Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "SpecificationsMain.cs",
-              "DocumentMoniker": "E:\\Project\\DND-github\\dnd\\Modules\\Specifications\\SpecificationsMain.cs",
-              "RelativeDocumentMoniker": "Modules\\Specifications\\SpecificationsMain.cs",
-              "ToolTip": "Modules/Specifications/SpecificationsMain.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Title": "CharacteristicTable.cs",
+              "DocumentMoniker": "E:\\Project\\DND-github\\dnd\\Modules\\\u0421haracteristics\\CharacteristicTable.cs",
+              "RelativeDocumentMoniker": "Modules\\\u0421haracteristics\\CharacteristicTable.cs",
+              "ToolTip": "E:\\Project\\DND-github\\dnd\\Modules\\\u0421haracteristics\\CharacteristicTable.cs",
+              "RelativeToolTip": "Modules\\\u0421haracteristics\\CharacteristicTable.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAQwAgAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "OverriddenGroupName": "Modules\\Specifications",
-              "OverriddenToolTip": "Modules/Specifications/SpecificationsMain.cs",
-              "WhenOpened": "2025-07-29T06:20:55.489Z"
+              "OverriddenGroupName": "Modules\\\u0421haracteristics",
+              "WhenOpened": "2025-07-31T04:59:34.71Z",
+              "EditorCaption": ""
             }
           ]
         }
