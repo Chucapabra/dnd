@@ -41,13 +41,12 @@ namespace DNDHelper.Windows
 
 			Instance = this;
 
-            Resources["IsEdit"] = Visibility.Hidden;
 
             Characteristics = new();
             GridCharacteristics.SetChars();
 
-            Resources["StandartBackColor"] = new SolidColorBrush(DarkThem.Theme[0]);
-            Resources["StandartForeColor"] = new SolidColorBrush(DarkThem.Theme[1]);
+            Resources["StandartBackColor"] = new SolidColorBrush(DarkThem.Theme[1]);
+            Resources["StandartForeColor"] = new SolidColorBrush(DarkThem.Theme[0]);
 
 
         }
@@ -111,7 +110,6 @@ namespace DNDHelper.Windows
         {
             Resources["StandartBackColor"] = new SolidColorBrush(Background);
             Resources["StandartForeColor"] = new SolidColorBrush(Foreground);
-			MessageBox.Show("asdasdasdsasa");
 		}
 		// Меню
         private void UrlTusha(object sender, RoutedEventArgs e)

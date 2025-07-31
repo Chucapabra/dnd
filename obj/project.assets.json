@@ -1261,23 +1261,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Gunter\\.nuget\\packages\\": {},
+    "C:\\Users\\Denis\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Project\\DND-github\\dnd\\DNDHelper.csproj",
+      "projectUniqueName": "D:\\profile\\mydocs\\GitHub\\dnd\\DNDHelper.csproj",
       "projectName": "DNDHelper",
-      "projectPath": "E:\\Project\\DND-github\\dnd\\DNDHelper.csproj",
-      "packagesPath": "C:\\Users\\Gunter\\.nuget\\packages\\",
-      "outputPath": "E:\\Project\\DND-github\\dnd\\obj\\",
+      "projectPath": "D:\\profile\\mydocs\\GitHub\\dnd\\DNDHelper.csproj",
+      "packagesPath": "C:\\Users\\Denis\\.nuget\\packages\\",
+      "outputPath": "D:\\profile\\mydocs\\GitHub\\dnd\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Gunter\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Denis\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1346,7 +1346,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.303/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -18,7 +18,9 @@
 			<Setter Property="BorderBrush" Value="Beige"/>
 			<Setter Property="BorderThickness" Value="1"/>
 		</Style>
-		<Visibility x:Key="IsEdit">Visible</Visibility>
+        <SolidColorBrush x:Key="StandartBackColor"/>
+        <SolidColorBrush x:Key="StandartForeColor" Color="Black"/>
+        <Visibility x:Key="IsEdit">Hidden</Visibility>
 	</Window.Resources>
 	<Grid>
 		<Grid.ColumnDefinitions>
@@ -282,7 +284,7 @@
               BorderThickness="0"
 >
 			<DataGrid.Columns>
-				<DataGridTextColumn Header="Навык" Binding="{Binding Name}" Width="150" FontSize="12"/>
+				<DataGridTextColumn Header=" Навык" Binding="{Binding Name}" Width="150" FontSize="12"/>
 				<DataGridTemplateColumn Header="Значение" Width="70">
 					<DataGridTemplateColumn.CellTemplate>
 						<DataTemplate>
@@ -302,14 +304,18 @@
 
 			<DataGrid.ColumnHeaderStyle>
 				<Style TargetType="DataGridColumnHeader">
-				</Style>
+                    <Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
+                    <Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
+                </Style>
 			</DataGrid.ColumnHeaderStyle>
 			<DataGrid.RowStyle>
 				<Style TargetType="DataGridRow" >
 					<Setter Property="Height" Value="15"/>
 					<Setter Property="Margin" Value="0"/>
 					<Setter Property="Padding" Value="0"/>
-				</Style>
+                    <Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
+                    <Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
+                </Style>
 			</DataGrid.RowStyle>
 
 			<DataGrid.CellStyle>

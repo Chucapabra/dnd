@@ -37,7 +37,6 @@ namespace DNDHelper.Windows
 				int selectionIndex = comboBox.SelectedIndex;
 				object selectionItem = ComboBoxTheme.SelectedItem;
 				
-				Main main = new();
 				var paletteHelper = new PaletteHelper();
 				Theme theme = paletteHelper.GetTheme();
 				switch (selectionIndex)
@@ -48,7 +47,7 @@ namespace DNDHelper.Windows
                         theme.SetBaseTheme(BaseTheme.Light);
 						break;
 					case 1:
-						DarkThem.IsDarkTheme = true;
+                        DarkThem.IsDarkTheme = true;
                         Main.Instance.SetTheme(DarkThem.Theme[0], DarkThem.Theme[1]);
                         theme.SetBaseTheme(BaseTheme.Dark);
 						break;
