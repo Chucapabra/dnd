@@ -97,7 +97,7 @@ namespace DNDHelper.Windows {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/DNDHelper;V1.0.0.0;component/windows/settings.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/DNDHelper;component/windows/settings.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Windows\Settings.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

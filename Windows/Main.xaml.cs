@@ -41,7 +41,6 @@ namespace DNDHelper.Windows
 
 			Instance = this;
 
-
             Characteristics = new();
             GridCharacteristics.SetChars();
 

@@ -2,6 +2,8 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
+using static DNDHelper.Modules.Сharacteristics.CharacteristicTable.StatName;
 
 namespace DNDHelper.Modules.Сharacteristics
 {
@@ -13,8 +15,11 @@ namespace DNDHelper.Modules.Сharacteristics
         {
             int selectedIndex = main.DataGridCharacterisctics.SelectedIndex;
 
-            if (DataGridChar[selectedIndex].StandartValue < 30)
-                DataGridChar[selectedIndex].StandartValue += 1;
+            if (CharacteristicTable.Base(selectedIndex) < 30)
+            {
+                CharacteristicTable.Base(selectedIndex)++;
+                DataGridChar[selectedIndex].StandartValue = CharacteristicTable.Base(selectedIndex);
+            }
 
             SetChars();
         }
@@ -23,45 +28,49 @@ namespace DNDHelper.Modules.Сharacteristics
         {
             int selectedIndex = main.DataGridCharacterisctics.SelectedIndex;
 
-            if (DataGridChar[selectedIndex].StandartValue > 0)
-                DataGridChar[selectedIndex].StandartValue -= 1;
+            if (CharacteristicTable.Base(selectedIndex) > 0)
+            {
+                CharacteristicTable.Base(selectedIndex)--;
+                DataGridChar[selectedIndex].StandartValue = CharacteristicTable.Base(selectedIndex);
+            }
 
             SetChars();
         }
-
+ 
         static public ObservableCollection<Characteristic> DataGridChar = new()
             {
-                new Characteristic { Name = " Сила", BaffValue = CharacteristicTable.Strength_, Roll = CalculateRoll(CharacteristicTable.Strength_), StandartValue = CharacteristicTable.Strength },
-                new Characteristic { Name = "     Атлетика", BaffValue = CharacteristicTable.Agility_, Roll = CalculateRoll(CharacteristicTable.Agility_), StandartValue = CharacteristicTable.Agility},
-                new Characteristic { Name = " Ловкость", BaffValue = CharacteristicTable.Athlete_, Roll = CalculateRoll(CharacteristicTable.Athlete_), StandartValue = CharacteristicTable.Athlete },
-                new Characteristic { Name = "     Акробатика", BaffValue = CharacteristicTable.Acrobatics_, Roll = CalculateRoll(CharacteristicTable.Acrobatics_), StandartValue = CharacteristicTable.Acrobatics },
-                new Characteristic { Name = "     Ловкость рук", BaffValue = CharacteristicTable.SleightOfHand_, Roll = CalculateRoll(CharacteristicTable.SleightOfHand_), StandartValue = CharacteristicTable.SleightOfHand },
-                new Characteristic { Name = "     Скрытность", BaffValue = CharacteristicTable.Stealth_, Roll = CalculateRoll(CharacteristicTable.Stealth_), StandartValue = CharacteristicTable.Stealth },
-                new Characteristic { Name = " Телосложение", BaffValue = CharacteristicTable.Body_, Roll = CalculateRoll(CharacteristicTable.Body_), StandartValue = CharacteristicTable.Body},
-                new Characteristic { Name = " Интеллект", BaffValue = CharacteristicTable.Intellect_, Roll = CalculateRoll(CharacteristicTable.Intellect_), StandartValue = CharacteristicTable.Intellect},
-                new Characteristic { Name = "     Магия", BaffValue = CharacteristicTable.Magic_, Roll = CalculateRoll(CharacteristicTable.Magic_), StandartValue = CharacteristicTable.Magic },
-                new Characteristic { Name = "     Религия", BaffValue = CharacteristicTable.Religion_, Roll = CalculateRoll(CharacteristicTable.Religion_), StandartValue = CharacteristicTable.Religion },
-                new Characteristic { Name = "     Природа", BaffValue = CharacteristicTable.Nature_, Roll = CalculateRoll(CharacteristicTable.Nature_), StandartValue = CharacteristicTable.Nature },
-                new Characteristic { Name = "     История", BaffValue = CharacteristicTable.History_, Roll = CalculateRoll(CharacteristicTable.History_), StandartValue = CharacteristicTable.History},
-                new Characteristic { Name = "     Расследовие", BaffValue = CharacteristicTable.Investigation_, Roll = CalculateRoll(CharacteristicTable.Investigation_), StandartValue = CharacteristicTable.Investigation},
-                new Characteristic { Name = "     Технолония", BaffValue = CharacteristicTable.Technology_, Roll = CalculateRoll(CharacteristicTable.Technology_), StandartValue = CharacteristicTable.Technology },
-                new Characteristic { Name = " Мудрость", BaffValue = CharacteristicTable.Wisdom_, Roll = CalculateRoll(CharacteristicTable.Wisdom_), StandartValue = CharacteristicTable.Wisdom},
-                new Characteristic { Name = "     Медицина", BaffValue = CharacteristicTable.Medicine_, Roll = CalculateRoll(CharacteristicTable.Medicine_), StandartValue = CharacteristicTable.Medicine},
-                new Characteristic { Name = "     Восприятие", BaffValue = CharacteristicTable.Perception_, Roll = CalculateRoll(CharacteristicTable.Perception_), StandartValue = CharacteristicTable.Perception },
-                new Characteristic { Name = "     Проницательность", BaffValue = CharacteristicTable.Insight_, Roll = CalculateRoll(CharacteristicTable.Insight_), StandartValue = CharacteristicTable.Insight },
-                new Characteristic { Name = "     Выживание", BaffValue = CharacteristicTable.Survival_, Roll = CalculateRoll(CharacteristicTable.Survival_), StandartValue = CharacteristicTable.Survival },
-                new Characteristic { Name = "     Уход за животными", BaffValue = CharacteristicTable.TOAnimals_, Roll = CalculateRoll(CharacteristicTable.TOAnimals_), StandartValue = CharacteristicTable.TOAnimals },
-                new Characteristic { Name = " Харизма", BaffValue = CharacteristicTable.Charisma_, Roll = CalculateRoll(CharacteristicTable.Charisma_), StandartValue = CharacteristicTable.Charisma},
-                new Characteristic { Name = "     Обман", BaffValue = CharacteristicTable.Deception_, Roll = CalculateRoll(CharacteristicTable.Deception_), StandartValue = CharacteristicTable.Deception },
-                new Characteristic { Name = "     Запугивание", BaffValue = CharacteristicTable.Intimidation_, Roll = CalculateRoll(CharacteristicTable.Intimidation_), StandartValue = CharacteristicTable.Intimidation },
-                new Characteristic { Name = "     Выступление", BaffValue = CharacteristicTable.Speech_, Roll = CalculateRoll(CharacteristicTable.Speech_), StandartValue = CharacteristicTable.Speech },
-                new Characteristic { Name = "     Убеждение", BaffValue = CharacteristicTable.Persuasion_, Roll = CalculateRoll(CharacteristicTable.Persuasion_), StandartValue = CharacteristicTable.Persuasion }
+                new Characteristic { Name = " Сила", BaffValue = CharacteristicTable.Buffed(Strength), Roll = CalculateRoll(CharacteristicTable.Buffed(Strength)), StandartValue = CharacteristicTable.Base(Strength), ParentAttribute = "" },
+                new Characteristic { Name = "     Атлетика", BaffValue = CharacteristicTable.Buffed(Agility), Roll = CalculateRoll(CharacteristicTable.Buffed(Agility)), StandartValue = CharacteristicTable.Base(Agility)},
+                new Characteristic { Name = " Ловкость", BaffValue = CharacteristicTable.Buffed(Athlete), Roll = CalculateRoll(CharacteristicTable.Buffed(Athlete)), StandartValue = CharacteristicTable.Base(Athlete) },
+                new Characteristic { Name = "     Акробатика", BaffValue = CharacteristicTable.Buffed(Acrobatics), Roll = CalculateRoll(CharacteristicTable.Buffed(Acrobatics)), StandartValue = CharacteristicTable.Base(Acrobatics) },
+                new Characteristic { Name = "     Ловкость рук", BaffValue = CharacteristicTable.Buffed(SleightOfHand), Roll = CalculateRoll(CharacteristicTable.Buffed(SleightOfHand)), StandartValue = CharacteristicTable.Base(SleightOfHand) },
+                new Characteristic { Name = "     Скрытность", BaffValue = CharacteristicTable.Buffed(Stealth), Roll = CalculateRoll(CharacteristicTable.Buffed(Stealth)), StandartValue = CharacteristicTable.Base(Stealth) },
+                new Characteristic { Name = " Телосложение", BaffValue = CharacteristicTable.Buffed(Body), Roll = CalculateRoll(CharacteristicTable.Buffed(Body)), StandartValue = CharacteristicTable.Base(Body)},
+                new Characteristic { Name = " Интеллект", BaffValue = CharacteristicTable.Buffed(Intellect), Roll = CalculateRoll(CharacteristicTable.Buffed(Intellect)), StandartValue = CharacteristicTable.Base(Intellect)},
+                new Characteristic { Name = "     Магия", BaffValue = CharacteristicTable.Buffed(Magic), Roll = CalculateRoll(CharacteristicTable.Buffed(Magic)), StandartValue = CharacteristicTable.Base(Magic) },
+                new Characteristic { Name = "     Религия", BaffValue = CharacteristicTable.Buffed(Religion), Roll = CalculateRoll(CharacteristicTable.Buffed(Religion)), StandartValue = CharacteristicTable.Base(Religion) },
+                new Characteristic { Name = "     Природа", BaffValue = CharacteristicTable.Buffed(Nature), Roll = CalculateRoll(CharacteristicTable.Buffed(Nature)), StandartValue = CharacteristicTable.Base(Nature) },
+                new Characteristic { Name = "     История", BaffValue = CharacteristicTable.Buffed(History), Roll = CalculateRoll(CharacteristicTable.Buffed(History)), StandartValue = CharacteristicTable.Base(History)},
+                new Characteristic { Name = "     Расследовие", BaffValue = CharacteristicTable.Buffed(Investigation), Roll = CalculateRoll(CharacteristicTable.Buffed(Investigation)), StandartValue = CharacteristicTable.Base(Investigation)},
+                new Characteristic { Name = "     Технолония", BaffValue = CharacteristicTable.Buffed(Technology), Roll = CalculateRoll(CharacteristicTable.Buffed(Technology)), StandartValue = CharacteristicTable.Base(Technology) },
+                new Characteristic { Name = " Мудрость", BaffValue = CharacteristicTable.Buffed(Wisdom), Roll = CalculateRoll(CharacteristicTable.Buffed(Wisdom)), StandartValue = CharacteristicTable.Base(Wisdom)},
+                new Characteristic { Name = "     Медицина", BaffValue = CharacteristicTable.Buffed(Medicine), Roll = CalculateRoll(CharacteristicTable.Buffed(Medicine)), StandartValue = CharacteristicTable.Base(Medicine)},
+                new Characteristic { Name = "     Восприятие", BaffValue = CharacteristicTable.Buffed(Perception), Roll = CalculateRoll(CharacteristicTable.Buffed(Perception)), StandartValue = CharacteristicTable.Base(Perception) },
+                new Characteristic { Name = "     Проницательность", BaffValue = CharacteristicTable.Buffed(Insight), Roll = CalculateRoll(CharacteristicTable.Buffed(Insight)), StandartValue = CharacteristicTable.Base(Insight) },
+                new Characteristic { Name = "     Выживание", BaffValue = CharacteristicTable.Buffed(Survival), Roll = CalculateRoll(CharacteristicTable.Buffed(Survival)), StandartValue = CharacteristicTable.Base(Survival) },
+                new Characteristic { Name = "     Уход за животными", BaffValue = CharacteristicTable.Buffed(TOAnimals), Roll = CalculateRoll(CharacteristicTable.Buffed(TOAnimals)), StandartValue = CharacteristicTable.Base(TOAnimals) },
+                new Characteristic { Name = " Харизма", BaffValue = CharacteristicTable.Buffed(Charisma), Roll = CalculateRoll(CharacteristicTable.Buffed(Charisma)), StandartValue = CharacteristicTable.Base(Charisma)},
+                new Characteristic { Name = "     Обман", BaffValue = CharacteristicTable.Buffed(Deception), Roll = CalculateRoll(CharacteristicTable.Buffed(Deception)), StandartValue = CharacteristicTable.Base(Deception) },
+                new Characteristic { Name = "     Запугивание", BaffValue = CharacteristicTable.Buffed(Intimidation), Roll = CalculateRoll(CharacteristicTable.Buffed(Intimidation)), StandartValue = CharacteristicTable.Base(Intimidation) },
+                new Characteristic { Name = "     Выступление", BaffValue = CharacteristicTable.Buffed(Speech), Roll = CalculateRoll(CharacteristicTable.Buffed(Speech)), StandartValue = CharacteristicTable.Base(Speech) },
+                new Characteristic { Name = "     Убеждение", BaffValue = CharacteristicTable.Buffed(Persuasion), Roll = CalculateRoll(CharacteristicTable.Buffed(Persuasion)), StandartValue = CharacteristicTable.Base(Persuasion) }
             };
-
+        
         static public void SetChars()
         {
             Main.Instance.DataGridCharacterisctics.ItemsSource = DataGridChar;
         }
+
 
 
         static public int CalculateRoll(int valueChar)
@@ -123,6 +132,9 @@ namespace DNDHelper.Modules.Сharacteristics
                 OnPropertyChanged();
             }
         }
+
+        public string ParentAttribute { get; set; }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
