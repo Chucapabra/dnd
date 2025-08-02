@@ -7,7 +7,7 @@
 		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 		Style="{StaticResource MaterialDesignWindow}"
         mc:Ignorable="d"
-        Title="Настройки" Height="300" Width="550" ResizeMode="NoResize">
+        Title="Настройки" Height="300" Width="565" ResizeMode="NoResize">
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition/>

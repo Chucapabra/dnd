@@ -1,4 +1,6 @@
-﻿using DNDHelper.Modules.Diary;
+﻿using DNDHelper.Modules;
+using DNDHelper.Modules.Diary;
+using DNDHelper.Modules.Inventory;
 using DNDHelper.Modules.Сharacteristics;
 using System;
 using System.Collections.Generic;
@@ -37,15 +39,14 @@ namespace DNDHelper.Windows
 		{
 			InitializeComponent();
 			LoadData();
-			fontSizeComboBox.SelectedValue = 12.0; // Размер шрифта в дневнике по умолчанию
 
 			Instance = this;
 
             Characteristics = new();
             GridCharacteristics.SetChars();
 
-            Resources["StandartBackColor"] = new SolidColorBrush(DarkThem.Theme[1]);
-            Resources["StandartForeColor"] = new SolidColorBrush(DarkThem.Theme[0]);
+            Resources["StandartBackColor"] = new SolidColorBrush(DarkThem.Theme[0]);
+            Resources["StandartForeColor"] = new SolidColorBrush(DarkThem.Theme[1]);
 
 
         }
@@ -131,15 +132,21 @@ namespace DNDHelper.Windows
 		{
 			Process.Start(new ProcessStartInfo("https://docs.google.com/document/d/19zM6JnIa5TNag2Adf22SV7ZI7uZUzzWZLvZbKvLylB0/edit?usp=sharing") { UseShellExecute = true });
 		}
-		private void EditMode_click(object sender, RoutedEventArgs e)
-		{
+        private void EditMode_click(object sender, RoutedEventArgs e)
+        {
             if (EditMode_button.IsChecked == false)
+            {
                 Resources["IsEdit"] = Visibility.Hidden;
+                Characteristics.UpdatePointText(false);
+            }
             else
+            {
                 Resources["IsEdit"] = Visibility.Visible;
+                Characteristics.UpdatePointText(true);
+            }
         }
 
-		private void Settings_Click(object sender, RoutedEventArgs e)
+        private void Settings_Click(object sender, RoutedEventArgs e)
 		{
 			Settings settings = new();
 			settings.ShowDialog();
@@ -167,8 +174,6 @@ namespace DNDHelper.Windows
 			MessageBox.Show(text);
 		}
 
-
-
 		private void DiaryTB_SelectionChanged(object sender, RoutedEventArgs e)
 		{
 			TextChanges textChanges = new();
@@ -191,6 +196,57 @@ namespace DNDHelper.Windows
 				TextChanges textChanges = new();
 				textChanges.UpdateFontSizeComboBox();
 			}
+		}
+
+		private void backpack_cb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			Backpack backpack = new();
+			backpack.ChangeComboBoxQuantity();
+		}
+
+		// Медяки
+		private void Cuprum_tb_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			TextboxProcessing textboxProcessing = new();
+			textboxProcessing.WholeNumbersOnly(Cuprum_tb, e);
+		}
+		private void Cuprum_tb_Pasting(object sender, DataObjectPastingEventArgs e)
+		{
+			e.CancelCommand();
+			e.Handled = true;
+		}
+		// Серебреники
+		private void Silver_tb_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			TextboxProcessing textboxProcessing = new();
+			textboxProcessing.WholeNumbersOnly(Cuprum_tb, e);
+		}
+		private void Silver_tb_Pasting(object sender, DataObjectPastingEventArgs e)
+		{
+			e.CancelCommand();
+			e.Handled = true;
+		}
+		// Золотые
+		private void Gold_tb_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			TextboxProcessing textboxProcessing = new();
+			textboxProcessing.WholeNumbersOnly(Cuprum_tb, e);
+		}
+		private void Gold_tb_Pasting(object sender, DataObjectPastingEventArgs e)
+		{
+			e.CancelCommand();
+			e.Handled = true;
+		}
+		// Плюс к броне
+		private void backpack_plus_tb_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			TextboxProcessing textboxProcessing = new();
+			textboxProcessing.WholeNumbersOnly(Cuprum_tb, e);
+		}
+		private void backpack_plus_tb_Pasting(object sender, DataObjectPastingEventArgs e)
+		{
+			e.CancelCommand();
+			e.Handled = true;
 		}
 	}
 }

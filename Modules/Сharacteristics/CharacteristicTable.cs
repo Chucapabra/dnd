@@ -8,9 +8,17 @@ using System.Threading.Tasks;
 
 namespace DNDHelper.Modules.Сharacteristics
 {
-	public static class CharacteristicTable
-	{
-      
+    public static class CharacteristicTable
+    {
+        public static int Points = 72;
+        public static int PointsNow = 0;
+
+        public static int MinLock = 5;
+        public static int MaxLock = 20;
+
+        public static int MinLockSkills = 3;
+        public static int MaxLockSkills = 30;
+
         public static int PointsAgilitySkills = 0;
         public static int PointsAgilitySkillsNow = 0;
 
@@ -37,7 +45,7 @@ namespace DNDHelper.Modules.Сharacteristics
             Investigation, Technology,
 
             // Мудрость/Восприятие
-            Wisdom, Wisdom_, Medicine,
+            Wisdom, Medicine,
             Perception, Insight, Survival, TOAnimals,
 
             // Харизма
@@ -50,11 +58,14 @@ namespace DNDHelper.Modules.Сharacteristics
 
         // === Доступ по имени ===
         private static ref int GetBase(StatName name) => ref _baseStats[(int)name];
+
         private static ref int GetBuffed(StatName name) => ref _buffedStats[(int)name];
 
         // === Доступ по индексу ===
         private static ref int GetBaseByIndex(int index) => ref _baseStats[index];
         private static ref int GetBuffedByIndex(int index) => ref _buffedStats[index];
+
+
 
         // === Индексаторы для удобства ===
         public static ref int Base(StatName name) => ref GetBase(name);

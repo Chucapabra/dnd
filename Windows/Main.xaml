@@ -7,7 +7,7 @@
 		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 		Style="{StaticResource MaterialDesignWindow}"
         mc:Ignorable="d"
-        Title="DNDHelper" Height="560" Width="1090" ResizeMode="NoResize" Visibility="Visible">
+        Title="DNDHelper" Height="582" Width="1098" ResizeMode="NoResize" Visibility="Visible">
 	<Window.Resources>
 
 		<Style TargetType="TextBlock">
@@ -79,6 +79,7 @@
 						<RowDefinition Height="120*"/>
 						<RowDefinition Height="70*"/>
 					</Grid.RowDefinitions>
+					<Border Grid.ColumnSpan="4">
 					<DataGrid x:Name="DataGridInventory"
 							  Grid.ColumnSpan="4"
 							  AutoGenerateColumns="False"
@@ -109,8 +110,9 @@
 							<DataGridTextColumn Header="СчётКДШлема" Binding="{Binding СчётКДШлема}" Visibility="Hidden"/>
 						</DataGrid.Columns>
 					</DataGrid>
+					</Border>
 					<Border Grid.Row="1">
-						<TextBox materialDesign:HintAssist.Hint="Описание" TextWrapping="Wrap" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"/>
+						<TextBox materialDesign:HintAssist.Hint="Описание" TextWrapping="Wrap" AcceptsReturn="True" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"/>
 					</Border>
 					<Border Grid.Row="1" Grid.Column="1">
 						<DataGrid>
@@ -121,34 +123,64 @@
 						</DataGrid>
 					</Border>
 					<Border Grid.Row="1" Grid.Column="2">
-						<StackPanel Margin="0,0,0,0" VerticalAlignment="Center">
+						<StackPanel Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
 							<StackPanel  Orientation="Horizontal">
-								<TextBlock Text="Медяк            " Foreground="Orange"/>
-								<TextBox materialDesign:HintAssist.Hint="Медяк"/>
+								<TextBlock Text="Медяк" Width="110" Foreground="Orange"/>
+								<TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  materialDesign:HintAssist.Hint="Число" Width="40" x:Name="Cuprum_tb" PreviewTextInput="Cuprum_tb_PreviewTextInput" DataObject.Pasting="Cuprum_tb_Pasting"/>
 							</StackPanel>
 							<StackPanel Margin="0,5,0,5" Orientation="Horizontal">
-								<TextBlock Text="Серебреник  " Foreground="DimGray"/>
-								<TextBox materialDesign:HintAssist.Hint="Серебреник"/>
+								<TextBlock Text="Серебреник" Width="110" Foreground="Gray"/>
+								<TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="Число" Width="40" x:Name="Silver_tb" PreviewTextInput="Silver_tb_PreviewTextInput" DataObject.Pasting="Silver_tb_Pasting"/>
 							</StackPanel>
 							<StackPanel Orientation="Horizontal">
-								<TextBlock Text="Золотой         " Foreground="Yellow"/>
-								<TextBox materialDesign:HintAssist.Hint="Золотой"/>
+								<TextBlock Text="Золотой" Width="110" Foreground="Gold"/>
+								<TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="Число" Width="40" x:Name="Gold_tb" PreviewTextInput="Gold_tb_PreviewTextInput" DataObject.Pasting="Gold_tb_Pasting"/>
 							</StackPanel>
 						</StackPanel>
 					</Border>
 					<Border Grid.Row="1" Grid.Column="3">
-						<StackPanel Margin="0,0,0,0" VerticalAlignment="Center">
+						<StackPanel Margin="5,0,0,0" VerticalAlignment="Center">
 							<StackPanel  Orientation="Horizontal">
-								<TextBlock Text="Рюкзак"/>
-								<ComboBox materialDesign:HintAssist.Hint="Рюказк"/>
+								<TextBlock FontSize="12" Text="Рюкзак" Width="75" VerticalAlignment="Center"/>
+								<ComboBox materialDesign:HintAssist.Hint="Нет" Width="110" x:Name="backpack_cb" SelectionChanged="backpack_cb_SelectionChanged">
+									<ComboBoxItem Content="Прото"/>
+									<ComboBoxItem Content="Плохой"/>
+									<ComboBoxItem Content="Стандартный"/>
+									<ComboBoxItem Content="Высокий"/>
+									<ComboBoxItem Content="Великолепный"/>
+									<ComboBoxItem Content="Мастерский"/>
+									<ComboBoxItem Content="Мифический"/>
+								</ComboBox>
 							</StackPanel>
-							<StackPanel Margin="0,5,0,5" Orientation="Horizontal">
-								<TextBlock Text="Серебреник  " Foreground="DimGray"/>
-								<TextBox materialDesign:HintAssist.Hint="Серебреник"/>
+							<StackPanel Margin="0,0,0,0" Orientation="Horizontal">
+								<TextBlock FontSize="12" Text="Кол-во" Width="75" VerticalAlignment="Center"/>
+								<ComboBox materialDesign:HintAssist.Hint="Нет" Width="40" x:Name="backpack_quantity_cb" ItemsSource="{x:Null}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="25"/>
 							</StackPanel>
 							<StackPanel Orientation="Horizontal">
-								<TextBlock Text="Золотой         " Foreground="Yellow"/>
-								<TextBox materialDesign:HintAssist.Hint="Золотой"/>
+								<TextBlock FontSize="12" Text="Добавить к весу" TextWrapping="Wrap" Width="75"/>
+								<TextBox materialDesign:HintAssist.Hint="Число" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="40" x:Name="backpack_plus_tb" PreviewTextInput="backpack_plus_tb_PreviewTextInput" DataObject.Pasting="backpack_plus_tb_Pasting"/>
+							</StackPanel>
+							<Separator/>
+							<StackPanel Orientation="Horizontal">
+								<TextBlock FontSize="12" Text="Тип брони" TextWrapping="Wrap" VerticalAlignment="Center" Width="75"/>
+								<ComboBox materialDesign:HintAssist.Hint="Число"  Width="72" SelectedIndex="0" x:Name="armor_type_cb">
+									<ComboBoxItem Content="Нет"/>
+									<ComboBoxItem Content="Лёгкая"/>
+									<ComboBoxItem Content="Средняя"/>
+									<ComboBoxItem Content="Тяжёлая"/>
+								</ComboBox>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal">
+								<TextBlock FontSize="12" Text="Качество брони" TextWrapping="Wrap" VerticalAlignment="Center" Width="75"/>
+								<ComboBox materialDesign:HintAssist.Hint="Число"  Width="110" SelectedIndex="0" x:Name="armor_cb">
+									<ComboBoxItem Content="Прото"/>
+									<ComboBoxItem Content="Плохая"/>
+									<ComboBoxItem Content="Стандартная"/>
+									<ComboBoxItem Content="Высокая"/>
+									<ComboBoxItem Content="Великолепная"/>
+									<ComboBoxItem Content="Мастерская"/>
+									<ComboBoxItem Content="Мифическая"/>
+								</ComboBox>
 							</StackPanel>
 						</StackPanel>
 					</Border>
@@ -289,7 +321,7 @@
 					<DataGridTemplateColumn.CellTemplate>
 						<DataTemplate>
 							<Grid>
-								<TextBlock Text="{Binding BaffValue}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+								<TextBlock Text="{Binding Value}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 								<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 									<Button Content="+" Visibility="{DynamicResource IsEdit}" Foreground="DarkGreen" Background="DarkGreen"  Width="12" Height="12" Margin="2" Click="AddCharacteristic_Click"/>
 									<Button Content="-" Visibility="{DynamicResource IsEdit}" Foreground="DarkRed" Background="DarkRed" Width="12" Height="12" Margin="2" Click="SubtractCharacteristic_Click"/>
@@ -299,7 +331,6 @@
 					</DataGridTemplateColumn.CellTemplate>
 				</DataGridTemplateColumn>
 				<DataGridTextColumn Header="Ролл" Binding="{Binding Roll}" Width="50"/>
-                <DataGridTextColumn Header="СтандартноеЗначение" Binding="{Binding StandartValue}" Width="50" Visibility="Hidden"/>
 			</DataGrid.Columns>
 
 			<DataGrid.ColumnHeaderStyle>
