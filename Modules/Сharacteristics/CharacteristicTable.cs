@@ -34,24 +34,36 @@ namespace DNDHelper.Modules.Сharacteristics
 
         public enum StatName
         {
-            // Физические
             Strength, Athlete,
+
             Agility, Acrobatics, SleightOfHand, Stealth,
+
             Body,
 
-            // Интеллектуальные
             Intellect, Magic, Religion,
             Nature, History,
             Investigation, Technology,
 
-            // Мудрость/Восприятие
             Wisdom, Medicine,
             Perception, Insight, Survival, TOAnimals,
 
-            // Харизма
             Charisma, Deception,
             Intimidation, Speech, Persuasion
         }
+
+        public static string[] StatNameRus = new[]
+        {
+    "сила", "атлетика",
+    "ловкость", "акробатика", "ловкость_рук", "скрытность",
+    "телосложение",
+    "интеллект", "магия", "религия",
+    "природа", "история",
+    "расследование", "технология",
+    "мудрость", "медецина",
+    "восприятие", "проницательность", "выживание", "обращение_с_животными",
+    "харизма", "обман",
+    "запугивание", "выступление", "убеждение"
+        };
 
         private static readonly int[] _baseStats = new int[Enum.GetValues(typeof(StatName)).Length];
         private static readonly int[] _buffedStats = new int[_baseStats.Length];

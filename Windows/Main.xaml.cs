@@ -1,8 +1,4 @@
-﻿using DNDHelper.Modules;
-using DNDHelper.Modules.Diary;
-using DNDHelper.Modules.Inventory;
-using DNDHelper.Modules.Сharacteristics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -20,7 +16,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using DNDHelper.Modules;
+using DNDHelper.Modules.Config;
+using DNDHelper.Modules.Diary;
+using DNDHelper.Modules.Inventory;
+using DNDHelper.Modules.Сharacteristics;
+using Microsoft.Win32;
 using DarkThem = DNDHelper.Modules.Settings.Settings;
 
 namespace DNDHelper.Windows
@@ -33,23 +34,34 @@ namespace DNDHelper.Windows
 
 
 		public static Main Instance;
-        public static GridCharacteristics Characteristics;
+		public static GridCharacteristics Characteristics;
 
-        public Main()
+		public Main()
 		{
 			InitializeComponent();
 			LoadData();
+			InitializeClasses();
 
+
+            Resources["StandartBackColor"] = new SolidColorBrush(DarkThem.Theme[0]);
+			Resources["StandartForeColor"] = new SolidColorBrush(DarkThem.Theme[1]);
+
+			MaxHealth_textblock.Text = "100";
+			CurrentHealth_textblock.Text = "-99";
+		}
+		public void InitializeClasses()
+		{
 			Instance = this;
+
+			Race @class = new Race();
+            @class.Test();
+
+
 
             Characteristics = new();
             GridCharacteristics.SetChars();
-
-            Resources["StandartBackColor"] = new SolidColorBrush(DarkThem.Theme[0]);
-            Resources["StandartForeColor"] = new SolidColorBrush(DarkThem.Theme[1]);
-
-
         }
+
 		public class InventoryItem
 		{
 			public string Название { get; set; }
@@ -107,12 +119,12 @@ namespace DNDHelper.Windows
 		}
 
 		public void SetTheme(Color Background, Color Foreground)
-        {
-            Resources["StandartBackColor"] = new SolidColorBrush(Background);
-            Resources["StandartForeColor"] = new SolidColorBrush(Foreground);
+		{
+			Resources["StandartBackColor"] = new SolidColorBrush(Background);
+			Resources["StandartForeColor"] = new SolidColorBrush(Foreground);
 		}
 		// Меню
-        private void UrlTusha(object sender, RoutedEventArgs e)
+		private void UrlTusha(object sender, RoutedEventArgs e)
 		{
 			Process.Start(new ProcessStartInfo("https://docs.google.com/document/d/1rUMWdTp645Zy80d09ZMoJ6dmcw9lAP25tqxsdNkftaY/edit?usp=sharing") { UseShellExecute = true });
 		}
@@ -132,38 +144,50 @@ namespace DNDHelper.Windows
 		{
 			Process.Start(new ProcessStartInfo("https://docs.google.com/document/d/19zM6JnIa5TNag2Adf22SV7ZI7uZUzzWZLvZbKvLylB0/edit?usp=sharing") { UseShellExecute = true });
 		}
-        private void EditMode_click(object sender, RoutedEventArgs e)
-        {
-            if (EditMode_button.IsChecked == false)
-            {
-                Resources["IsEdit"] = Visibility.Hidden;
-                Characteristics.UpdatePointText(false);
-            }
-            else
-            {
-                Resources["IsEdit"] = Visibility.Visible;
-                Characteristics.UpdatePointText(true);
-            }
-        }
+		private void EditMode_click(object sender, RoutedEventArgs e)
+		{
+			if (EditMode_button.IsChecked == false)
+			{
+				Resources["IsEdit"] = Visibility.Hidden;
+				Characteristics.UpdatePointText(false);
+				character_name_textblock.Visibility = Visibility.Visible;
+				character_name_textbox.Visibility = Visibility.Hidden;
+				character_race_textblock.Visibility = Visibility.Visible;
+				character_race_combobox.Visibility = Visibility.Hidden;
+				character_class_textblock.Visibility = Visibility.Visible;
+				character_class_combobox.Visibility = Visibility.Hidden;
+			}
+			else
+			{
+				Resources["IsEdit"] = Visibility.Visible;
+				Characteristics.UpdatePointText(true);
+				character_name_textblock.Visibility = Visibility.Collapsed;
+				character_name_textbox.Visibility = Visibility.Visible;
+				character_race_textblock.Visibility = Visibility.Collapsed;
+				character_race_combobox.Visibility = Visibility.Visible;
+				character_class_textblock.Visibility = Visibility.Collapsed;
+				character_class_combobox.Visibility = Visibility.Visible;
+			}
+		}
 
-        private void Settings_Click(object sender, RoutedEventArgs e)
+		private void Settings_Click(object sender, RoutedEventArgs e)
 		{
 			Settings settings = new();
 			settings.ShowDialog();
-	
-		}
-        // Характеристики
-        private void AddCharacteristic_Click(object sender, RoutedEventArgs e)
-        {
-            Characteristics.AddCharacteristic_Click();
-        }
 
-        private void SubtractCharacteristic_Click(object sender, RoutedEventArgs e)
-        {
-            Characteristics.SubtractCharacteristic_Click();
-        }
-        // Дневник
-        private void CreateNote_Click(object sender, RoutedEventArgs e)
+		}
+		// Характеристики
+		private void AddCharacteristic_Click(object sender, RoutedEventArgs e)
+		{
+			Characteristics.AddCharacteristic_Click();
+		}
+
+		private void SubtractCharacteristic_Click(object sender, RoutedEventArgs e)
+		{
+			Characteristics.SubtractCharacteristic_Click();
+		}
+		// Дневник
+		private void CreateNote_Click(object sender, RoutedEventArgs e)
 		{
 			FlowDocument flowDocument = diaryTB.Document;
 
@@ -207,6 +231,14 @@ namespace DNDHelper.Windows
 		// Медяки
 		private void Cuprum_tb_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
+			var textBox = sender as TextBox;
+			int caretIndex = textBox.CaretIndex;
+			string newText = textBox.Text.Replace(" ", "");
+			if (textBox.Text != newText)
+			{
+				textBox.Text = newText;
+				textBox.CaretIndex = Math.Min(caretIndex, newText.Length);
+			}
 			TextboxProcessing textboxProcessing = new();
 			textboxProcessing.WholeNumbersOnly(Cuprum_tb, e);
 		}
@@ -218,6 +250,14 @@ namespace DNDHelper.Windows
 		// Серебреники
 		private void Silver_tb_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
+			var textBox = sender as TextBox;
+			int caretIndex = textBox.CaretIndex;
+			string newText = textBox.Text.Replace(" ", "");
+			if (textBox.Text != newText)
+			{
+				textBox.Text = newText;
+				textBox.CaretIndex = Math.Min(caretIndex, newText.Length);
+			}
 			TextboxProcessing textboxProcessing = new();
 			textboxProcessing.WholeNumbersOnly(Cuprum_tb, e);
 		}
@@ -229,6 +269,14 @@ namespace DNDHelper.Windows
 		// Золотые
 		private void Gold_tb_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
+			var textBox = sender as TextBox;
+			int caretIndex = textBox.CaretIndex;
+			string newText = textBox.Text.Replace(" ", "");
+			if (textBox.Text != newText)
+			{
+				textBox.Text = newText;
+				textBox.CaretIndex = Math.Min(caretIndex, newText.Length);
+			}
 			TextboxProcessing textboxProcessing = new();
 			textboxProcessing.WholeNumbersOnly(Cuprum_tb, e);
 		}
@@ -240,6 +288,14 @@ namespace DNDHelper.Windows
 		// Плюс к броне
 		private void backpack_plus_tb_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
+			var textBox = sender as TextBox;
+			int caretIndex = textBox.CaretIndex;
+			string newText = textBox.Text.Replace(" ", "");
+			if (textBox.Text != newText)
+			{
+				textBox.Text = newText;
+				textBox.CaretIndex = Math.Min(caretIndex, newText.Length);
+			}
 			TextboxProcessing textboxProcessing = new();
 			textboxProcessing.WholeNumbersOnly(Cuprum_tb, e);
 		}
@@ -247,6 +303,98 @@ namespace DNDHelper.Windows
 		{
 			e.CancelCommand();
 			e.Handled = true;
+		}
+		// Загрузка изображения
+		private void PackIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			OpenFileDialog LoadImageCharacter = new();
+			LoadImageCharacter.Filter = "Изображения (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg";
+			if (LoadImageCharacter.ShowDialog() == true)
+			{
+				try
+				{
+					BitmapImage bitmap = new();
+					bitmap.BeginInit();
+					bitmap.UriSource = new Uri(LoadImageCharacter.FileName);
+					bitmap.EndInit();
+					ImageCharacter.Source = bitmap;
+					ImageIconCharacter.Visibility = Visibility.Collapsed;
+					ImageCharacter.Visibility = Visibility.Visible;
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show("Ошибка загрузки изображения: " + ex.Message);
+				}
+
+			}
+		}
+		// Изменение ХП
+		private void CurrentHealth_textblock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			CurrentHealth_textblock.Visibility = Visibility.Collapsed;
+			CurrentHealth_textbox.Visibility = Visibility.Visible;
+			CurrentHealth_textbox.Focus();
+		}
+		private void CurrentHealth_tb_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			TextboxProcessing textboxProcessing = new();
+			textboxProcessing.WholeNumbersOnly(CurrentHealth_textbox, e);
+		}
+		private void CurrentHealth_tb_Pasting(object sender, DataObjectPastingEventArgs e)
+		{
+			e.CancelCommand();
+			e.Handled = true;
+		}
+
+		private void CurrentHealth_textbox_KeyDown(object sender, KeyEventArgs e)
+		{
+			var textBox = sender as TextBox;
+			int caretIndex = textBox.CaretIndex;
+			string newText = textBox.Text.Replace(" ", "");
+			if (textBox.Text != newText)
+			{
+				textBox.Text = newText;
+				textBox.CaretIndex = Math.Min(caretIndex, newText.Length);
+			}
+			if (e.Key == Key.Enter)
+			{
+				string text = CurrentHealth_textbox.Text;
+				CurrentHealth_textblock.Text = text;
+				if (text.Length == 0)
+				{
+					CurrentHealth_textblock.Text = "0";
+				}
+				CurrentHealth_textblock.Visibility = Visibility.Visible;
+				CurrentHealth_textbox.Visibility = Visibility.Collapsed;
+				if (Convert.ToInt32(CurrentHealth_textblock.Text) <= 0)
+				{
+					СriticalRoll_Text_textblock.Visibility = Visibility.Visible;
+					СriticalRoll_GreaterOrEqual_textblock.Visibility = Visibility.Visible;
+					СriticalRoll_Number_textblock.Visibility = Visibility.Visible;
+					СriticalRoll_Number_textblock.Text = Convert.ToString((Math.Abs(Convert.ToInt32(CurrentHealth_textblock.Text)) * 100) / (Convert.ToInt32(MaxHealth_textblock.Text)) / 5 + 10);
+				}
+				else
+				{
+					СriticalRoll_Text_textblock.Visibility = Visibility.Hidden;
+					СriticalRoll_GreaterOrEqual_textblock.Visibility = Visibility.Hidden;
+					СriticalRoll_Number_textblock.Visibility = Visibility.Hidden;
+				}
+
+			}
+		}
+
+		private void ResetHealth_Click(object sender, RoutedEventArgs e)
+		{
+			СriticalRoll_Text_textblock.Visibility = Visibility.Hidden;
+			СriticalRoll_GreaterOrEqual_textblock.Visibility = Visibility.Hidden;
+			СriticalRoll_Number_textblock.Visibility = Visibility.Hidden;
+			CurrentHealth_textblock.Text = MaxHealth_textblock.Text;
+			CurrentHealth_textbox.Text = MaxHealth_textblock.Text;
+			if (CurrentHealth_textbox.Focus())
+			{
+				CurrentHealth_textbox.Text = MaxHealth_textblock.Text;
+			}
+			
 		}
 	}
 }

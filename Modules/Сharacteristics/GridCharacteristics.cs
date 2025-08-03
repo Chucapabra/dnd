@@ -1,10 +1,11 @@
-﻿using DNDHelper.Windows;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Windows;
+using DNDHelper.Modules.Config;
+using DNDHelper.Windows;
 using static DNDHelper.Modules.Сharacteristics.CharacteristicTable;
 using static DNDHelper.Modules.Сharacteristics.CharacteristicTable.StatName;
 
@@ -31,7 +32,7 @@ namespace DNDHelper.Modules.Сharacteristics
         {
             int selectedIndex = main.DataGridCharacterisctics.SelectedIndex;
 
-            if (Base(selectedIndex) > 0)
+            if (Base(selectedIndex) > 3)
             {
                 AddCharacteristic(selectedIndex, -1);
                 FindAVariableCharacteristic(selectedIndex);
@@ -45,10 +46,13 @@ namespace DNDHelper.Modules.Сharacteristics
             switch (selectIndex)
             {
                 case >= 0 and <= 1:
-                    Base(0) += Add;
-                    Base(1) = Base(0);
-                    FindAVariableCharacteristic(0);
-                    FindAVariableCharacteristic(1);
+                    if ((PointsNow > 0 || Add < 0) && (Base(selectIndex) > 5 || Add > 0))
+                    {
+                        Base(0) += Add;
+                        Base(1) = Base(0);
+                        FindAVariableCharacteristic(0);
+                        FindAVariableCharacteristic(1);
+                    }
                     return;
                 case >= 3 and <= 5:
                     if (PointsAgilitySkillsNow > 0 || Add < 0)
@@ -67,7 +71,7 @@ namespace DNDHelper.Modules.Сharacteristics
                         Base(selectIndex) += Add;
                     return;
             }
-            if (PointsNow > 0 || Add < 0)
+            if ((PointsNow > 0 || Add < 0) && (Base(selectIndex) > 5 || Add > 0))
                 Base(selectIndex) += Add;
         }
 
@@ -126,36 +130,6 @@ namespace DNDHelper.Modules.Сharacteristics
 
         }
 
-        public void StrengthMethod()
-        {
-
-        }
-
-        public void AgilityMethod()
-        {
-            PointsAgilitySkills = (int)(Base(Agility) * 3 * 0.75);
-        }
-
-
-        public void BodyMethod()
-        {
-
-        }
-
-        public void IntellectMethod()
-        {
-            PointsIntellectSkills = (int)(Base(Intellect) * 3 * 0.75);
-        }
-
-        public void WisdomMethod()
-        {
-            PointsWisdomSkills = (int)(Base(Wisdom) * 3 * 0.75);
-        }
-        public void CharismaMethod()
-        {
-            PointsCharismaSkills = (int)(Base(Charisma) * 3 * 0.75);
-        }
-
         public void UpdateCharacterisitc(int index)
         {
             CountCharacterisitc(index);
@@ -172,9 +146,18 @@ namespace DNDHelper.Modules.Сharacteristics
                 CountCharacterisitc((int)name);
         }
 
+        public void UpdateAllCharacterisitc()
+        {
+            SetChars();
+            for (int i = 0; i < 25; i++)
+            {
+                CountCharacterisitc(i);
+            }
+        }
+
         private void CountCharacterisitc(int index)
         {
-            Buffed(index) = Base(index);
+            Buffed(index) = Base(index) + Race.Stats[index].Value;
             DataGridChar[index].Value = Buffed(index);
             DataGridChar[index].Roll = CalculateRoll(index);
         }
@@ -217,7 +200,38 @@ namespace DNDHelper.Modules.Сharacteristics
 
         static public int CalculateRoll(int setCharIndex)
         {
-            return (int)MathF.Ceiling((float)((Buffed(setCharIndex) - 10) * 0.5));
+            return (int)MathF.Ceiling((float)((Buffed(setCharIndex) - 10) * 0.5)) + Race.Stats[setCharIndex].Roll;
+        }
+
+        // Методы характеристик
+        public void StrengthMethod()
+        {
+
+        }
+
+        public void AgilityMethod()
+        {
+            PointsAgilitySkills = (int)((Base(Agility) + Race.Stats[2].Value) * 3 * 0.75);
+        }
+
+
+        public void BodyMethod()
+        {
+
+        }
+
+        public void IntellectMethod()
+        {
+            PointsIntellectSkills = (int)((Base(Intellect) + Race.Stats[7].Value) * 6 * 0.75);
+        }
+
+        public void WisdomMethod()
+        {
+            PointsWisdomSkills = (int)((Base(Wisdom) + Race.Stats[14].Value) * 5 * 0.75);
+        }
+        public void CharismaMethod()
+        {
+            PointsCharismaSkills = (int)((Base(Charisma) + Race.Stats[20].Value) * 4 * 0.75);
         }
     }
 

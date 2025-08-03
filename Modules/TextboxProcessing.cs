@@ -13,10 +13,26 @@ namespace DNDHelper.Modules
 	{
 		public void WholeNumbersOnly(object sender, TextCompositionEventArgs e)
 		{
-			if (!char.IsDigit(e.Text, 0))
+			var textBox = sender as System.Windows.Controls.TextBox;
+
+			if (char.IsDigit(e.Text, 0))
 			{
-				e.Handled = true;
+				e.Handled = false;
+				return;
 			}
+			if (e.Text == "-")
+			{
+				if (textBox.SelectionStart == 0 && !textBox.Text.Contains("-"))
+				{
+					e.Handled = false;
+				}
+				else
+				{
+					e.Handled = true;
+				}
+				return;
+			}
+			e.Handled = true;
 		}
 		public void DoubleNumbersOnly(object sender, TextCompositionEventArgs e)
 		{
@@ -28,9 +44,9 @@ namespace DNDHelper.Modules
 				return;
 			}
 
-			if (e.Text == ",")
+			if (e.Text == "," || e.Text == "-")
 			{
-				if (!textBox.Text.Contains(","))
+				if (!textBox.Text.Contains(",") || textBox.SelectionStart == 0 && !textBox.Text.Contains("-"))
 				{
 					e.Handled = false;
 				}
