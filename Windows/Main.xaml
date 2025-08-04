@@ -383,9 +383,13 @@
 							<Grid>
 								<TextBlock Text="{Binding Value}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 								<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-									<Button Content="+" Visibility="{DynamicResource IsEdit}" Foreground="DarkGreen" Background="DarkGreen"  Width="12" Height="12" Margin="2" Click="AddCharacteristic_Click"/>
-									<Button Content="-" Visibility="{DynamicResource IsEdit}" Foreground="DarkRed" Background="DarkRed" Width="12" Height="12" Margin="2" Click="SubtractCharacteristic_Click"/>
-								</StackPanel>
+                                    <Button Style="{DynamicResource MaterialDesignIconForegroundButton }" Visibility="{DynamicResource IsEdit}"  Width="12" Height="12" Margin="2" Click="AddCharacteristic_Click">
+                                        <TextBlock Text="+" Margin="0,-5,0,0" FontSize="16" />
+                                    </Button>
+                                    <Button Style="{DynamicResource MaterialDesignIconForegroundButton }" Visibility="{DynamicResource IsEdit}" Width="12" Height="12" Margin="2" Click="SubtractCharacteristic_Click">
+                                        <TextBlock Text="-" Margin="0,-8,0,0" FontSize="22" />
+                                    </Button>
+                                </StackPanel>
 							</Grid>
 						</DataTemplate>
 					</DataGridTemplateColumn.CellTemplate>

@@ -8,13 +8,15 @@ namespace DNDHelper.Modules.Config
 {
     class Race
     {
-        Dictionary<string, List<CharacterData>> data;
-        public static CharacterData SelectedCharacterData;
+        Dictionary<string, List<RaceData>> data;
 
-        List<Stat> statsEmpty = new List<Stat>();
+        public static RaceData SelectedClassData;
         public static List<Stat> Stats = new List<Stat>();
-        public void Test()
+
+        public Race()
         {
+            Main.Instance.character_race_combobox.SelectionChanged += character_race_combobox_SelectionChanged;
+
             string json = File.ReadAllText("Race.json");
             var options = new JsonSerializerOptions
             {
@@ -22,41 +24,37 @@ namespace DNDHelper.Modules.Config
                 WriteIndented = true
             };
 
-            Main.Instance.character_race_combobox.SelectionChanged += character_race_combobox_SelectionChanged;
 
-
-            data = JsonSerializer.Deserialize<Dictionary<string, List<CharacterData>>>(json, options);
-
-
+            data = JsonSerializer.Deserialize<Dictionary<string, List<RaceData>>>(json, options);
 
             Main.Instance.character_race_combobox.ItemsSource = data.Keys;
 
-
-            for (int i = 0; i < 26; i++)
-            {
-                Stats.Add(new Stat { Value = 0, Roll = 0 });
-            }
-
+            ClearStats();
         }
 
-        private void character_race_combobox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void ClearStats() 
         {
             Stats.Clear();
             for (int i = 0; i < 26; i++)
             {
                 Stats.Add(new Stat { Value = 0, Roll = 0 });
             }
+        }
+
+        private void character_race_combobox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            ClearStats();
 
             string selectText = Main.Instance.character_race_combobox.SelectedValue.ToString();
-            SelectedCharacterData = data[selectText][0];
+            SelectedClassData = data[selectText][0];
 
-            foreach (var item in SelectedCharacterData.StandartStats[0])
+            foreach (var item in SelectedClassData.StandartStats[0])
             {
                 int index = Array.IndexOf(StatNameRus, item.Key.ToLower());
 
                 if (index != -1)
                 {
-                    int[] stat = SelectedCharacterData.StandartStats[0][item.Key];
+                    int[] stat = SelectedClassData.StandartStats[0][item.Key];
                     Stats[index].Value = stat[0];
                     Stats[index].Roll = stat[1];
                 }
@@ -64,10 +62,11 @@ namespace DNDHelper.Modules.Config
 
             Main.Characteristics.UpdateAllCharacterisitc();
 
+
+            Main.Instance.character_race_textblock.Text = selectText;
         }
+
     }
-
-
 
     public class Stat
     {
@@ -76,8 +75,7 @@ namespace DNDHelper.Modules.Config
         public int Roll { get; set; } = 0;
     }
 
-
-    public class CharacterData
+    internal class RaceData
     {
         [JsonPropertyName("ДопОчки_Навыков")]
         public int AddPoints { get; set; }

@@ -1,11 +1,12 @@
-﻿using System;
+﻿using DNDHelper.Modules.Config;
+using DNDHelper.Windows;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using DNDHelper.Modules.Config;
-using DNDHelper.Windows;
+using System.Windows;
 using static DNDHelper.Modules.Сharacteristics.CharacteristicTable;
 using static DNDHelper.Modules.Сharacteristics.CharacteristicTable.StatName;
 
@@ -23,6 +24,7 @@ namespace DNDHelper.Modules.Сharacteristics
             {
                 AddCharacteristic(selectedIndex, 1);
                 FindAVariableCharacteristic(selectedIndex);
+                UpdateCharacterisitc(selectedIndex);
             }
 
             SetChars();
@@ -36,6 +38,7 @@ namespace DNDHelper.Modules.Сharacteristics
             {
                 AddCharacteristic(selectedIndex, -1);
                 FindAVariableCharacteristic(selectedIndex);
+                UpdateCharacterisitc(selectedIndex);
             }
 
             SetChars();
@@ -52,6 +55,8 @@ namespace DNDHelper.Modules.Сharacteristics
                         Base(1) = Base(0);
                         FindAVariableCharacteristic(0);
                         FindAVariableCharacteristic(1);
+                        UpdateCharacterisitc(0);
+                        UpdateCharacterisitc(1);
                     }
                     return;
                 case >= 3 and <= 5:
@@ -76,7 +81,7 @@ namespace DNDHelper.Modules.Сharacteristics
         }
 
 
-        private void FindAVariableCharacteristic(int selectIndex)
+        public void FindAVariableCharacteristic(int selectIndex)
         {
             switch (selectIndex)
             {
@@ -103,10 +108,9 @@ namespace DNDHelper.Modules.Сharacteristics
                     PointsCharismaSkillsNow = PointsCharismaSkills - Base(Deception) - Base(Intimidation) - Base(Speech) - Base(Persuasion);
                     break;
             }
-
-            UpdateCharacterisitc(selectIndex);
+        
             PointsNow = Points - Base(Strength) - Base(Agility) - Base(Body) - Base(Intellect) - Base(Wisdom) - Base(Charisma);
-            UpdatePointText(true);
+            UpdatePointText(main.EditMode_button.IsChecked == true);
         }
 
         public void UpdatePointText(bool OnOff)
@@ -153,11 +157,23 @@ namespace DNDHelper.Modules.Сharacteristics
             {
                 CountCharacterisitc(i);
             }
+            StrengthMethod();
+            AgilityMethod();
+            BodyMethod();
+            IntellectMethod();
+            WisdomMethod();         
+            CharismaMethod();
+            PointsAgilitySkillsNow = PointsAgilitySkills - Base(Acrobatics) - Base(SleightOfHand) - Base(Stealth);
+            PointsIntellectSkillsNow = PointsIntellectSkills - Base(Magic) - Base(Religion) - Base(Nature) - Base(History) - Base(Investigation) - Base(Technology);
+            PointsWisdomSkillsNow = PointsWisdomSkills - Base(Medicine) - Base(Perception) - Base(Insight) - Base(Survival) - Base(TOAnimals);
+            PointsCharismaSkillsNow = PointsCharismaSkills - Base(Deception) - Base(Intimidation) - Base(Speech) - Base(Persuasion);
+            PointsNow = Points - Base(Strength) - Base(Agility) - Base(Body) - Base(Intellect) - Base(Wisdom) - Base(Charisma);
+            UpdatePointText(main.EditMode_button.IsChecked == true);
         }
 
         private void CountCharacterisitc(int index)
         {
-            Buffed(index) = Base(index) + Race.Stats[index].Value;
+            Buffed(index) = Base(index) + Race.Stats[index].Value + PlayerClass.Stats[index].Value;
             DataGridChar[index].Value = Buffed(index);
             DataGridChar[index].Roll = CalculateRoll(index);
         }
@@ -193,6 +209,7 @@ namespace DNDHelper.Modules.Сharacteristics
 
         static public void SetChars()
         {
+            
             Main.Instance.DataGridCharacterisctics.ItemsSource = DataGridChar;
         }
 
@@ -200,7 +217,7 @@ namespace DNDHelper.Modules.Сharacteristics
 
         static public int CalculateRoll(int setCharIndex)
         {
-            return (int)MathF.Ceiling((float)((Buffed(setCharIndex) - 10) * 0.5)) + Race.Stats[setCharIndex].Roll;
+            return (int) MathF.Floor((float)((Buffed(setCharIndex) - 10) * 0.5) + Race.Stats[setCharIndex].Roll + PlayerClass.Stats[setCharIndex].Roll);
         }
 
         // Методы характеристик
@@ -211,7 +228,7 @@ namespace DNDHelper.Modules.Сharacteristics
 
         public void AgilityMethod()
         {
-            PointsAgilitySkills = (int)((Base(Agility) + Race.Stats[2].Value) * 3 * 0.75);
+            PointsAgilitySkills = (int)((Base(Agility) + Race.Stats[2].Value + PlayerClass.Stats[2].Value)  * 3 * 0.75);
         }
 
 
@@ -222,16 +239,16 @@ namespace DNDHelper.Modules.Сharacteristics
 
         public void IntellectMethod()
         {
-            PointsIntellectSkills = (int)((Base(Intellect) + Race.Stats[7].Value) * 6 * 0.75);
+            PointsIntellectSkills = (int)((Base(Intellect) + Race.Stats[7].Value + PlayerClass.Stats[7].Value) * 6 * 0.75);
         }
 
         public void WisdomMethod()
         {
-            PointsWisdomSkills = (int)((Base(Wisdom) + Race.Stats[14].Value) * 5 * 0.75);
+            PointsWisdomSkills = (int)((Base(Wisdom) + Race.Stats[14].Value + PlayerClass.Stats[14].Value) * 5 * 0.75);
         }
         public void CharismaMethod()
         {
-            PointsCharismaSkills = (int)((Base(Charisma) + Race.Stats[20].Value) * 4 * 0.75);
+            PointsCharismaSkills = (int)((Base(Charisma) + Race.Stats[20].Value + PlayerClass.Stats[20].Value) * 4 * 0.75);
         }
     }
 

@@ -54,12 +54,11 @@ namespace DNDHelper.Windows
 			Instance = this;
 
 			Race @class = new Race();
-            @class.Test();
-
-
+			PlayerClass playerClass = new PlayerClass();
 
             Characteristics = new();
             GridCharacteristics.SetChars();
+            Characteristics.UpdateAllCharacterisitc();
         }
 
 		public class InventoryItem
