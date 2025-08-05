@@ -314,7 +314,7 @@
     <TextBox x:Name="DescriptionTextBox" materialDesign:HintAssist.Hint="Описание" TextWrapping="Wrap" AcceptsReturn="True" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"/>
 </Border>
 					<Border Grid.Row="1" Grid.Column="1">
-						<DataGrid x:Name="ItemCharacteristicsGrid"
+                        <DataGrid x:Name="DataGridItemBaffs" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
 							  AutoGenerateColumns="False"
 							  CanUserAddRows="True"
 							  CanUserDeleteRows="False"
@@ -322,12 +322,20 @@
 							  CanUserResizeRows="False"
 							  CanUserResizeColumns="False"
 							  CanUserSortColumns="False">
-							<DataGrid.Columns>
-								<DataGridTextColumn Header="Характерстика" Binding="{Binding ItemCharacteristics}"/>
-								<DataGridTextColumn Header="Ролл" Binding="{Binding CharacteristicsRoll}"/>
-							</DataGrid.Columns>
-						</DataGrid>
-					</Border>
+                            <DataGrid.Columns>
+                                <DataGridComboBoxColumn Width="95" Header=" Параметр" SelectedValueBinding="{Binding NameValue}" x:Name="df"/>
+                                <DataGridTextColumn Width="60" Header="Значение" Binding="{Binding AddValue}"/>
+                                <DataGridTextColumn Width="50" Header=" Ролл" Binding="{Binding AddRoll}"/>
+                            </DataGrid.Columns>
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
+                                    <Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
+                                    <Setter Property="FontSize" Value="14"/>
+                                </Style>
+                            </DataGrid.ColumnHeaderStyle>
+                        </DataGrid>
+                    </Border>
 					<Border Grid.Row="1" Grid.Column="2">
 						<StackPanel Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
 							<StackPanel  Orientation="Horizontal">

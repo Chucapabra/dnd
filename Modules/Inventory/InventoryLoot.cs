@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using static DNDHelper.Modules.Inventory.InventoryLoot;
 using static MaterialDesignThemes.Wpf.Theme;
 
 namespace DNDHelper.Modules.Inventory
@@ -16,9 +17,13 @@ namespace DNDHelper.Modules.Inventory
         Main main = Main.Instance;
 
         public static ObservableCollection<InventoryItem> InventoryItems { get; set; }
+        ObservableCollection<ItemBaffs> itemBaffs = new();
 
         public InventoryLoot()
         {
+            
+
+            main.DataGridItemBaffs.ItemsSource = itemBaffs;
             InventoryItems = new ObservableCollection<InventoryItem>();
             InventoryItems.Add(new InventoryItem
             {
@@ -29,8 +34,8 @@ namespace DNDHelper.Modules.Inventory
                 Crushing = 0,
                 Severity = 1,
                 KD = 5,
-				Quality = "Прото",
-				Count = 1,
+                Quality = "Прото",
+                Count = 1,
                 CountWeight = true,
                 Description = "Старый добрый меч.",
                 CountKD = true,
@@ -136,7 +141,7 @@ namespace DNDHelper.Modules.Inventory
             {
                 case 1:
                     if (InventoryItems[indexRow].Weight != 0)
-                    InventoryItems[indexRow].Weight = InventoryItems[indexRow].Weight / InventoryItems[indexRow].Count;
+                        InventoryItems[indexRow].Weight = InventoryItems[indexRow].Weight / InventoryItems[indexRow].Count;
                     break;
                 case 3:
                     InventoryItems[indexRow].Chopping = InventoryItems[indexRow].Chopping / QualityToDouble(InventoryItems[indexRow].Quality);
@@ -372,6 +377,7 @@ namespace DNDHelper.Modules.Inventory
             }
 
 
+
             private int _wholekd;
             private double _kd;
             public int WholeKD
@@ -445,6 +451,13 @@ namespace DNDHelper.Modules.Inventory
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+
+        public class ItemBaffs
+        {
+            public string NameValue { get; set; }
+            public int AddValue { get; set; }
+            public int AddRoll { get; set; }
         }
     }
 }

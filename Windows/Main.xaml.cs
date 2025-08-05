@@ -35,8 +35,7 @@ namespace DNDHelper.Windows
 
 		public static Main Instance;
 		public static GridCharacteristics Characteristics;
-
-		public Main()
+        public Main()
 		{
 			InitializeComponent();
 			InitializeClasses();
@@ -47,7 +46,9 @@ namespace DNDHelper.Windows
 
 			MaxHealth_textblock.Text = "100";
 			CurrentHealth_textblock.Text = "-99";
-		}
+
+
+        }
 		public void InitializeClasses()
 		{
 			Instance = this;
@@ -334,7 +335,8 @@ namespace DNDHelper.Windows
 			{
 				CurrentHealth_textbox.Text = MaxHealth_textblock.Text;
 			}
-			
+
+
 		}
 		// Счёт урона
 		private void CountDamage_button_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

@@ -15,7 +15,7 @@ namespace DNDHelper.Modules.Сharacteristics
     public class GridCharacteristics
     {
         Main main = Main.Instance;
-
+        int addRollCharisma = 0;
         public void AddCharacteristic_Click()
         {
             int selectedIndex = main.DataGridCharacterisctics.SelectedIndex;
@@ -173,7 +173,11 @@ namespace DNDHelper.Modules.Сharacteristics
 
         private void CountCharacterisitc(int index)
         {
-            Buffed(index) = Base(index) + Race.Stats[index].Value + PlayerClass.Stats[index].Value;
+            // Бафф к харизме
+            if (index == 20)
+                Buffed(index) = Base(index) + Race.Stats[index].Value + PlayerClass.Stats[index].Value + addRollCharisma;
+            else
+                Buffed(index) = Base(index) + Race.Stats[index].Value + PlayerClass.Stats[index].Value;
             DataGridChar[index].Value = Buffed(index);
             DataGridChar[index].Roll = CalculateRoll(index);
         }
@@ -223,7 +227,16 @@ namespace DNDHelper.Modules.Сharacteristics
         // Методы характеристик
         public void StrengthMethod()
         {
-
+            // Бафф к харизме
+            int strength = Base(Strength) + Race.Stats[0].Value + PlayerClass.Stats[0].Value;
+            if (strength > 0)
+            {
+                addRollCharisma = (int)(strength / 5) - 2;
+                if (addRollCharisma < 0)
+                    addRollCharisma = 0;
+                FindAVariableCharacteristic((int)Charisma);
+                UpdateCharacterisitc(Charisma); 
+            }
         }
 
         public void AgilityMethod()
@@ -248,7 +261,7 @@ namespace DNDHelper.Modules.Сharacteristics
         }
         public void CharismaMethod()
         {
-            PointsCharismaSkills = (int)((Base(Charisma) + Race.Stats[20].Value + PlayerClass.Stats[20].Value) * 4 * 0.75);
+            PointsCharismaSkills = (int)((Base(Charisma) + Race.Stats[20].Value + PlayerClass.Stats[20].Value + addRollCharisma) * 4 * 0.75);
         }
     }
 

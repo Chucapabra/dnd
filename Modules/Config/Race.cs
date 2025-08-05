@@ -1,7 +1,11 @@
-﻿using DNDHelper.Windows;
+﻿using DNDHelper.Modules.Inventory;
+using DNDHelper.Windows;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using static DNDHelper.Modules.Inventory.InventoryLoot;
 using static DNDHelper.Modules.Сharacteristics.CharacteristicTable;
 
 namespace DNDHelper.Modules.Config
