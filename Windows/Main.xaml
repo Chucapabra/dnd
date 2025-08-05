@@ -7,7 +7,7 @@
 		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 		Style="{StaticResource MaterialDesignWindow}"
         mc:Ignorable="d"
-        Title="DNDHelper" Height="590" Width="1098" ResizeMode="NoResize" Visibility="Visible">
+        Title="DNDHelper" Height="590" Width="1110" ResizeMode="NoResize" Visibility="Visible">
 	<Window.Resources>
 
 		<Style TargetType="TextBlock">
@@ -111,6 +111,7 @@
 				<TextBox Style="{DynamicResource STYLE_NAME}" Foreground="{DynamicResource StandartForeColor}" Background="{DynamicResource StandartBackColor}" x:Name="CurrentHealth_textbox" Width="40" Height="17" Text="20" TextAlignment="Center" Visibility="Collapsed" materialDesign:HintAssist.Hint="Число" PreviewTextInput="CurrentHealth_tb_PreviewTextInput" DataObject.Pasting="CurrentHealth_tb_Pasting" KeyDown="CurrentHealth_textbox_KeyDown" AcceptsReturn="False"/>
 				<TextBlock Width="5" Text="|" TextAlignment="Center"  VerticalAlignment="Center"/>
 				<TextBlock x:Name="MaxHealth_textblock"  Width="40" Text="0" TextAlignment="Center"  VerticalAlignment="Center"/>
+				<TextBlock x:Name="DamageHealth_textblock"  Width="40" Text="0" TextAlignment="Center"  VerticalAlignment="Center" Foreground="Red"/>
 			</StackPanel>
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 				<TextBlock Width="135" Text="Ментальное КД:" TextAlignment="Right"/>
@@ -122,6 +123,59 @@
 				<TextBlock Width="30" Text="КД:" TextAlignment="Right"/>
 				<TextBlock  Width="40" Text="0" TextAlignment="Center"/>
 			</StackPanel>
+		</StackPanel>
+		<StackPanel Grid.Column="1" Margin="400,10,0,0">
+			<StackPanel Orientation="Horizontal" Margin="36,0,0,0">
+				<ComboBox materialDesign:HintAssist.Hint="Тип щита" Width="100">
+					<ComboBoxItem Content="Магический"/>
+					<ComboBoxItem Content="Физический"/>
+					<ComboBoxItem Content="От всего"/>
+				</ComboBox>
+				<TextBox materialDesign:HintAssist.Hint="ХП" Width="55" TextAlignment="Center" x:Name="shield_health_textbox" PreviewTextInput="shield_health_textbox_PreviewTextInput" DataObject.Pasting="shield_health_textbox_Pasting"/>
+				<CheckBox Content="КД головы" Margin="0,0,0,0"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<materialDesign:PackIcon x:Name="CountDamage_button" Width="25" Height="25" Kind="SwordCross" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,25,10,0" MouseLeftButtonDown="CountDamage_button_MouseLeftButtonDown"/>
+				<DataGrid Width="160" HorizontalAlignment="Left" x:Name="DamageGrid"
+							  AutoGenerateColumns="False"
+							  CanUserAddRows="True"
+							  CanUserDeleteRows="False"
+							  CanUserReorderColumns="False"
+							  CanUserResizeRows="False"
+							  CanUserResizeColumns="False"
+							  CanUserSortColumns="False">
+					<DataGrid.Columns>
+						<DataGridComboBoxColumn Header="Тип урона"
+					SelectedItemBinding="{Binding TypeDamage}"
+					x:Name="TypeDamage_column">
+						</DataGridComboBoxColumn>
+						<DataGridTextColumn Header="Урон" Binding="{Binding Damage}"/>
+					</DataGrid.Columns>
+				</DataGrid>
+				<TextBlock Text="Бафф к КД"/>
+				<TextBox materialDesign:HintAssist.Hint="Число" Margin="-68,10,0,0" Height="24" Width="40" x:Name="BaffKD_textbox" PreviewTextInput="BaffKD_textbox_PreviewTextInput"  DataObject.Pasting="BaffKD_textbox_Pasting" TextAlignment="Center"/>
+			</StackPanel>
+		</StackPanel>
+		<StackPanel Grid.Column="1" Margin="668,35,0,0">
+			<Border>
+				<DataGrid Width="160" HorizontalAlignment="Left" x:Name="DataGridStatusEffects"
+						  AutoGenerateColumns="False"
+						  CanUserAddRows="True"
+						  CanUserDeleteRows="False"
+						  CanUserReorderColumns="False"
+						  CanUserResizeRows="False"
+						  CanUserResizeColumns="False"
+						  CanUserSortColumns="False">
+				<DataGrid.Columns>
+					<DataGridComboBoxColumn Header="Эффект"
+					SelectedItemBinding="{Binding StatusEffect}"
+					x:Name="StatusEffect_column"/>
+					<DataGridComboBoxColumn Header="Уровень"
+					SelectedItemBinding="{Binding LevelEffect}"
+					x:Name="LevelEffect_column"/>
+				</DataGrid.Columns>
+			</DataGrid>
+		</Border>
 		</StackPanel>
 		<TextBlock x:Name="сharacter_weight_textblock" Text="Вес: 0/0" Grid.Column="1" VerticalAlignment="Bottom" Margin="0,0,0,0"/>
 		<TextBlock Text="13.0  " Height="18" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Margin="0,13,0,89" RenderTransformOrigin="0.457,3.169"/>
@@ -140,8 +194,127 @@
 						<RowDefinition Height="70*"/>
 					</Grid.RowDefinitions>
 					<Border Grid.ColumnSpan="4">
-						<DataGrid x:Name="DataGridInventory"
-							  Grid.ColumnSpan="4"
+						    <DataGrid x:Name="DataGridInventory" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+					  Grid.ColumnSpan="4"
+					  AutoGenerateColumns="False"
+					  CanUserAddRows="True"
+					  CanUserDeleteRows="False"
+					  CanUserReorderColumns="False"
+					  CanUserResizeRows="False"
+					  CanUserResizeColumns="False"
+					  CanUserSortColumns="False">
+					<DataGrid.Columns>
+            <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="140"/>
+            <DataGridTextColumn Header="Вес" Binding="{Binding Weight}" Width="65">
+                <DataGridTextColumn.EditingElementStyle>
+                    <Style TargetType="TextBox">
+                        <EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
+                        <EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
+                    </Style>
+                </DataGridTextColumn.EditingElementStyle>
+            </DataGridTextColumn>
+
+            <DataGridComboBoxColumn Header="Качество"
+						SelectedValueBinding="{Binding Quality}"
+						x:Name="QualityColumn" Width="115">
+                <DataGridComboBoxColumn.ElementStyle>
+                    <Style TargetType="ComboBox">
+                        <Setter Property="ItemsSource">
+                            <Setter.Value>
+                                <x:Array Type="sys:String" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                                    <sys:String>Нет</sys:String>
+                                    <sys:String>Прото</sys:String>
+                                    <sys:String>Плохое</sys:String>
+                                    <sys:String>Стандартное</sys:String>
+                                    <sys:String>Высокое</sys:String>
+                                    <sys:String>Великолепное</sys:String>
+                                    <sys:String>Мастерское</sys:String>
+                                    <sys:String>Мифическое</sys:String>
+                                </x:Array>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGridComboBoxColumn.ElementStyle>
+                <DataGridComboBoxColumn.EditingElementStyle>
+                    <Style TargetType="ComboBox">
+                        <Setter Property="ItemsSource">
+                            <Setter.Value>
+                                <x:Array Type="sys:String" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+                                    <sys:String>Нет</sys:String>
+                                    <sys:String>Прото</sys:String>
+                                    <sys:String>Плохое</sys:String>
+                                    <sys:String>Стандартное</sys:String>
+                                    <sys:String>Высокое</sys:String>
+                                    <sys:String>Великолепное</sys:String>
+                                    <sys:String>Мастерское</sys:String>
+                                    <sys:String>Мифическое</sys:String>
+                                </x:Array>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGridComboBoxColumn.EditingElementStyle>
+            </DataGridComboBoxColumn>
+
+            <DataGridTextColumn Header="Рубящий" Binding="{Binding WholeChopping}" Width="88">
+                <DataGridTextColumn.EditingElementStyle>
+                    <Style TargetType="TextBox">
+                        <EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
+                        <EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
+                    </Style>
+                </DataGridTextColumn.EditingElementStyle>
+            </DataGridTextColumn>
+            <DataGridTextColumn Header="Колющий" Binding="{Binding WholeStabbing}" Width="93">
+                <DataGridTextColumn.EditingElementStyle>
+                    <Style TargetType="TextBox">
+                        <EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
+                        <EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
+                    </Style>
+                </DataGridTextColumn.EditingElementStyle>
+            </DataGridTextColumn>
+            <DataGridTextColumn Header="Дробящий" Binding="{Binding WholeCrushing}" Width="99">
+            <DataGridTextColumn.EditingElementStyle>
+                <Style TargetType="TextBox">
+                    <EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
+                    <EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
+                </Style>
+            </DataGridTextColumn.EditingElementStyle>
+            </DataGridTextColumn>
+            <DataGridTextColumn Header="Тяжесть" Binding="{Binding Severity}" Width="81">
+            <DataGridTextColumn.EditingElementStyle>
+                <Style TargetType="TextBox">
+                    <EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
+                    <EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
+                </Style>
+            </DataGridTextColumn.EditingElementStyle>
+            </DataGridTextColumn>
+            <DataGridTextColumn Header="КД" Binding="{Binding WholeKD}" Width="60">
+                <DataGridTextColumn.EditingElementStyle>
+                    <Style TargetType="TextBox">
+                        <EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
+                        <EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
+                    </Style>
+                </DataGridTextColumn.EditingElementStyle>
+            </DataGridTextColumn>
+						<DataGridTextColumn Header="Количество" Binding="{Binding Count}" Width="70">
+                <DataGridTextColumn.EditingElementStyle>
+                    <Style TargetType="TextBox">
+                        <EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
+                        <EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
+                    </Style>
+                </DataGridTextColumn.EditingElementStyle>
+            </DataGridTextColumn>
+            <DataGridTextColumn Header="CountWeightа" Binding="{Binding CountWeightа}" Visibility="Hidden"/>
+						<DataGridTextColumn Header="Description" Binding="{Binding Description}" Visibility="Hidden"/>
+						<DataGridTextColumn Header="CountKD" Binding="{Binding CountKD}" Visibility="Hidden"/>
+						<DataGridTextColumn Header="CountKDHelmetа" Binding="{Binding CountKDHelmetа}" Visibility="Hidden"/>
+					</DataGrid.Columns>
+				</DataGrid>
+</Border>
+<Border Grid.Row="1">
+    <TextBox x:Name="DescriptionTextBox" materialDesign:HintAssist.Hint="Описание" TextWrapping="Wrap" AcceptsReturn="True" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"/>
+</Border>
+					<Border Grid.Row="1" Grid.Column="1">
+						<DataGrid x:Name="ItemCharacteristicsGrid"
 							  AutoGenerateColumns="False"
 							  CanUserAddRows="True"
 							  CanUserDeleteRows="False"
@@ -150,35 +323,8 @@
 							  CanUserResizeColumns="False"
 							  CanUserSortColumns="False">
 							<DataGrid.Columns>
-								<DataGridTextColumn Header="Название" Binding="{Binding Название}"/>
-								<DataGridTextColumn Header="Вес" Binding="{Binding Вес}"/>
-
-								<DataGridComboBoxColumn Header="Качество"
-								SelectedItemBinding="{Binding Качество}"
-								x:Name="QualityColumn">
-								</DataGridComboBoxColumn>
-
-								<DataGridTextColumn Header="Рубящий" Binding="{Binding Рубящий}"/>
-								<DataGridTextColumn Header="Колющий" Binding="{Binding Колющий}"/>
-								<DataGridTextColumn Header="Дробяший" Binding="{Binding Дробяший}"/>
-								<DataGridTextColumn Header="Тяжесть" Binding="{Binding Тяжесть}"/>
-								<DataGridTextColumn Header="КД" Binding="{Binding КД}"/>
-								<DataGridTextColumn Header="Количество" Binding="{Binding Количество}"/>
-								<DataGridTextColumn Header="СчётВеса" Binding="{Binding СчётВеса}" Visibility="Hidden"/>
-								<DataGridTextColumn Header="Описание" Binding="{Binding Описание}" Visibility="Hidden"/>
-								<DataGridTextColumn Header="СчётКД" Binding="{Binding СчётКД}" Visibility="Hidden"/>
-								<DataGridTextColumn Header="СчётКДШлема" Binding="{Binding СчётКДШлема}" Visibility="Hidden"/>
-							</DataGrid.Columns>
-						</DataGrid>
-					</Border>
-					<Border Grid.Row="1">
-						<TextBox materialDesign:HintAssist.Hint="Описание" TextWrapping="Wrap" AcceptsReturn="True" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"/>
-					</Border>
-					<Border Grid.Row="1" Grid.Column="1">
-						<DataGrid>
-							<DataGrid.Columns>
-								<DataGridTextColumn Header="Характерстика" Binding="{Binding Характеристика}"/>
-								<DataGridTextColumn Header="Ролл" Binding="{Binding Ролл}"/>
+								<DataGridTextColumn Header="Характерстика" Binding="{Binding ItemCharacteristics}"/>
+								<DataGridTextColumn Header="Ролл" Binding="{Binding CharacteristicsRoll}"/>
 							</DataGrid.Columns>
 						</DataGrid>
 					</Border>
@@ -383,13 +529,13 @@
 							<Grid>
 								<TextBlock Text="{Binding Value}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 								<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                    <Button Style="{DynamicResource MaterialDesignIconForegroundButton }" Visibility="{DynamicResource IsEdit}"  Width="12" Height="12" Margin="2" Click="AddCharacteristic_Click">
-                                        <TextBlock Text="+" Margin="0,-5,0,0" FontSize="16" />
-                                    </Button>
-                                    <Button Style="{DynamicResource MaterialDesignIconForegroundButton }" Visibility="{DynamicResource IsEdit}" Width="12" Height="12" Margin="2" Click="SubtractCharacteristic_Click">
-                                        <TextBlock Text="-" Margin="0,-8,0,0" FontSize="22" />
-                                    </Button>
-                                </StackPanel>
+									<Button Style="{DynamicResource MaterialDesignIconForegroundButton }" Visibility="{DynamicResource IsEdit}"  Width="12" Height="12" Margin="2" Click="AddCharacteristic_Click">
+										<TextBlock Text="+" Margin="0,-5,0,0" FontSize="16" />
+									</Button>
+									<Button Style="{DynamicResource MaterialDesignIconForegroundButton }" Visibility="{DynamicResource IsEdit}" Width="12" Height="12" Margin="2" Click="SubtractCharacteristic_Click">
+										<TextBlock Text="-" Margin="0,-8,0,0" FontSize="22" />
+									</Button>
+								</StackPanel>
 							</Grid>
 						</DataTemplate>
 					</DataGridTemplateColumn.CellTemplate>

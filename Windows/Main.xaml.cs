@@ -39,7 +39,6 @@ namespace DNDHelper.Windows
 		public Main()
 		{
 			InitializeComponent();
-			LoadData();
 			InitializeClasses();
 
 
@@ -54,68 +53,14 @@ namespace DNDHelper.Windows
 			Instance = this;
 
 			Race @class = new Race();
-			PlayerClass playerClass = new PlayerClass();
-
+			PlayerClass playerClass = new();
+			InventoryLoot inventoryLoot = new();
             Characteristics = new();
             GridCharacteristics.SetChars();
             Characteristics.UpdateAllCharacterisitc();
         }
 
-		public class InventoryItem
-		{
-			public string Название { get; set; }
-			public int Вес { get; set; }
-			public string Качество { get; set; } // Для ComboBox
-			public double Рубящий { get; set; }
-			public double Колющий { get; set; }
-			public double Дробяший { get; set; }
-			public double Тяжесть { get; set; }
-			public double КД { get; set; }
-			public int Количество { get; set; }
-			public double СчётВеса { get; set; }
-			public string Описание { get; set; }
-			public double СчётКД { get; set; }
-			public double СчётКДШлема { get; set; }
-		}
-		public ObservableCollection<InventoryItem> InventoryItems { get; set; }
-		private void LoadData()
-		{
-			InventoryItems = new ObservableCollection<InventoryItem>();
-			InventoryItems.Add(new InventoryItem
-			{
-				Название = "Меч рыцаря",
-				Вес = 1,
-				Качество = "Хорошо", // Убедитесь, что это значение есть в вашем списке для ComboBox
-				Рубящий = 15,
-				Колющий = 10,
-				Дробяший = 0,
-				Тяжесть = 0.5,
-				КД = 1.2,
-				Количество = 1,
-				СчётВеса = 1.5,
-				Описание = "Старый добрый меч.",
-				СчётКД = 0,
-				СчётКДШлема = 0
-			});
-
-			InventoryItems.Add(new InventoryItem
-			{
-				Название = "Щит деревянный",
-				Вес = 3,
-				Качество = "Удовлетворительно",
-				Рубящий = 0,
-				Колющий = 0,
-				Дробяший = 5,
-				Тяжесть = 1.0,
-				КД = 2.5,
-				Количество = 1,
-				СчётВеса = 3.0,
-				Описание = "Простой деревянный щит.",
-				СчётКД = 0,
-				СчётКДШлема = 0
-			});
-			DataGridInventory.ItemsSource = InventoryItems;
-		}
+		
 
 		public void SetTheme(Color Background, Color Foreground)
 		{
@@ -238,8 +183,7 @@ namespace DNDHelper.Windows
 				textBox.Text = newText;
 				textBox.CaretIndex = Math.Min(caretIndex, newText.Length);
 			}
-			TextboxProcessing textboxProcessing = new();
-			textboxProcessing.WholeNumbersOnly(Cuprum_tb, e);
+			TextboxProcessing.WholeNumbersOnly(Cuprum_tb, e);
 		}
 		private void Cuprum_tb_Pasting(object sender, DataObjectPastingEventArgs e)
 		{
@@ -257,8 +201,7 @@ namespace DNDHelper.Windows
 				textBox.Text = newText;
 				textBox.CaretIndex = Math.Min(caretIndex, newText.Length);
 			}
-			TextboxProcessing textboxProcessing = new();
-			textboxProcessing.WholeNumbersOnly(Cuprum_tb, e);
+			TextboxProcessing.WholeNumbersOnly(Silver_tb, e);
 		}
 		private void Silver_tb_Pasting(object sender, DataObjectPastingEventArgs e)
 		{
@@ -276,8 +219,7 @@ namespace DNDHelper.Windows
 				textBox.Text = newText;
 				textBox.CaretIndex = Math.Min(caretIndex, newText.Length);
 			}
-			TextboxProcessing textboxProcessing = new();
-			textboxProcessing.WholeNumbersOnly(Cuprum_tb, e);
+			TextboxProcessing.WholeNumbersOnly(Gold_tb, e);
 		}
 		private void Gold_tb_Pasting(object sender, DataObjectPastingEventArgs e)
 		{
@@ -295,8 +237,7 @@ namespace DNDHelper.Windows
 				textBox.Text = newText;
 				textBox.CaretIndex = Math.Min(caretIndex, newText.Length);
 			}
-			TextboxProcessing textboxProcessing = new();
-			textboxProcessing.WholeNumbersOnly(Cuprum_tb, e);
+			TextboxProcessing.WholeNumbersOnly(backpack_plus_tb, e);
 		}
 		private void backpack_plus_tb_Pasting(object sender, DataObjectPastingEventArgs e)
 		{
@@ -336,8 +277,7 @@ namespace DNDHelper.Windows
 		}
 		private void CurrentHealth_tb_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
-			TextboxProcessing textboxProcessing = new();
-			textboxProcessing.WholeNumbersOnly(CurrentHealth_textbox, e);
+			TextboxProcessing.WholeNumbersOnly(CurrentHealth_textbox, e);
 		}
 		private void CurrentHealth_tb_Pasting(object sender, DataObjectPastingEventArgs e)
 		{
@@ -359,9 +299,10 @@ namespace DNDHelper.Windows
 			{
 				string text = CurrentHealth_textbox.Text;
 				CurrentHealth_textblock.Text = text;
-				if (text.Length == 0)
+				if (text.Length == 0 || CurrentHealth_textblock.Text == "-")
 				{
 					CurrentHealth_textblock.Text = "0";
+					CurrentHealth_textbox.Text = "0";
 				}
 				CurrentHealth_textblock.Visibility = Visibility.Visible;
 				CurrentHealth_textbox.Visibility = Visibility.Collapsed;
@@ -395,5 +336,68 @@ namespace DNDHelper.Windows
 			}
 			
 		}
-	}
+		// Счёт урона
+		private void CountDamage_button_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			MessageBox.Show("213");
+        }
+		
+		private void shield_health_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			var textBox = sender as TextBox;
+			int caretIndex = textBox.CaretIndex;
+			string newText = textBox.Text.Replace(" ", "");
+			if (textBox.Text != newText)
+			{
+				textBox.Text = newText;
+				textBox.CaretIndex = Math.Min(caretIndex, newText.Length);
+			}
+			TextboxProcessing.WholeNumbersOnly(shield_health_textbox, e);
+		}
+		private void shield_health_textbox_Pasting(object sender, DataObjectPastingEventArgs e)
+		{
+			e.CancelCommand();
+			e.Handled = true;
+		}
+
+		private void BaffKD_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			var textBox = sender as TextBox;
+			int caretIndex = textBox.CaretIndex;
+			string newText = textBox.Text.Replace(" ", "");
+			if (textBox.Text != newText)
+			{
+				textBox.Text = newText;
+				textBox.CaretIndex = Math.Min(caretIndex, newText.Length);
+			}
+			TextboxProcessing.WholeNumbersOnly(BaffKD_textbox, e);
+		}
+		private void BaffKD_textbox_Pasting(object sender, DataObjectPastingEventArgs e)
+		{
+			e.CancelCommand();
+			e.Handled = true;
+		}
+
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            TextboxProcessing.WholeNumbersOnly(sender, e);
+        }
+
+        private void TextBox_Pasting(object sender, DataObjectPastingEventArgs e)
+        {
+            // Проверяем вставку
+            if (e.DataObject.GetDataPresent(typeof(string)))
+            {
+                string text = (string)e.DataObject.GetData(typeof(string));
+                if (text.Any(c => !char.IsDigit(c)))
+                {
+                    e.CancelCommand(); // Блокируем вставку
+                }
+            }
+            else
+            {
+                e.CancelCommand();
+            }
+        }
+    }
 }

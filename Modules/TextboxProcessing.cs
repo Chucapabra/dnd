@@ -11,7 +11,7 @@ namespace DNDHelper.Modules
 {
 	public class TextboxProcessing
 	{
-		public void WholeNumbersOnly(object sender, TextCompositionEventArgs e)
+		public static void WholeNumbersOnly(object sender, TextCompositionEventArgs e)
 		{
 			var textBox = sender as System.Windows.Controls.TextBox;
 
@@ -34,7 +34,7 @@ namespace DNDHelper.Modules
 			}
 			e.Handled = true;
 		}
-		public void DoubleNumbersOnly(object sender, TextCompositionEventArgs e)
+		public static void DoubleNumbersOnly(object sender, TextCompositionEventArgs e)
 		{
 			var textBox = sender as System.Windows.Controls.TextBox;
 
