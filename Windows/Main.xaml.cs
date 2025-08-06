@@ -29,17 +29,19 @@ namespace DNDHelper.Windows
 	/// <summary>
 	/// Логика взаимодействия для Main.xaml
 	/// </summary>
-	public partial class Main : Window
+
+public partial class Main : Window
 	{
 
 
-		public static Main Instance;
+        public static Main Instance;
 		public static GridCharacteristics Characteristics;
+		public static ItemBaffsListScript ItemBaffsListScript;
+
         public Main()
 		{
 			InitializeComponent();
-			InitializeClasses();
-
+			InitializeClasses();			
 
             Resources["StandartBackColor"] = new SolidColorBrush(DarkThem.Theme[0]);
 			Resources["StandartForeColor"] = new SolidColorBrush(DarkThem.Theme[1]);
@@ -53,9 +55,11 @@ namespace DNDHelper.Windows
 		{
 			Instance = this;
 
-			Race @class = new Race();
+			Race @class = new ();
 			PlayerClass playerClass = new();
 			InventoryLoot inventoryLoot = new();
+            ItemBaffsListScript = new ();
+
             Characteristics = new();
             GridCharacteristics.SetChars();
             Characteristics.UpdateAllCharacterisitc();
@@ -380,6 +384,7 @@ namespace DNDHelper.Windows
 			e.Handled = true;
 		}
 
+		// Инвентарь
         private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             TextboxProcessing.WholeNumbersOnly(sender, e);
@@ -400,6 +405,16 @@ namespace DNDHelper.Windows
             {
                 e.CancelCommand();
             }
+        }
+
+        private void ComboBoxDataGridItemBaffsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+			ItemBaffsListScript.UpdateValues();
+        }
+
+        private void TextBoxDataGridItemBaffsList_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ItemBaffsListScript.UpdateValues();
         }
     }
 }

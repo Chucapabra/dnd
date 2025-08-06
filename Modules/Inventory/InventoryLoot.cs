@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using static DNDHelper.Modules.Inventory.InventoryLoot;
+using static DNDHelper.Modules.Inventory.ItemBaffsListScript;
 using static MaterialDesignThemes.Wpf.Theme;
 
 namespace DNDHelper.Modules.Inventory
@@ -16,14 +16,10 @@ namespace DNDHelper.Modules.Inventory
     {
         Main main = Main.Instance;
 
-        public static ObservableCollection<InventoryItem> InventoryItems { get; set; }
-        ObservableCollection<ItemBaffs> itemBaffs = new();
+        public static ObservableCollection<InventoryItem> InventoryItems { get; set; }        
 
         public InventoryLoot()
-        {
-            
-
-            main.DataGridItemBaffs.ItemsSource = itemBaffs;
+        {                
             InventoryItems = new ObservableCollection<InventoryItem>();
             InventoryItems.Add(new InventoryItem
             {
@@ -63,9 +59,52 @@ namespace DNDHelper.Modules.Inventory
 
             main.DataGridInventory.BeginningEdit += DataGridInventory_BeginningEdit;
             main.DataGridInventory.CellEditEnding += DataGridInventory_CellEditEnding; ;
-            main.DataGridInventory.PreviewMouseLeftButtonDown += DataGridInventory_PreviewMouseDoubleClick;
+            main.DataGridInventory.PreviewMouseLeftButtonDown += DataGridInventory_PreviewMouseLeftButtonDown;
+            main.DataGridInventory.PreviewMouseRightButtonDown += DataGridInventory_PreviewMouseRightButtonDown;
             main.DataGridInventory.SelectionChanged += DataGridInventory_SelectionChanged;
             main.DescriptionTextBox.TextChanged += DescriptionTextBox_TextChanged;
+            main.DataGridInventory.ContextMenuOpening += DataGridInventory_ContextMenuOpening;
+            main.AddMenuItem.Click += AddMenuItem_Click;
+            main.DeleteMenuItem.Click += DeleteMenuItem_Click;
+        }
+
+        private void DataGridInventory_ContextMenuOpening(object sender, ContextMenuEventArgs e)
+        {
+            int selectedIndex = main.DataGridInventory.SelectedIndex;
+            if( selectedIndex != -1)
+            {
+                main.AddMenuItem.Visibility = Visibility.Visible;
+                main.DeleteMenuItem.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                main.AddMenuItem.Visibility = Visibility.Visible;
+                main.DeleteMenuItem.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void DeleteMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            int selectedIndex = main.DataGridInventory.SelectedIndex;
+            if (selectedIndex != -1)
+            {
+                int selectedCount = main.DataGridInventory.SelectedItems.Count;
+                MessageBoxResult result;
+                if( selectedCount == 1 )
+                result = MessageBox.Show($"Вы точно хотите удалить предмет: {InventoryItems[selectedIndex].Name}", "Удалить предмет", MessageBoxButton.YesNo);
+                else
+                    result = MessageBox.Show($"Вы точно хотите удалить {selectedCount} предметов", "Удалить предметы", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                for(int i = 0; i < selectedCount; i++)
+                    {
+                        InventoryItems.RemoveAt(main.DataGridInventory.SelectedIndex);
+                    }
+            }
+        }
+
+        private void AddMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            InventoryItems.Add(new InventoryItem());
         }
 
         private void DescriptionTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -81,13 +120,23 @@ namespace DNDHelper.Modules.Inventory
         {
             if (main.DataGridInventory.SelectedItems.Count > 0)
             {
-                var item = main.DataGridInventory.SelectedItems[0] as InventoryItem;
+                var item = InventoryItems[main.DataGridInventory.SelectedIndex];
                 if (item != null)
+                {
                     main.DescriptionTextBox.Text = item.Description;
+                    ItemBaffsList.Clear();
+                    foreach (var baff in item.Baffs)
+                        ItemBaffsList.Add(baff);
+                }
+            }
+            else
+            {
+                main.DescriptionTextBox.Text = "";
+                ItemBaffsList.Clear();
             }
         }
 
-        private void DataGridInventory_PreviewMouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void DataGridInventory_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var cell = FindParent<DataGridCell>(e.OriginalSource as DependencyObject);
             main.DataGridInventory.IsReadOnly = false;
@@ -109,9 +158,19 @@ namespace DNDHelper.Modules.Inventory
                     e.Handled = true;
                 }
             }
+            else
+                main.DataGridInventory.SelectedIndex = -1;
+        }
+        private void DataGridInventory_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var cell = FindParent<DataGridCell>(e.OriginalSource as DependencyObject);
+
+            if (cell == null)
+                main.DataGridInventory.SelectedIndex = -1;
+                
         }
 
-        private static T FindParent<T>(DependencyObject child) where T : DependencyObject
+        public static T FindParent<T>(DependencyObject child) where T : DependencyObject
         {
             while (child != null && !(child is T))
             {
@@ -421,6 +480,7 @@ namespace DNDHelper.Modules.Inventory
             public bool CountKD { get; set; }
             public bool CountKDHelmet { get; set; }
 
+            public ObservableCollection<ItemBaff> Baffs { get; set; } = new();
 
             private void ReturnAllValue()
             {
@@ -453,11 +513,5 @@ namespace DNDHelper.Modules.Inventory
             }
         }
 
-        public class ItemBaffs
-        {
-            public string NameValue { get; set; }
-            public int AddValue { get; set; }
-            public int AddRoll { get; set; }
-        }
     }
 }

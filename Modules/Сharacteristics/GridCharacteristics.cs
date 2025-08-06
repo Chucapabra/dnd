@@ -1,4 +1,5 @@
 ﻿using DNDHelper.Modules.Config;
+using DNDHelper.Modules.Inventory;
 using DNDHelper.Windows;
 using System;
 using System.Collections.ObjectModel;
@@ -14,8 +15,16 @@ namespace DNDHelper.Modules.Сharacteristics
 {
     public class GridCharacteristics
     {
+        public static GridCharacteristics Instance;
+
         Main main = Main.Instance;
         int addRollCharisma = 0;
+
+        public GridCharacteristics()
+        {
+            Instance = this;
+        }
+
         public void AddCharacteristic_Click()
         {
             int selectedIndex = main.DataGridCharacterisctics.SelectedIndex;
@@ -175,9 +184,9 @@ namespace DNDHelper.Modules.Сharacteristics
         {
             // Бафф к харизме
             if (index == 20)
-                Buffed(index) = Base(index) + Race.Stats[index].Value + PlayerClass.Stats[index].Value + addRollCharisma;
+                Buffed(index) = Base(index) + Race.Stats[index].Value + PlayerClass.Stats[index].Value + ItemBaffsListScript.ItemBaffs[index][0] + addRollCharisma;
             else
-                Buffed(index) = Base(index) + Race.Stats[index].Value + PlayerClass.Stats[index].Value;
+                Buffed(index) = Base(index) + Race.Stats[index].Value + PlayerClass.Stats[index].Value + ItemBaffsListScript.ItemBaffs[index][0];
             DataGridChar[index].Value = Buffed(index);
             DataGridChar[index].Roll = CalculateRoll(index);
         }
@@ -221,7 +230,7 @@ namespace DNDHelper.Modules.Сharacteristics
 
         static public int CalculateRoll(int setCharIndex)
         {
-            return (int) MathF.Floor((float)((Buffed(setCharIndex) - 10) * 0.5) + Race.Stats[setCharIndex].Roll + PlayerClass.Stats[setCharIndex].Roll);
+            return (int) MathF.Floor((float)((Buffed(setCharIndex) - 10) * 0.5) + Race.Stats[setCharIndex].Roll + PlayerClass.Stats[setCharIndex].Roll + ItemBaffsListScript.ItemBaffs[setCharIndex][1]);
         }
 
         // Методы характеристик
