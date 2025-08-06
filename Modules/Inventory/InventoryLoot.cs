@@ -123,6 +123,7 @@ namespace DNDHelper.Modules.Inventory
                 var item = InventoryItems[main.DataGridInventory.SelectedIndex];
                 if (item != null)
                 {
+                    main.DescriptionTextBox.IsReadOnly = false;
                     main.DescriptionTextBox.Text = item.Description;
                     ItemBaffsList.Clear();
                     foreach (var baff in item.Baffs)
@@ -132,6 +133,7 @@ namespace DNDHelper.Modules.Inventory
             else
             {
                 main.DescriptionTextBox.Text = "";
+                main.DescriptionTextBox.IsReadOnly = true;
                 ItemBaffsList.Clear();
             }
         }
@@ -337,7 +339,7 @@ namespace DNDHelper.Modules.Inventory
                 }
             }
 
-            private string _quality;
+            private string _quality = "Нет";
             public string Quality
             {
                 get => _quality;
@@ -460,16 +462,15 @@ namespace DNDHelper.Modules.Inventory
             }
 
 
-            private int _count;
+            private int _count = 1;
             public int Count
             {
                 get => _count;
                 set
                 {
-                    if (_weight != 0 && _count != 0)
-                        _weight = _weight / _count;
-                    else
-                        _weight = 0;
+                    if (value == 0)
+                        value = 1;
+                    _weight = _weight / _count;
                     _count = value;
                     Weight = _weight * _count;
                     OnPropertyChanged();

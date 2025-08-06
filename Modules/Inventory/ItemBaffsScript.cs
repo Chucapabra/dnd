@@ -49,6 +49,11 @@ namespace DNDHelper.Modules.Inventory
                 main.AddMenuItemBaff.Visibility = Visibility.Visible;
                 main.DeleteMenuItemBaff.Visibility = Visibility.Collapsed;
             }
+            if(main.DataGridInventory.SelectedIndex == -1)
+            {
+                main.AddMenuItemBaff.Visibility = Visibility.Collapsed;
+                main.DeleteMenuItemBaff.Visibility = Visibility.Collapsed;
+            }
         }
         private void AddMenuItemBaff_Click(object sender, RoutedEventArgs e)
         {
