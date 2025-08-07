@@ -32,12 +32,13 @@ namespace DNDHelper.Modules.Inventory
                     else
                         weightItem += item.Weight;
             }
-
-            if (weightItem > 0)
-                UsedItemWeight = (int)(weightItem / Backpack.DivideItemWeight) + weightArmor;
+            if (!Backpack.IsDivideArmorWeight)
+                if (weightItem > 0)
+                    UsedItemWeight = (int)(weightItem / Backpack.DivideItemWeight) + weightArmor;
+                else
+                    UsedItemWeight = weightItem + weightArmor;
             else
-                UsedItemWeight = weightItem + weightArmor;
-
+                UsedItemWeight = (int)(weightItem + weightArmor) / Backpack.DivideItemWeight;
             CountWeightCharacter();
         }
 

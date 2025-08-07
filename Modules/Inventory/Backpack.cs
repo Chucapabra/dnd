@@ -13,6 +13,7 @@ namespace DNDHelper.Modules.Inventory
 		Main main = Main.Instance;
 		static public int AddWeight = 0;
         static public int DivideItemWeight = 1;
+        static public bool IsDivideArmorWeight = true;
 
         public Backpack() 
 		{
@@ -47,48 +48,57 @@ namespace DNDHelper.Modules.Inventory
 			{
                 case 0:
                     divideItemWeight = 1;
+                    IsDivideArmorWeight = false;
                     addBackpackWeight = 0;
                     main.backpack_quantity_cb.ItemsSource = new int[0];
                     main.backpack_quantity_cb.SelectedIndex = 0;
                     break;
                 case 1:
                     divideItemWeight = 1;
+                    IsDivideArmorWeight = false;
                     addBackpackWeight = 30;
                     main.backpack_quantity_cb.ItemsSource = quantitymax3;
 					main.backpack_quantity_cb.SelectedIndex = 0;
 					break;
 				case 2:
                     divideItemWeight = 1;
+                    IsDivideArmorWeight = false;
                     addBackpackWeight = 30;
                     main.backpack_quantity_cb.ItemsSource = quantitymax2;
 					main.backpack_quantity_cb.SelectedIndex = 0;
                     break;
 				case 3:
                     divideItemWeight = 2;
+                    IsDivideArmorWeight = false;
                     addBackpackWeight = 0;
                     main.backpack_quantity_cb.ItemsSource = quantitymax1;
 					main.backpack_quantity_cb.SelectedIndex = 0;
                     break;
 				case 4:
                     divideItemWeight = 2;
+                    IsDivideArmorWeight = false;
+                    addBackpackWeight = 30;
                     main.backpack_quantity_cb.ItemsSource = quantitymax3;
 					main.backpack_quantity_cb.SelectedIndex = 0;
                     break;
 				case 5:
                     divideItemWeight = 2;
+                    IsDivideArmorWeight = false;
                     addBackpackWeight = 60;
                     main.backpack_quantity_cb.ItemsSource = quantitymax2;
 					main.backpack_quantity_cb.SelectedIndex = 0;
                     break;
 				case 6:
                     divideItemWeight = 2;
+                    IsDivideArmorWeight = true;
                     addBackpackWeight = 100;
                     main.backpack_quantity_cb.ItemsSource = quantitymax2;
 					main.backpack_quantity_cb.SelectedIndex = 0;
                     break;
 				case 7:
                     divideItemWeight = 3;
-                    addBackpackWeight = 100;
+                    IsDivideArmorWeight = true;
+                    addBackpackWeight = 150;
                     main.backpack_quantity_cb.ItemsSource = quantitymax2;
 					main.backpack_quantity_cb.SelectedIndex = 0;
                     break;
