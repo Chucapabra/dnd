@@ -1,4 +1,5 @@
-﻿using DNDHelper.Modules.Сharacteristics;
+﻿using DNDHelper.Modules.Character;
+using DNDHelper.Modules.Сharacteristics;
 using DNDHelper.Windows;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -15,7 +16,7 @@ namespace DNDHelper.Modules.Inventory
 
         Main main = Main.Instance;
         public static ObservableCollection<ItemBaff> ItemBaffsList { get; set; } = new();
-        public static List<int[]> ItemBaffs = new(25);
+        public static List<int[]> ItemBaffs = new(50);
         public ItemBaffsListScript() 
         {
             main.DataGridItemBaffsList.ItemsSource = ItemBaffsList;
@@ -140,15 +141,19 @@ namespace DNDHelper.Modules.Inventory
 
                 ClearItemBaffs();
                 foreach (var item in InventoryItems)
-                    foreach (var baff in InventoryItems[selectedItemIndex].Baffs)
-                    {
-                        if (baff.SelectedIndex != -1)
+                {                    
+                    if (item.Equipped)
+                        foreach (var baff in item.Baffs)
                         {
-                            ItemBaffs[baff.SelectedIndex][0] = baff.WholeAddValue;
-                            ItemBaffs[baff.SelectedIndex][1] = baff.WholeAddRoll;
+                            if (baff.SelectedIndex != -1)
+                            {
+                                ItemBaffs[baff.SelectedIndex][0] = baff.WholeAddValue;
+                                ItemBaffs[baff.SelectedIndex][1] = baff.WholeAddRoll;
+                            }
                         }
-                    }
+                }
                 GridCharacteristics.Instance.UpdateAllCharacterisitc();
+                Health.HealthUpdate();
             }
         }
 
@@ -231,3 +236,16 @@ namespace DNDHelper.Modules.Inventory
         }
     }
 }
+
+//Ролл атаки - 25
+//Ролл блока - 26
+//Ролл уворота -  27
+//Ролл контрдействия - 28
+//Ролл атаки кулаками - 29
+//Ролл дальнобойным - 30
+//Вес - 31
+//Здоровье- 32
+//Ментальное КД - 33
+//Палка Хода - 34
+//Действие - 35
+//Контрдействие - 36

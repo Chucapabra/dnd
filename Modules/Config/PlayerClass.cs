@@ -1,4 +1,5 @@
-﻿using DNDHelper.Windows;
+﻿using DNDHelper.Modules.Character;
+using DNDHelper.Windows;
 using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
@@ -12,7 +13,7 @@ namespace DNDHelper.Modules.Config
     {
         Dictionary<string, List<ClassData>> data;
 
-        public static ClassData SelectedClassData;
+        public static ClassData SelectedClassData = new ClassData();
         public static List<Stat> Stats = new List<Stat>();
 
         public PlayerClass()
@@ -62,6 +63,7 @@ namespace DNDHelper.Modules.Config
             //          }
 
             Main.Characteristics.UpdateAllCharacterisitc();
+            Health.HealthUpdate();
             Main.Instance.character_class_textblock.Text = selectText;
         }
 
@@ -79,16 +81,16 @@ namespace DNDHelper.Modules.Config
     public class ClassData
     {
         [JsonPropertyName("МножительХП")]
-        public double MultiplyHealth { get; set; }
+        public double MultiplyHealth { get; set; } = 1;
 
         [JsonPropertyName("ДопКД")]
-        public int AddKD { get; set; }
+        public int AddKD { get; set; } = 0;
 
         [JsonPropertyName("ДеБаф_к_пулям")]
-        public int AddMagBullet { get; set; }
+        public int AddMagBullet { get; set; } = 0;
 
         [JsonPropertyName("множительуронамагии")]
-        public double MultiplyMagDamage { get; set; }
+        public double MultiplyMagDamage { get; set; } = 1;
 
         [JsonPropertyName("Статы_Стандарт")]
         public List<Dictionary<string, int[]>> StandartStats { get; set; } = new List<Dictionary<string, int[]>>();

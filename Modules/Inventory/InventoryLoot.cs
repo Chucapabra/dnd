@@ -70,7 +70,8 @@ namespace DNDHelper.Modules.Inventory
             main.DeleteMenuItem.Click += DeleteMenuItem_Click;
             main.weight_count_checkbox.Click += Weight_count_checkbox_Checked; ;
             main.kd_count_checkbox.Click += Kd_count_checkbox_Checked; ;
-            main.kdhelmet_count_checkbox.Click += Kdhelmet_count_checkbox_Checked; ;
+            main.kdhelmet_count_checkbox.Click += Kdhelmet_count_checkbox_Checked;
+            main.equipped_checkbox.Click += Equipped_checkbox_Click;
         }
 
         private void DataGridInventory_ContextMenuOpening(object sender, ContextMenuEventArgs e)
@@ -149,6 +150,15 @@ namespace DNDHelper.Modules.Inventory
             }
         }
 
+        private void Equipped_checkbox_Click(object sender, RoutedEventArgs e)
+        {
+            if (main.DataGridInventory.SelectedItems.Count > 0)
+            {
+                var item = InventoryItems[main.DataGridInventory.SelectedIndex];
+                item.Equipped = main.equipped_checkbox.IsChecked.Value;
+            }
+        }
+
         private void DataGridInventory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (main.DataGridInventory.SelectedItems.Count > 0)
@@ -160,10 +170,12 @@ namespace DNDHelper.Modules.Inventory
                     main.weight_count_checkbox.IsEnabled = true;
                     main.kd_count_checkbox.IsEnabled = true;
                     main.kdhelmet_count_checkbox.IsEnabled = true;
+                    main.equipped_checkbox.IsEnabled = true;
 
                     main.weight_count_checkbox.IsChecked = item.CountWeight;
                     main.kd_count_checkbox.IsChecked = item.CountKD;
                     main.kdhelmet_count_checkbox.IsChecked = item.CountKDHelmet;
+                    main.equipped_checkbox.IsChecked = item.Equipped;
                     main.DescriptionTextBox.Text = item.Description;
                     ItemBaffsList.Clear();
                     foreach (var baff in item.Baffs)
@@ -179,9 +191,11 @@ namespace DNDHelper.Modules.Inventory
                 main.weight_count_checkbox.IsEnabled = false;
                 main.kd_count_checkbox.IsEnabled = false;
                 main.kdhelmet_count_checkbox.IsEnabled = false;
+                main.equipped_checkbox.IsEnabled= false;
                 main.weight_count_checkbox.IsChecked = false;
                 main.kd_count_checkbox.IsChecked = false;
                 main.kdhelmet_count_checkbox.IsChecked = false;
+                main.equipped_checkbox.IsChecked = false;
             }
         }
 
@@ -594,6 +608,33 @@ namespace DNDHelper.Modules.Inventory
                 {
                     _countKDHelmet = value;
                     SetCountKD();
+                    OnPropertyChanged();
+                }
+            }
+
+            private Brush _foreColorKDEquipped = new SolidColorBrush(Settings.Settings.SelectedTheme[1]);
+            public Brush ForeColorKDEquipped
+            {
+                get => _foreColorKDEquipped;
+                set
+                {
+                    _foreColorKDEquipped = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            private bool _equipped = true;
+            public bool Equipped
+            {
+                get => _equipped;
+                set
+                {
+                    _equipped = value;
+                    if (_equipped)
+                        ForeColorKDEquipped = new SolidColorBrush(Settings.Settings.SelectedTheme[1]);
+                    else
+                        ForeColorKDEquipped = Brushes.Red;
+                    Main.ItemBaffsListScript.UpdateValues();
                     OnPropertyChanged();
                 }
             }

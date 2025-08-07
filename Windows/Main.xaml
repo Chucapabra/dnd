@@ -214,8 +214,14 @@
            </ContextMenu>
            </DataGrid.ContextMenu>
        <DataGrid.Columns>
-           <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="140"/>
-           <DataGridTextColumn Header="Вес" Binding="{Binding Weight}" Width="65" FontSize="{Binding FontStyleWeight}">
+                                <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="140">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Foreground" Value="{Binding ForeColorKDEquipped}"/>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Вес" Binding="{Binding Weight}" Width="65" FontSize="{Binding FontStyleWeight}">
                <DataGridTextColumn.ElementStyle>
                    <Style TargetType="TextBlock">
                        <Setter Property="Foreground" Value="{Binding ForeColorWeight}"/>
@@ -323,10 +329,10 @@
                    </Style>
                </DataGridTextColumn.EditingElementStyle>
            </DataGridTextColumn>
-           <DataGridTextColumn Header="CountWeightа" Binding="{Binding CountWeightа}" Visibility="Hidden"/>
+           <DataGridTextColumn Header="CountWeight" Binding="{Binding CountWeight}" Visibility="Hidden"/>
            <DataGridTextColumn Header="Description" Binding="{Binding Description}" Visibility="Hidden"/>
            <DataGridTextColumn Header="CountKD" Binding="{Binding CountKD}" Visibility="Hidden"/>
-           <DataGridTextColumn Header="CountKDHelmetа" Binding="{Binding CountKDHelmetа}" Visibility="Hidden"/>
+           <DataGridTextColumn Header="CountKDHelmet" Binding="{Binding CountKDHelmet}" Visibility="Hidden"/>
        </DataGrid.Columns>
    </DataGrid>
                     </Border>
@@ -358,7 +364,7 @@
                                                 <ComboBoxItem Content="Атлетика"/>
                                                 <ComboBoxItem Content="Ловкость"/>
                                                 <ComboBoxItem Content="Акробатика"/>
-                                                <ComboBoxItem Content="Ловкость_рук"/>
+                                                <ComboBoxItem Content="Ловкость рук"/>
                                                 <ComboBoxItem Content="Скрытность"/>
                                                 <ComboBoxItem Content="Телосложение"/>
                                                 <ComboBoxItem Content="Интеллект"/>
@@ -379,13 +385,18 @@
                                                 <ComboBoxItem Content="Запугивание"/>
                                                 <ComboBoxItem Content="Выступление"/>
                                                 <ComboBoxItem Content="Убеждение"/>
+                                                <ComboBoxItem Content="Ролл атаки"/>
+                                                <ComboBoxItem Content="Ролл блока"/>
+                                                <ComboBoxItem Content="Ролл уворота"/>
+                                                <ComboBoxItem Content="Ролл контрдействия"/>
+                                                <ComboBoxItem Content="Ролл атаки кулаками"/>
+                                                <ComboBoxItem Content="Ролл дальнобойным"/>
                                                 <ComboBoxItem Content="Вес"/>
                                                 <ComboBoxItem Content="Здоровье"/>
                                                 <ComboBoxItem Content="Ментальное КД"/>
                                                 <ComboBoxItem Content="Палка Хода"/>
                                                 <ComboBoxItem Content="Действие"/>
                                                 <ComboBoxItem Content="Контрдействие"/>
-                                                <ComboBoxItem Content="A"/>
                                             </ComboBox>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
@@ -418,11 +429,14 @@
                     </Border>
                     <Border Grid.Row="1" Grid.Column="2">
                         <StackPanel Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
-							<StackPanel Margin="-25,-15,10,0">
-								<CheckBox x:Name="weight_count_checkbox" Content="Считать вес"/>
-								<StackPanel Orientation="Horizontal">
+                            <StackPanel Margin="-25,-15,10,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox x:Name="weight_count_checkbox" Content="Считать вес"/>
+                                    <CheckBox x:Name="equipped_checkbox" Margin="5,0,0,0" Content="Одето"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
 									<CheckBox x:Name="kd_count_checkbox" Content="КД"/>
-									<CheckBox x:Name="kdhelmet_count_checkbox" Margin="15,0,0,0" Content="КД шлема"/>
+									<CheckBox x:Name="kdhelmet_count_checkbox" Margin="10,0,0,0" Content="КД шлема"/>
 								</StackPanel>
 							</StackPanel>
                             <StackPanel  Orientation="Horizontal">
@@ -470,18 +484,6 @@
                                     <ComboBoxItem Content="Лёгкая"/>
                                     <ComboBoxItem Content="Средняя"/>
                                     <ComboBoxItem Content="Тяжёлая"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock FontSize="12" Text="Качество брони" TextWrapping="Wrap" VerticalAlignment="Center" Width="75"/>
-                                <ComboBox materialDesign:HintAssist.Hint="Число"  Width="110" SelectedIndex="0" x:Name="armor_cb">
-                                    <ComboBoxItem Content="Прото"/>
-                                    <ComboBoxItem Content="Плохая"/>
-                                    <ComboBoxItem Content="Стандартная"/>
-                                    <ComboBoxItem Content="Высокая"/>
-                                    <ComboBoxItem Content="Великолепная"/>
-                                    <ComboBoxItem Content="Мастерская"/>
-                                    <ComboBoxItem Content="Мифическая"/>
                                 </ComboBox>
                             </StackPanel>
                         </StackPanel>
@@ -548,7 +550,11 @@
 							<TextBlock Text="Ролл атаки кулаками:" Width="150" VerticalAlignment="Center"/>
 							<TextBlock x:Name="сharacter_fistattack_textblcok" Width="40" Text="0" TextAlignment="Center"/>
 						</StackPanel>
-					</StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Ролл дальнобойным:" Width="150" VerticalAlignment="Center"/>
+                            <TextBlock x:Name="сharacter_longrangeattack_textblcok" Width="40" Text="0" TextAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
 					<DataGrid x:Name="DataGridTreeВevelopment"
 							  AutoGenerateColumns="False"
                               SelectionMode="Single"

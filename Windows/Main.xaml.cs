@@ -17,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using DNDHelper.Modules;
+using DNDHelper.Modules.Character;
 using DNDHelper.Modules.Config;
 using DNDHelper.Modules.Diary;
 using DNDHelper.Modules.Inventory;
@@ -59,11 +60,13 @@ public partial class Main : Window
 			PlayerClass playerClass = new();
 			InventoryLoot inventoryLoot = new();
             ItemBaffsListScript = new ();
-			WeightScript weightScript = new WeightScript();
 
             Characteristics = new();
             GridCharacteristics.SetChars();
             Characteristics.UpdateAllCharacterisitc();
+
+            WeightScript weightScript = new WeightScript();
+            Health health = new Health();
         }
 
 		

@@ -1,4 +1,5 @@
-﻿using DNDHelper.Modules.Config;
+﻿using DNDHelper.Modules.Character;
+using DNDHelper.Modules.Config;
 using DNDHelper.Modules.Inventory;
 using DNDHelper.Windows;
 using System;
@@ -121,7 +122,7 @@ namespace DNDHelper.Modules.Сharacteristics
         {
             switch (selectIndex)
             {
-                case >= 0 and <= 1:
+                case 0:
                     StrengthMethod();
                     break;
                 case >= 2 and <= 5:
@@ -144,7 +145,6 @@ namespace DNDHelper.Modules.Сharacteristics
                     PointsCharismaSkillsNow = PointsCharismaSkills - Base(Deception) - Base(Intimidation) - Base(Speech) - Base(Persuasion);
                     break;
             }
-        
             PointsNow = Points - Base(Strength) - Base(Agility) - Base(Body) - Base(Intellect) - Base(Wisdom) - Base(Charisma);
             UpdatePointText(main.EditMode_button.IsChecked == true);
         }
@@ -193,18 +193,6 @@ namespace DNDHelper.Modules.Сharacteristics
             {
                 CountCharacterisitc(i);
             }
-            StrengthMethod();
-            AgilityMethod();
-            BodyMethod();
-            IntellectMethod();
-            WisdomMethod();         
-            CharismaMethod();
-            PointsAgilitySkillsNow = PointsAgilitySkills - Base(Acrobatics) - Base(SleightOfHand) - Base(Stealth);
-            PointsIntellectSkillsNow = PointsIntellectSkills - Base(Magic) - Base(Religion) - Base(Nature) - Base(History) - Base(Investigation) - Base(Technology);
-            PointsWisdomSkillsNow = PointsWisdomSkills - Base(Medicine) - Base(Perception) - Base(Insight) - Base(Survival) - Base(TOAnimals);
-            PointsCharismaSkillsNow = PointsCharismaSkills - Base(Deception) - Base(Intimidation) - Base(Speech) - Base(Persuasion);
-            PointsNow = Points - Base(Strength) - Base(Agility) - Base(Body) - Base(Intellect) - Base(Wisdom) - Base(Charisma);
-            UpdatePointText(main.EditMode_button.IsChecked == true);
         }
 
         private void CountCharacterisitc(int index)
@@ -212,6 +200,7 @@ namespace DNDHelper.Modules.Сharacteristics
             Buffed(index) = Base(index) + OtherBuff(index) + Race.Stats[index].Value + PlayerClass.Stats[index].Value + ItemBaffsListScript.ItemBaffs[index][0];
             DataGridChar[index].Value = Buffed(index);
             DataGridChar[index].Roll = CalculateRoll(index);
+            FindAVariableCharacteristic(index);
         }
 
         static public void SetChars()
@@ -240,7 +229,6 @@ namespace DNDHelper.Modules.Сharacteristics
                 if (addRollCharisma < 0)
                     addRollCharisma = 0;
                 OtherBuff(Charisma) = addRollCharisma;
-                FindAVariableCharacteristic((int)Charisma);
                 UpdateCharacterisitc(Charisma); 
             }
 
@@ -255,7 +243,7 @@ namespace DNDHelper.Modules.Сharacteristics
 
         public void BodyMethod()
         {
-
+            Health.HealthUpdate();
         }
 
         public void IntellectMethod()
