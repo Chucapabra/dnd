@@ -43,8 +43,8 @@ public partial class Main : Window
 			InitializeComponent();
 			InitializeClasses();			
 
-            Resources["StandartBackColor"] = new SolidColorBrush(DarkThem.Theme[0]);
-			Resources["StandartForeColor"] = new SolidColorBrush(DarkThem.Theme[1]);
+            Resources["StandartBackColor"] = new SolidColorBrush(DarkThem.SelectedTheme[0]);
+			Resources["StandartForeColor"] = new SolidColorBrush(DarkThem.SelectedTheme[1]);
 
 			MaxHealth_textblock.Text = "100";
 			CurrentHealth_textblock.Text = "-99";
@@ -412,7 +412,5 @@ public partial class Main : Window
         {
 			ItemBaffsListScript.UpdateValues();
         }
-
-
-    }
+	}
 }

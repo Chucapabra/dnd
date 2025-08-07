@@ -5,10 +5,12 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using static DNDHelper.Modules.Inventory.ItemBaffsListScript;
 using static MaterialDesignThemes.Wpf.Theme;
+using static MaterialDesignThemes.Wpf.Theme.ToolBar;
 
 namespace DNDHelper.Modules.Inventory
 {
@@ -16,10 +18,10 @@ namespace DNDHelper.Modules.Inventory
     {
         Main main = Main.Instance;
 
-        public static ObservableCollection<InventoryItem> InventoryItems { get; set; }        
+        public static ObservableCollection<InventoryItem> InventoryItems { get; set; }
 
         public InventoryLoot()
-        {                
+        {
             InventoryItems = new ObservableCollection<InventoryItem>();
             InventoryItems.Add(new InventoryItem
             {
@@ -66,12 +68,15 @@ namespace DNDHelper.Modules.Inventory
             main.DataGridInventory.ContextMenuOpening += DataGridInventory_ContextMenuOpening;
             main.AddMenuItem.Click += AddMenuItem_Click;
             main.DeleteMenuItem.Click += DeleteMenuItem_Click;
+            main.weight_count_checkbox.Click += Weight_count_checkbox_Checked; ;
+            main.kd_count_checkbox.Click += Kd_count_checkbox_Checked; ;
+            main.kdhelmet_count_checkbox.Click += Kdhelmet_count_checkbox_Checked; ;
         }
 
         private void DataGridInventory_ContextMenuOpening(object sender, ContextMenuEventArgs e)
         {
             int selectedIndex = main.DataGridInventory.SelectedIndex;
-            if( selectedIndex != -1)
+            if (selectedIndex != -1)
             {
                 main.AddMenuItem.Visibility = Visibility.Visible;
                 main.DeleteMenuItem.Visibility = Visibility.Visible;
@@ -90,12 +95,12 @@ namespace DNDHelper.Modules.Inventory
             {
                 int selectedCount = main.DataGridInventory.SelectedItems.Count;
                 MessageBoxResult result;
-                if( selectedCount == 1 )
-                result = MessageBox.Show($"Вы точно хотите удалить предмет: {InventoryItems[selectedIndex].Name}", "Удалить предмет", MessageBoxButton.YesNo);
+                if (selectedCount == 1)
+                    result = MessageBox.Show($"Вы точно хотите удалить предмет: {InventoryItems[selectedIndex].Name}", "Удалить предмет", MessageBoxButton.YesNo);
                 else
                     result = MessageBox.Show($"Вы точно хотите удалить {selectedCount} предметов", "Удалить предметы", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
-                for(int i = 0; i < selectedCount; i++)
+                    for (int i = 0; i < selectedCount; i++)
                     {
                         InventoryItems.RemoveAt(main.DataGridInventory.SelectedIndex);
                     }
@@ -111,8 +116,36 @@ namespace DNDHelper.Modules.Inventory
         {
             if (main.DataGridInventory.SelectedItems.Count > 0)
             {
-                var item = main.DataGridInventory.SelectedItems[0] as InventoryItem;
+                var item = InventoryItems[main.DataGridInventory.SelectedIndex];
                 item.Description = main.DescriptionTextBox.Text;
+            }
+        }
+
+        private void Weight_count_checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (main.DataGridInventory.SelectedItems.Count > 0)
+            {
+                var item = InventoryItems[main.DataGridInventory.SelectedIndex];
+                item.CountWeight = main.weight_count_checkbox.IsChecked.Value;
+            }
+            WeightScript.CountWeightItems();
+        }
+
+        private void Kd_count_checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (main.DataGridInventory.SelectedItems.Count > 0)
+            {
+                var item = InventoryItems[main.DataGridInventory.SelectedIndex];
+                item.CountKD = main.kd_count_checkbox.IsChecked.Value;
+            }
+        }
+
+        private void Kdhelmet_count_checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (main.DataGridInventory.SelectedItems.Count > 0)
+            {
+                var item = InventoryItems[main.DataGridInventory.SelectedIndex];
+                item.CountKDHelmet = main.kdhelmet_count_checkbox.IsChecked.Value;
             }
         }
 
@@ -124,6 +157,13 @@ namespace DNDHelper.Modules.Inventory
                 if (item != null)
                 {
                     main.DescriptionTextBox.IsReadOnly = false;
+                    main.weight_count_checkbox.IsEnabled = true;
+                    main.kd_count_checkbox.IsEnabled = true;
+                    main.kdhelmet_count_checkbox.IsEnabled = true;
+
+                    main.weight_count_checkbox.IsChecked = item.CountWeight;
+                    main.kd_count_checkbox.IsChecked = item.CountKD;
+                    main.kdhelmet_count_checkbox.IsChecked = item.CountKDHelmet;
                     main.DescriptionTextBox.Text = item.Description;
                     ItemBaffsList.Clear();
                     foreach (var baff in item.Baffs)
@@ -135,6 +175,13 @@ namespace DNDHelper.Modules.Inventory
                 main.DescriptionTextBox.Text = "";
                 main.DescriptionTextBox.IsReadOnly = true;
                 ItemBaffsList.Clear();
+
+                main.weight_count_checkbox.IsEnabled = false;
+                main.kd_count_checkbox.IsEnabled = false;
+                main.kdhelmet_count_checkbox.IsEnabled = false;
+                main.weight_count_checkbox.IsChecked = false;
+                main.kd_count_checkbox.IsChecked = false;
+                main.kdhelmet_count_checkbox.IsChecked = false;
             }
         }
 
@@ -160,6 +207,11 @@ namespace DNDHelper.Modules.Inventory
                     e.Handled = true;
                 }
             }
+            else if (cell == null && e.ClickCount == 2)
+            {
+                main.DataGridInventory.CommitEdit();
+                main.DataGridInventory.SelectedIndex = -1;
+            }
             else
                 main.DataGridInventory.SelectedIndex = -1;
         }
@@ -169,7 +221,7 @@ namespace DNDHelper.Modules.Inventory
 
             if (cell == null)
                 main.DataGridInventory.SelectedIndex = -1;
-                
+
         }
 
         public static T FindParent<T>(DependencyObject child) where T : DependencyObject
@@ -182,8 +234,8 @@ namespace DNDHelper.Modules.Inventory
         }
 
         private void DataGridInventory_BeginningEdit(object? sender, System.Windows.Controls.DataGridBeginningEditEventArgs e)
-        {         
-            ShowOriginalValue(e.Column.DisplayIndex, e.Row.GetIndex());        
+        {
+            ShowOriginalValue(e.Column.DisplayIndex, e.Row.GetIndex());
         }
 
         private void DataGridInventory_CellEditEnding(object? sender, DataGridCellEditEndingEventArgs e)
@@ -194,7 +246,7 @@ namespace DNDHelper.Modules.Inventory
 
                 ShowBaffValue(e.Column.DisplayIndex, e.Row.GetIndex(), newValue);
             }
-            
+
         }
 
         private void ShowOriginalValue(int indexColumn, int indexRow)
@@ -348,8 +400,10 @@ namespace DNDHelper.Modules.Inventory
                 set
                 {
                     ReturnAllValue();
+                    SetQualityBaffs(0, _quality);
                     _quality = value;
                     UpdateAllValue();
+                    SetQualityBaffs(1, _quality);
                     OnPropertyChanged();
                 }
             }
@@ -480,10 +534,81 @@ namespace DNDHelper.Modules.Inventory
                     OnPropertyChanged();
                 }
             }
-            public bool CountWeight { get; set; }
+
+            private Brush _foreColorWeight = new SolidColorBrush(Settings.Settings.SelectedTheme[1]);
+            public Brush ForeColorWeight
+            {
+                get => _foreColorWeight;
+                set
+                {
+                    _foreColorWeight = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            private bool _countWeight = true;
+            public bool CountWeight
+            {
+                get => _countWeight;
+                set
+                {
+                    _countWeight = value;
+                    if (_countWeight)
+                        ForeColorWeight = new SolidColorBrush(Settings.Settings.SelectedTheme[1]);
+                    else
+                        ForeColorWeight = Brushes.Red;
+                    OnPropertyChanged();
+                }
+            }
             public string Description { get; set; }
-            public bool CountKD { get; set; }
-            public bool CountKDHelmet { get; set; }
+
+
+            private Brush _foreColorKD = new SolidColorBrush(Settings.Settings.SelectedTheme[1]);
+            public Brush ForeColorKD
+            {
+                get => _foreColorKD;
+                set
+                {
+                    _foreColorKD = value;
+                    OnPropertyChanged();
+                }
+            }
+
+            private bool _countKD = true;
+            public bool CountKD
+            {
+                get => _countKD;
+                set
+                {
+                    _countKD = value;
+                    SetCountKD();
+                    OnPropertyChanged();
+                }
+            }
+
+            private bool _countKDHelmet = false;
+            public bool CountKDHelmet
+            {
+                get => _countKDHelmet;
+                set
+                {
+                    _countKDHelmet = value;
+                    SetCountKD();
+                    OnPropertyChanged();
+                }
+            }
+
+            private void SetCountKD()
+            {
+                if (_countKD == false && _countKDHelmet == false)
+                    ForeColorKD = Brushes.Red;
+                if (_countKD == true && _countKDHelmet == false)
+                    ForeColorKD = new SolidColorBrush(Settings.Settings.SelectedTheme[1]);
+                if (_countKD == false && _countKDHelmet == true)
+                    ForeColorKD = Brushes.Orange;
+                if (_countKD == true && _countKDHelmet == true)
+                    ForeColorKD = Brushes.Green;
+            }
 
             public ObservableCollection<ItemBaff> Baffs { get; set; } = new();
 

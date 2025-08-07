@@ -10,7 +10,7 @@ namespace DNDHelper.Modules.Inventory
         Main main = Main.Instance;
         public static int UsedItemWeight = 0;
 
-        public WeightScript() 
+        public WeightScript()
         {
             main.backpack_plus_tb.TextChanged += Backpack_plus_tb_TextChanged;
         }
@@ -26,13 +26,14 @@ namespace DNDHelper.Modules.Inventory
             int weightArmor = 0;
             foreach (var item in InventoryItems)
             {
-                if(item.KD > 0)
-                    weightArmor += item.Weight;
-                else
-                    weightItem += item.Weight;
+                if (item.CountWeight == true)
+                    if (item.KD > 0)
+                        weightArmor += item.Weight;
+                    else
+                        weightItem += item.Weight;
             }
 
-            if(weightItem > 0)
+            if (weightItem > 0)
                 UsedItemWeight = (int)(weightItem / Backpack.DivideItemWeight) + weightArmor;
             else
                 UsedItemWeight = weightItem + weightArmor;
@@ -45,7 +46,7 @@ namespace DNDHelper.Modules.Inventory
             int addWeight = 0;
             if (Main.Instance.backpack_plus_tb.Text != "")
                 addWeight = int.Parse(Main.Instance.backpack_plus_tb.Text);
-            int MaxWeight = (int)MathF.Round    (((CharacteristicTable.Buffed(0) * 30) + Race.SelectedClassData.AddWeight + Backpack.AddWeight) * (float)Race.SelectedClassData.MultiplyWeight + addWeight) ;
+            int MaxWeight = (int)MathF.Round(((CharacteristicTable.Buffed(0) * 30) + Race.SelectedClassData.AddWeight + Backpack.AddWeight) * (float)Race.SelectedClassData.MultiplyWeight + addWeight);
             int remainedWeight = MaxWeight - UsedItemWeight;
             Main.Instance.сharacter_weight_textblock.Text = $"Вес: {remainedWeight}/{MaxWeight}";
         }
