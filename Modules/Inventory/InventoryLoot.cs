@@ -182,8 +182,8 @@ namespace DNDHelper.Modules.Inventory
         }
 
         private void DataGridInventory_BeginningEdit(object? sender, System.Windows.Controls.DataGridBeginningEditEventArgs e)
-        {
-            ShowOriginalValue(e.Column.DisplayIndex, e.Row.GetIndex());
+        {         
+            ShowOriginalValue(e.Column.DisplayIndex, e.Row.GetIndex());        
         }
 
         private void DataGridInventory_CellEditEnding(object? sender, DataGridCellEditEndingEventArgs e)
@@ -194,6 +194,7 @@ namespace DNDHelper.Modules.Inventory
 
                 ShowBaffValue(e.Column.DisplayIndex, e.Row.GetIndex(), newValue);
             }
+            
         }
 
         private void ShowOriginalValue(int indexColumn, int indexRow)
@@ -335,6 +336,7 @@ namespace DNDHelper.Modules.Inventory
                 set
                 {
                     _weight = value;
+                    WeightScript.CountWeightItems();
                     OnPropertyChanged();
                 }
             }
@@ -457,6 +459,8 @@ namespace DNDHelper.Modules.Inventory
                 {
                     _kd = value;
                     WholeKD = (int)_kd;
+                    if (Main.Instance.backpack_cb.SelectedIndex >= 3 && Main.Instance.backpack_quantity_cb.SelectedIndex != 0)
+                        WeightScript.CountWeightItems();
                     OnPropertyChanged();
                 }
             }

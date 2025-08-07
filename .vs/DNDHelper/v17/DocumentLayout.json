@@ -3,43 +3,47 @@
   "WorkspaceRootPath": "D:\\profile\\mydocs\\GitHub\\dnd\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\modules\\inventory\\inventoryloot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\inventory\\inventoryloot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\windows\\main.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:windows\\main.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\modules\\inventory\\itembaffsscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\inventory\\itembaffsscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Denis\\AppData\\Local\\Temp\\.vsdbgsrc\\ba0541164f379192eb23d0d5a0cde96659c5f181f381664f91a7120406e6d139\\XamlReader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\modules\\inventory\\inventoryloot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\inventory\\inventoryloot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\modules\\inventory\\backpack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\inventory\\backpack.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\windows\\main.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:windows\\main.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\modules\\config\\race.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\config\\race.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\windows\\main.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:windows\\main.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\modules\\inventory\\weightscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\inventory\\weightscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\modules\\\u0441haracteristics\\gridcharacteristics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\\u0441haracteristics\\gridcharacteristics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\dndhelper.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:dndhelper.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\windows\\main.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:windows\\main.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\modules\\textboxprocessing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\textboxprocessing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\modules\\\u0441haracteristics\\characteristictable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\\u0441haracteristics\\characteristictable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\modules\\config\\race.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\config\\race.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Denis\\AppData\\Local\\Temp\\.vsdbgsrc\\ba0541164f379192eb23d0d5a0cde96659c5f181f381664f91a7120406e6d139\\XamlReader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -49,54 +53,95 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "DNDHelper.csproj",
-              "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\DNDHelper.csproj",
-              "RelativeDocumentMoniker": "DNDHelper.csproj",
-              "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\DNDHelper.csproj",
-              "RelativeToolTip": "DNDHelper.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-08-06T10:50:21.924Z"
+              "DocumentIndex": 9,
+              "Title": "CharacteristicTable.cs",
+              "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\\u0421haracteristics\\CharacteristicTable.cs",
+              "RelativeDocumentMoniker": "Modules\\\u0421haracteristics\\CharacteristicTable.cs",
+              "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\\u0421haracteristics\\CharacteristicTable.cs",
+              "RelativeToolTip": "Modules\\\u0421haracteristics\\CharacteristicTable.cs",
+              "ViewState": "AgIAAEoAAAAAAAAAAAA9wFwAAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T06:56:06.566Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "TextboxProcessing.cs",
+              "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\TextboxProcessing.cs",
+              "RelativeDocumentMoniker": "Modules\\TextboxProcessing.cs",
+              "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\TextboxProcessing.cs",
+              "RelativeToolTip": "Modules\\TextboxProcessing.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T05:12:41.765Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "XamlReader.cs",
+              "DocumentMoniker": "C:\\Users\\Denis\\AppData\\Local\\Temp\\.vsdbgsrc\\ba0541164f379192eb23d0d5a0cde96659c5f181f381664f91a7120406e6d139\\XamlReader.cs",
+              "ToolTip": "C:\\Users\\Denis\\AppData\\Local\\Temp\\.vsdbgsrc\\ba0541164f379192eb23d0d5a0cde96659c5f181f381664f91a7120406e6d139\\XamlReader.cs [\u0422\u043E\u043B\u044C\u043A\u043E \u0447\u0442\u0435\u043D\u0438\u0435]",
+              "ViewState": "AgIAAN8BAAAAAAAAAAAjwOwBAAACAAAAAQAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T05:09:32.296Z",
+              "EditorCaption": " [\u0422\u043E\u043B\u044C\u043A\u043E \u0447\u0442\u0435\u043D\u0438\u0435]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "WeightScript.cs",
+              "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Inventory\\WeightScript.cs",
+              "RelativeDocumentMoniker": "Modules\\Inventory\\WeightScript.cs",
+              "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Inventory\\WeightScript.cs",
+              "RelativeToolTip": "Modules\\Inventory\\WeightScript.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T04:36:55.504Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "GridCharacteristics.cs",
+              "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\\u0421haracteristics\\GridCharacteristics.cs",
+              "RelativeDocumentMoniker": "Modules\\\u0421haracteristics\\GridCharacteristics.cs",
+              "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\\u0421haracteristics\\GridCharacteristics.cs",
+              "RelativeToolTip": "Modules\\\u0421haracteristics\\GridCharacteristics.cs",
+              "ViewState": "AgIAALEAAAAAAAAAAAAYwPIAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T05:05:01.648Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Race.cs",
+              "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Config\\Race.cs",
+              "RelativeDocumentMoniker": "Modules\\Config\\Race.cs",
+              "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Config\\Race.cs",
+              "RelativeToolTip": "Modules\\Config\\Race.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAgwDMAAABTAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T05:02:10.067Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "XamlReader.cs",
-              "DocumentMoniker": "C:\\Users\\Denis\\AppData\\Local\\Temp\\.vsdbgsrc\\ba0541164f379192eb23d0d5a0cde96659c5f181f381664f91a7120406e6d139\\XamlReader.cs",
-              "ToolTip": "C:\\Users\\Denis\\AppData\\Local\\Temp\\.vsdbgsrc\\ba0541164f379192eb23d0d5a0cde96659c5f181f381664f91a7120406e6d139\\XamlReader.cs",
-              "ViewState": "AgIAAN8BAAAAAAAAAAAjwOwBAAACAAAAAQAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-06T10:05:21.331Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "App.xaml",
-              "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\App.xaml",
-              "RelativeDocumentMoniker": "App.xaml",
-              "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\App.xaml",
-              "RelativeToolTip": "App.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-08-06T08:03:13.023Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "InventoryLoot.cs",
               "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Inventory\\InventoryLoot.cs",
               "RelativeDocumentMoniker": "Modules\\Inventory\\InventoryLoot.cs",
               "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Inventory\\InventoryLoot.cs",
               "RelativeToolTip": "Modules\\Inventory\\InventoryLoot.cs",
-              "ViewState": "AgIAAG8AAAAAAAAAAAAnwH0AAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAAEwBAAAAAAAAAAA4wHwBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-05T08:40:45.226Z",
+              "WhenOpened": "2025-08-07T05:01:28.196Z",
               "EditorCaption": ""
             },
             {
@@ -107,14 +152,27 @@
               "RelativeDocumentMoniker": "Modules\\Inventory\\ItemBaffsScript.cs",
               "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Inventory\\ItemBaffsScript.cs",
               "RelativeToolTip": "Modules\\Inventory\\ItemBaffsScript.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAswDMAAAA1AAAAAAAAAA==",
+              "ViewState": "AgIAAJYAAAAAAAAAAAAiwK0AAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-06T09:04:41.989Z",
+              "WhenOpened": "2025-08-07T04:41:04.976Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
+              "Title": "Backpack.cs",
+              "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Inventory\\Backpack.cs",
+              "RelativeDocumentMoniker": "Modules\\Inventory\\Backpack.cs",
+              "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Inventory\\Backpack.cs",
+              "RelativeToolTip": "Modules\\Inventory\\Backpack.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAAAEIAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T04:29:52.98Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "Main.xaml",
               "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Windows\\Main.xaml",
               "RelativeDocumentMoniker": "Windows\\Main.xaml",
@@ -122,57 +180,22 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "OverriddenGroupName": "Windows",
               "OverriddenToolTip": "Windows/Main.xaml",
-              "WhenOpened": "2025-08-03T04:58:11.831Z"
+              "WhenOpened": "2025-08-03T04:58:11.831Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "Main.xaml.cs",
               "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Windows\\Main.xaml.cs",
               "RelativeDocumentMoniker": "Windows\\Main.xaml.cs",
               "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\Windows\\Main.xaml.cs",
               "RelativeToolTip": "Windows\\Main.xaml.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAA1wDwAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAIkBAAAAAAAAAAA9wJ8BAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "OverriddenGroupName": "Windows",
-              "WhenOpened": "2025-08-03T05:20:36.009Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "GridCharacteristics.cs",
-              "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\\u0421haracteristics\\GridCharacteristics.cs",
-              "RelativeDocumentMoniker": "Modules\\\u0421haracteristics\\GridCharacteristics.cs",
-              "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\\u0421haracteristics\\GridCharacteristics.cs",
-              "RelativeToolTip": "Modules\\\u0421haracteristics\\GridCharacteristics.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAswBgAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-05T17:23:53.249Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Race.cs",
-              "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Config\\Race.cs",
-              "RelativeDocumentMoniker": "Modules\\Config\\Race.cs",
-              "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Config\\Race.cs",
-              "RelativeToolTip": "Modules\\Config\\Race.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAUwDEAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-05T10:57:55.618Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "CharacteristicTable.cs",
-              "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\\u0421haracteristics\\CharacteristicTable.cs",
-              "RelativeDocumentMoniker": "Modules\\\u0421haracteristics\\CharacteristicTable.cs",
-              "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\\u0421haracteristics\\CharacteristicTable.cs",
-              "RelativeToolTip": "Modules\\\u0421haracteristics\\CharacteristicTable.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAAwEAAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "OverriddenGroupName": "Modules\\\u0421haracteristics",
-              "WhenOpened": "2025-08-03T11:41:55.681Z"
+              "WhenOpened": "2025-08-03T05:20:36.009Z",
+              "EditorCaption": ""
             }
           ]
         }

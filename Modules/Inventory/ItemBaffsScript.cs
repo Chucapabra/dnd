@@ -1,7 +1,9 @@
 ﻿using DNDHelper.Modules.Сharacteristics;
 using DNDHelper.Windows;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using static DNDHelper.Modules.Inventory.InventoryLoot;
@@ -17,6 +19,9 @@ namespace DNDHelper.Modules.Inventory
         public ItemBaffsListScript() 
         {
             main.DataGridItemBaffsList.ItemsSource = ItemBaffsList;
+
+            main.DataGridItemBaffsList.BeginningEdit += DataGridItemBaffsList_BeginningEdit; ;
+            main.DataGridItemBaffsList.CellEditEnding += DataGridItemBaffsList_CellEditEnding; ;
             main.DataGridItemBaffsList.PreviewMouseLeftButtonDown += DataGridItemBaffsList_PreviewMouseButtonDown;
             main.DataGridItemBaffsList.PreviewMouseRightButtonDown += DataGridItemBaffsList_PreviewMouseButtonDown;
             main.DataGridItemBaffsList.ContextMenuOpening += DataGridItemBaffsList_ContextMenuOpening;
@@ -26,11 +31,54 @@ namespace DNDHelper.Modules.Inventory
             ClearItemBaffs();
         }
 
+        private void DataGridItemBaffsList_BeginningEdit(object? sender, DataGridBeginningEditEventArgs e)
+        {
+            ShowOriginalValue(e.Column.DisplayIndex, e.Row.GetIndex());
+        }
+
+        private void DataGridItemBaffsList_CellEditEnding(object? sender, DataGridCellEditEndingEventArgs e)
+        {
+            if (e.EditingElement is System.Windows.Controls.TextBox textBox)
+            {
+                string newValue = textBox.Text;
+
+                ShowBaffValue(e.Column.DisplayIndex, e.Row.GetIndex(), newValue);
+                
+            }
+        }
+
+        private void ShowOriginalValue(int indexColumn, int indexRow)
+        {
+            int selectedIndex = main.DataGridInventory.SelectedIndex;
+            switch (indexColumn)
+            {
+                case 1:
+                    ItemBaffsList[indexRow].AddValue = ItemBaffsList[indexRow].AddValue / (float)QualityToDouble(InventoryItems[selectedIndex].Quality);
+                    break;
+                case 2:
+                    ItemBaffsList[indexRow].AddRoll = ItemBaffsList[indexRow].AddRoll / (float)QualityToDouble(InventoryItems[selectedIndex].Quality);
+                    break;
+            }
+        }
+
+        private void ShowBaffValue(int indexColumn, int indexRow, string newValue)
+        {
+            int selectedIndex = main.DataGridInventory.SelectedIndex;
+            switch (indexColumn)
+            {
+                case 1:
+                    ItemBaffsList[indexRow].AddValue = int.Parse(newValue) * (float)QualityToDouble(InventoryItems[selectedIndex].Quality);
+                    break;
+                case 2:
+                    ItemBaffsList[indexRow].AddRoll = int.Parse(newValue) * (float)QualityToDouble(InventoryItems[selectedIndex].Quality);
+                    break;
+            }
+            UpdateValues();
+        }
+
         private void DataGridItemBaffsList_PreviewMouseButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             var cell = FindParent<DataGridCell>(e.OriginalSource as DependencyObject);
-            
-
 
             if (cell == null)
                 main.DataGridItemBaffsList.SelectedIndex = -1;
@@ -76,6 +124,7 @@ namespace DNDHelper.Modules.Inventory
                     {
                         ItemBaffsList.RemoveAt(main.DataGridItemBaffsList.SelectedIndex);
                     }
+                UpdateValues();
             }
         }
 
@@ -93,8 +142,11 @@ namespace DNDHelper.Modules.Inventory
                 foreach (var item in InventoryItems)
                     foreach (var baff in InventoryItems[selectedItemIndex].Baffs)
                     {
-                        ItemBaffs[baff.SelectedIndex][0] = baff.AddValue;
-                        ItemBaffs[baff.SelectedIndex][1] = baff.AddRoll;
+                        if (baff.SelectedIndex != -1)
+                        {
+                            ItemBaffs[baff.SelectedIndex][0] = baff.WholeAddValue;
+                            ItemBaffs[baff.SelectedIndex][1] = baff.WholeAddRoll;
+                        }
                     }
                 GridCharacteristics.Instance.UpdateAllCharacterisitc();
             }
@@ -107,12 +159,75 @@ namespace DNDHelper.Modules.Inventory
                 ItemBaffs.Add(new int[] {0, 0});
         }
 
-        public class ItemBaff
+        public static void SetQualityBaffs(int Stage, string Quality)
+        {
+            if(Stage == 0)
+                foreach(var baff in ItemBaffsList)
+                {
+                    baff.AddValue = baff.AddValue / (float)QualityToDouble(Quality);
+                    baff.AddRoll = baff.AddRoll / (float)QualityToDouble(Quality);
+                }
+            else
+                foreach (var baff in ItemBaffsList)
+                {
+                    baff.AddValue = baff.AddValue * (float)QualityToDouble(Quality);
+                    baff.AddRoll = baff.AddRoll / (float)QualityToDouble(Quality);
+                }
+        }
+
+        public class ItemBaff : INotifyPropertyChanged
         {
             public int SelectedIndex { get; set; } = -1;
-            public int AddValue { get; set; }
-            public int AddRoll { get; set; }
 
+            private int _wholeAddValue;
+            private double _addValue;
+            public int WholeAddValue
+            {
+                get => _wholeAddValue;
+                set
+                {
+                    _wholeAddValue = value;
+                    OnPropertyChanged();
+                }
+            }
+            public double AddValue
+            {
+                get => _addValue;
+                set
+                {
+                    _addValue = value;
+                    _wholeAddValue = (int)_addValue;
+                    OnPropertyChanged();
+                }
+            }
+            private int _wholeAddRoll;
+            private double _addRoll;
+            public int WholeAddRoll
+            {
+                get => _wholeAddRoll;
+                set
+                {
+                    _wholeAddRoll = value;
+                    OnPropertyChanged();
+                }
+            }
+            public double AddRoll
+            {
+                get => _addRoll;
+                set
+                {
+                    _addRoll = value;
+                    _wholeAddRoll = (int)_addRoll;
+                    OnPropertyChanged();
+                }
+            }
+
+
+            public event PropertyChangedEventHandler PropertyChanged;
+            protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }

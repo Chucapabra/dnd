@@ -127,7 +127,7 @@
         <StackPanel Grid.Column="1" Margin="400,10,0,0">
             <StackPanel Orientation="Horizontal" Margin="36,0,0,0">
                 <ComboBox materialDesign:HintAssist.Hint="Тип щита" Width="100">
-                    <ComboBoxItem Content="Магический"/>
+                    <ComboBoxItem Content="Элементальный"/>
                     <ComboBoxItem Content="Физический"/>
                     <ComboBoxItem Content="От всего"/>
                 </ComboBox>
@@ -376,21 +376,19 @@
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
-                                <DataGridTextColumn Width="60" Header="Значение" Binding="{Binding AddValue, UpdateSourceTrigger=PropertyChanged}" >
+                                <DataGridTextColumn Width="60" Header="Значение" Binding="{Binding WholeAddValue, UpdateSourceTrigger=PropertyChanged}" >
                                 <DataGridTextColumn.EditingElementStyle>
                                     <Style TargetType="TextBox">
                                         <EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
                                         <EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
-                                        <EventSetter Event="TextChanged" Handler="TextBoxDataGridItemBaffsList_TextChanged"/>
                                         </Style>
                                 </DataGridTextColumn.EditingElementStyle>
                                 </DataGridTextColumn>
-                                <DataGridTextColumn Width="50" Header=" Ролл" Binding="{Binding AddRoll, UpdateSourceTrigger=PropertyChanged}">
+                                <DataGridTextColumn Width="50" Header=" Ролл" Binding="{Binding WholeAddRoll, UpdateSourceTrigger=PropertyChanged}">
                                     <DataGridTextColumn.EditingElementStyle>
                                         <Style TargetType="TextBox">
                                             <EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
                                             <EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
-                                            <EventSetter Event="TextChanged" Handler="TextBoxDataGridItemBaffsList_TextChanged"/>
                                         </Style>
                                     </DataGridTextColumn.EditingElementStyle>
                                 </DataGridTextColumn>
@@ -425,6 +423,7 @@
                             <StackPanel  Orientation="Horizontal">
                                 <TextBlock FontSize="12" Text="Рюкзак" Width="75" VerticalAlignment="Center"/>
                                 <ComboBox materialDesign:HintAssist.Hint="Нет" Width="110" x:Name="backpack_cb" SelectionChanged="backpack_cb_SelectionChanged">
+                                    <ComboBoxItem Content="Нет"/>
                                     <ComboBoxItem Content="Прото"/>
                                     <ComboBoxItem Content="Плохой"/>
                                     <ComboBoxItem Content="Стандартный"/>
@@ -604,7 +603,7 @@
                         <DataTemplate>
                             <Grid>
                                 <TextBlock Text="{Binding Value}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="15,0,0,0">
                                     <Button Style="{DynamicResource MaterialDesignIconForegroundButton }" Visibility="{DynamicResource IsEdit}"  Width="12" Height="12" Margin="2" Click="AddCharacteristic_Click">
                                         <TextBlock Text="+" Margin="0,-5,0,0" FontSize="16" />
                                     </Button>

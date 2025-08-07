@@ -14,7 +14,7 @@ namespace DNDHelper.Modules.Config
     {
         Dictionary<string, List<RaceData>> data;
 
-        public static RaceData SelectedClassData;
+        public static RaceData SelectedClassData = new();
         public static List<Stat> Stats = new List<Stat>();
 
         public Race()
@@ -82,22 +82,21 @@ namespace DNDHelper.Modules.Config
     internal class RaceData
     {
         [JsonPropertyName("ДопОчки_Навыков")]
-        public int AddPoints { get; set; }
+        public int AddPoints { get; set; } = 0;
         [JsonPropertyName("ДопКД")]
-        public int AddKD { get; set; }
+        public int AddKD { get; set; } = 0;
         [JsonPropertyName("основная_длина_палки")]
-        public double StandartStickLength { get; set; }
+        public double StandartStickLength { get; set; } = 0;
         [JsonPropertyName("Множитель_палки")]
-        public double MultiplyStickLength { get; set; }
+        public double MultiplyStickLength { get; set; } = 1;
         [JsonPropertyName("Плюс_веса")]
-        public int AddWeight { get; set; }
+        public int AddWeight { get; set; } = 0;
         [JsonPropertyName("Множитель_веса")]
-        public double MultiplyWeight { get; set; }
+        public double MultiplyWeight { get; set; } = 1;
         [JsonPropertyName("Множитель_магУрона")]
-        public double MultiplyMagDamage { get; set; }
+        public double MultiplyMagDamage { get; set; } = 1;
         [JsonPropertyName("Множитель_физУрона")]
-        public double MultiplyPhisDamage { get; set; }
-
+        public double MultiplyPhisDamage { get; set; } = 1;
 
         [JsonPropertyName("Статы_Стандарт")]
         public List<Dictionary<string, int[]>> StandartStats { get; set; } = new List<Dictionary<string, int[]>>();

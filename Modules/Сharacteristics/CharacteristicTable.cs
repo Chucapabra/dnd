@@ -67,15 +67,19 @@ namespace DNDHelper.Modules.Сharacteristics
 
         private static readonly int[] _baseStats = new int[Enum.GetValues(typeof(StatName)).Length];
         private static readonly int[] _buffedStats = new int[_baseStats.Length];
+        private static readonly int[] _OtherBuffStats = new int[_baseStats.Length];
 
         // === Доступ по имени ===
         private static ref int GetBase(StatName name) => ref _baseStats[(int)name];
 
         private static ref int GetBuffed(StatName name) => ref _buffedStats[(int)name];
 
+        private static ref int GetOtherBuff(StatName name) => ref _OtherBuffStats[(int)name];
+
         // === Доступ по индексу ===
         private static ref int GetBaseByIndex(int index) => ref _baseStats[index];
         private static ref int GetBuffedByIndex(int index) => ref _buffedStats[index];
+        private static ref int GetOtherBuffByIndex(int index) => ref _OtherBuffStats[index];
 
 
 
@@ -86,6 +90,8 @@ namespace DNDHelper.Modules.Сharacteristics
         public static ref int Buffed(StatName name) => ref GetBuffed(name);
         public static ref int Buffed(int index) => ref GetBuffedByIndex(index);
 
+        public static ref int OtherBuff(StatName name) => ref GetOtherBuff(name);
+        public static ref int OtherBuff(int index) => ref GetOtherBuffByIndex(index);
     }
 }
 

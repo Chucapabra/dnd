@@ -59,6 +59,7 @@ public partial class Main : Window
 			PlayerClass playerClass = new();
 			InventoryLoot inventoryLoot = new();
             ItemBaffsListScript = new ();
+			WeightScript weightScript = new WeightScript();
 
             Characteristics = new();
             GridCharacteristics.SetChars();
@@ -412,9 +413,6 @@ public partial class Main : Window
 			ItemBaffsListScript.UpdateValues();
         }
 
-        private void TextBoxDataGridItemBaffsList_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            ItemBaffsListScript.UpdateValues();
-        }
+
     }
 }

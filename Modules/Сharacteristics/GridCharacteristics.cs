@@ -16,9 +16,36 @@ namespace DNDHelper.Modules.Сharacteristics
     public class GridCharacteristics
     {
         public static GridCharacteristics Instance;
+        static public ObservableCollection<Characteristic> DataGridChar = new()
+            {
+                new Characteristic { Name = " Сила", Value = Buffed(Strength), Roll = CalculateRoll(0) },
+                new Characteristic { Name = "     Атлетика", Value = Buffed(Agility), Roll = CalculateRoll(1)},
+                new Characteristic { Name = " Ловкость", Value = Buffed(Athlete), Roll = CalculateRoll(2)},
+                new Characteristic { Name = "     Акробатика", Value = Buffed(Acrobatics), Roll = CalculateRoll(3)},
+                new Characteristic { Name = "     Ловкость рук", Value = Buffed(SleightOfHand), Roll = CalculateRoll(4) },
+                new Characteristic { Name = "     Скрытность", Value = Buffed(Stealth), Roll = CalculateRoll(5) },
+                new Characteristic { Name = " Телосложение", Value = Buffed(Body), Roll = CalculateRoll(6)},
+                new Characteristic { Name = " Интеллект", Value = Buffed(Intellect), Roll = CalculateRoll(7)},
+                new Characteristic { Name = "     Магия", Value = Buffed(Magic), Roll = CalculateRoll(8) },
+                new Characteristic { Name = "     Религия", Value = Buffed(Religion), Roll = CalculateRoll(9) },
+                new Characteristic { Name = "     Природа", Value = Buffed(Nature), Roll = CalculateRoll(10) },
+                new Characteristic { Name = "     История", Value = Buffed(History), Roll = CalculateRoll(11)},
+                new Characteristic { Name = "     Расследовие", Value = Buffed(Investigation), Roll = CalculateRoll(12)},
+                new Characteristic { Name = "     Технолония", Value = Buffed(Technology), Roll = CalculateRoll(13) },
+                new Characteristic { Name = " Мудрость", Value = Buffed(Wisdom), Roll = CalculateRoll(14)},
+                new Characteristic { Name = "     Медицина", Value = Buffed(Medicine), Roll = CalculateRoll(15)},
+                new Characteristic { Name = "     Восприятие", Value = Buffed(Perception), Roll = CalculateRoll(16) },
+                new Characteristic { Name = "     Проницательность", Value = Buffed(Insight), Roll = CalculateRoll(17) },
+                new Characteristic { Name = "     Выживание", Value = Buffed(Survival), Roll = CalculateRoll(18) },
+                new Characteristic { Name = "     Уход за животными", Value = Buffed(TOAnimals), Roll = CalculateRoll(19) },
+                new Characteristic { Name = " Харизма", Value = Buffed(Charisma), Roll = CalculateRoll(20)},
+                new Characteristic { Name = "     Обман", Value = Buffed(Deception), Roll = CalculateRoll(21) },
+                new Characteristic { Name = "     Запугивание", Value = Buffed(Intimidation), Roll = CalculateRoll(22) },
+                new Characteristic { Name = "     Выступление", Value = Buffed(Speech), Roll = CalculateRoll(23) },
+                new Characteristic { Name = "     Убеждение", Value = Buffed(Persuasion), Roll = CalculateRoll(24) }
+            };
 
         Main main = Main.Instance;
-        int addRollCharisma = 0;
 
         public GridCharacteristics()
         {
@@ -182,43 +209,10 @@ namespace DNDHelper.Modules.Сharacteristics
 
         private void CountCharacterisitc(int index)
         {
-            // Бафф к харизме
-            if (index == 20)
-                Buffed(index) = Base(index) + Race.Stats[index].Value + PlayerClass.Stats[index].Value + ItemBaffsListScript.ItemBaffs[index][0] + addRollCharisma;
-            else
-                Buffed(index) = Base(index) + Race.Stats[index].Value + PlayerClass.Stats[index].Value + ItemBaffsListScript.ItemBaffs[index][0];
+            Buffed(index) = Base(index) + OtherBuff(index) + Race.Stats[index].Value + PlayerClass.Stats[index].Value + ItemBaffsListScript.ItemBaffs[index][0];
             DataGridChar[index].Value = Buffed(index);
             DataGridChar[index].Roll = CalculateRoll(index);
         }
-
-        static public ObservableCollection<Characteristic> DataGridChar = new()
-            {
-                new Characteristic { Name = " Сила", Value = Buffed(Strength), Roll = CalculateRoll(0) },
-                new Characteristic { Name = "     Атлетика", Value = Buffed(Agility), Roll = CalculateRoll(1)},
-                new Characteristic { Name = " Ловкость", Value = Buffed(Athlete), Roll = CalculateRoll(2)},
-                new Characteristic { Name = "     Акробатика", Value = Buffed(Acrobatics), Roll = CalculateRoll(3)},
-                new Characteristic { Name = "     Ловкость рук", Value = Buffed(SleightOfHand), Roll = CalculateRoll(4) },
-                new Characteristic { Name = "     Скрытность", Value = Buffed(Stealth), Roll = CalculateRoll(5) },
-                new Characteristic { Name = " Телосложение", Value = Buffed(Body), Roll = CalculateRoll(6)},
-                new Characteristic { Name = " Интеллект", Value = Buffed(Intellect), Roll = CalculateRoll(7)},
-                new Characteristic { Name = "     Магия", Value = Buffed(Magic), Roll = CalculateRoll(8) },
-                new Characteristic { Name = "     Религия", Value = Buffed(Religion), Roll = CalculateRoll(9) },
-                new Characteristic { Name = "     Природа", Value = Buffed(Nature), Roll = CalculateRoll(10) },
-                new Characteristic { Name = "     История", Value = Buffed(History), Roll = CalculateRoll(11)},
-                new Characteristic { Name = "     Расследовие", Value = Buffed(Investigation), Roll = CalculateRoll(12)},
-                new Characteristic { Name = "     Технолония", Value = Buffed(Technology), Roll = CalculateRoll(13) },
-                new Characteristic { Name = " Мудрость", Value = Buffed(Wisdom), Roll = CalculateRoll(14)},
-                new Characteristic { Name = "     Медицина", Value = Buffed(Medicine), Roll = CalculateRoll(15)},
-                new Characteristic { Name = "     Восприятие", Value = Buffed(Perception), Roll = CalculateRoll(16) },
-                new Characteristic { Name = "     Проницательность", Value = Buffed(Insight), Roll = CalculateRoll(17) },
-                new Characteristic { Name = "     Выживание", Value = Buffed(Survival), Roll = CalculateRoll(18) },
-                new Characteristic { Name = "     Уход за животными", Value = Buffed(TOAnimals), Roll = CalculateRoll(19) },
-                new Characteristic { Name = " Харизма", Value = Buffed(Charisma), Roll = CalculateRoll(20)},
-                new Characteristic { Name = "     Обман", Value = Buffed(Deception), Roll = CalculateRoll(21) },
-                new Characteristic { Name = "     Запугивание", Value = Buffed(Intimidation), Roll = CalculateRoll(22) },
-                new Characteristic { Name = "     Выступление", Value = Buffed(Speech), Roll = CalculateRoll(23) },
-                new Characteristic { Name = "     Убеждение", Value = Buffed(Persuasion), Roll = CalculateRoll(24) }
-            };
 
         static public void SetChars()
         {
@@ -238,14 +232,19 @@ namespace DNDHelper.Modules.Сharacteristics
         {
             // Бафф к харизме
             int strength = Base(Strength) + Race.Stats[0].Value + PlayerClass.Stats[0].Value;
+            OtherBuff(Athlete) = Race.Stats[0].Value + PlayerClass.Stats[0].Value;
+            UpdateCharacterisitc(Athlete);
             if (strength > 0)
             {
-                addRollCharisma = (int)(strength / 5) - 2;
+                int addRollCharisma = (int)(strength / 5) - 2;
                 if (addRollCharisma < 0)
                     addRollCharisma = 0;
+                OtherBuff(Charisma) = addRollCharisma;
                 FindAVariableCharacteristic((int)Charisma);
                 UpdateCharacterisitc(Charisma); 
             }
+
+            WeightScript.CountWeightCharacter();
         }
 
         public void AgilityMethod()
@@ -270,7 +269,7 @@ namespace DNDHelper.Modules.Сharacteristics
         }
         public void CharismaMethod()
         {
-            PointsCharismaSkills = (int)((Base(Charisma) + Race.Stats[20].Value + PlayerClass.Stats[20].Value + addRollCharisma) * 4 * 0.75);
+            PointsCharismaSkills = (int)((Base(Charisma) + Race.Stats[20].Value + PlayerClass.Stats[20].Value + OtherBuff(Charisma)) * 4 * 0.75);
         }
     }
 
