@@ -47,10 +47,6 @@ public partial class Main : Window
             Resources["StandartBackColor"] = new SolidColorBrush(DarkThem.SelectedTheme[0]);
 			Resources["StandartForeColor"] = new SolidColorBrush(DarkThem.SelectedTheme[1]);
 
-			MaxHealth_textblock.Text = "100";
-			CurrentHealth_textblock.Text = "-99";
-
-
         }
 		public void InitializeClasses()
 		{
@@ -278,15 +274,9 @@ public partial class Main : Window
 			}
 		}
 		// Изменение ХП
-		private void CurrentHealth_textblock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-		{
-			CurrentHealth_textblock.Visibility = Visibility.Collapsed;
-			CurrentHealth_textbox.Visibility = Visibility.Visible;
-			CurrentHealth_textbox.Focus();
-		}
 		private void CurrentHealth_tb_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
-			TextboxProcessing.WholeNumbersOnly(CurrentHealth_textbox, e);
+			
 		}
 		private void CurrentHealth_tb_Pasting(object sender, DataObjectPastingEventArgs e)
 		{
@@ -294,43 +284,6 @@ public partial class Main : Window
 			e.Handled = true;
 		}
 
-		private void CurrentHealth_textbox_KeyDown(object sender, KeyEventArgs e)
-		{
-			var textBox = sender as TextBox;
-			int caretIndex = textBox.CaretIndex;
-			string newText = textBox.Text.Replace(" ", "");
-			if (textBox.Text != newText)
-			{
-				textBox.Text = newText;
-				textBox.CaretIndex = Math.Min(caretIndex, newText.Length);
-			}
-			if (e.Key == Key.Enter)
-			{
-				string text = CurrentHealth_textbox.Text;
-				CurrentHealth_textblock.Text = text;
-				if (text.Length == 0 || CurrentHealth_textblock.Text == "-")
-				{
-					CurrentHealth_textblock.Text = "0";
-					CurrentHealth_textbox.Text = "0";
-				}
-				CurrentHealth_textblock.Visibility = Visibility.Visible;
-				CurrentHealth_textbox.Visibility = Visibility.Collapsed;
-				if (Convert.ToInt32(CurrentHealth_textblock.Text) <= 0)
-				{
-					СriticalRoll_Text_textblock.Visibility = Visibility.Visible;
-					СriticalRoll_GreaterOrEqual_textblock.Visibility = Visibility.Visible;
-					СriticalRoll_Number_textblock.Visibility = Visibility.Visible;
-					СriticalRoll_Number_textblock.Text = Convert.ToString((Math.Abs(Convert.ToInt32(CurrentHealth_textblock.Text)) * 100) / (Convert.ToInt32(MaxHealth_textblock.Text)) / 5 + 10);
-				}
-				else
-				{
-					СriticalRoll_Text_textblock.Visibility = Visibility.Hidden;
-					СriticalRoll_GreaterOrEqual_textblock.Visibility = Visibility.Hidden;
-					СriticalRoll_Number_textblock.Visibility = Visibility.Hidden;
-				}
-
-			}
-		}
 
 		private void ResetHealth_Click(object sender, RoutedEventArgs e)
 		{

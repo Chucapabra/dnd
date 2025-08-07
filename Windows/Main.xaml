@@ -111,8 +111,8 @@
                     <materialDesign:PackIcon Kind="Reload" Height="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Button>
                 <TextBlock Width="69" Text="Здоровье:" TextAlignment="Right" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
-                <TextBlock x:Name="CurrentHealth_textblock" Width="40" Text="0" TextAlignment="Center"  VerticalAlignment="Center" MouseLeftButtonDown="CurrentHealth_textblock_MouseLeftButtonDown"/>
-                <TextBox Style="{DynamicResource STYLE_NAME}" Foreground="{DynamicResource StandartForeColor}" Background="{DynamicResource StandartBackColor}" x:Name="CurrentHealth_textbox" Width="40" Height="17" Text="20" TextAlignment="Center" Visibility="Collapsed" materialDesign:HintAssist.Hint="Число" PreviewTextInput="CurrentHealth_tb_PreviewTextInput" DataObject.Pasting="CurrentHealth_tb_Pasting" KeyDown="CurrentHealth_textbox_KeyDown" AcceptsReturn="False"/>
+                <TextBlock x:Name="CurrentHealth_textblock" Width="40" Text="0" TextAlignment="Center"  VerticalAlignment="Center" />
+                <TextBox Style="{DynamicResource STYLE_NAME}" Foreground="{DynamicResource StandartForeColor}" Background="{DynamicResource StandartBackColor}" x:Name="CurrentHealth_textbox" Width="40" Height="17" Text="20" TextAlignment="Center" Visibility="Collapsed" materialDesign:HintAssist.Hint="Число"  DataObject.Pasting="CurrentHealth_tb_Pasting" AcceptsReturn="False"/>
                 <TextBlock Width="5" Text="|" TextAlignment="Center"  VerticalAlignment="Center"/>
                 <TextBlock x:Name="MaxHealth_textblock"  Width="40" Text="0" TextAlignment="Center"  VerticalAlignment="Center"/>
                 <TextBlock x:Name="DamageHealth_textblock"  Width="40" Text="0" TextAlignment="Center"  VerticalAlignment="Center" Foreground="Red"/>
