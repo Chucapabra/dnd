@@ -501,7 +501,7 @@
 						<RowDefinition/>
 						<RowDefinition/>
 					</Grid.RowDefinitions>
-					<DataGrid x:Name="DataGridChartherCharacterAbilities"
+					<DataGrid x:Name="DataGridChartherCharacterAbilities" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
 							  AutoGenerateColumns="False"
                               SelectionMode="Single"
 							  CanUserAddRows="False"
@@ -511,18 +511,23 @@
 							  CanUserResizeColumns="False"
 							  CanUserSortColumns="False"
 							  Grid.RowSpan="2">
-						<DataGrid.Columns>
-							<DataGridTextColumn Header="Способность" Width="150" Binding="{Binding CharacterAbility}"/>
-							<DataGridTextColumn Header="Происхождение" Binding="{Binding CharacterAbilityOrigin}"/>
-							<DataGridTextColumn Header="Описание" Visibility="Hidden" Binding="{Binding CharacterAbilityDescription}"/>
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem x:Name="AddMenuSkill" Header="Добавить"/>
+                                <MenuItem x:Name="DeleteMenuSkill" Header="Удалить"/>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Способность" Width="150" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Происхождение" Width="150" Binding="{Binding Origin}"/>
+							<DataGridTextColumn Header="Описание" Visibility="Collapsed" Binding="{Binding Description}"/>
 						</DataGrid.Columns>
 					</DataGrid>
 					<Border Grid.Column="1" Grid.ColumnSpan="2"/>
 					<Border Grid.RowSpan="2"/>
 					<Border Grid.Column="2" Grid.Row="1"/>
 					<Border Grid.Column="1" Grid.Row="1"/>
-					<TextBlock x:Name="Ability_TextBlock" Text="Выбирите способность" Grid.Column="1" Grid.ColumnSpan="2" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-					<TextBox x:Name="Ability_TextBox" materialDesign:HintAssist.Hint="Описание" Grid.Column="1" Grid.ColumnSpan="2" TextWrapping="Wrap" Visibility="Hidden"/>
+					<TextBox MaxLength="0" x:Name="Ability_TextBox" materialDesign:HintAssist.Hint="Описание" Grid.Column="1" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
 					<StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
 						<StackPanel Orientation="Horizontal">
 							<TextBlock Text="Уровень:" Width="150" VerticalAlignment="Center"/>

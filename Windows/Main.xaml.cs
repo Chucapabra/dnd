@@ -56,6 +56,7 @@ public partial class Main : Window
 			PlayerClass playerClass = new();
 			InventoryLoot inventoryLoot = new();
             ItemBaffsListScript = new ();
+			Skills skills = new();
 
             Characteristics = new();
             GridCharacteristics.SetChars();

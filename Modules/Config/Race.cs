@@ -1,4 +1,5 @@
-﻿using DNDHelper.Modules.Inventory;
+﻿using DNDHelper.Modules.Character;
+using DNDHelper.Modules.Inventory;
 using DNDHelper.Windows;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -65,7 +66,7 @@ namespace DNDHelper.Modules.Config
             }
 
             Main.Characteristics.UpdateAllCharacterisitc();
-
+            Skills.ReloadDataGridSkills();
 
             Main.Instance.character_race_textblock.Text = selectText;
         }
