@@ -42,8 +42,8 @@ public partial class Main : Window
         public Main()
 		{
 			InitializeComponent();
-			InitializeClasses();			
-
+			InitializeClasses();
+			MainWindows.Title = "D&DHelper";
             Resources["StandartBackColor"] = new SolidColorBrush(DarkThem.SelectedTheme[0]);
 			Resources["StandartForeColor"] = new SolidColorBrush(DarkThem.SelectedTheme[1]);
 
@@ -57,6 +57,7 @@ public partial class Main : Window
 			InventoryLoot inventoryLoot = new();
             ItemBaffsListScript = new ();
 			Skills skills = new();
+            Level level = new();
 
             Characteristics = new();
             GridCharacteristics.SetChars();
@@ -150,17 +151,14 @@ public partial class Main : Window
 
 		private void DiaryTB_SelectionChanged(object sender, RoutedEventArgs e)
 		{
+			diaryTB.Focus();
 			TextChanges textChanges = new();
 			textChanges.UpdateFontSizeDisplay();
 		}
 
 		private void DiaryTB_MouseMove(object sender, MouseEventArgs e)
 		{
-			if (diaryTB.Selection.IsEmpty)
-			{
-				TextChanges textChanges = new();
-				textChanges.UpdateFontSizeDisplay();
-			}
+			diaryTB.Focus();
 		}
 
 		private void DiaryTB_TextChanged(object sender, TextChangedEventArgs e)
@@ -168,7 +166,7 @@ public partial class Main : Window
 			if (diaryTB.Selection.IsEmpty)
 			{
 				TextChanges textChanges = new();
-				textChanges.UpdateFontSizeComboBox();
+				textChanges.UpdateFontSizeDisplay();
 			}
 		}
 

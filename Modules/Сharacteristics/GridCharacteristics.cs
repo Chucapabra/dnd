@@ -145,7 +145,7 @@ namespace DNDHelper.Modules.Сharacteristics
                     PointsCharismaSkillsNow = PointsCharismaSkills - Base(Deception) - Base(Intimidation) - Base(Speech) - Base(Persuasion);
                     break;
             }
-            PointsNow = Points - Base(Strength) - Base(Agility) - Base(Body) - Base(Intellect) - Base(Wisdom) - Base(Charisma);
+            PointsNow = LevelBaffs.AddPoints + Points - Base(Strength) - Base(Agility) - Base(Body) - Base(Intellect) - Base(Wisdom) - Base(Charisma);
             UpdatePointText(main.EditMode_button.IsChecked == true);
         }
 
@@ -205,7 +205,7 @@ namespace DNDHelper.Modules.Сharacteristics
 
         static public void SetChars()
         {
-            
+
             Main.Instance.DataGridCharacterisctics.ItemsSource = DataGridChar;
         }
 
@@ -213,7 +213,7 @@ namespace DNDHelper.Modules.Сharacteristics
 
         static public int CalculateRoll(int setCharIndex)
         {
-            return (int) MathF.Floor((float)((Buffed(setCharIndex) - 10) * 0.5) + Race.Stats[setCharIndex].Roll + PlayerClass.Stats[setCharIndex].Roll + ItemBaffsListScript.ItemBaffs[setCharIndex][1]);
+            return (int)MathF.Floor((float)((Buffed(setCharIndex) - 10) * 0.5) + Race.Stats[setCharIndex].Roll + PlayerClass.Stats[setCharIndex].Roll + ItemBaffsListScript.ItemBaffs[setCharIndex][1]);
         }
 
         // Методы характеристик
@@ -229,7 +229,7 @@ namespace DNDHelper.Modules.Сharacteristics
                 if (addRollCharisma < 0)
                     addRollCharisma = 0;
                 OtherBuff(Charisma) = addRollCharisma;
-                UpdateCharacterisitc(Charisma); 
+                UpdateCharacterisitc(Charisma);
             }
 
             WeightScript.CountWeightCharacter();
@@ -237,7 +237,7 @@ namespace DNDHelper.Modules.Сharacteristics
 
         public void AgilityMethod()
         {
-            PointsAgilitySkills = (int)((Base(Agility) + Race.Stats[2].Value + PlayerClass.Stats[2].Value)  * 3 * 0.75);
+            PointsAgilitySkills = (int)((Base(Agility) + Race.Stats[2].Value + PlayerClass.Stats[2].Value) * 3 * 0.75);
         }
 
 
