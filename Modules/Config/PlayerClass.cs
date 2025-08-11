@@ -55,12 +55,7 @@ namespace DNDHelper.Modules.Config
                 }
             }
 
-            ///          foreach (var item in SelectedClassData.ClassTrees[0])
-            //          {
-            //              Debug.WriteLine(item.Key);
-
-            //              Debug.WriteLine(SelectedClassData.ClassTrees[0][item.Key][0][0][0].Skills.Count);
-            //          }
+            Main.TreeSkillsScript.SetClassTree();
 
             Main.Characteristics.UpdateAllCharacterisitc();
             Health.HealthUpdate();
@@ -124,6 +119,8 @@ namespace DNDHelper.Modules.Config
 
         [JsonPropertyName("Касты")]
         public List<string> Casts { get; set; } = new List<string>();
+
+        public List<Dictionary<string, int[]>> StandartStats { get; set; } = new List<Dictionary<string, int[]>>();
     }
 }
 

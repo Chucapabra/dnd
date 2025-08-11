@@ -135,6 +135,7 @@ namespace DNDHelper.Modules.Character
 
             Main.Characteristics.FindAVariableCharacteristic(28);
             Main.Instance.сharacter_level_textblcok.Text = LevelBaffs.Level.ToString();
+            Main.TreeSkillsScript.UpdateTreeLevel();
         }
     }
 

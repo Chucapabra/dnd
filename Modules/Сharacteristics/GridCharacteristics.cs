@@ -51,6 +51,7 @@ namespace DNDHelper.Modules.Сharacteristics
         public GridCharacteristics()
         {
             Instance = this;
+            Main.Instance.DataGridCharacterisctics.ItemsSource = DataGridChar;
         }
 
         public void AddCharacteristic_Click()
@@ -63,8 +64,6 @@ namespace DNDHelper.Modules.Сharacteristics
                 FindAVariableCharacteristic(selectedIndex);
                 UpdateCharacterisitc(selectedIndex);
             }
-
-            SetChars();
         }
 
         public void SubtractCharacteristic_Click()
@@ -77,8 +76,6 @@ namespace DNDHelper.Modules.Сharacteristics
                 FindAVariableCharacteristic(selectedIndex);
                 UpdateCharacterisitc(selectedIndex);
             }
-
-            SetChars();
         }
 
         private void AddCharacteristic(int selectIndex, int Add)
@@ -146,7 +143,7 @@ namespace DNDHelper.Modules.Сharacteristics
                     break;
             }
             PointsNow = LevelBaffs.AddPoints + Points - Base(Strength) - Base(Agility) - Base(Body) - Base(Intellect) - Base(Wisdom) - Base(Charisma);
-            UpdatePointText(main.EditMode_button.IsChecked == true);
+            UpdatePointText(main.EditMode_button.IsChecked);
         }
 
         public void UpdatePointText(bool OnOff)
@@ -188,7 +185,6 @@ namespace DNDHelper.Modules.Сharacteristics
 
         public void UpdateAllCharacterisitc()
         {
-            SetChars();
             for (int i = 0; i < 25; i++)
             {
                 CountCharacterisitc(i);
@@ -202,15 +198,7 @@ namespace DNDHelper.Modules.Сharacteristics
             DataGridChar[index].Roll = CalculateRoll(index);
             FindAVariableCharacteristic(index);
         }
-
-        static public void SetChars()
-        {
-
-            Main.Instance.DataGridCharacterisctics.ItemsSource = DataGridChar;
-        }
-
-
-
+       
         static public int CalculateRoll(int setCharIndex)
         {
             return (int)MathF.Floor((float)((Buffed(setCharIndex) - 10) * 0.5) + Race.Stats[setCharIndex].Roll + PlayerClass.Stats[setCharIndex].Roll + ItemBaffsListScript.ItemBaffs[setCharIndex][1]);

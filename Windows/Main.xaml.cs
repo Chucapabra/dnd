@@ -31,13 +31,14 @@ namespace DNDHelper.Windows
 	/// Логика взаимодействия для Main.xaml
 	/// </summary>
 
-public partial class Main : Window
+    public partial class Main : Window
 	{
 
 
         public static Main Instance;
 		public static GridCharacteristics Characteristics;
-		public static ItemBaffsListScript ItemBaffsListScript;
+        public static TreeSkills TreeSkillsScript;
+        public static ItemBaffsListScript ItemBaffsListScript;
 
         public Main()
 		{
@@ -58,9 +59,9 @@ public partial class Main : Window
             ItemBaffsListScript = new ();
 			Skills skills = new();
             Level level = new();
+            TreeSkillsScript = new();
 
             Characteristics = new();
-            GridCharacteristics.SetChars();
             Characteristics.UpdateAllCharacterisitc();
 
             WeightScript weightScript = new WeightScript();
@@ -101,6 +102,7 @@ public partial class Main : Window
 			{
 				Resources["IsEdit"] = Visibility.Hidden;
 				Characteristics.UpdatePointText(false);
+				TreeSkillsScript.UpdateDisplayPoints();
 				character_name_textblock.Visibility = Visibility.Visible;
 				character_name_textbox.Visibility = Visibility.Hidden;
 				character_race_textblock.Visibility = Visibility.Visible;
@@ -112,7 +114,8 @@ public partial class Main : Window
 			{
 				Resources["IsEdit"] = Visibility.Visible;
 				Characteristics.UpdatePointText(true);
-				character_name_textblock.Visibility = Visibility.Collapsed;
+                TreeSkillsScript.UpdateDisplayPoints();
+                character_name_textblock.Visibility = Visibility.Collapsed;
 				character_name_textbox.Visibility = Visibility.Visible;
 				character_race_textblock.Visibility = Visibility.Collapsed;
 				character_race_combobox.Visibility = Visibility.Visible;
@@ -137,8 +140,18 @@ public partial class Main : Window
 		{
 			Characteristics.SubtractCharacteristic_Click();
 		}
-		// Дневник
-		private void CreateNote_Click(object sender, RoutedEventArgs e)
+        // Древо Развитие
+        private void AddTreeLevel_Click(object sender, RoutedEventArgs e)
+        {
+			TreeSkillsScript.AddTreeLevel();
+        }
+
+        private void SubtractTreeLevel_Click(object sender, RoutedEventArgs e)
+        {
+            TreeSkillsScript.SubstractTreeLevel();
+        }
+        // Дневник
+        private void CreateNote_Click(object sender, RoutedEventArgs e)
 		{
 			FlowDocument flowDocument = diaryTB.Document;
 

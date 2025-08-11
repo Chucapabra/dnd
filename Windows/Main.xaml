@@ -561,7 +561,8 @@
                             <TextBlock x:Name="сharacter_longrangeattack_textblcok" Width="40" Text="0" TextAlignment="Center"/>
                         </StackPanel>
                     </StackPanel>
-					<DataGrid x:Name="DataGridTreeВevelopment"
+                    <DataGrid x:Name="DataGridTreeDevelopment" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                              IsReadOnly="True"
 							  AutoGenerateColumns="False"
                               SelectionMode="Single"
 							  CanUserAddRows="False"
@@ -572,9 +573,25 @@
 							  CanUserSortColumns="False"
 							  Grid.Row="1" Grid.Column="2">
 						<DataGrid.Columns>
-							<DataGridTextColumn Width="180" Header="Название" Binding="{Binding TreeName}"/>
-							<DataGridTextColumn Header="Ступень" Binding="{Binding TreeLevel}"/>
-						</DataGrid.Columns>
+                            <DataGridTextColumn Width="180" Header="Название" Binding="{Binding TreeName}"/>
+                            <DataGridTemplateColumn Header="Ступень" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <TextBlock Text="{Binding TreeLevel}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="15,0,0,0">
+                                                <Button Style="{DynamicResource MaterialDesignIconForegroundButton }" Visibility="{DynamicResource IsEdit}"  Width="12" Height="12" Margin="2" Click="AddTreeLevel_Click">
+                                                    <TextBlock Text="+" Margin="0,-5,0,0" FontSize="16" />
+                                                </Button>
+                                                <Button Style="{DynamicResource MaterialDesignIconForegroundButton }" Visibility="{DynamicResource IsEdit}" Width="12" Height="12" Margin="2" Click="SubtractTreeLevel_Click">
+                                                    <TextBlock Text="-" Margin="0,-8,0,0" FontSize="22" />
+                                                </Button>
+                                            </StackPanel>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
 					</DataGrid>
 				</Grid>
             </TabItem>
