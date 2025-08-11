@@ -152,7 +152,7 @@ namespace DNDHelper.Modules.Inventory
                             }
                         }
                 }
-                GridCharacteristics.Instance.UpdateAllCharacterisitc();
+                Main.Characteristics.UpdateAllCharacterisitc();
                 Health.HealthUpdate();
             }
         }

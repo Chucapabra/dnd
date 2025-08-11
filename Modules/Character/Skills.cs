@@ -138,13 +138,22 @@ namespace DNDHelper.Modules.Character
             if (Main.Instance.character_class_combobox.SelectedIndex != -1)
             {
                 var ClassSkills = PlayerClass.SelectedClassData.Skills;
+                var ClassTreesSkills = TreeSkills.Skills;
+                ClassTreesSkills.Reverse();
                 var NameClass = Main.Instance.character_class_combobox.SelectedValue.ToString();
-
+                // объединение скиллов
                 foreach (var skill in ClassSkills)
+                    ClassTreesSkills.Add(skill);
+                foreach (var skill in ClassTreesSkills)
                 {
-                    string[] sk = skill.Split('|');
-                    ListSkills.Add(new Skill { Name = sk[0], Origin = NameClass, Description = sk[1] });
+                    int index = ListSkills.ToList().FindIndex(x => { return x.Name == skill.Split('|')[0]; });
+                    if (index == -1)
+                    {
+                        string[] sk = skill.Split('|');
+                        ListSkills.Add(new Skill { Name = sk[0], Origin = NameClass, Description = sk[1] });
+                    }
                 }
+
             }
 
 

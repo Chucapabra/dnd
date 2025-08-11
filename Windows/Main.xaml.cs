@@ -43,6 +43,7 @@ namespace DNDHelper.Windows
         public Main()
 		{
 			InitializeComponent();
+
 			InitializeClasses();
 			MainWindows.Title = "D&DHelper";
             Resources["StandartBackColor"] = new SolidColorBrush(DarkThem.SelectedTheme[0]);
@@ -53,14 +54,15 @@ namespace DNDHelper.Windows
 		{
 			Instance = this;
 
-			Race @class = new ();
+
+            
+            Race @class = new ();
 			PlayerClass playerClass = new();
 			InventoryLoot inventoryLoot = new();
             ItemBaffsListScript = new ();
 			Skills skills = new();
             Level level = new();
             TreeSkillsScript = new();
-
             Characteristics = new();
             Characteristics.UpdateAllCharacterisitc();
 

@@ -581,10 +581,10 @@
                                             <TextBlock Text="{Binding TreeLevel}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="15,0,0,0">
                                                 <Button Style="{DynamicResource MaterialDesignIconForegroundButton }" Visibility="{DynamicResource IsEdit}"  Width="12" Height="12" Margin="2" Click="AddTreeLevel_Click">
-                                                    <TextBlock Text="+" Margin="0,-5,0,0" FontSize="16" />
+                                                    <TextBlock Text="+" Margin="0,-4,1,0" FontSize="16" />
                                                 </Button>
                                                 <Button Style="{DynamicResource MaterialDesignIconForegroundButton }" Visibility="{DynamicResource IsEdit}" Width="12" Height="12" Margin="2" Click="SubtractTreeLevel_Click">
-                                                    <TextBlock Text="-" Margin="0,-8,0,0" FontSize="22" />
+                                                    <TextBlock Text="-" Margin="0,-8,1,0" FontSize="22" />
                                                 </Button>
                                             </StackPanel>
                                         </Grid>

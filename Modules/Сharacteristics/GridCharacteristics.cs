@@ -16,7 +16,6 @@ namespace DNDHelper.Modules.Сharacteristics
 {
     public class GridCharacteristics
     {
-        public static GridCharacteristics Instance;
         static public ObservableCollection<Characteristic> DataGridChar = new()
             {
                 new Characteristic { Name = " Сила", Value = Buffed(Strength), Roll = CalculateRoll(0) },
@@ -50,7 +49,6 @@ namespace DNDHelper.Modules.Сharacteristics
 
         public GridCharacteristics()
         {
-            Instance = this;
             Main.Instance.DataGridCharacterisctics.ItemsSource = DataGridChar;
         }
 
@@ -193,7 +191,7 @@ namespace DNDHelper.Modules.Сharacteristics
 
         private void CountCharacterisitc(int index)
         {
-            Buffed(index) = Base(index) + OtherBuff(index) + Race.Stats[index].Value + PlayerClass.Stats[index].Value + ItemBaffsListScript.ItemBaffs[index][0];
+            Buffed(index) = Base(index) + OtherBuff(index) + Race.Stats[index].Value + PlayerClass.Stats[index].Value + TreeSkills.Stats[index].Value + ItemBaffsListScript.ItemBaffs[index][0];
             DataGridChar[index].Value = Buffed(index);
             DataGridChar[index].Roll = CalculateRoll(index);
             FindAVariableCharacteristic(index);
@@ -201,7 +199,7 @@ namespace DNDHelper.Modules.Сharacteristics
        
         static public int CalculateRoll(int setCharIndex)
         {
-            return (int)MathF.Floor((float)((Buffed(setCharIndex) - 10) * 0.5) + Race.Stats[setCharIndex].Roll + PlayerClass.Stats[setCharIndex].Roll + ItemBaffsListScript.ItemBaffs[setCharIndex][1]);
+            return (int)MathF.Floor((float)((Buffed(setCharIndex) - 10) * 0.5) + Race.Stats[setCharIndex].Roll + PlayerClass.Stats[setCharIndex].Roll + TreeSkills.Stats[setCharIndex].Roll + ItemBaffsListScript.ItemBaffs[setCharIndex][1]);
         }
 
         // Методы характеристик

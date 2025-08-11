@@ -1,14 +1,10 @@
 ﻿using DNDHelper.Modules.Config;
+using DNDHelper.Modules.Сharacteristics;
 using DNDHelper.Windows;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace DNDHelper.Modules.Character
 {
@@ -20,6 +16,9 @@ namespace DNDHelper.Modules.Character
 
         public static List<Stat> Stats = new List<Stat>();
 
+        public static List<string> Skills = new List<string>();
+        public static int AddKD = 0;
+
         public ObservableCollection<TreeGrid> treeGrids = new() {
             new TreeGrid { TreeName = "", TreeLevel = 0 },
             new TreeGrid { TreeName = "", TreeLevel = 0 },
@@ -29,8 +28,7 @@ namespace DNDHelper.Modules.Character
         public TreeSkills()
         {
             main.DataGridTreeDevelopment.ItemsSource = treeGrids;
-            ClearStats();
-            UpdateTreeLevel();           
+            ClearStats();    
         }
 
         private void ClearStats()
@@ -39,7 +37,7 @@ namespace DNDHelper.Modules.Character
             for (int i = 0; i < 26; i++)
             {
                 Stats.Add(new Stat { Value = 0, Roll = 0 });
-            }
+            }           
         }
 
         public void AddTreeLevel()
@@ -85,16 +83,66 @@ namespace DNDHelper.Modules.Character
 
         public void UpdateAddStats()
         {
+            ClearStats();
+            Skills.Clear();
+            AddKD = 0;
+
             int i = 0;
             if (PlayerClass.SelectedClassData.ClassTrees.Count > 0)
             foreach (var item in PlayerClass.SelectedClassData.ClassTrees[0])
             {
-                    for (int j = 0; j <= treeGrids[i].TreeLevel; j++)
-                        foreach (var stage in PlayerClass.SelectedClassData.ClassTrees[0][item.Key][0][j][0].StandartStats)
-                            Debug.WriteLine(stage.Count);
+                    for (int j = 0; j < treeGrids[i].TreeLevel; j++)
+                        foreach (var stage in PlayerClass.SelectedClassData.ClassTrees[0][item.Key][0][j][0])
+                            FindAddStats(stage.Key, stage.Value);
                 i++;
             }
+
+            Main.Characteristics.UpdateAllCharacterisitc();
+            Character.Skills.ReloadDataGridSkills();
         }
+
+        private void FindAddStats(string key, object value)
+        {
+            int index = Array.IndexOf(CharacteristicTable.StatNameRus, key.ToLower());
+            if (index != -1)
+            {
+                if (value is JsonElement element && element.ValueKind == JsonValueKind.Array)
+                {
+                    var array = element.Deserialize<int[]>();
+                    if (array != null && array.Length >= 2)
+                    {
+                        Stats[index].Value += array[0];
+                        Stats[index].Roll += array[1];
+                        return;
+                    }
+                }
+
+            }
+
+            switch (key.ToLower())
+            {
+                case "способности":
+                    if (value is JsonElement element && element.ValueKind == JsonValueKind.Array)
+                    {
+                        var array = element.Deserialize<string[]>();
+                        if (array != null)
+                            foreach (var item in array)
+                                Skills.Add(item);
+                    }
+                    break;
+                case "допкд":
+                    if (value is JsonElement elementInt)
+                        if (elementInt.ValueKind == JsonValueKind.Number && elementInt.TryGetInt32(out int number))
+                            AddKD += number;
+                    break;
+                case "множительуронамагии":
+                    break;
+                case "дебаф_к_пулям":
+                    break;
+            }
+
+        }
+        
 
         public void SetClassTree()
         {
@@ -108,9 +156,10 @@ namespace DNDHelper.Modules.Character
                 i++;
             }
             
+            UpdateTreeLevel();
         }
 
-
+        
 
         public class TreeGrid : INotifyPropertyChanged
         {

@@ -98,7 +98,7 @@ namespace DNDHelper.Modules.Config
 
         // Ветви: список словарей, где ключ — название ветви, значение — список ступеней
         [JsonPropertyName("Ветви")]
-        public List<Dictionary<string, List<Dictionary<int, List<StageTree>>>>> ClassTrees { get; set; } = new List<Dictionary<string, List<Dictionary<int, List<StageTree>>>>>();
+        public List<Dictionary<string, List<Dictionary<int, List<Dictionary<string, object>>>>>> ClassTrees { get; set; } = new();
     }
 
     public class StagesTree
@@ -107,20 +107,7 @@ namespace DNDHelper.Modules.Config
     }
     public class StageTree
     {
-        [JsonPropertyName("ДопКД")]
-        public int AddKD { get; set; }
-        [JsonPropertyName("ДеБаф_к_пулям")]
-        public int AddMagBullet { get; set; }
-        [JsonPropertyName("множительуронамагии")]
-        public double MultiplyMagDamage { get; set; }
-
-        [JsonPropertyName("Способности")]
-        public List<string> Skills { get; set; } = new List<string>();
-
-        [JsonPropertyName("Касты")]
-        public List<string> Casts { get; set; } = new List<string>();
-
-        public List<Dictionary<string, int[]>> StandartStats { get; set; } = new List<Dictionary<string, int[]>>();
+        public List<Dictionary<string, object>> Baffs { get; set; } = new();
     }
 }
 
