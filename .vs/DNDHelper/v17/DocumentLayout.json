@@ -7,32 +7,40 @@
       "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:windows\\main.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd-2\\dnd\\modules\\character\\health.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\character\\health.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd-2\\dnd\\windows\\main.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:windows\\main.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd-2\\dnd\\modules\\inventory\\inventoryloot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\inventory\\inventoryloot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd-2\\dnd\\modules\\settings\\datasave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\settings\\datasave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd-2\\dnd\\modules\\settings\\globalmultiply.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\settings\\globalmultiply.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd-2\\dnd\\modules\\settings\\settings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\settings\\settings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd-2\\dnd\\modules\\character\\attributescharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\character\\attributescharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd-2\\dnd\\modules\\character\\skills.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\character\\skills.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd-2\\dnd\\modules\\character\\treeskills.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\character\\treeskills.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd-2\\dnd\\modules\\character\\level.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\character\\level.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd-2\\dnd\\modules\\textboxprocessing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\textboxprocessing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd-2\\dnd\\modules\\character\\kdscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\character\\kdscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd-2\\dnd\\modules\\\u0441haracteristics\\gridcharacteristics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\\u0441haracteristics\\gridcharacteristics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,61 +50,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TreeSkills.cs",
-              "DocumentMoniker": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Character\\TreeSkills.cs",
-              "RelativeDocumentMoniker": "Modules\\Character\\TreeSkills.cs",
-              "ToolTip": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Character\\TreeSkills.cs",
-              "RelativeToolTip": "Modules\\Character\\TreeSkills.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAA2wC4AAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-12T10:03:06.365Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "InventoryLoot.cs",
-              "DocumentMoniker": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Inventory\\InventoryLoot.cs",
-              "RelativeDocumentMoniker": "Modules\\Inventory\\InventoryLoot.cs",
-              "ToolTip": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Inventory\\InventoryLoot.cs",
-              "RelativeToolTip": "Modules\\Inventory\\InventoryLoot.cs",
-              "ViewState": "AgIAAPIAAAAAAAAAAAAwwAoBAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-12T09:29:32.047Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "KDScript.cs",
-              "DocumentMoniker": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Character\\KDScript.cs",
-              "RelativeDocumentMoniker": "Modules\\Character\\KDScript.cs",
-              "ToolTip": "Modules/Character/KDScript.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAEwC4AAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "OverriddenGroupName": "Modules\\Character",
-              "OverriddenToolTip": "Modules/Character/KDScript.cs",
-              "WhenOpened": "2025-08-12T09:26:27.851Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "GridCharacteristics.cs",
-              "DocumentMoniker": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\\u0421haracteristics\\GridCharacteristics.cs",
-              "RelativeDocumentMoniker": "Modules\\\u0421haracteristics\\GridCharacteristics.cs",
-              "ToolTip": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\\u0421haracteristics\\GridCharacteristics.cs",
-              "RelativeToolTip": "Modules\\\u0421haracteristics\\GridCharacteristics.cs",
-              "ViewState": "AgIAANoAAAAAAAAAAAAuwOsAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-12T09:26:02.288Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -107,46 +62,126 @@
               "RelativeToolTip": "Windows\\Main.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-08-12T09:19:33.784Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TextboxProcessing.cs",
-              "DocumentMoniker": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\TextboxProcessing.cs",
-              "RelativeDocumentMoniker": "Modules\\TextboxProcessing.cs",
-              "ToolTip": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\TextboxProcessing.cs",
-              "RelativeToolTip": "Modules\\TextboxProcessing.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAiwFIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-12T09:03:33.434Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Health.cs",
-              "DocumentMoniker": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Character\\Health.cs",
-              "RelativeDocumentMoniker": "Modules\\Character\\Health.cs",
-              "ToolTip": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Character\\Health.cs",
-              "RelativeToolTip": "Modules\\Character\\Health.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAewCsAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-12T08:51:23.478Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "Main.xaml.cs",
               "DocumentMoniker": "E:\\Project\\DND-github\\dnd-2\\dnd\\Windows\\Main.xaml.cs",
               "RelativeDocumentMoniker": "Windows\\Main.xaml.cs",
               "ToolTip": "E:\\Project\\DND-github\\dnd-2\\dnd\\Windows\\Main.xaml.cs",
               "RelativeToolTip": "Windows\\Main.xaml.cs",
-              "ViewState": "AgIAACgBAAAAAAAAAADgvz8BAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAcwIQAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "OverriddenGroupName": "Windows",
               "WhenOpened": "2025-08-03T05:20:36.009Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DataSave.cs",
+              "DocumentMoniker": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Settings\\DataSave.cs",
+              "RelativeDocumentMoniker": "Modules\\Settings\\DataSave.cs",
+              "ToolTip": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Settings\\DataSave.cs",
+              "RelativeToolTip": "Modules\\Settings\\DataSave.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-12T16:50:59.764Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Settings.cs",
+              "DocumentMoniker": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Settings\\Settings.cs",
+              "RelativeDocumentMoniker": "Modules\\Settings\\Settings.cs",
+              "ToolTip": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Settings\\Settings.cs",
+              "RelativeToolTip": "Modules\\Settings\\Settings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-12T16:50:54.046Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Skills.cs",
+              "DocumentMoniker": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Character\\Skills.cs",
+              "RelativeDocumentMoniker": "Modules\\Character\\Skills.cs",
+              "ToolTip": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Character\\Skills.cs",
+              "RelativeToolTip": "Modules\\Character\\Skills.cs",
+              "ViewState": "AgIAAIoAAAAAAAAAAAAAAKoAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-12T16:28:24.615Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Level.cs",
+              "DocumentMoniker": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Character\\Level.cs",
+              "RelativeDocumentMoniker": "Modules\\Character\\Level.cs",
+              "ToolTip": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Character\\Level.cs",
+              "RelativeToolTip": "Modules\\Character\\Level.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-12T16:27:55.307Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "TreeSkills.cs",
+              "DocumentMoniker": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Character\\TreeSkills.cs",
+              "RelativeDocumentMoniker": "Modules\\Character\\TreeSkills.cs",
+              "ToolTip": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Character\\TreeSkills.cs",
+              "RelativeToolTip": "Modules\\Character\\TreeSkills.cs",
+              "ViewState": "AgIAAFMAAAAAAAAAAAA8wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-12T16:27:39.189Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AttributesCharacter.cs",
+              "DocumentMoniker": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Character\\AttributesCharacter.cs",
+              "RelativeDocumentMoniker": "Modules\\Character\\AttributesCharacter.cs",
+              "ToolTip": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Character\\AttributesCharacter.cs",
+              "RelativeToolTip": "Modules\\Character\\AttributesCharacter.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-12T16:27:25.257Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "TextboxProcessing.cs",
+              "DocumentMoniker": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\TextboxProcessing.cs",
+              "RelativeDocumentMoniker": "Modules\\TextboxProcessing.cs",
+              "ToolTip": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\TextboxProcessing.cs",
+              "RelativeToolTip": "Modules\\TextboxProcessing.cs",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAowGgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-12T16:21:57.189Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GlobalMultiply.cs",
+              "DocumentMoniker": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Settings\\GlobalMultiply.cs",
+              "RelativeDocumentMoniker": "Modules\\Settings\\GlobalMultiply.cs",
+              "ToolTip": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Settings\\GlobalMultiply.cs",
+              "RelativeToolTip": "Modules\\Settings\\GlobalMultiply.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-12T15:57:37.294Z",
               "EditorCaption": ""
             }
           ]

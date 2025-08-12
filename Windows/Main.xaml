@@ -9,139 +9,139 @@
 		Style="{StaticResource MaterialDesignWindow}"
         mc:Ignorable="d"
         Title="D&amp;DHelper" Height="593" Width="1110" ResizeMode="NoResize" Visibility="Visible">
-    <Window.Resources>
+	<Window.Resources>
 
-        <Style TargetType="TextBlock">
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="FontFamily" Value="Bahnschrift"/>
-        </Style>
-        <Style TargetType="Border">
-            <Setter Property="BorderBrush" Value="Beige"/>
-            <Setter Property="BorderThickness" Value="1"/>
-        </Style>
-        <SolidColorBrush x:Key="StandartBackColor"/>
-        <SolidColorBrush x:Key="StandartForeColor" Color="Black"/>
-        <Visibility x:Key="IsEdit">Hidden</Visibility>
+		<Style TargetType="TextBlock">
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="FontFamily" Value="Bahnschrift"/>
+		</Style>
+		<Style TargetType="Border">
+			<Setter Property="BorderBrush" Value="Beige"/>
+			<Setter Property="BorderThickness" Value="1"/>
+		</Style>
+		<SolidColorBrush x:Key="StandartBackColor"/>
+		<SolidColorBrush x:Key="StandartForeColor" Color="Black"/>
+		<Visibility x:Key="IsEdit">Hidden</Visibility>
 		<Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
 			<Setter Property="MaxLength" Value="7"/>
 			<Setter Property="materialDesign:TextFieldAssist.CharacterCounterVisibility" Value="Hidden"/>
 		</Style>
-    </Window.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="270"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="130"/>
-            <RowDefinition Height="120"/>
-        </Grid.RowDefinitions>
-        <Menu Height="Auto" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" Grid.ColumnSpan="2" FontSize="15">
-            <MenuItem Header="Персонаж">
-                <MenuItem Header="Новый..."/>
-                <MenuItem Header="Загрузить..."/>
-                <MenuItem Header="Сохранить как..."/>
-                <Separator />
-                <MenuItem Header="Персонажи">
-                    <MenuItem Header="20 | Олег"/>
-                    <Separator />
-                    <MenuItem Header="Персонажи..."/>
-                </MenuItem>
-            </MenuItem>
-            <MenuItem Header="Программа">
-                <MenuItem Header="Режим редактирования" IsCheckable="True" x:Name="EditMode_button" Click="EditMode_click"/>
-                <MenuItem Header="Настройки" Click="Settings_Click" x:Name="Settings_Button"/>
-                <MenuItem Header="Обновить конфиг"/>
-                <MenuItem Header="Проверить обновления"/>
-                <MenuItem Header="О программе"/>
-            </MenuItem>
-            <MenuItem Header="Ссылки">
-                <MenuItem Header="Правила Гюнтера" Click="UrlGunter"/>
-                <MenuItem Header="Правила Туши" Click="UrlTusha"/>
-                <MenuItem Header="Оружие и броня Туши" Click="UrlWeapons"/>
-                <MenuItem Header="Расы Туши" Click="UrlRaces"/>
-                <MenuItem Header="Классы Туши" Click="UrlClasses"/>
-            </MenuItem>
-        </Menu>
+	</Window.Resources>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="270"/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="130"/>
+			<RowDefinition Height="120"/>
+		</Grid.RowDefinitions>
+		<Menu Height="Auto" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" Grid.ColumnSpan="2" FontSize="15">
+			<MenuItem Header="Персонаж">
+				<MenuItem Header="Новый..."/>
+				<MenuItem Header="Загрузить..."/>
+				<MenuItem Header="Сохранить как..."/>
+				<Separator />
+				<MenuItem Header="Персонажи">
+					<MenuItem Header="20 | Олег"/>
+					<Separator />
+					<MenuItem Header="Персонажи..."/>
+				</MenuItem>
+			</MenuItem>
+			<MenuItem Header="Программа">
+				<MenuItem Header="Режим редактирования" IsCheckable="True" x:Name="EditMode_button" Click="EditMode_click"/>
+				<MenuItem Header="Настройки" Click="Settings_Click" x:Name="Settings_Button"/>
+				<MenuItem Header="Обновить конфиг"/>
+				<MenuItem Header="Проверить обновления"/>
+				<MenuItem Header="О программе"/>
+			</MenuItem>
+			<MenuItem Header="Ссылки">
+				<MenuItem Header="Правила Гюнтера" Click="UrlGunter"/>
+				<MenuItem Header="Правила Туши" Click="UrlTusha"/>
+				<MenuItem Header="Оружие и броня Туши" Click="UrlWeapons"/>
+				<MenuItem Header="Расы Туши" Click="UrlRaces"/>
+				<MenuItem Header="Классы Туши" Click="UrlClasses"/>
+			</MenuItem>
+		</Menu>
 
 
-        <StackPanel VerticalAlignment="Center" Margin="10,50,0,0">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Имя:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Width="60" />
-                <TextBlock Text="[[Имя]]" x:Name="character_name_textblock" Width="120" Visibility="Visible" VerticalAlignment="Center" />
-                <TextBox Width="120" x:Name="character_name_textbox" materialDesign:HintAssist.Hint="Имя" Visibility="Hidden" MaxLength="254"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Раса:" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0" Width="60" />
-                <TextBlock Text="[[Раса]]" x:Name="character_race_textblock" Width="120" Visibility="Visible" VerticalAlignment="Center" />
-                <ComboBox Width="120" x:Name="character_race_combobox" materialDesign:HintAssist.Hint="Раса" Visibility="Hidden"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Класс:" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0" Width="60"/>
-                <TextBlock Text="[[Класс]]" x:Name="character_class_textblock" Width="120" Visibility="Visible" VerticalAlignment="Center" />
-                <ComboBox Width="120" x:Name="character_class_combobox" materialDesign:HintAssist.Hint="Класс" Visibility="Hidden"/>
-            </StackPanel>
-        </StackPanel>
-        <StackPanel>
-            <materialDesign:PackIcon x:Name="ImageIconCharacter" Kind="FileImageAdd" Height="60" Width="60" Margin="200,50,0,0" MouseLeftButtonDown="PackIcon_MouseLeftButtonDown" Visibility="Visible"/>
-            <Image x:Name="ImageCharacter" Height="60" Width="60" Margin="200,50,0,0" MouseLeftButtonDown="PackIcon_MouseLeftButtonDown" Visibility="Hidden"/>
-        </StackPanel>
-        <StackPanel/>
-        <StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="0,50,0,0">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <TextBlock Width="135" Text="Действия:" TextAlignment="Right"/>
-                <TextBlock x:Name="Actions_textblock" Width="26" Text="0" TextAlignment="Center"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <TextBlock Width="135" Text="Контрдействия:" TextAlignment="Right"/>
-                <TextBlock x:Name="Counter_actions_textblock" Width="26" Text="0" TextAlignment="Center"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <TextBlock Width="135" Text="Палки хода:" TextAlignment="Right"/>
-                <TextBlock x:Name="Movesticks_textblock" Width="26" Text="0" TextAlignment="Center"/>
-            </StackPanel>
-        </StackPanel>
-        <StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="180,50,0,0">
-            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,0">
-                <TextBlock x:Name="СriticalRoll_Text_textblock" Width="135" Text="Ролл крит:" TextAlignment="Right" Visibility="Hidden"/>
-                <TextBlock x:Name="СriticalRoll_GreaterOrEqual_textblock"  Width="10" Text=">" TextDecorations="Underline" TextAlignment="Right" Visibility="Hidden"/>
-                <TextBlock x:Name="СriticalRoll_Number_textblock" Width="20" Text="0" TextAlignment="Center" Visibility="Hidden"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button x:Name="ResetHealth" Margin="0,-2,0,0" Height="10" Width="10" Style="{DynamicResource MaterialDesignFloatingActionLightButton}" Click="ResetHealth_Click" Cursor="Hand">
-                    <materialDesign:PackIcon Kind="Reload" Height="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                </Button>
-                <TextBlock Width="69" Text="Здоровье:" TextAlignment="Right" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
-                <TextBlock x:Name="CurrentHealth_textblock" Width="40" Text="0" TextAlignment="Center"  VerticalAlignment="Center" />
-                <TextBox Style="{DynamicResource STYLE_NAME}" Foreground="{DynamicResource StandartForeColor}" Background="{DynamicResource StandartBackColor}" x:Name="CurrentHealth_textbox" Width="40" Height="17" Text="20" TextAlignment="Center" Visibility="Collapsed" materialDesign:HintAssist.Hint="Число"  DataObject.Pasting="CurrentHealth_tb_Pasting" AcceptsReturn="False"/>
-                <TextBlock Width="5" Text="|" TextAlignment="Center"  VerticalAlignment="Center"/>
-                <TextBlock x:Name="MaxHealth_textblock"  Width="40" Text="0" TextAlignment="Center"  VerticalAlignment="Center"/>
-                <TextBlock x:Name="DamageHealth_textblock"  Width="40" Text="0" TextAlignment="Center"  VerticalAlignment="Center" Foreground="Red"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <TextBlock Width="135" Text="Ментальное КД:" TextAlignment="Right"/>
-                <TextBlock x:Name="MentalKD_TextBlock" Width="40" Text="0" TextAlignment="Center"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <TextBlock Width="93" Text="КД головы:" TextAlignment="Right"/>
-                <TextBlock x:Name="HeadKD_TextBlock" Width="40" Text="0" TextAlignment="Center"/>
-                <TextBlock Width="30" Text="КД:" TextAlignment="Right"/>
-                <TextBlock x:Name="KD_TextBlock" Width="40" Text="0" TextAlignment="Center"/>
-            </StackPanel>
-        </StackPanel>
-        <StackPanel Grid.Column="1" Margin="400,10,0,0">
-            <StackPanel Orientation="Horizontal" Margin="36,0,0,0">
-                <ComboBox materialDesign:HintAssist.Hint="Тип щита" Width="100">
-                    <ComboBoxItem Content="Элементальный"/>
-                    <ComboBoxItem Content="Физический"/>
-                    <ComboBoxItem Content="От всего"/>
-                </ComboBox>
-                <TextBox materialDesign:HintAssist.Hint="ХП" Width="55" TextAlignment="Center" x:Name="shield_health_textbox" PreviewTextInput="shield_health_textbox_PreviewTextInput" DataObject.Pasting="shield_health_textbox_Pasting"/>
-                <CheckBox Content="КД головы" Margin="0,0,0,0"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <materialDesign:PackIcon x:Name="CountDamage_button" Width="25" Height="25" Kind="SwordCross" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,25,10,0" MouseLeftButtonDown="CountDamage_button_MouseLeftButtonDown"/>
-                <DataGrid Width="160" HorizontalAlignment="Left" x:Name="DamageGrid"
+		<StackPanel VerticalAlignment="Center" Margin="10,50,0,0">
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="Имя:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Width="60" />
+				<TextBlock Text="[[Имя]]" x:Name="character_name_textblock" Width="120" Visibility="Visible" VerticalAlignment="Center" />
+				<TextBox Width="120" x:Name="character_name_textbox" materialDesign:HintAssist.Hint="Имя" Visibility="Hidden" MaxLength="254"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="Раса:" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0" Width="60" />
+				<TextBlock Text="[[Раса]]" x:Name="character_race_textblock" Width="120" Visibility="Visible" VerticalAlignment="Center" />
+				<ComboBox Width="120" x:Name="character_race_combobox" materialDesign:HintAssist.Hint="Раса" Visibility="Hidden"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="Класс:" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0" Width="60"/>
+				<TextBlock Text="[[Класс]]" x:Name="character_class_textblock" Width="120" Visibility="Visible" VerticalAlignment="Center" />
+				<ComboBox Width="120" x:Name="character_class_combobox" materialDesign:HintAssist.Hint="Класс" Visibility="Hidden"/>
+			</StackPanel>
+		</StackPanel>
+		<StackPanel>
+			<materialDesign:PackIcon x:Name="ImageIconCharacter" Kind="FileImageAdd" Height="60" Width="60" Margin="200,50,0,0" MouseLeftButtonDown="PackIcon_MouseLeftButtonDown" Visibility="Visible"/>
+			<Image x:Name="ImageCharacter" Height="60" Width="60" Margin="200,50,0,0" MouseLeftButtonDown="PackIcon_MouseLeftButtonDown" Visibility="Hidden"/>
+		</StackPanel>
+		<StackPanel/>
+		<StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="0,50,0,0">
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+				<TextBlock Width="135" Text="Действия:" TextAlignment="Right"/>
+				<TextBlock x:Name="Actions_textblock" Width="26" Text="0" TextAlignment="Center"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+				<TextBlock Width="135" Text="Контрдействия:" TextAlignment="Right"/>
+				<TextBlock x:Name="Counter_actions_textblock" Width="26" Text="0" TextAlignment="Center"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+				<TextBlock Width="135" Text="Палки хода:" TextAlignment="Right"/>
+				<TextBlock x:Name="Movesticks_textblock" Width="26" Text="0" TextAlignment="Center"/>
+			</StackPanel>
+		</StackPanel>
+		<StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="180,50,0,0">
+			<StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,0">
+				<TextBlock x:Name="СriticalRoll_Text_textblock" Width="135" Text="Ролл крит:" TextAlignment="Right" Visibility="Hidden"/>
+				<TextBlock x:Name="СriticalRoll_GreaterOrEqual_textblock"  Width="10" Text=">" TextDecorations="Underline" TextAlignment="Right" Visibility="Hidden"/>
+				<TextBlock x:Name="СriticalRoll_Number_textblock" Width="20" Text="0" TextAlignment="Center" Visibility="Hidden"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+				<Button x:Name="ResetHealth" Margin="0,-2,0,0" Height="10" Width="10" Style="{DynamicResource MaterialDesignFloatingActionLightButton}" Click="ResetHealth_Click" Cursor="Hand">
+					<materialDesign:PackIcon Kind="Reload" Height="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+				</Button>
+				<TextBlock Width="69" Text="Здоровье:" TextAlignment="Right" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+				<TextBlock x:Name="CurrentHealth_textblock" Width="40" Text="0" TextAlignment="Center"  VerticalAlignment="Center" />
+				<TextBox Style="{DynamicResource STYLE_NAME}" Foreground="{DynamicResource StandartForeColor}" Background="{DynamicResource StandartBackColor}" x:Name="CurrentHealth_textbox" Width="40" Height="17" Text="20" TextAlignment="Center" Visibility="Collapsed" materialDesign:HintAssist.Hint="Число"  DataObject.Pasting="CurrentHealth_tb_Pasting" AcceptsReturn="False"/>
+				<TextBlock Width="5" Text="|" TextAlignment="Center"  VerticalAlignment="Center"/>
+				<TextBlock x:Name="MaxHealth_textblock"  Width="40" Text="0" TextAlignment="Center"  VerticalAlignment="Center"/>
+				<TextBlock x:Name="DamageHealth_textblock"  Width="40" Text="0" TextAlignment="Center"  VerticalAlignment="Center" Foreground="Red"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+				<TextBlock Width="135" Text="Ментальное КД:" TextAlignment="Right"/>
+				<TextBlock x:Name="MentalKD_TextBlock" Width="40" Text="0" TextAlignment="Center"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+				<TextBlock Width="93" Text="КД головы:" TextAlignment="Right"/>
+				<TextBlock x:Name="HeadKD_TextBlock" Width="40" Text="0" TextAlignment="Center"/>
+				<TextBlock Width="30" Text="КД:" TextAlignment="Right"/>
+				<TextBlock x:Name="KD_TextBlock" Width="40" Text="0" TextAlignment="Center"/>
+			</StackPanel>
+		</StackPanel>
+		<StackPanel Grid.Column="1" Margin="400,10,0,0">
+			<StackPanel Orientation="Horizontal" Margin="36,0,0,0">
+				<ComboBox materialDesign:HintAssist.Hint="Тип щита" Width="100">
+					<ComboBoxItem Content="Элементальный"/>
+					<ComboBoxItem Content="Физический"/>
+					<ComboBoxItem Content="От всего"/>
+				</ComboBox>
+				<TextBox materialDesign:HintAssist.Hint="ХП" Width="55" TextAlignment="Center" x:Name="shield_health_textbox" PreviewTextInput="shield_health_textbox_PreviewTextInput" DataObject.Pasting="shield_health_textbox_Pasting"/>
+				<CheckBox Content="КД головы" Margin="0,0,0,0"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<materialDesign:PackIcon x:Name="CountDamage_button" Width="25" Height="25" Kind="SwordCross" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,25,10,0" MouseLeftButtonDown="CountDamage_button_MouseLeftButtonDown"/>
+				<DataGrid Width="160" HorizontalAlignment="Left" x:Name="DamageGrid"
 							  AutoGenerateColumns="False"
 							  CanUserAddRows="True"
 							  CanUserDeleteRows="False"
@@ -149,21 +149,21 @@
 							  CanUserResizeRows="False"
 							  CanUserResizeColumns="False"
 							  CanUserSortColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridComboBoxColumn Header="Тип урона"
+					<DataGrid.Columns>
+						<DataGridComboBoxColumn Header="Тип урона"
 					SelectedItemBinding="{Binding TypeDamage}"
 					x:Name="TypeDamage_column">
-                        </DataGridComboBoxColumn>
-                        <DataGridTextColumn Header="Урон" Binding="{Binding Damage}"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-                <TextBlock Text="Бафф к КД"/>
-                <TextBox materialDesign:HintAssist.Hint="Число" Margin="-68,10,0,0" Height="24" Width="40" x:Name="BaffKD_textbox" PreviewTextInput="BaffKD_textbox_PreviewTextInput"  DataObject.Pasting="BaffKD_textbox_Pasting" TextAlignment="Center"/>
-            </StackPanel>
-        </StackPanel>
-        <StackPanel Grid.Column="1" Margin="668,35,0,0">
-            <Border>
-                <DataGrid Width="160" HorizontalAlignment="Left" x:Name="DataGridStatusEffects"
+						</DataGridComboBoxColumn>
+						<DataGridTextColumn Header="Урон" Binding="{Binding Damage}"/>
+					</DataGrid.Columns>
+				</DataGrid>
+				<TextBlock Text="Бафф к КД"/>
+				<TextBox materialDesign:HintAssist.Hint="Число" Margin="-68,10,0,0" Height="24" Width="40" x:Name="BaffKD_textbox" PreviewTextInput="BaffKD_textbox_PreviewTextInput"  DataObject.Pasting="BaffKD_textbox_Pasting" TextAlignment="Center"/>
+			</StackPanel>
+		</StackPanel>
+		<StackPanel Grid.Column="1" Margin="668,35,0,0">
+			<Border>
+				<DataGrid Width="160" HorizontalAlignment="Left" x:Name="DataGridStatusEffects"
 						  AutoGenerateColumns="False"
 						  CanUserAddRows="True"
 						  CanUserDeleteRows="False"
@@ -171,19 +171,19 @@
 						  CanUserResizeRows="False"
 						  CanUserResizeColumns="False"
 						  CanUserSortColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridComboBoxColumn Header="Эффект"
+					<DataGrid.Columns>
+						<DataGridComboBoxColumn Header="Эффект"
 					SelectedItemBinding="{Binding StatusEffect}"
 					x:Name="StatusEffect_column"/>
-                        <DataGridComboBoxColumn Header="Уровень"
+						<DataGridComboBoxColumn Header="Уровень"
 					SelectedItemBinding="{Binding LevelEffect}"
 					x:Name="LevelEffect_column"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Border>
-        </StackPanel>
-        <TextBlock x:Name="сharacter_weight_textblock" Text="Вес: 0/0" Grid.Column="1" VerticalAlignment="Bottom" Margin="0,0,0,0"/>
-        <TextBlock Text="13.0  " Height="18" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Margin="0,13,0,89" RenderTransformOrigin="0.457,3.169"/>
+					</DataGrid.Columns>
+				</DataGrid>
+			</Border>
+		</StackPanel>
+		<TextBlock x:Name="сharacter_weight_textblock" Text="Вес: 0/0" Grid.Column="1" VerticalAlignment="Bottom" Margin="0,0,0,0"/>
+		<TextBlock Text="13.0  " Height="18" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Margin="0,13,0,89" RenderTransformOrigin="0.457,3.169"/>
 
 		<TabControl Grid.Row="1" Grid.Column="1" Width="Auto" Height="Auto" Margin="0,0,0,-304">
 			<TabItem Header="Инвентарь">
@@ -542,7 +542,7 @@
 						</StackPanel>
 						<StackPanel Orientation="Horizontal">
 							<TextBlock Text="Ролл атаки:" Width="150" VerticalAlignment="Center"/>
-                            <TextBlock x:Name="character_rollattack_textblock" Width="40" Text="0" TextAlignment="Center"/>
+							<TextBlock x:Name="character_rollattack_textblock" Width="40" Text="0" TextAlignment="Center"/>
 						</StackPanel>
 						<StackPanel Orientation="Horizontal">
 							<TextBlock Text="Ролл блока:" Width="150" VerticalAlignment="Center"/>
@@ -560,11 +560,11 @@
 							<TextBlock Text="Ролл атаки кулаками:" Width="150" VerticalAlignment="Center"/>
 							<TextBlock x:Name="character_fistattack_textblock" Width="40" Text="0" TextAlignment="Center"/>
 						</StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Ролл дальнобойным:" Width="150" VerticalAlignment="Center"/>
-                            <TextBlock x:Name="character_longrangeattack_textblock" Width="40" Text="0" TextAlignment="Center"/>
-                        </StackPanel>
-                    </StackPanel>
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text="Ролл дальнобойным:" Width="150" VerticalAlignment="Center"/>
+							<TextBlock x:Name="character_longrangeattack_textblock" Width="40" Text="0" TextAlignment="Center"/>
+						</StackPanel>
+					</StackPanel>
 					<DataGrid x:Name="DataGridTreeDevelopment" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                               IsReadOnly="True"
 							  AutoGenerateColumns="False"
@@ -607,13 +607,12 @@
 						<ColumnDefinition/>
 					</Grid.ColumnDefinitions>
 					<Grid.RowDefinitions>
-						<RowDefinition/>
-						<RowDefinition/>
-						<RowDefinition/>
-						<RowDefinition/>
+						<RowDefinition Height="41*"/>
+						<RowDefinition Height="48*"/>
+						<RowDefinition Height="224*"/>
+						<RowDefinition Height="63*"/>
 					</Grid.RowDefinitions>
-					<Border Grid.Column="1" Grid.Row="2"/>
-					<StackPanel Orientation="Horizontal">
+					<StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
 						<StackPanel>
 							<TextBlock Text="Школа:"/>
 							<ComboBox x:Name="SchoolSelect_cb" Width="120">
@@ -649,7 +648,7 @@
 							</ComboBox>
 						</StackPanel>
 					</StackPanel>
-					<StackPanel Orientation="Horizontal" Grid.Column="2">
+					<StackPanel Orientation="Horizontal" Grid.Column="1" Grid.ColumnSpan="2">
 						<TextBlock Text="Множитель урона:"/>
 						<TextBlock Width="40" TextAlignment="Center" x:Name="DamageMagic_textblock" Text="1"  Visibility="Visible" MouseLeftButtonDown="DamageMagic_textblock_MouseLeftButtonDown"/>
 						<TextBox Style="{DynamicResource STYLE_NAME}" Foreground="{DynamicResource StandartForeColor}" Background="{DynamicResource StandartBackColor}" x:Name="DamageMagic_textbox" Width="40" Height="17" Text="1" TextAlignment="Center" Visibility="Collapsed" materialDesign:HintAssist.Hint="Число"  DataObject.Pasting="DamageMagic_textbox_Pasting" AcceptsReturn="False" VerticalAlignment="Top" PreviewTextInput="DamageMagic_textbox_PreviewTextInput" PreviewKeyDown="DamageMagic_textbox_PreviewKeyDown" MaxLength="6"/>
@@ -720,6 +719,52 @@
 							</ComboBox>
 						</StackPanel>
 					</StackPanel>
+					<DataGrid Grid.Row="2" Grid.ColumnSpan="3"
+							  x:Name="DataGridCurrentSpells" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+							  AutoGenerateColumns="False"
+                              SelectionMode="Single"
+							  CanUserAddRows="False"
+							  CanUserDeleteRows="False"
+							  CanUserReorderColumns="False"
+							  CanUserResizeRows="False"
+							  CanUserResizeColumns="False"
+							  CanUserSortColumns="False">
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="Название" Binding="{Binding CurrentSpellName}"/>
+							<DataGridTextColumn Header="Вид" Binding="{Binding CurrentSpellType}"/>
+							<DataGridTextColumn Header="Школа" Binding="{Binding CurrentSpellSchool}"/>
+							<DataGridTextColumn Header="Урон" Binding="{Binding CurrentSpellDamage}"/>
+							<DataGridTextColumn Header="Ролл" Binding="{Binding CurrentSpellRoll}"/>
+							<DataGridTextColumn Header="Уровень" Binding="{Binding CurrentSpellLevel}"/>
+							<DataGridTextColumn Header="Описание" Binding="{Binding CurrentSpellDescription}" Visibility="Collapsed"/>
+						</DataGrid.Columns>
+					</DataGrid>
+					<DataGrid Grid.Row="2" Grid.Column="1"
+							  x:Name="DataGridAllSpells" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+							  AutoGenerateColumns="False"
+                              SelectionMode="Single"
+							  CanUserAddRows="False"
+							  CanUserDeleteRows="False"
+							  CanUserReorderColumns="False"
+							  CanUserResizeRows="False"
+							  CanUserResizeColumns="False"
+							  CanUserSortColumns="False" Grid.ColumnSpan="2"
+							  Visibility="{DynamicResource IsEdit}">
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="Название" Binding="{Binding AllSpellName}"/>
+							<DataGridTextColumn Header="Вид" Binding="{Binding AllSpellType}"/>
+							<DataGridTextColumn Header="Школа" Binding="{Binding AllSpellSchool}"/>
+							<DataGridTextColumn Header="Урон" Binding="{Binding AllSpellDamage}"/>
+							<DataGridTextColumn Header="Ролл" Binding="{Binding AllSpellRoll}"/>
+							<DataGridTextColumn Header="Уровень" Binding="{Binding AllSpellLevel}"/>
+							<DataGridTextColumn Header="Описание" Binding="{Binding AllSpellDescription}" Visibility="Collapsed"/>
+						</DataGrid.Columns>
+					</DataGrid>
+					<TextBlock x:Name="CurrentSpellDescription" Grid.Row="3" Text="[[Описание]]" TextWrapping="Wrap" Margin="5" Grid.ColumnSpan="3"/>
+					<TextBlock x:Name="AllSpellDescription" Grid.Row="3" Grid.Column="2" Text="[[Описание]]" TextWrapping="Wrap" Margin="5" Visibility="{DynamicResource IsEdit}"/>
+					<Border Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Visibility="{DynamicResource IsEdit}"/>
+					<Border Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3"/>
+					<Border Grid.ColumnSpan="3" Grid.RowSpan="4"/>
 				</Grid>
 			</TabItem>
 			<TabItem Header="Дневник">
@@ -845,52 +890,52 @@
               GridLinesVisibility="None"
               BorderThickness="0"
 >
-            <DataGrid.Columns>
-                <DataGridTextColumn Header=" Навык" Binding="{Binding Name}" Width="150" FontSize="12"/>
-                <DataGridTemplateColumn Header="Значение" Width="70">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <TextBlock Text="{Binding Value}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="15,0,0,0">
-                                    <Button Style="{DynamicResource MaterialDesignIconForegroundButton }" Visibility="{DynamicResource IsEdit}"  Width="12" Height="12" Margin="2" Click="AddCharacteristic_Click">
-                                        <TextBlock Text="+" Margin="0,-5,0,0" FontSize="16" />
-                                    </Button>
-                                    <Button Style="{DynamicResource MaterialDesignIconForegroundButton }" Visibility="{DynamicResource IsEdit}" Width="12" Height="12" Margin="2" Click="SubtractCharacteristic_Click">
-                                        <TextBlock Text="-" Margin="0,-8,0,0" FontSize="22" />
-                                    </Button>
-                                </StackPanel>
-                            </Grid>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Ролл" Binding="{Binding Roll}" Width="50"/>
-            </DataGrid.Columns>
+			<DataGrid.Columns>
+				<DataGridTextColumn Header=" Навык" Binding="{Binding Name}" Width="150" FontSize="12"/>
+				<DataGridTemplateColumn Header="Значение" Width="70">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<Grid>
+								<TextBlock Text="{Binding Value}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+								<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="15,0,0,0">
+									<Button Style="{DynamicResource MaterialDesignIconForegroundButton }" Visibility="{DynamicResource IsEdit}"  Width="12" Height="12" Margin="2" Click="AddCharacteristic_Click">
+										<TextBlock Text="+" Margin="0,-5,0,0" FontSize="16" />
+									</Button>
+									<Button Style="{DynamicResource MaterialDesignIconForegroundButton }" Visibility="{DynamicResource IsEdit}" Width="12" Height="12" Margin="2" Click="SubtractCharacteristic_Click">
+										<TextBlock Text="-" Margin="0,-8,0,0" FontSize="22" />
+									</Button>
+								</StackPanel>
+							</Grid>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+				<DataGridTextColumn Header="Ролл" Binding="{Binding Roll}" Width="50"/>
+			</DataGrid.Columns>
 
-            <DataGrid.ColumnHeaderStyle>
-                <Style TargetType="DataGridColumnHeader">
-                    <Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
-                    <Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
-                </Style>
-            </DataGrid.ColumnHeaderStyle>
-            <DataGrid.RowStyle>
-                <Style TargetType="DataGridRow" >
-                    <Setter Property="Height" Value="15"/>
-                    <Setter Property="Margin" Value="0"/>
-                    <Setter Property="Padding" Value="0"/>
-                    <Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
-                    <Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
-                </Style>
-            </DataGrid.RowStyle>
+			<DataGrid.ColumnHeaderStyle>
+				<Style TargetType="DataGridColumnHeader">
+					<Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
+					<Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
+				</Style>
+			</DataGrid.ColumnHeaderStyle>
+			<DataGrid.RowStyle>
+				<Style TargetType="DataGridRow" >
+					<Setter Property="Height" Value="15"/>
+					<Setter Property="Margin" Value="0"/>
+					<Setter Property="Padding" Value="0"/>
+					<Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
+					<Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
+				</Style>
+			</DataGrid.RowStyle>
 
-            <DataGrid.CellStyle>
-                <Style TargetType="DataGridCell">
-                    <Setter Property="Padding" Value="5,0"/>
-                    <Setter Property="Margin" Value="0"/>
-                    <Setter Property="BorderThickness" Value="0"/>
-                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-                </Style>
-            </DataGrid.CellStyle>
-        </DataGrid>
-    </Grid>
+			<DataGrid.CellStyle>
+				<Style TargetType="DataGridCell">
+					<Setter Property="Padding" Value="5,0"/>
+					<Setter Property="Margin" Value="0"/>
+					<Setter Property="BorderThickness" Value="0"/>
+					<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+				</Style>
+			</DataGrid.CellStyle>
+		</DataGrid>
+	</Grid>
 </Window>

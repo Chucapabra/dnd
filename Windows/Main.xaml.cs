@@ -45,6 +45,7 @@ namespace DNDHelper.Windows
 		{
 			InitializeComponent();
 
+
 			InitializeClasses();
             Resources["StandartBackColor"] = new SolidColorBrush(DarkThem.SelectedTheme[0]);
 			Resources["StandartForeColor"] = new SolidColorBrush(DarkThem.SelectedTheme[1]);
@@ -72,8 +73,6 @@ namespace DNDHelper.Windows
 
             AttributesCharacter.CallAllMethodInScript();
         }
-
-		
 
 		public void SetTheme(Color Background, Color Foreground)
 		{
@@ -114,6 +113,10 @@ namespace DNDHelper.Windows
 				character_race_combobox.Visibility = Visibility.Hidden;
 				character_class_textblock.Visibility = Visibility.Visible;
 				character_class_combobox.Visibility = Visibility.Hidden;
+				Grid.SetColumnSpan(DataGridCurrentSpells, 3);
+				Grid.SetColumnSpan(CurrentSpellDescription, 3);
+				DataGridAllSpells.Visibility = Visibility.Collapsed;
+				AllSpellDescription.Visibility = Visibility.Collapsed;
 			}
 			else
 			{
@@ -126,6 +129,10 @@ namespace DNDHelper.Windows
 				character_race_combobox.Visibility = Visibility.Visible;
 				character_class_textblock.Visibility = Visibility.Collapsed;
 				character_class_combobox.Visibility = Visibility.Visible;
+				Grid.SetColumnSpan(DataGridCurrentSpells, 2);
+				Grid.SetColumnSpan(CurrentSpellDescription, 2);
+				DataGridAllSpells.Visibility = Visibility.Visible;
+				AllSpellDescription.Visibility = Visibility.Visible;
 			}
 		}
 
