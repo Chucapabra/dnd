@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DNDHelper.Modules.Settings
+{
+    class GlobalMultiply
+    {
+        public static double Multiply = 1;
+    }
+}

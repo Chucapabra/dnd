@@ -1,4 +1,11 @@
-﻿using System;
+﻿using DNDHelper.Modules;
+using DNDHelper.Modules.Character;
+using DNDHelper.Modules.Config;
+using DNDHelper.Modules.Diary;
+using DNDHelper.Modules.Inventory;
+using DNDHelper.Modules.Сharacteristics;
+using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -16,13 +23,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using DNDHelper.Modules;
-using DNDHelper.Modules.Character;
-using DNDHelper.Modules.Config;
-using DNDHelper.Modules.Diary;
-using DNDHelper.Modules.Inventory;
-using DNDHelper.Modules.Сharacteristics;
-using Microsoft.Win32;
+using static System.Net.Mime.MediaTypeNames;
 using DarkThem = DNDHelper.Modules.Settings.Settings;
 
 namespace DNDHelper.Windows
@@ -45,7 +46,6 @@ namespace DNDHelper.Windows
 			InitializeComponent();
 
 			InitializeClasses();
-			MainWindows.Title = "D&DHelper";
             Resources["StandartBackColor"] = new SolidColorBrush(DarkThem.SelectedTheme[0]);
 			Resources["StandartForeColor"] = new SolidColorBrush(DarkThem.SelectedTheme[1]);
 
@@ -58,16 +58,19 @@ namespace DNDHelper.Windows
             
             Race @class = new ();
 			PlayerClass playerClass = new();
-			InventoryLoot inventoryLoot = new();
-            ItemBaffsListScript = new ();
-			Skills skills = new();
+            ItemBaffsListScript = new();
+            InventoryLoot inventoryLoot = new();
+            Skills skills = new();
             Level level = new();
             TreeSkillsScript = new();
             Characteristics = new();
             Characteristics.UpdateAllCharacterisitc();
 
+
             WeightScript weightScript = new WeightScript();
             Health health = new Health();
+
+            AttributesCharacter.CallAllMethodInScript();
         }
 
 		
@@ -194,14 +197,6 @@ namespace DNDHelper.Windows
 		// Медяки
 		private void Cuprum_tb_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
-			var textBox = sender as TextBox;
-			int caretIndex = textBox.CaretIndex;
-			string newText = textBox.Text.Replace(" ", "");
-			if (textBox.Text != newText)
-			{
-				textBox.Text = newText;
-				textBox.CaretIndex = Math.Min(caretIndex, newText.Length);
-			}
 			TextboxProcessing.WholeNumbersOnly(Cuprum_tb, e);
 		}
 		private void Cuprum_tb_Pasting(object sender, DataObjectPastingEventArgs e)
@@ -212,14 +207,6 @@ namespace DNDHelper.Windows
 		// Серебреники
 		private void Silver_tb_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
-			var textBox = sender as TextBox;
-			int caretIndex = textBox.CaretIndex;
-			string newText = textBox.Text.Replace(" ", "");
-			if (textBox.Text != newText)
-			{
-				textBox.Text = newText;
-				textBox.CaretIndex = Math.Min(caretIndex, newText.Length);
-			}
 			TextboxProcessing.WholeNumbersOnly(Silver_tb, e);
 		}
 		private void Silver_tb_Pasting(object sender, DataObjectPastingEventArgs e)
@@ -230,14 +217,6 @@ namespace DNDHelper.Windows
 		// Золотые
 		private void Gold_tb_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
-			var textBox = sender as TextBox;
-			int caretIndex = textBox.CaretIndex;
-			string newText = textBox.Text.Replace(" ", "");
-			if (textBox.Text != newText)
-			{
-				textBox.Text = newText;
-				textBox.CaretIndex = Math.Min(caretIndex, newText.Length);
-			}
 			TextboxProcessing.WholeNumbersOnly(Gold_tb, e);
 		}
 		private void Gold_tb_Pasting(object sender, DataObjectPastingEventArgs e)
@@ -248,14 +227,6 @@ namespace DNDHelper.Windows
 		// Плюс к броне
 		private void backpack_plus_tb_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
-			var textBox = sender as TextBox;
-			int caretIndex = textBox.CaretIndex;
-			string newText = textBox.Text.Replace(" ", "");
-			if (textBox.Text != newText)
-			{
-				textBox.Text = newText;
-				textBox.CaretIndex = Math.Min(caretIndex, newText.Length);
-			}
 			TextboxProcessing.WholeNumbersOnly(backpack_plus_tb, e);
 		}
 		private void backpack_plus_tb_Pasting(object sender, DataObjectPastingEventArgs e)
@@ -321,14 +292,6 @@ namespace DNDHelper.Windows
 		
 		private void shield_health_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
-			var textBox = sender as TextBox;
-			int caretIndex = textBox.CaretIndex;
-			string newText = textBox.Text.Replace(" ", "");
-			if (textBox.Text != newText)
-			{
-				textBox.Text = newText;
-				textBox.CaretIndex = Math.Min(caretIndex, newText.Length);
-			}
 			TextboxProcessing.WholeNumbersOnly(shield_health_textbox, e);
 		}
 		private void shield_health_textbox_Pasting(object sender, DataObjectPastingEventArgs e)
@@ -339,14 +302,6 @@ namespace DNDHelper.Windows
 
 		private void BaffKD_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
-			var textBox = sender as TextBox;
-			int caretIndex = textBox.CaretIndex;
-			string newText = textBox.Text.Replace(" ", "");
-			if (textBox.Text != newText)
-			{
-				textBox.Text = newText;
-				textBox.CaretIndex = Math.Min(caretIndex, newText.Length);
-			}
 			TextboxProcessing.WholeNumbersOnly(BaffKD_textbox, e);
 		}
 		private void BaffKD_textbox_Pasting(object sender, DataObjectPastingEventArgs e)
@@ -363,13 +318,12 @@ namespace DNDHelper.Windows
 
         private void TextBox_Pasting(object sender, DataObjectPastingEventArgs e)
         {
-            // Проверяем вставку
             if (e.DataObject.GetDataPresent(typeof(string)))
             {
                 string text = (string)e.DataObject.GetData(typeof(string));
                 if (text.Any(c => !char.IsDigit(c)))
                 {
-                    e.CancelCommand(); // Блокируем вставку
+                    e.CancelCommand();
                 }
             }
             else
@@ -382,5 +336,39 @@ namespace DNDHelper.Windows
         {
 			ItemBaffsListScript.UpdateValues();
         }
+		// Множитель урона магии
+		private void DamageMagic_textbox_Pasting(object sender, DataObjectPastingEventArgs e)
+		{
+			e.CancelCommand();
+			e.Handled = true;
+		}
+
+		private void DamageMagic_textblock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			DamageMagic_textblock.Visibility = Visibility.Collapsed;
+			DamageMagic_textbox.Visibility = Visibility.Visible;
+			DamageMagic_textbox.Text = DamageMagic_textblock.Text;
+			DamageMagic_textbox.Focus();
+		}
+
+		private void DamageMagic_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			TextboxProcessing.DoubleNumbersOnly(DamageMagic_textbox, e);
+		}
+
+		private void DamageMagic_textbox_PreviewKeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Enter)
+			{
+				DamageMagic_textblock.Visibility = Visibility.Visible;
+				DamageMagic_textbox.Visibility = Visibility.Collapsed;
+				if (DamageMagic_textbox.Text.Length == 0 || DamageMagic_textbox.Text == "-0" || DamageMagic_textbox.Text == "-" || DamageMagic_textbox.Text == ",")
+				{
+					DamageMagic_textbox.Text = "0";
+					DamageHealth_textblock.Text = "0";
+				}
+				DamageMagic_textblock.Text = DamageMagic_textbox.Text;
+			}
+		}
 	}
 }

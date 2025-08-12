@@ -65,15 +65,18 @@ namespace DNDHelper.Modules.Inventory
         private void ShowBaffValue(int indexColumn, int indexRow, string newValue)
         {
             int selectedIndex = main.DataGridInventory.SelectedIndex;
-            switch (indexColumn)
-            {
-                case 1:
-                    ItemBaffsList[indexRow].AddValue = int.Parse(newValue) * (float)QualityToDouble(InventoryItems[selectedIndex].Quality);
-                    break;
-                case 2:
-                    ItemBaffsList[indexRow].AddRoll = int.Parse(newValue) * (float)QualityToDouble(InventoryItems[selectedIndex].Quality);
-                    break;
-            }
+            newValue = newValue.Replace(" ", "");
+            if (newValue != "" && newValue != "-")
+                switch (indexColumn)
+                {
+                    case 1:
+                        ItemBaffsList[indexRow].AddValue = int.Parse(newValue) * (float)QualityToDouble(InventoryItems[selectedIndex].Quality);
+                        break;
+                    case 2:
+                        ItemBaffsList[indexRow].AddRoll = int.Parse(newValue) * (float)QualityToDouble(InventoryItems[selectedIndex].Quality);
+                        break;
+
+                }
             UpdateValues();
         }
 
@@ -154,6 +157,8 @@ namespace DNDHelper.Modules.Inventory
                 }
                 Main.Characteristics.UpdateAllCharacterisitc();
                 Health.HealthUpdate();
+                AttributesCharacter.CallAllMethodInScript();
+                KDScript.UpdateAllKD();
             }
         }
 

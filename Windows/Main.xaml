@@ -8,7 +8,7 @@
 		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 		Style="{StaticResource MaterialDesignWindow}"
         mc:Ignorable="d"
-        Title="DNDHelper" Height="593" Width="1110" ResizeMode="NoResize" Visibility="Visible">
+        Title="D&amp;DHelper" Height="593" Width="1110" ResizeMode="NoResize" Visibility="Visible">
     <Window.Resources>
 
         <Style TargetType="TextBlock">
@@ -94,7 +94,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <TextBlock Width="135" Text="Контрдействия:" TextAlignment="Right"/>
-                <TextBlock x:Name="Сounter_actions_textblock" Width="26" Text="0" TextAlignment="Center"/>
+                <TextBlock x:Name="Counter_actions_textblock" Width="26" Text="0" TextAlignment="Center"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <TextBlock Width="135" Text="Палки хода:" TextAlignment="Right"/>
@@ -120,13 +120,13 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <TextBlock Width="135" Text="Ментальное КД:" TextAlignment="Right"/>
-                <TextBlock Width="40" Text="0" TextAlignment="Center"/>
+                <TextBlock x:Name="MentalKD_TextBlock" Width="40" Text="0" TextAlignment="Center"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <TextBlock Width="93" Text="КД головы:" TextAlignment="Right"/>
-                <TextBlock  Width="40" Text="0" TextAlignment="Center"/>
+                <TextBlock x:Name="HeadKD_TextBlock" Width="40" Text="0" TextAlignment="Center"/>
                 <TextBlock Width="30" Text="КД:" TextAlignment="Right"/>
-                <TextBlock  Width="40" Text="0" TextAlignment="Center"/>
+                <TextBlock x:Name="KD_TextBlock" Width="40" Text="0" TextAlignment="Center"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Column="1" Margin="400,10,0,0">
@@ -185,21 +185,21 @@
         <TextBlock x:Name="сharacter_weight_textblock" Text="Вес: 0/0" Grid.Column="1" VerticalAlignment="Bottom" Margin="0,0,0,0"/>
         <TextBlock Text="13.0  " Height="18" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Margin="0,13,0,89" RenderTransformOrigin="0.457,3.169"/>
 
-        <TabControl Grid.Row="1" Grid.Column="1" Width="Auto" Height="Auto" Margin="0,0,0,-304">
-            <TabItem Header="Инвентарь">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="120*"/>
-                        <RowDefinition Height="70*"/>
-                    </Grid.RowDefinitions>
-                    <Border Grid.ColumnSpan="4">
-   <DataGrid x:Name="DataGridInventory" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+		<TabControl Grid.Row="1" Grid.Column="1" Width="Auto" Height="Auto" Margin="0,0,0,-304">
+			<TabItem Header="Инвентарь">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="120*"/>
+						<RowDefinition Height="70*"/>
+					</Grid.RowDefinitions>
+					<Border Grid.ColumnSpan="4">
+						<DataGrid x:Name="DataGridInventory" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
  Grid.ColumnSpan="4"
  AutoGenerateColumns="False"
  CanUserAddRows="False"
@@ -208,140 +208,140 @@
  CanUserResizeRows="False"
  CanUserResizeColumns="False"
  CanUserSortColumns="False">
-       <DataGrid.ContextMenu>
-           <ContextMenu>
-               <MenuItem x:Name="AddMenuItem" Header="Добавить"/>
-               <MenuItem x:Name="DeleteMenuItem" Header="Удалить"/>
-           </ContextMenu>
-           </DataGrid.ContextMenu>
-       <DataGrid.Columns>
-                                <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="140">
-                                    <DataGridTextColumn.ElementStyle>
-                                        <Style TargetType="TextBlock">
-                                            <Setter Property="Foreground" Value="{Binding ForeColorKDEquipped}"/>
-                                        </Style>
-                                    </DataGridTextColumn.ElementStyle>
-                                </DataGridTextColumn>
-                                <DataGridTextColumn Header="Вес" Binding="{Binding Weight}" Width="65" FontSize="{Binding FontStyleWeight}">
-               <DataGridTextColumn.ElementStyle>
-                   <Style TargetType="TextBlock">
-                       <Setter Property="Foreground" Value="{Binding ForeColorWeight}"/>
-                   </Style>
-               </DataGridTextColumn.ElementStyle>
-               <DataGridTextColumn.EditingElementStyle>
-                   <Style TargetType="TextBox">
-                       <EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
-                       <EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
-                   </Style>
-               </DataGridTextColumn.EditingElementStyle>
-           </DataGridTextColumn>
+							<DataGrid.ContextMenu>
+								<ContextMenu>
+									<MenuItem x:Name="AddMenuItem" Header="Добавить"/>
+									<MenuItem x:Name="DeleteMenuItem" Header="Удалить"/>
+								</ContextMenu>
+							</DataGrid.ContextMenu>
+							<DataGrid.Columns>
+								<DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="140">
+									<DataGridTextColumn.ElementStyle>
+										<Style TargetType="TextBlock">
+											<Setter Property="Foreground" Value="{Binding ForeColorKDEquipped}"/>
+										</Style>
+									</DataGridTextColumn.ElementStyle>
+								</DataGridTextColumn>
+								<DataGridTextColumn Header="Вес" Binding="{Binding Weight}" Width="65" FontSize="{Binding FontStyleWeight}">
+									<DataGridTextColumn.ElementStyle>
+										<Style TargetType="TextBlock">
+											<Setter Property="Foreground" Value="{Binding ForeColorWeight}"/>
+										</Style>
+									</DataGridTextColumn.ElementStyle>
+									<DataGridTextColumn.EditingElementStyle>
+										<Style TargetType="TextBox">
+											<EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
+											<EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
+										</Style>
+									</DataGridTextColumn.EditingElementStyle>
+								</DataGridTextColumn>
 
-           <DataGridComboBoxColumn Header="Качество"
+								<DataGridComboBoxColumn Header="Качество"
 			SelectedValueBinding="{Binding Quality}"
 			x:Name="QualityColumn" Width="115">
-               <DataGridComboBoxColumn.ElementStyle>
-                   <Style TargetType="ComboBox">
-                       <Setter Property="ItemsSource">
-                           <Setter.Value>
-                               <x:Array Type="sys:String" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                                   <sys:String>Нет</sys:String>
-                                   <sys:String>Прото</sys:String>
-                                   <sys:String>Плохое</sys:String>
-                                   <sys:String>Стандартное</sys:String>
-                                   <sys:String>Высокое</sys:String>
-                                   <sys:String>Великолепное</sys:String>
-                                   <sys:String>Мастерское</sys:String>
-                                   <sys:String>Мифическое</sys:String>
-                               </x:Array>
-                           </Setter.Value>
-                       </Setter>
-                   </Style>
-               </DataGridComboBoxColumn.ElementStyle>
-               <DataGridComboBoxColumn.EditingElementStyle>
-                   <Style TargetType="ComboBox">
-                       <Setter Property="ItemsSource">
-                           <Setter.Value>
-                               <x:Array Type="sys:String" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                                   <sys:String>Нет</sys:String>
-                                   <sys:String>Прото</sys:String>
-                                   <sys:String>Плохое</sys:String>
-                                   <sys:String>Стандартное</sys:String>
-                                   <sys:String>Высокое</sys:String>
-                                   <sys:String>Великолепное</sys:String>
-                                   <sys:String>Мастерское</sys:String>
-                                   <sys:String>Мифическое</sys:String>
-                               </x:Array>
-                           </Setter.Value>
-                       </Setter>
-                   </Style>
-               </DataGridComboBoxColumn.EditingElementStyle>
-           </DataGridComboBoxColumn>
+									<DataGridComboBoxColumn.ElementStyle>
+										<Style TargetType="ComboBox">
+											<Setter Property="ItemsSource">
+												<Setter.Value>
+													<x:Array Type="sys:String" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+														<sys:String>Нет</sys:String>
+														<sys:String>Прото</sys:String>
+														<sys:String>Плохое</sys:String>
+														<sys:String>Стандартное</sys:String>
+														<sys:String>Высокое</sys:String>
+														<sys:String>Великолепное</sys:String>
+														<sys:String>Мастерское</sys:String>
+														<sys:String>Мифическое</sys:String>
+													</x:Array>
+												</Setter.Value>
+											</Setter>
+										</Style>
+									</DataGridComboBoxColumn.ElementStyle>
+									<DataGridComboBoxColumn.EditingElementStyle>
+										<Style TargetType="ComboBox">
+											<Setter Property="ItemsSource">
+												<Setter.Value>
+													<x:Array Type="sys:String" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+														<sys:String>Нет</sys:String>
+														<sys:String>Прото</sys:String>
+														<sys:String>Плохое</sys:String>
+														<sys:String>Стандартное</sys:String>
+														<sys:String>Высокое</sys:String>
+														<sys:String>Великолепное</sys:String>
+														<sys:String>Мастерское</sys:String>
+														<sys:String>Мифическое</sys:String>
+													</x:Array>
+												</Setter.Value>
+											</Setter>
+										</Style>
+									</DataGridComboBoxColumn.EditingElementStyle>
+								</DataGridComboBoxColumn>
 
-           <DataGridTextColumn Header="Рубящий" Binding="{Binding WholeChopping}" Width="88">
-               <DataGridTextColumn.EditingElementStyle>
-                   <Style TargetType="TextBox">
-                       <EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
-                       <EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
-                   </Style>
-               </DataGridTextColumn.EditingElementStyle>
-           </DataGridTextColumn>
-           <DataGridTextColumn Header="Колющий" Binding="{Binding WholeStabbing}" Width="93">
-               <DataGridTextColumn.EditingElementStyle>
-                   <Style TargetType="TextBox">
-                       <EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
-                       <EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
-                   </Style>
-               </DataGridTextColumn.EditingElementStyle>
-           </DataGridTextColumn>
-           <DataGridTextColumn Header="Дробящий" Binding="{Binding WholeCrushing}" Width="99">
-               <DataGridTextColumn.EditingElementStyle>
-                   <Style TargetType="TextBox">
-                       <EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
-                       <EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
-                   </Style>
-               </DataGridTextColumn.EditingElementStyle>
-           </DataGridTextColumn>
-           <DataGridTextColumn Header="Тяжесть" Binding="{Binding Severity}" Width="81">
-               <DataGridTextColumn.EditingElementStyle>
-                   <Style TargetType="TextBox">
-                       <EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
-                       <EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
-                   </Style>
-               </DataGridTextColumn.EditingElementStyle>
-           </DataGridTextColumn>
-           <DataGridTextColumn Header="КД" Binding="{Binding WholeKD}" Width="60">
-               <DataGridTextColumn.ElementStyle>
-                   <Style TargetType="TextBlock">
-                       <Setter Property="Foreground" Value="{Binding ForeColorKD}"/>
-                   </Style>
-               </DataGridTextColumn.ElementStyle>
-               <DataGridTextColumn.EditingElementStyle>
-                   <Style TargetType="TextBox">
-                       <EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
-                       <EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
-                   </Style>
-               </DataGridTextColumn.EditingElementStyle>
-           </DataGridTextColumn>
-           <DataGridTextColumn Header="Количество" Binding="{Binding Count}" Width="70">
-               <DataGridTextColumn.EditingElementStyle>
-                   <Style TargetType="TextBox">
-                       <EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
-                       <EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
-                   </Style>
-               </DataGridTextColumn.EditingElementStyle>
-           </DataGridTextColumn>
-           <DataGridTextColumn Header="CountWeight" Binding="{Binding CountWeight}" Visibility="Hidden"/>
-           <DataGridTextColumn Header="Description" Binding="{Binding Description}" Visibility="Hidden"/>
-           <DataGridTextColumn Header="CountKD" Binding="{Binding CountKD}" Visibility="Hidden"/>
-           <DataGridTextColumn Header="CountKDHelmet" Binding="{Binding CountKDHelmet}" Visibility="Hidden"/>
-       </DataGrid.Columns>
-   </DataGrid>
-                    </Border>
-                    <Border Grid.Row="1">
-                        <TextBox x:Name="DescriptionTextBox" materialDesign:HintAssist.Hint="Описание" TextWrapping="Wrap" AcceptsReturn="True" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"/>
-                    </Border>
-                    <Border Grid.Row="1" Grid.Column="1">
-                        <DataGrid x:Name="DataGridItemBaffsList" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+								<DataGridTextColumn Header="Рубящий" Binding="{Binding WholeChopping}" Width="88">
+									<DataGridTextColumn.EditingElementStyle>
+										<Style TargetType="TextBox">
+											<EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
+											<EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
+										</Style>
+									</DataGridTextColumn.EditingElementStyle>
+								</DataGridTextColumn>
+								<DataGridTextColumn Header="Колющий" Binding="{Binding WholeStabbing}" Width="93">
+									<DataGridTextColumn.EditingElementStyle>
+										<Style TargetType="TextBox">
+											<EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
+											<EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
+										</Style>
+									</DataGridTextColumn.EditingElementStyle>
+								</DataGridTextColumn>
+								<DataGridTextColumn Header="Дробящий" Binding="{Binding WholeCrushing}" Width="99">
+									<DataGridTextColumn.EditingElementStyle>
+										<Style TargetType="TextBox">
+											<EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
+											<EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
+										</Style>
+									</DataGridTextColumn.EditingElementStyle>
+								</DataGridTextColumn>
+								<DataGridTextColumn Header="Тяжесть" Binding="{Binding Severity}" Width="81">
+									<DataGridTextColumn.EditingElementStyle>
+										<Style TargetType="TextBox">
+											<EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
+											<EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
+										</Style>
+									</DataGridTextColumn.EditingElementStyle>
+								</DataGridTextColumn>
+								<DataGridTextColumn Header="КД" Binding="{Binding WholeKD}" Width="60">
+									<DataGridTextColumn.ElementStyle>
+										<Style TargetType="TextBlock">
+											<Setter Property="Foreground" Value="{Binding ForeColorKD}"/>
+										</Style>
+									</DataGridTextColumn.ElementStyle>
+									<DataGridTextColumn.EditingElementStyle>
+										<Style TargetType="TextBox">
+											<EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
+											<EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
+										</Style>
+									</DataGridTextColumn.EditingElementStyle>
+								</DataGridTextColumn>
+								<DataGridTextColumn Header="Количество" Binding="{Binding Count}" Width="70">
+									<DataGridTextColumn.EditingElementStyle>
+										<Style TargetType="TextBox">
+											<EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
+											<EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
+										</Style>
+									</DataGridTextColumn.EditingElementStyle>
+								</DataGridTextColumn>
+								<DataGridTextColumn Header="CountWeight" Binding="{Binding CountWeight}" Visibility="Hidden"/>
+								<DataGridTextColumn Header="Description" Binding="{Binding Description}" Visibility="Hidden"/>
+								<DataGridTextColumn Header="CountKD" Binding="{Binding CountKD}" Visibility="Hidden"/>
+								<DataGridTextColumn Header="CountKDHelmet" Binding="{Binding CountKDHelmet}" Visibility="Hidden"/>
+							</DataGrid.Columns>
+						</DataGrid>
+					</Border>
+					<Border Grid.Row="1">
+						<TextBox x:Name="DescriptionTextBox" materialDesign:HintAssist.Hint="Описание" TextWrapping="Wrap" AcceptsReturn="True" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"/>
+					</Border>
+					<Border Grid.Row="1" Grid.Column="1">
+						<DataGrid x:Name="DataGridItemBaffsList" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
 							  AutoGenerateColumns="False"
                               SelectionMode="Single"
 							  CanUserAddRows="False"
@@ -350,148 +350,148 @@
 							  CanUserResizeRows="False"
 							  CanUserResizeColumns="False"
 							  CanUserSortColumns="False">
-                            <DataGrid.ContextMenu>
-                                <ContextMenu>
-                                    <MenuItem x:Name="AddMenuItemBaff" Header="Добавить"/>
-                                    <MenuItem x:Name="DeleteMenuItemBaff" Header="Удалить"/>
-                                </ContextMenu>
-                            </DataGrid.ContextMenu>
-                            <DataGrid.Columns>
-                                <DataGridTemplateColumn Width="85" Header=" Параметр">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <ComboBox SelectionChanged="ComboBoxDataGridItemBaffsList_SelectionChanged" SelectedIndex="{Binding SelectedIndex, UpdateSourceTrigger=PropertyChanged}">
-                                                <ComboBoxItem Content="Сила"/>
-                                                <ComboBoxItem Content="Атлетика"/>
-                                                <ComboBoxItem Content="Ловкость"/>
-                                                <ComboBoxItem Content="Акробатика"/>
-                                                <ComboBoxItem Content="Ловкость рук"/>
-                                                <ComboBoxItem Content="Скрытность"/>
-                                                <ComboBoxItem Content="Телосложение"/>
-                                                <ComboBoxItem Content="Интеллект"/>
-                                                <ComboBoxItem Content="Магия"/>
-                                                <ComboBoxItem Content="Религия"/>
-                                                <ComboBoxItem Content="Природа"/>
-                                                <ComboBoxItem Content="История"/>
-                                                <ComboBoxItem Content="Расследование"/>
-                                                <ComboBoxItem Content="Технология"/>
-                                                <ComboBoxItem Content="Мудрость"/>
-                                                <ComboBoxItem Content="Медецина"/>
-                                                <ComboBoxItem Content="Восприятие"/>
-                                                <ComboBoxItem Content="Проницательность"/>
-                                                <ComboBoxItem Content="Выживание"/>
-                                                <ComboBoxItem Content="Обращение с животными"/>
-                                                <ComboBoxItem Content="Харизма"/>
-                                                <ComboBoxItem Content="Обман"/>
-                                                <ComboBoxItem Content="Запугивание"/>
-                                                <ComboBoxItem Content="Выступление"/>
-                                                <ComboBoxItem Content="Убеждение"/>
-                                                <ComboBoxItem Content="Ролл атаки"/>
-                                                <ComboBoxItem Content="Ролл блока"/>
-                                                <ComboBoxItem Content="Ролл уворота"/>
-                                                <ComboBoxItem Content="Ролл контрдействия"/>
-                                                <ComboBoxItem Content="Ролл атаки кулаками"/>
-                                                <ComboBoxItem Content="Ролл дальнобойным"/>
-                                                <ComboBoxItem Content="Вес"/>
-                                                <ComboBoxItem Content="Здоровье"/>
-                                                <ComboBoxItem Content="Ментальное КД"/>
-                                                <ComboBoxItem Content="Палка Хода"/>
-                                                <ComboBoxItem Content="Действие"/>
-                                                <ComboBoxItem Content="Контрдействие"/>
-                                            </ComboBox>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                                <DataGridTextColumn Width="75" Header="Значение" Binding="{Binding WholeAddValue, UpdateSourceTrigger=PropertyChanged}" >
-                                <DataGridTextColumn.EditingElementStyle>
-                                    <Style TargetType="TextBox">
-                                        <EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
-                                        <EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
-                                        </Style>
-                                </DataGridTextColumn.EditingElementStyle>
-                                </DataGridTextColumn>
-                                <DataGridTextColumn Width="50" Header=" Ролл" Binding="{Binding WholeAddRoll, UpdateSourceTrigger=PropertyChanged}">
-                                    <DataGridTextColumn.EditingElementStyle>
-                                        <Style TargetType="TextBox">
-                                            <EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
-                                            <EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
-                                        </Style>
-                                    </DataGridTextColumn.EditingElementStyle>
-                                </DataGridTextColumn>
-                            </DataGrid.Columns>
-                            <DataGrid.ColumnHeaderStyle>
-                                <Style TargetType="DataGridColumnHeader">
-                                    <Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
-                                    <Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
-                                    <Setter Property="FontSize" Value="14"/>
-                                </Style>
-                            </DataGrid.ColumnHeaderStyle>
-                        </DataGrid>
-                    </Border>
-                    <Border Grid.Row="1" Grid.Column="2">
-                        <StackPanel Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <StackPanel Margin="-25,-15,10,0">
-                                <StackPanel Orientation="Horizontal">
-                                    <CheckBox x:Name="weight_count_checkbox" Content="Считать вес"/>
-                                    <CheckBox x:Name="equipped_checkbox" Margin="5,0,0,0" Content="Одето"/>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
+							<DataGrid.ContextMenu>
+								<ContextMenu>
+									<MenuItem x:Name="AddMenuItemBaff" Header="Добавить"/>
+									<MenuItem x:Name="DeleteMenuItemBaff" Header="Удалить"/>
+								</ContextMenu>
+							</DataGrid.ContextMenu>
+							<DataGrid.Columns>
+								<DataGridTemplateColumn Width="85" Header=" Параметр">
+									<DataGridTemplateColumn.CellTemplate>
+										<DataTemplate>
+											<ComboBox SelectionChanged="ComboBoxDataGridItemBaffsList_SelectionChanged" SelectedIndex="{Binding SelectedIndex, UpdateSourceTrigger=PropertyChanged}">
+												<ComboBoxItem Content="Сила"/>
+												<ComboBoxItem Content="Атлетика"/>
+												<ComboBoxItem Content="Ловкость"/>
+												<ComboBoxItem Content="Акробатика"/>
+												<ComboBoxItem Content="Ловкость рук"/>
+												<ComboBoxItem Content="Скрытность"/>
+												<ComboBoxItem Content="Телосложение"/>
+												<ComboBoxItem Content="Интеллект"/>
+												<ComboBoxItem Content="Магия"/>
+												<ComboBoxItem Content="Религия"/>
+												<ComboBoxItem Content="Природа"/>
+												<ComboBoxItem Content="История"/>
+												<ComboBoxItem Content="Расследование"/>
+												<ComboBoxItem Content="Технология"/>
+												<ComboBoxItem Content="Мудрость"/>
+												<ComboBoxItem Content="Медецина"/>
+												<ComboBoxItem Content="Восприятие"/>
+												<ComboBoxItem Content="Проницательность"/>
+												<ComboBoxItem Content="Выживание"/>
+												<ComboBoxItem Content="Обращение с животными"/>
+												<ComboBoxItem Content="Харизма"/>
+												<ComboBoxItem Content="Обман"/>
+												<ComboBoxItem Content="Запугивание"/>
+												<ComboBoxItem Content="Выступление"/>
+												<ComboBoxItem Content="Убеждение"/>
+												<ComboBoxItem Content="Ролл атаки"/>
+												<ComboBoxItem Content="Ролл блока"/>
+												<ComboBoxItem Content="Ролл уворота"/>
+												<ComboBoxItem Content="Ролл контрдействия"/>
+												<ComboBoxItem Content="Ролл атаки кулаками"/>
+												<ComboBoxItem Content="Ролл дальнобойным"/>
+												<ComboBoxItem Content="Вес"/>
+												<ComboBoxItem Content="Здоровье"/>
+												<ComboBoxItem Content="Ментальное КД"/>
+												<ComboBoxItem Content="Палка Хода"/>
+												<ComboBoxItem Content="Действие"/>
+												<ComboBoxItem Content="Контрдействие"/>
+											</ComboBox>
+										</DataTemplate>
+									</DataGridTemplateColumn.CellTemplate>
+								</DataGridTemplateColumn>
+								<DataGridTextColumn Width="75" Header="Значение" Binding="{Binding WholeAddValue, UpdateSourceTrigger=PropertyChanged}" >
+									<DataGridTextColumn.EditingElementStyle>
+										<Style TargetType="TextBox">
+											<EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
+											<EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
+										</Style>
+									</DataGridTextColumn.EditingElementStyle>
+								</DataGridTextColumn>
+								<DataGridTextColumn Width="50" Header=" Ролл" Binding="{Binding WholeAddRoll, UpdateSourceTrigger=PropertyChanged}">
+									<DataGridTextColumn.EditingElementStyle>
+										<Style TargetType="TextBox">
+											<EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
+											<EventSetter Event="DataObject.Pasting" Handler="TextBox_Pasting"/>
+										</Style>
+									</DataGridTextColumn.EditingElementStyle>
+								</DataGridTextColumn>
+							</DataGrid.Columns>
+							<DataGrid.ColumnHeaderStyle>
+								<Style TargetType="DataGridColumnHeader">
+									<Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
+									<Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
+									<Setter Property="FontSize" Value="14"/>
+								</Style>
+							</DataGrid.ColumnHeaderStyle>
+						</DataGrid>
+					</Border>
+					<Border Grid.Row="1" Grid.Column="2">
+						<StackPanel Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+							<StackPanel Margin="-25,-15,10,0">
+								<StackPanel Orientation="Horizontal">
+									<CheckBox x:Name="weight_count_checkbox" Content="Считать вес"/>
+									<CheckBox x:Name="equipped_checkbox" Margin="5,0,0,0" Content="Одето"/>
+								</StackPanel>
+								<StackPanel Orientation="Horizontal">
 									<CheckBox x:Name="kd_count_checkbox" Content="КД"/>
 									<CheckBox x:Name="kdhelmet_count_checkbox" Margin="10,0,0,0" Content="КД шлема"/>
 								</StackPanel>
 							</StackPanel>
-                            <StackPanel  Orientation="Horizontal">
-                                <TextBlock Text="Медяк" Margin="0,5,0,0" Width="110" Foreground="Orange"/>
-                                <TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  materialDesign:HintAssist.Hint="Число" Width="40" x:Name="Cuprum_tb" PreviewTextInput="Cuprum_tb_PreviewTextInput" DataObject.Pasting="Cuprum_tb_Pasting"/>
-                            </StackPanel>
-                            <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
-                                <TextBlock Text="Серебреник" Width="110" Foreground="Gray"/>
-                                <TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="Число" Width="40" x:Name="Silver_tb" PreviewTextInput="Silver_tb_PreviewTextInput" DataObject.Pasting="Silver_tb_Pasting"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Золотой" Width="110" Foreground="Gold"/>
-                                <TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="Число" Width="40" x:Name="Gold_tb" PreviewTextInput="Gold_tb_PreviewTextInput" DataObject.Pasting="Gold_tb_Pasting"/>
-                            </StackPanel>
-                        </StackPanel>
-                    </Border>
-                    <Border Grid.Row="1" Grid.Column="3">
-                        <StackPanel Margin="5,0,0,0" VerticalAlignment="Center">
-                            <StackPanel  Orientation="Horizontal">
-                                <TextBlock FontSize="12" Text="Рюкзак" Width="75" VerticalAlignment="Center"/>
-                                <ComboBox materialDesign:HintAssist.Hint="Нет" Width="110" x:Name="backpack_cb" SelectionChanged="backpack_cb_SelectionChanged">
-                                    <ComboBoxItem Content="Нет"/>
-                                    <ComboBoxItem Content="Прото"/>
-                                    <ComboBoxItem Content="Плохой"/>
-                                    <ComboBoxItem Content="Стандартный"/>
-                                    <ComboBoxItem Content="Высокий"/>
-                                    <ComboBoxItem Content="Великолепный"/>
-                                    <ComboBoxItem Content="Мастерский"/>
-                                    <ComboBoxItem Content="Мифический"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Margin="0,0,0,0" Orientation="Horizontal">
-                                <TextBlock FontSize="12" Text="Кол-во" Width="75" VerticalAlignment="Center"/>
-                                <ComboBox materialDesign:HintAssist.Hint="Нет" Width="40" x:Name="backpack_quantity_cb" ItemsSource="{x:Null}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="25"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock FontSize="12" Text="Добавить к весу" TextWrapping="Wrap" Width="75"/>
-                                <TextBox materialDesign:HintAssist.Hint="Число" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="40" x:Name="backpack_plus_tb" PreviewTextInput="backpack_plus_tb_PreviewTextInput" DataObject.Pasting="backpack_plus_tb_Pasting" MaxLength="7"/>
-                            </StackPanel>
-                            <Separator/>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock FontSize="12" Text="Тип брони" TextWrapping="Wrap" VerticalAlignment="Center" Width="75"/>
-                                <ComboBox materialDesign:HintAssist.Hint="Число"  Width="72" SelectedIndex="0" x:Name="armor_type_cb">
-                                    <ComboBoxItem Content="Нет"/>
-                                    <ComboBoxItem Content="Лёгкая"/>
-                                    <ComboBoxItem Content="Средняя"/>
-                                    <ComboBoxItem Content="Тяжёлая"/>
-                                </ComboBox>
-                            </StackPanel>
-                        </StackPanel>
-                    </Border>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Способности">
+							<StackPanel  Orientation="Horizontal">
+								<TextBlock Text="Медяк" Margin="0,5,0,0" Width="110" Foreground="Orange"/>
+								<TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  materialDesign:HintAssist.Hint="Число" Width="40" x:Name="Cuprum_tb" PreviewTextInput="Cuprum_tb_PreviewTextInput" DataObject.Pasting="Cuprum_tb_Pasting"/>
+							</StackPanel>
+							<StackPanel Margin="0,5,0,5" Orientation="Horizontal">
+								<TextBlock Text="Серебреник" Width="110" Foreground="Gray"/>
+								<TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="Число" Width="40" x:Name="Silver_tb" PreviewTextInput="Silver_tb_PreviewTextInput" DataObject.Pasting="Silver_tb_Pasting"/>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal">
+								<TextBlock Text="Золотой" Width="110" Foreground="Gold"/>
+								<TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="Число" Width="40" x:Name="Gold_tb" PreviewTextInput="Gold_tb_PreviewTextInput" DataObject.Pasting="Gold_tb_Pasting"/>
+							</StackPanel>
+						</StackPanel>
+					</Border>
+					<Border Grid.Row="1" Grid.Column="3">
+						<StackPanel Margin="5,0,0,0" VerticalAlignment="Center">
+							<StackPanel  Orientation="Horizontal">
+								<TextBlock FontSize="12" Text="Рюкзак" Width="75" VerticalAlignment="Center"/>
+								<ComboBox materialDesign:HintAssist.Hint="Нет" Width="110" x:Name="backpack_cb" SelectionChanged="backpack_cb_SelectionChanged">
+									<ComboBoxItem Content="Нет"/>
+									<ComboBoxItem Content="Прото"/>
+									<ComboBoxItem Content="Плохой"/>
+									<ComboBoxItem Content="Стандартный"/>
+									<ComboBoxItem Content="Высокий"/>
+									<ComboBoxItem Content="Великолепный"/>
+									<ComboBoxItem Content="Мастерский"/>
+									<ComboBoxItem Content="Мифический"/>
+								</ComboBox>
+							</StackPanel>
+							<StackPanel Margin="0,0,0,0" Orientation="Horizontal">
+								<TextBlock FontSize="12" Text="Кол-во" Width="75" VerticalAlignment="Center"/>
+								<ComboBox materialDesign:HintAssist.Hint="Нет" Width="40" x:Name="backpack_quantity_cb" ItemsSource="{x:Null}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="25"/>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal">
+								<TextBlock FontSize="12" Text="Добавить к весу" TextWrapping="Wrap" Width="75"/>
+								<TextBox materialDesign:HintAssist.Hint="Число" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="40" x:Name="backpack_plus_tb" PreviewTextInput="backpack_plus_tb_PreviewTextInput" DataObject.Pasting="backpack_plus_tb_Pasting" MaxLength="7"/>
+							</StackPanel>
+							<Separator/>
+							<StackPanel Orientation="Horizontal">
+								<TextBlock FontSize="12" Text="Тип брони" TextWrapping="Wrap" VerticalAlignment="Center" Width="75"/>
+								<ComboBox materialDesign:HintAssist.Hint="Число"  Width="72" SelectedIndex="0" x:Name="armor_type_cb">
+									<ComboBoxItem Content="Нет"/>
+									<ComboBoxItem Content="Лёгкая"/>
+									<ComboBoxItem Content="Средняя"/>
+									<ComboBoxItem Content="Тяжёлая"/>
+								</ComboBox>
+							</StackPanel>
+						</StackPanel>
+					</Border>
+				</Grid>
+			</TabItem>
+			<TabItem Header="Способности">
 				<Grid>
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition/>
@@ -512,15 +512,15 @@
 							  CanUserResizeColumns="False"
 							  CanUserSortColumns="False"
 							  Grid.RowSpan="2">
-                        <DataGrid.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem x:Name="AddMenuSkill" Header="Добавить"/>
-                                <MenuItem x:Name="DeleteMenuSkill" Header="Удалить"/>
-                            </ContextMenu>
-                        </DataGrid.ContextMenu>
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Способность" Width="150" Binding="{Binding Name}"/>
-                            <DataGridTextColumn Header="Происхождение" Width="150" Binding="{Binding Origin}"/>
+						<DataGrid.ContextMenu>
+							<ContextMenu>
+								<MenuItem x:Name="AddMenuSkill" Header="Добавить"/>
+								<MenuItem x:Name="DeleteMenuSkill" Header="Удалить"/>
+							</ContextMenu>
+						</DataGrid.ContextMenu>
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="Способность" Width="150" Binding="{Binding Name}"/>
+							<DataGridTextColumn Header="Происхождение" Width="150" Binding="{Binding Origin}"/>
 							<DataGridTextColumn Header="Описание" Visibility="Collapsed" Binding="{Binding Description}"/>
 						</DataGrid.Columns>
 					</DataGrid>
@@ -528,40 +528,44 @@
 					<Border Grid.RowSpan="2"/>
 					<Border Grid.Column="2" Grid.Row="1"/>
 					<Border Grid.Column="1" Grid.Row="1"/>
-					<TextBox MaxLength="0" x:Name="Ability_TextBox" materialDesign:HintAssist.Hint="Описание" Grid.Column="1" Grid.ColumnSpan="2" TextWrapping="Wrap"/>
+					<TextBox MaxLength="0" x:Name="Ability_TextBox" materialDesign:HintAssist.Hint="Описание" Grid.Column="1" Grid.ColumnSpan="2" TextWrapping="Wrap" Margin="5,0,5,0" Cursor="" IsReadOnly="True"/>
 					<StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
 						<StackPanel Orientation="Horizontal">
 							<TextBlock Text="Уровень:" Width="150" VerticalAlignment="Center"/>
 							<TextBlock x:Name="сharacter_level_textblcok" Width="40" Text="0" TextAlignment="Center" VerticalAlignment="Center"/>
-							<Button x:Name="pluslevel" Style="{DynamicResource MaterialDesignFloatingActionLightButton}" Width="10" Height="10" Background="Green"/>
-							<Button x:Name="minuslevel" Style="{DynamicResource MaterialDesignFloatingActionLightButton}" Margin="5" Width="10" Height="10" Background="Red"/>
+							<Button x:Name="pluslevel" Style="{DynamicResource MaterialDesignIconForegroundButton}" Width="10" Height="10" Visibility="{DynamicResource IsEdit}">
+								<TextBlock Text="+" Margin="0,-5,0,0" FontSize="18" Cursor=""/>
+							</Button>
+							<Button x:Name="minuslevel" Style="{DynamicResource MaterialDesignIconForegroundButton}" Margin="5" Width="10" Height="10" Visibility="{DynamicResource IsEdit}" Cursor="Hand">
+								<TextBlock Text="-" Margin="0,-6.29,0,0" FontSize="18" Cursor=""/>
+							</Button>
 						</StackPanel>
 						<StackPanel Orientation="Horizontal">
 							<TextBlock Text="Ролл атаки:" Width="150" VerticalAlignment="Center"/>
-							<TextBlock x:Name="сharacter_rollattack_textblcok" Width="40" Text="0" TextAlignment="Center"/>
+                            <TextBlock x:Name="character_rollattack_textblock" Width="40" Text="0" TextAlignment="Center"/>
 						</StackPanel>
 						<StackPanel Orientation="Horizontal">
 							<TextBlock Text="Ролл блока:" Width="150" VerticalAlignment="Center"/>
-							<TextBlock x:Name="сharacter_block_textblcok" Width="40" Text="0" TextAlignment="Center"/>
+							<TextBlock x:Name="character_block_textblock" Width="40" Text="0" TextAlignment="Center"/>
 						</StackPanel>
 						<StackPanel Orientation="Horizontal">
 							<TextBlock Text="Ролл уворота:" Width="150" VerticalAlignment="Center"/>
-							<TextBlock x:Name="сharacter_dodge_textblcok" Width="40" Text="0" TextAlignment="Center"/>
+							<TextBlock x:Name="character_dodge_textblock" Width="40" Text="0" TextAlignment="Center"/>
 						</StackPanel>
 						<StackPanel Orientation="Horizontal">
 							<TextBlock Text="Ролл контрдействия:" Width="150" VerticalAlignment="Center"/>
-							<TextBlock x:Name="сharacter_counteraction_textblcok" Width="40" Text="0" TextAlignment="Center"/>
+							<TextBlock x:Name="character_counteraction_textblock" Width="40" Text="0" TextAlignment="Center"/>
 						</StackPanel>
 						<StackPanel Orientation="Horizontal">
 							<TextBlock Text="Ролл атаки кулаками:" Width="150" VerticalAlignment="Center"/>
-							<TextBlock x:Name="сharacter_fistattack_textblcok" Width="40" Text="0" TextAlignment="Center"/>
+							<TextBlock x:Name="character_fistattack_textblock" Width="40" Text="0" TextAlignment="Center"/>
 						</StackPanel>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Ролл дальнобойным:" Width="150" VerticalAlignment="Center"/>
-                            <TextBlock x:Name="сharacter_longrangeattack_textblcok" Width="40" Text="0" TextAlignment="Center"/>
+                            <TextBlock x:Name="character_longrangeattack_textblock" Width="40" Text="0" TextAlignment="Center"/>
                         </StackPanel>
                     </StackPanel>
-                    <DataGrid x:Name="DataGridTreeDevelopment" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+					<DataGrid x:Name="DataGridTreeDevelopment" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                               IsReadOnly="True"
 							  AutoGenerateColumns="False"
                               SelectionMode="Single"
@@ -573,144 +577,263 @@
 							  CanUserSortColumns="False"
 							  Grid.Row="1" Grid.Column="2">
 						<DataGrid.Columns>
-                            <DataGridTextColumn Width="180" Header="Название" Binding="{Binding TreeName}"/>
-                            <DataGridTemplateColumn Header="Ступень" Width="100">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Grid>
-                                            <TextBlock Text="{Binding TreeLevel}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="15,0,0,0">
-                                                <Button Style="{DynamicResource MaterialDesignIconForegroundButton }" Visibility="{DynamicResource IsEdit}"  Width="12" Height="12" Margin="2" Click="AddTreeLevel_Click">
-                                                    <TextBlock Text="+" Margin="0,-4,1,0" FontSize="16" />
-                                                </Button>
-                                                <Button Style="{DynamicResource MaterialDesignIconForegroundButton }" Visibility="{DynamicResource IsEdit}" Width="12" Height="12" Margin="2" Click="SubtractTreeLevel_Click">
-                                                    <TextBlock Text="-" Margin="0,-8,1,0" FontSize="22" />
-                                                </Button>
-                                            </StackPanel>
-                                        </Grid>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
+							<DataGridTextColumn Width="180" Header="Название" Binding="{Binding TreeName}"/>
+							<DataGridTemplateColumn Header="Ступень" Width="100">
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+										<Grid>
+											<TextBlock Text="{Binding TreeLevel}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+											<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="15,0,0,0">
+												<Button Style="{DynamicResource MaterialDesignIconForegroundButton }" Visibility="{DynamicResource IsEdit}"  Width="12" Height="12" Margin="2" Click="AddTreeLevel_Click">
+													<TextBlock Text="+" Margin="0,-4,1,0" FontSize="16" />
+												</Button>
+												<Button Style="{DynamicResource MaterialDesignIconForegroundButton }" Visibility="{DynamicResource IsEdit}" Width="12" Height="12" Margin="2" Click="SubtractTreeLevel_Click">
+													<TextBlock Text="-" Margin="0,-8,1,0" FontSize="22" />
+												</Button>
+											</StackPanel>
+										</Grid>
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+						</DataGrid.Columns>
 					</DataGrid>
 				</Grid>
-            </TabItem>
-            <TabItem Header="Магия">
-            </TabItem>
-            <TabItem Header="Дневник">
-                <Grid>
-                    <Grid.Resources>
-                        <Style TargetType="{x:Type Button}" x:Key="formatTextStyle">
-                            <Setter Property="FontFamily" Value="Palatino Linotype"></Setter>
-                            <Setter Property="Width" Value="30"></Setter>
-                            <Setter Property="FontSize" Value ="14"></Setter>
-                            <Setter Property="CommandTarget" Value="{Binding ElementName=mainRTB}"></Setter>
-                        </Style>
+			</TabItem>
+			<TabItem Header="Магия">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
+						<ColumnDefinition Width="1"/>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition/>
+					</Grid.RowDefinitions>
+					<Border Grid.Column="1" Grid.Row="2"/>
+					<StackPanel Orientation="Horizontal">
+						<StackPanel>
+							<TextBlock Text="Школа:"/>
+							<ComboBox x:Name="SchoolSelect_cb" Width="120">
+								<ComboBoxItem Content="Отсутствует"/>
+								<ComboBoxItem Content="Ограждения"/>
+								<ComboBoxItem Content="Вызова"/>
+								<ComboBoxItem Content="Прорицания"/>
+								<ComboBoxItem Content="Очарования"/>
+								<ComboBoxItem Content="Воплощения"/>
+								<ComboBoxItem Content="Иллюзии"/>
+								<ComboBoxItem Content="Некромантии"/>
+								<ComboBoxItem Content="Преобразования"/>
+							</ComboBox>
+						</StackPanel>
+						<StackPanel Margin="10,0,0,0">
+							<TextBlock Text="Катализатор:"/>
+							<ComboBox x:Name="CatalyzerSelect_cb">
+								<ComboBoxItem Content="Посох"/>
+								<ComboBoxItem Content="Палочка"/>
+								<ComboBoxItem Content="Талисман"/>
+							</ComboBox>
+						</StackPanel>
+						<StackPanel Margin="10,0,0,0">
+							<TextBlock Text="Качество:"/>
+							<ComboBox x:Name="CatalyzerQualitySelect_cb" Width="100">
+								<ComboBoxItem Content="Прото"/>
+								<ComboBoxItem Content="Плохое"/>
+								<ComboBoxItem Content="Стандартное"/>
+								<ComboBoxItem Content="Высокое"/>
+								<ComboBoxItem Content="Великолепное"/>
+								<ComboBoxItem Content="Мастерское"/>
+								<ComboBoxItem Content="Мифическое"/>
+							</ComboBox>
+						</StackPanel>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" Grid.Column="2">
+						<TextBlock Text="Множитель урона:"/>
+						<TextBlock Width="40" TextAlignment="Center" x:Name="DamageMagic_textblock" Text="1"  Visibility="Visible" MouseLeftButtonDown="DamageMagic_textblock_MouseLeftButtonDown"/>
+						<TextBox Style="{DynamicResource STYLE_NAME}" Foreground="{DynamicResource StandartForeColor}" Background="{DynamicResource StandartBackColor}" x:Name="DamageMagic_textbox" Width="40" Height="17" Text="1" TextAlignment="Center" Visibility="Collapsed" materialDesign:HintAssist.Hint="Число"  DataObject.Pasting="DamageMagic_textbox_Pasting" AcceptsReturn="False" VerticalAlignment="Top" PreviewTextInput="DamageMagic_textbox_PreviewTextInput" PreviewKeyDown="DamageMagic_textbox_PreviewKeyDown" MaxLength="6"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3">
+						<StackPanel>
+							<TextBlock Text="Поиск"/>
+							<TextBox materialDesign:HintAssist.Hint="Название" x:Name="CastSearch_textbox" Width="100" MaxLength="255"/>
+						</StackPanel>
+						<StackPanel Margin="15,0,0,0">
+							<TextBlock Text="Вид"/>
+							<ComboBox Width="120" SelectedIndex="3">
+								<ComboBoxItem Content="Все"/>
+								<ComboBoxItem Content="Обычные"/>
+								<ComboBoxItem Content="Тайные"/>
+								<ComboBoxItem Content="Запрещённые"/>
+								<ComboBoxItem Content="Проклятые"/>
+								<ComboBoxItem Content="Созданные"/>
+							</ComboBox>
+						</StackPanel>
+						<StackPanel Margin="15,0,0,0">
+							<TextBlock Text="Школа"/>
+							<ComboBox SelectedIndex="0" x:Name="SchoolSelect_Search_cb" Width="130">
+								<ComboBoxItem Content="Любая"/>
+								<ComboBoxItem Content="Ограждения"/>
+								<ComboBoxItem Content="Вызова"/>
+								<ComboBoxItem Content="Прорицания"/>
+								<ComboBoxItem Content="Очарования"/>
+								<ComboBoxItem Content="Воплощения"/>
+								<ComboBoxItem Content="Иллюзии"/>
+								<ComboBoxItem Content="Некромантии"/>
+								<ComboBoxItem Content="Преобразования"/>
+							</ComboBox>
+						</StackPanel>
+						<StackPanel Margin="15,0,0,0">
+							<TextBlock Text="Урон"/>
+							<ComboBox SelectedIndex="0" x:Name="Damage_Search_cb" Width="65">
+								<ComboBoxItem Content="Любой"/>
+								<ComboBoxItem Content="Есть"/>
+								<ComboBoxItem Content="Нет"/>
+							</ComboBox>
+						</StackPanel>
+						<StackPanel Margin="15,0,0,0">
+							<TextBlock Text="Ролл"/>
+							<ComboBox SelectedIndex="0" x:Name="Roll_Search_cb" Width="60">
+								<ComboBoxItem Content="Любой"/>
+								<ComboBoxItem Content="&gt;0"/>
+								<ComboBoxItem Content="&lt;0"/>
+								<ComboBoxItem Content="0"/>
+							</ComboBox>
+						</StackPanel>
+						<StackPanel Margin="15,0,0,0">
+							<TextBlock Text="Уровень"/>
+							<ComboBox SelectedIndex="0" x:Name="LevelCast_Search_cb" Width="70">
+								<ComboBoxItem Content="Заговор"/>
+								<ComboBoxItem Content="1"/>
+								<ComboBoxItem Content="2"/>
+								<ComboBoxItem Content="3"/>
+								<ComboBoxItem Content="4"/>
+								<ComboBoxItem Content="5"/>
+								<ComboBoxItem Content="6"/>
+								<ComboBoxItem Content="7"/>
+								<ComboBoxItem Content="8"/>
+								<ComboBoxItem Content="9"/>
+								<ComboBoxItem Content="10"/>
+								<ComboBoxItem Content="11"/>
+								<ComboBoxItem Content="12"/>
+							</ComboBox>
+						</StackPanel>
+					</StackPanel>
+				</Grid>
+			</TabItem>
+			<TabItem Header="Дневник">
+				<Grid>
+					<Grid.Resources>
+						<Style TargetType="{x:Type Button}" x:Key="formatTextStyle">
+							<Setter Property="FontFamily" Value="Palatino Linotype"></Setter>
+							<Setter Property="Width" Value="30"></Setter>
+							<Setter Property="FontSize" Value ="14"></Setter>
+							<Setter Property="CommandTarget" Value="{Binding ElementName=mainRTB}"></Setter>
+						</Style>
 
-                        <Style TargetType="{x:Type Button}" x:Key="formatImageStyle">
-                            <Setter Property="Width" Value="30"></Setter>
-                            <Setter Property="CommandTarget" Value="{Binding ElementName=mainRTB}"></Setter>
-                        </Style>
-                    </Grid.Resources>
+						<Style TargetType="{x:Type Button}" x:Key="formatImageStyle">
+							<Setter Property="Width" Value="30"></Setter>
+							<Setter Property="CommandTarget" Value="{Binding ElementName=mainRTB}"></Setter>
+						</Style>
+					</Grid.Resources>
 
-                    <DockPanel Name="mainPanel" Grid.Column="1" Grid.RowSpan="3">
-                        <ToolBar Name="mainToolBar" Height="30" DockPanel.Dock="Top" Foreground="DarkOrange">
-                            <Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Undo" ToolTip="Отменить">
-                                <materialDesign:PackIcon Kind="Undo"/>
-                            </Button>
-                            <Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Redo" ToolTip="Вернуть">
-                                <materialDesign:PackIcon Kind="Redo"/>
-                            </Button>
+					<DockPanel Name="mainPanel" Grid.Column="1" Grid.RowSpan="3">
+						<ToolBar Name="mainToolBar" Height="30" DockPanel.Dock="Top" Foreground="DarkOrange">
+							<Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Undo" ToolTip="Отменить">
+								<materialDesign:PackIcon Kind="Undo"/>
+							</Button>
+							<Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Redo" ToolTip="Вернуть">
+								<materialDesign:PackIcon Kind="Redo"/>
+							</Button>
 
-                            <Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleBold" ToolTip="Жирный">
-                                <materialDesign:PackIcon Kind="FormatBold"/>
-                            </Button>
-                            <Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleItalic" ToolTip="Курсив">
-                                <materialDesign:PackIcon Kind="FormatItalic"/>
-                            </Button>
-                            <Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleUnderline" ToolTip="Зачёркнутый">
-                                <materialDesign:PackIcon Kind="FormatUnderline"/>
-                            </Button>
-                            <Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleUnderline" ToolTip="Подчёркнутый">
-                                <materialDesign:PackIcon Kind="FormatStrikethrough"/>
-                            </Button>
-                            <ComboBox x:Name="fontSizeComboBox" Width="38" ToolTip="Размер шрифта" IsReadOnly="True">
-                                <ComboBox.ItemsSource>
-                                    <x:Array Type="sys:Double" xmlns:sys="clr-namespace:System;assembly=mscorlib">
-                                        <sys:Double>6</sys:Double>
-                                        <sys:Double>8</sys:Double>
-                                        <sys:Double>9</sys:Double>
-                                        <sys:Double>10</sys:Double>
-                                        <sys:Double>11</sys:Double>
-                                        <sys:Double>12</sys:Double>
-                                        <sys:Double>14</sys:Double>
-                                        <sys:Double>16</sys:Double>
-                                        <sys:Double>18</sys:Double>
-                                        <sys:Double>20</sys:Double>
-                                        <sys:Double>22</sys:Double>
-                                        <sys:Double>24</sys:Double>
-                                        <sys:Double>26</sys:Double>
-                                        <sys:Double>28</sys:Double>
-                                        <sys:Double>36</sys:Double>
-                                        <sys:Double>48</sys:Double>
-                                        <sys:Double>72</sys:Double>
-                                    </x:Array>
-                                </ComboBox.ItemsSource>
-                            </ComboBox>
-                            <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.ToggleBullets" ToolTip="Маркеры">
-                                <materialDesign:PackIcon Kind="FormatListBulleted"/>
-                            </Button>
-                            <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.ToggleNumbering" ToolTip="Нумерация">
-                                <materialDesign:PackIcon Kind="FormatListNumbered"/>
-                            </Button>
-                            <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignLeft" ToolTip="Выровнять по левому краю">
-                                <materialDesign:PackIcon Kind="FormatAlignLeft"/>
-                            </Button>
-                            <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignCenter" ToolTip="Выровнять по центру">
-                                <materialDesign:PackIcon Kind="FormatAlignCenter"/>
-                            </Button>
-                            <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignRight" ToolTip="Выровнять по правому краю">
-                                <materialDesign:PackIcon Kind="FormatAlignRight"/>
-                            </Button>
-                            <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignJustify" ToolTip="Выровнять по ширине">
-                                <materialDesign:PackIcon Kind="FormatAlignJustify"/>
-                            </Button>
-                            <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.IncreaseIndentation" ToolTip="Увеличить отступ">
-                                <materialDesign:PackIcon Kind="FormatIndentIncrease"/>
-                            </Button>
-                            <Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.DecreaseIndentation" ToolTip="Уменшить отступ">
-                                <materialDesign:PackIcon Kind="FormatIndentDecrease"/>
-                            </Button>
+							<Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleBold" ToolTip="Жирный">
+								<materialDesign:PackIcon Kind="FormatBold"/>
+							</Button>
+							<Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleItalic" ToolTip="Курсив">
+								<materialDesign:PackIcon Kind="FormatItalic"/>
+							</Button>
+							<Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleUnderline" ToolTip="Зачёркнутый">
+								<materialDesign:PackIcon Kind="FormatUnderline"/>
+							</Button>
+							<Button Style="{StaticResource formatTextStyle}" Command="EditingCommands.ToggleUnderline" ToolTip="Подчёркнутый">
+								<materialDesign:PackIcon Kind="FormatStrikethrough"/>
+							</Button>
+							<ComboBox x:Name="fontSizeComboBox" Width="38" ToolTip="Размер шрифта" IsReadOnly="True">
+								<ComboBox.ItemsSource>
+									<x:Array Type="sys:Double" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+										<sys:Double>6</sys:Double>
+										<sys:Double>8</sys:Double>
+										<sys:Double>9</sys:Double>
+										<sys:Double>10</sys:Double>
+										<sys:Double>11</sys:Double>
+										<sys:Double>12</sys:Double>
+										<sys:Double>14</sys:Double>
+										<sys:Double>16</sys:Double>
+										<sys:Double>18</sys:Double>
+										<sys:Double>20</sys:Double>
+										<sys:Double>22</sys:Double>
+										<sys:Double>24</sys:Double>
+										<sys:Double>26</sys:Double>
+										<sys:Double>28</sys:Double>
+										<sys:Double>36</sys:Double>
+										<sys:Double>48</sys:Double>
+										<sys:Double>72</sys:Double>
+									</x:Array>
+								</ComboBox.ItemsSource>
+							</ComboBox>
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.ToggleBullets" ToolTip="Маркеры">
+								<materialDesign:PackIcon Kind="FormatListBulleted"/>
+							</Button>
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.ToggleNumbering" ToolTip="Нумерация">
+								<materialDesign:PackIcon Kind="FormatListNumbered"/>
+							</Button>
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignLeft" ToolTip="Выровнять по левому краю">
+								<materialDesign:PackIcon Kind="FormatAlignLeft"/>
+							</Button>
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignCenter" ToolTip="Выровнять по центру">
+								<materialDesign:PackIcon Kind="FormatAlignCenter"/>
+							</Button>
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignRight" ToolTip="Выровнять по правому краю">
+								<materialDesign:PackIcon Kind="FormatAlignRight"/>
+							</Button>
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.AlignJustify" ToolTip="Выровнять по ширине">
+								<materialDesign:PackIcon Kind="FormatAlignJustify"/>
+							</Button>
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.IncreaseIndentation" ToolTip="Увеличить отступ">
+								<materialDesign:PackIcon Kind="FormatIndentIncrease"/>
+							</Button>
+							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.DecreaseIndentation" ToolTip="Уменшить отступ">
+								<materialDesign:PackIcon Kind="FormatIndentDecrease"/>
+							</Button>
 
-                        </ToolBar>
-                        <RichTextBox x:Name="diaryTB" AcceptsTab="True" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" Margin="10,0,0,0" SelectionChanged="DiaryTB_SelectionChanged" TextChanged="DiaryTB_TextChanged" MouseMove="DiaryTB_MouseMove" FontSize="24"></RichTextBox>
-                    </DockPanel>
-                    <GridSplitter Grid.RowSpan="3" IsEnabled="False" Grid.Column="1" ShowsPreview="False" Width="3" Height="400" HorizontalAlignment="Left" VerticalAlignment="Top" Cursor="SizeWE" />
-                    <TextBox Grid.Row="0" Grid.Column="0" x:Name="NameNote" materialDesign:HintAssist.Hint="Название записи"/>
-                    <Button Grid.Column="0" Grid.Row="1" x:Name="CreateNote" Content="Создать запись" Click="CreateNote_Click"/>
-                    <ListBox Grid.Row="2" Grid.Column="0">
-                        <ListBoxItem>dasasdasd</ListBoxItem>
-                        <ListBoxItem>dasasdasd</ListBoxItem>
-                        <ListBoxItem>dasasdasd</ListBoxItem>
-                        <ListBoxItem>dasasdasd</ListBoxItem>
-                    </ListBox>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40*"/>
-                        <RowDefinition Height="40*"/>
-                        <RowDefinition Height="303*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="141*"/>
-                        <ColumnDefinition Width="649*"/>
-                    </Grid.ColumnDefinitions>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Справочники">
-            </TabItem>
-        </TabControl>
-
-
-        <DataGrid Grid.Row="1" SelectionMode="Single" FontSize="12" x:Name="DataGridCharacterisctics" AutoGenerateColumns="False" Margin="0,0,0,-304" IsReadOnly="True"
+						</ToolBar>
+						<RichTextBox x:Name="diaryTB" AcceptsTab="True" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" Margin="10,0,0,0" SelectionChanged="DiaryTB_SelectionChanged" TextChanged="DiaryTB_TextChanged" MouseMove="DiaryTB_MouseMove" FontSize="24"></RichTextBox>
+					</DockPanel>
+					<GridSplitter Grid.RowSpan="3" IsEnabled="False" Grid.Column="1" ShowsPreview="False" Width="3" Height="400" HorizontalAlignment="Left" VerticalAlignment="Top" Cursor="SizeWE" />
+					<TextBox Grid.Row="0" Grid.Column="0" x:Name="NameNote" materialDesign:HintAssist.Hint="Название записи"/>
+					<Button Grid.Column="0" Grid.Row="1" x:Name="CreateNote" Content="Создать запись" Click="CreateNote_Click"/>
+					<ListBox Grid.Row="2" Grid.Column="0">
+						<ListBoxItem>dasasdasd</ListBoxItem>
+						<ListBoxItem>dasasdasd</ListBoxItem>
+						<ListBoxItem>dasasdasd</ListBoxItem>
+						<ListBoxItem>dasasdasd</ListBoxItem>
+					</ListBox>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="40*"/>
+						<RowDefinition Height="40*"/>
+						<RowDefinition Height="303*"/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="141*"/>
+						<ColumnDefinition Width="649*"/>
+					</Grid.ColumnDefinitions>
+				</Grid>
+			</TabItem>
+			<TabItem Header="Справочники">
+			</TabItem>
+		</TabControl>
+		<DataGrid Grid.Row="1" SelectionMode="Single" FontSize="12" x:Name="DataGridCharacterisctics" AutoGenerateColumns="False" Margin="0,0,0,-304" IsReadOnly="True"
               HeadersVisibility="Column"
               RowHeaderWidth="0"
               CanUserAddRows="False"

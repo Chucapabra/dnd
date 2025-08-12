@@ -1,37 +1,37 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\profile\\mydocs\\GitHub\\dnd\\",
+  "WorkspaceRootPath": "E:\\Project\\DND-github\\dnd-2\\dnd\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\windows\\main.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd-2\\dnd\\windows\\main.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:windows\\main.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\modules\\config\\playerclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\config\\playerclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd-2\\dnd\\modules\\character\\health.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\character\\health.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\modules\\character\\treeskills.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\character\\treeskills.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\modules\\character\\skills.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\character\\skills.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\modules\\config\\race.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\config\\race.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\modules\\\u0441haracteristics\\characteristictable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\\u0441haracteristics\\characteristictable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\windows\\main.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd-2\\dnd\\windows\\main.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:windows\\main.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\modules\\\u0441haracteristics\\gridcharacteristics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd-2\\dnd\\modules\\inventory\\inventoryloot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\inventory\\inventoryloot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd-2\\dnd\\modules\\character\\treeskills.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\character\\treeskills.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd-2\\dnd\\modules\\textboxprocessing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\textboxprocessing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd-2\\dnd\\modules\\character\\kdscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\character\\kdscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|e:\\project\\dnd-github\\dnd-2\\dnd\\modules\\\u0441haracteristics\\gridcharacteristics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\\u0441haracteristics\\gridcharacteristics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -42,111 +42,111 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "Race.cs",
-              "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Config\\Race.cs",
-              "RelativeDocumentMoniker": "Modules\\Config\\Race.cs",
-              "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Config\\Race.cs",
-              "RelativeToolTip": "Modules\\Config\\Race.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAowEQAAAAMAAAAAAAAAA==",
+              "Title": "TreeSkills.cs",
+              "DocumentMoniker": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Character\\TreeSkills.cs",
+              "RelativeDocumentMoniker": "Modules\\Character\\TreeSkills.cs",
+              "ToolTip": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Character\\TreeSkills.cs",
+              "RelativeToolTip": "Modules\\Character\\TreeSkills.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAA2wC4AAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-11T09:05:26.485Z",
+              "WhenOpened": "2025-08-12T10:03:06.365Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Skills.cs",
-              "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Character\\Skills.cs",
-              "RelativeDocumentMoniker": "Modules\\Character\\Skills.cs",
-              "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Character\\Skills.cs",
-              "RelativeToolTip": "Modules\\Character\\Skills.cs",
-              "ViewState": "AgIAAIIAAAAAAAAAAAAUwJQAAABuAAAAAAAAAA==",
+              "Title": "InventoryLoot.cs",
+              "DocumentMoniker": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Inventory\\InventoryLoot.cs",
+              "RelativeDocumentMoniker": "Modules\\Inventory\\InventoryLoot.cs",
+              "ToolTip": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Inventory\\InventoryLoot.cs",
+              "RelativeToolTip": "Modules\\Inventory\\InventoryLoot.cs",
+              "ViewState": "AgIAAPIAAAAAAAAAAAAwwAoBAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-11T02:53:33.925Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "TreeSkills.cs",
-              "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Character\\TreeSkills.cs",
-              "RelativeDocumentMoniker": "Modules\\Character\\TreeSkills.cs",
-              "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Character\\TreeSkills.cs",
-              "RelativeToolTip": "Modules\\Character\\TreeSkills.cs",
-              "ViewState": "AgIAAFsAAAAAAAAAAAAAAGQAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-10T08:55:40.518Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PlayerClass.cs",
-              "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Config\\PlayerClass.cs",
-              "RelativeDocumentMoniker": "Modules\\Config\\PlayerClass.cs",
-              "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Config\\PlayerClass.cs",
-              "RelativeToolTip": "Modules\\Config\\PlayerClass.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAIA5wDkAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-07T13:53:03.188Z",
+              "WhenOpened": "2025-08-12T09:29:32.047Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Main.xaml.cs",
-              "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Windows\\Main.xaml.cs",
-              "RelativeDocumentMoniker": "Windows\\Main.xaml.cs",
-              "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\Windows\\Main.xaml.cs",
-              "RelativeToolTip": "Windows\\Main.xaml.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAlwEEAAAAkAAAAAAAAAA==",
+              "Title": "KDScript.cs",
+              "DocumentMoniker": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Character\\KDScript.cs",
+              "RelativeDocumentMoniker": "Modules\\Character\\KDScript.cs",
+              "ToolTip": "Modules/Character/KDScript.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAEwC4AAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "OverriddenGroupName": "Windows",
-              "WhenOpened": "2025-08-03T05:20:36.009Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Main.xaml",
-              "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Windows\\Main.xaml",
-              "RelativeDocumentMoniker": "Windows\\Main.xaml",
-              "ToolTip": "Windows/Main.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "OverriddenGroupName": "Windows",
-              "OverriddenToolTip": "Windows/Main.xaml",
-              "WhenOpened": "2025-08-03T04:58:11.831Z",
+              "OverriddenGroupName": "Modules\\Character",
+              "OverriddenToolTip": "Modules/Character/KDScript.cs",
+              "WhenOpened": "2025-08-12T09:26:27.851Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
               "Title": "GridCharacteristics.cs",
-              "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\\u0421haracteristics\\GridCharacteristics.cs",
+              "DocumentMoniker": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\\u0421haracteristics\\GridCharacteristics.cs",
               "RelativeDocumentMoniker": "Modules\\\u0421haracteristics\\GridCharacteristics.cs",
-              "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\\u0421haracteristics\\GridCharacteristics.cs",
+              "ToolTip": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\\u0421haracteristics\\GridCharacteristics.cs",
               "RelativeToolTip": "Modules\\\u0421haracteristics\\GridCharacteristics.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAhwDMAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAANoAAAAAAAAAAAAuwOsAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-07T05:05:01.648Z",
+              "WhenOpened": "2025-08-12T09:26:02.288Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Main.xaml",
+              "DocumentMoniker": "E:\\Project\\DND-github\\dnd-2\\dnd\\Windows\\Main.xaml",
+              "RelativeDocumentMoniker": "Windows\\Main.xaml",
+              "ToolTip": "E:\\Project\\DND-github\\dnd-2\\dnd\\Windows\\Main.xaml",
+              "RelativeToolTip": "Windows\\Main.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-08-12T09:19:33.784Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "CharacteristicTable.cs",
-              "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\\u0421haracteristics\\CharacteristicTable.cs",
-              "RelativeDocumentMoniker": "Modules\\\u0421haracteristics\\CharacteristicTable.cs",
-              "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\\u0421haracteristics\\CharacteristicTable.cs",
-              "RelativeToolTip": "Modules\\\u0421haracteristics\\CharacteristicTable.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAApwDwAAAAGAAAAAAAAAA==",
+              "Title": "TextboxProcessing.cs",
+              "DocumentMoniker": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\TextboxProcessing.cs",
+              "RelativeDocumentMoniker": "Modules\\TextboxProcessing.cs",
+              "ToolTip": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\TextboxProcessing.cs",
+              "RelativeToolTip": "Modules\\TextboxProcessing.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAiwFIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-07T06:56:06.566Z",
+              "WhenOpened": "2025-08-12T09:03:33.434Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Health.cs",
+              "DocumentMoniker": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Character\\Health.cs",
+              "RelativeDocumentMoniker": "Modules\\Character\\Health.cs",
+              "ToolTip": "E:\\Project\\DND-github\\dnd-2\\dnd\\Modules\\Character\\Health.cs",
+              "RelativeToolTip": "Modules\\Character\\Health.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAewCsAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-12T08:51:23.478Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Main.xaml.cs",
+              "DocumentMoniker": "E:\\Project\\DND-github\\dnd-2\\dnd\\Windows\\Main.xaml.cs",
+              "RelativeDocumentMoniker": "Windows\\Main.xaml.cs",
+              "ToolTip": "E:\\Project\\DND-github\\dnd-2\\dnd\\Windows\\Main.xaml.cs",
+              "RelativeToolTip": "Windows\\Main.xaml.cs",
+              "ViewState": "AgIAACgBAAAAAAAAAADgvz8BAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "OverriddenGroupName": "Windows",
+              "WhenOpened": "2025-08-03T05:20:36.009Z",
               "EditorCaption": ""
             }
           ]

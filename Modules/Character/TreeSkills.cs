@@ -44,7 +44,7 @@ namespace DNDHelper.Modules.Character
         {
             int selectedIndex = main.DataGridTreeDevelopment.SelectedIndex;
 
-            if (points > 0)
+            if (points > 0 && treeGrids[selectedIndex].TreeLevel < 5)
             {
                 treeGrids[selectedIndex].TreeLevel++;
                 UpdateTreeLevel();

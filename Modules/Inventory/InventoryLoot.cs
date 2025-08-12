@@ -1,4 +1,5 @@
-﻿using DNDHelper.Windows;
+﻿using DNDHelper.Modules.Character;
+using DNDHelper.Windows;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -18,44 +19,10 @@ namespace DNDHelper.Modules.Inventory
     {
         Main main = Main.Instance;
 
-        public static ObservableCollection<InventoryItem> InventoryItems { get; set; }
+        public static ObservableCollection<InventoryItem> InventoryItems { get; set; } = new();
 
         public InventoryLoot()
         {
-            InventoryItems = new ObservableCollection<InventoryItem>();
-            InventoryItems.Add(new InventoryItem
-            {
-                Name = "Меч рыцаря",
-                Weight = 1,
-                Chopping = 15,
-                Stabbing = 10,
-                Crushing = 0,
-                Severity = 1,
-                KD = 5,
-                Quality = "Прото",
-                Count = 1,
-                CountWeight = true,
-                Description = "Старый добрый меч.",
-                CountKD = true,
-                CountKDHelmet = true
-            });
-
-            InventoryItems.Add(new InventoryItem
-            {
-                Name = "Щит деревянный",
-                Weight = 3,
-                Quality = "Прото",
-                Chopping = 0,
-                Stabbing = 0,
-                Crushing = 5,
-                Severity = 1,
-                KD = 2.5,
-                Count = 1,
-                CountWeight = true,
-                Description = "Простой деревянный щит.",
-                CountKD = true,
-                CountKDHelmet = true
-            });
             main.DataGridInventory.ItemsSource = InventoryItems;
 
 
@@ -191,7 +158,7 @@ namespace DNDHelper.Modules.Inventory
                 main.weight_count_checkbox.IsEnabled = false;
                 main.kd_count_checkbox.IsEnabled = false;
                 main.kdhelmet_count_checkbox.IsEnabled = false;
-                main.equipped_checkbox.IsEnabled= false;
+                main.equipped_checkbox.IsEnabled = false;
                 main.weight_count_checkbox.IsChecked = false;
                 main.kd_count_checkbox.IsChecked = false;
                 main.kdhelmet_count_checkbox.IsChecked = false;
@@ -289,24 +256,27 @@ namespace DNDHelper.Modules.Inventory
 
         private void ShowBaffValue(int indexColumn, int indexRow, string newValue)
         {
-            switch (indexColumn)
-            {
-                case 1:
-                    InventoryItems[indexRow].Weight = int.Parse(newValue) * InventoryItems[indexRow].Count;
-                    break;
-                case 3:
-                    InventoryItems[indexRow].Chopping = int.Parse(newValue) * QualityToDouble(InventoryItems[indexRow].Quality);
-                    break;
-                case 4:
-                    InventoryItems[indexRow].Stabbing = int.Parse(newValue) * QualityToDouble(InventoryItems[indexRow].Quality);
-                    break;
-                case 5:
-                    InventoryItems[indexRow].Crushing = (int.Parse(newValue) * QualityToDouble(InventoryItems[indexRow].Quality) + InventoryItems[indexRow].DamageSeverity);
-                    break;
-                case 7:
-                    InventoryItems[indexRow].KD = int.Parse(newValue) * QualityToDouble(InventoryItems[indexRow].Quality);
-                    break;
-            }
+            newValue = newValue.Replace(" ", "");
+            if (newValue != "" && newValue != "-")
+                switch (indexColumn)
+                {
+                    case 1:
+                        InventoryItems[indexRow].Weight = int.Parse(newValue) * InventoryItems[indexRow].Count;
+                        break;
+                    case 3:
+                        InventoryItems[indexRow].Chopping = int.Parse(newValue) * QualityToDouble(InventoryItems[indexRow].Quality);
+                        break;
+                    case 4:
+                        InventoryItems[indexRow].Stabbing = int.Parse(newValue) * QualityToDouble(InventoryItems[indexRow].Quality);
+                        break;
+                    case 5:
+                        InventoryItems[indexRow].Crushing = (int.Parse(newValue) * QualityToDouble(InventoryItems[indexRow].Quality) + InventoryItems[indexRow].DamageSeverity);
+                        break;
+                    case 7:
+                        InventoryItems[indexRow].KD = int.Parse(newValue) * QualityToDouble(InventoryItems[indexRow].Quality);
+                        KDScript.CountKD();
+                        break;
+                }
         }
 
         public static double QualityToDouble(string quality)
@@ -418,6 +388,7 @@ namespace DNDHelper.Modules.Inventory
                     _quality = value;
                     UpdateAllValue();
                     SetQualityBaffs(1, _quality);
+                    KDScript.CountKD();
                     OnPropertyChanged();
                 }
             }
@@ -635,6 +606,7 @@ namespace DNDHelper.Modules.Inventory
                     else
                         ForeColorKDEquipped = Brushes.Red;
                     Main.ItemBaffsListScript.UpdateValues();
+                    KDScript.CountKD();
                     OnPropertyChanged();
                 }
             }
@@ -649,6 +621,7 @@ namespace DNDHelper.Modules.Inventory
                     ForeColorKD = Brushes.Orange;
                 if (_countKD == true && _countKDHelmet == true)
                     ForeColorKD = Brushes.Green;
+                KDScript.CountKD();
             }
 
             public ObservableCollection<ItemBaff> Baffs { get; set; } = new();

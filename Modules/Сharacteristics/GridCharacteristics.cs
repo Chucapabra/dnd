@@ -224,17 +224,23 @@ namespace DNDHelper.Modules.Сharacteristics
         public void AgilityMethod()
         {
             PointsAgilitySkills = (int)((Base(Agility) + Race.Stats[2].Value + PlayerClass.Stats[2].Value) * 3 * 0.75);
+
+            AttributesCharacter.СountAvailableActions();
+            AttributesCharacter.StickMethod();
         }
 
 
         public void BodyMethod()
         {
             Health.HealthUpdate();
+            KDScript.CountKD();
         }
 
         public void IntellectMethod()
         {
             PointsIntellectSkills = (int)((Base(Intellect) + Race.Stats[7].Value + PlayerClass.Stats[7].Value) * 6 * 0.75);
+
+            KDScript.CountMentalKD();
         }
 
         public void WisdomMethod()

@@ -36,14 +36,6 @@ namespace DNDHelper.Modules.Character
 
         private void CurrentHealth_textblock_KeyDown(object sender, KeyEventArgs e)
         {
-            var textBox = sender as TextBox;
-            int caretIndex = textBox.CaretIndex;
-            string newText = textBox.Text.Replace(" ", "");
-            if (textBox.Text != newText)
-            {
-                textBox.Text = newText;
-                textBox.CaretIndex = Math.Min(caretIndex, newText.Length);
-            }
             if (e.Key == Key.Enter)
             {
                 string text = main.CurrentHealth_textbox.Text;

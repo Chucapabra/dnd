@@ -543,8 +543,6 @@ E:\Project\DND-github\dnd-2\dnd\obj\Debug\net9.0-windows\App.g.cs
 E:\Project\DND-github\dnd-2\dnd\obj\Debug\net9.0-windows\DNDHelper_MarkupCompile.cache
 E:\Project\DND-github\dnd-2\dnd\obj\Debug\net9.0-windows\DNDHelper_MarkupCompile.lref
 E:\Project\DND-github\dnd-2\dnd\obj\Debug\net9.0-windows\App.baml
-E:\Project\DND-github\dnd-2\dnd\obj\Debug\net9.0-windows\Resources\Dark.baml
-E:\Project\DND-github\dnd-2\dnd\obj\Debug\net9.0-windows\Resources\Light.baml
 E:\Project\DND-github\dnd-2\dnd\obj\Debug\net9.0-windows\Windows\CustomSpells.baml
 E:\Project\DND-github\dnd-2\dnd\obj\Debug\net9.0-windows\Windows\Main.baml
 E:\Project\DND-github\dnd-2\dnd\obj\Debug\net9.0-windows\Windows\Settings.baml
@@ -560,3 +558,4 @@ E:\Project\DND-github\dnd-2\dnd\obj\Debug\net9.0-windows\refint\DNDHelper.dll
 E:\Project\DND-github\dnd-2\dnd\obj\Debug\net9.0-windows\DNDHelper.pdb
 E:\Project\DND-github\dnd-2\dnd\obj\Debug\net9.0-windows\DNDHelper.genruntimeconfig.cache
 E:\Project\DND-github\dnd-2\dnd\obj\Debug\net9.0-windows\ref\DNDHelper.dll
+E:\Project\DND-github\dnd-2\dnd\obj\Debug\net9.0-windows\DNDHelper_Content.g.cs
