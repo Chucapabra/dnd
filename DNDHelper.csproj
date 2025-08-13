@@ -20,8 +20,4 @@
     <PackageReference Include="MaterialDesignThemes.MahApps" Version="5.2.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Modules\Magic\" />
-  </ItemGroup>
-
 </Project>

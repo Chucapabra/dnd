@@ -65,7 +65,7 @@ namespace DNDHelper.Modules.Сharacteristics
             "запугивание", "выступление", "убеждение"
         };
 
-        private static readonly int[] _baseStats = new int[Enum.GetValues(typeof(StatName)).Length];
+        public static readonly int[] _baseStats = new int[Enum.GetValues(typeof(StatName)).Length];
         private static readonly int[] _buffedStats = new int[_baseStats.Length];
         private static readonly int[] _OtherBuffStats = new int[_baseStats.Length];
 

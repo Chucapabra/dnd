@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DNDHelper.Modules;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,17 @@ namespace DNDHelper.Windows
 		public CustomSpells()
 		{
 			InitializeComponent();
+		}
+
+		private void Damage_Custom_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			TextboxProcessing.WholeNumbersOnly(Damage_Custom_textbox, e);
+        }
+
+		private void Damage_Custom_textbox_Pasting(object sender, DataObjectPastingEventArgs e)
+		{
+			e.CancelCommand();
+			e.Handled = true;
 		}
 	}
 }

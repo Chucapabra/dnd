@@ -433,7 +433,7 @@
 							<StackPanel Margin="-25,-15,10,0">
 								<StackPanel Orientation="Horizontal">
 									<CheckBox x:Name="weight_count_checkbox" Content="Считать вес"/>
-									<CheckBox x:Name="equipped_checkbox" Margin="5,0,0,0" Content="Одето"/>
+									<CheckBox x:Name="equipped_checkbox" Margin="5,0,0,0" Content="Надето"/>
 								</StackPanel>
 								<StackPanel Orientation="Horizontal">
 									<CheckBox x:Name="kd_count_checkbox" Content="КД"/>
@@ -607,12 +607,12 @@
 						<ColumnDefinition/>
 					</Grid.ColumnDefinitions>
 					<Grid.RowDefinitions>
-						<RowDefinition Height="41*"/>
-						<RowDefinition Height="48*"/>
-						<RowDefinition Height="224*"/>
-						<RowDefinition Height="63*"/>
+						<RowDefinition Height="21*"/>
+						<RowDefinition Height="21*"/>
+						<RowDefinition Height="96*"/>
+						<RowDefinition Height="47*"/>
 					</Grid.RowDefinitions>
-					<StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
+					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5,0,6,0" Height="36">
 						<StackPanel>
 							<TextBlock Text="Школа:"/>
 							<ComboBox x:Name="SchoolSelect_cb" Width="120">
@@ -648,12 +648,12 @@
 							</ComboBox>
 						</StackPanel>
 					</StackPanel>
-					<StackPanel Orientation="Horizontal" Grid.Column="1" Grid.ColumnSpan="2">
+					<StackPanel Orientation="Horizontal" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Height="18">
 						<TextBlock Text="Множитель урона:"/>
 						<TextBlock Width="40" TextAlignment="Center" x:Name="DamageMagic_textblock" Text="1"  Visibility="Visible" MouseLeftButtonDown="DamageMagic_textblock_MouseLeftButtonDown"/>
 						<TextBox Style="{DynamicResource STYLE_NAME}" Foreground="{DynamicResource StandartForeColor}" Background="{DynamicResource StandartBackColor}" x:Name="DamageMagic_textbox" Width="40" Height="17" Text="1" TextAlignment="Center" Visibility="Collapsed" materialDesign:HintAssist.Hint="Число"  DataObject.Pasting="DamageMagic_textbox_Pasting" AcceptsReturn="False" VerticalAlignment="Top" PreviewTextInput="DamageMagic_textbox_PreviewTextInput" PreviewKeyDown="DamageMagic_textbox_PreviewKeyDown" MaxLength="6"/>
 					</StackPanel>
-					<StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3">
+					<StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" Margin="5,0,5,0" VerticalAlignment="Center" Height="42">
 						<StackPanel>
 							<TextBlock Text="Поиск"/>
 							<TextBox materialDesign:HintAssist.Hint="Название" x:Name="CastSearch_textbox" Width="100" MaxLength="255"/>
@@ -729,6 +729,13 @@
 							  CanUserResizeRows="False"
 							  CanUserResizeColumns="False"
 							  CanUserSortColumns="False">
+						<DataGrid.ContextMenu>
+							<ContextMenu>
+								<MenuItem x:Name="AddCustomSpellCurrent" Header="Добавить"/>
+								<MenuItem x:Name="DeleteCustomSpellCurrent" Header="Удалить"/>
+								<MenuItem x:Name="MoveSpellCurrent" Header="Переместить вправо"/>
+							</ContextMenu>
+						</DataGrid.ContextMenu>
 						<DataGrid.Columns>
 							<DataGridTextColumn Header="Название" Binding="{Binding CurrentSpellName}"/>
 							<DataGridTextColumn Header="Вид" Binding="{Binding CurrentSpellType}"/>
@@ -750,6 +757,11 @@
 							  CanUserResizeColumns="False"
 							  CanUserSortColumns="False" Grid.ColumnSpan="2"
 							  Visibility="{DynamicResource IsEdit}">
+						<DataGrid.ContextMenu>
+							<ContextMenu>
+								<MenuItem x:Name="MoveSpellAll" Header="Переместить влево"/>
+							</ContextMenu>
+						</DataGrid.ContextMenu>
 						<DataGrid.Columns>
 							<DataGridTextColumn Header="Название" Binding="{Binding AllSpellName}"/>
 							<DataGridTextColumn Header="Вид" Binding="{Binding AllSpellType}"/>
@@ -760,11 +772,13 @@
 							<DataGridTextColumn Header="Описание" Binding="{Binding AllSpellDescription}" Visibility="Collapsed"/>
 						</DataGrid.Columns>
 					</DataGrid>
-					<TextBlock x:Name="CurrentSpellDescription" Grid.Row="3" Text="[[Описание]]" TextWrapping="Wrap" Margin="5" Grid.ColumnSpan="3"/>
-					<TextBlock x:Name="AllSpellDescription" Grid.Row="3" Grid.Column="2" Text="[[Описание]]" TextWrapping="Wrap" Margin="5" Visibility="{DynamicResource IsEdit}"/>
+					<TextBlock x:Name="CurrentSpellDescription" Grid.Row="3" Text="[[Описание]]" TextWrapping="Wrap" Margin="5,5,5,5" Grid.ColumnSpan="3"/>
+					<TextBlock x:Name="AllSpellDescription" Grid.Row="3" Grid.Column="2" Text="[[Описание]]" TextWrapping="Wrap" Margin="6,5,5,5" Visibility="{DynamicResource IsEdit}"/>
 					<Border Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Visibility="{DynamicResource IsEdit}"/>
 					<Border Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3"/>
 					<Border Grid.ColumnSpan="3" Grid.RowSpan="4"/>
+					<Border Grid.ColumnSpan="3"/>
+					<Border Grid.ColumnSpan="3" Grid.Row="1"/>
 				</Grid>
 			</TabItem>
 			<TabItem Header="Дневник">
@@ -876,6 +890,188 @@
 				</Grid>
 			</TabItem>
 			<TabItem Header="Справочники">
+			</TabItem>
+			<TabItem Header="Магия">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
+						<ColumnDefinition Width="1"/>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="21*"/>
+						<RowDefinition Height="21*"/>
+						<RowDefinition Height="96*"/>
+						<RowDefinition Height="47*"/>
+					</Grid.RowDefinitions>
+					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5,0,6,0" Height="36">
+						<StackPanel>
+							<TextBlock Text="Школа:"/>
+							<ComboBox x:Name="SchoolSelect_cb1" Width="120">
+								<ComboBoxItem Content="Отсутствует"/>
+								<ComboBoxItem Content="Ограждения"/>
+								<ComboBoxItem Content="Вызова"/>
+								<ComboBoxItem Content="Прорицания"/>
+								<ComboBoxItem Content="Очарования"/>
+								<ComboBoxItem Content="Воплощения"/>
+								<ComboBoxItem Content="Иллюзии"/>
+								<ComboBoxItem Content="Некромантии"/>
+								<ComboBoxItem Content="Преобразования"/>
+							</ComboBox>
+						</StackPanel>
+						<StackPanel Margin="10,0,0,0">
+							<TextBlock Text="Катализатор:"/>
+							<ComboBox x:Name="CatalyzerSelect_cb1">
+								<ComboBoxItem Content="Посох"/>
+								<ComboBoxItem Content="Палочка"/>
+								<ComboBoxItem Content="Талисман"/>
+							</ComboBox>
+						</StackPanel>
+						<StackPanel Margin="10,0,0,0">
+							<TextBlock Text="Качество:"/>
+							<ComboBox x:Name="CatalyzerQualitySelect_cb1" Width="100">
+								<ComboBoxItem Content="Прото"/>
+								<ComboBoxItem Content="Плохое"/>
+								<ComboBoxItem Content="Стандартное"/>
+								<ComboBoxItem Content="Высокое"/>
+								<ComboBoxItem Content="Великолепное"/>
+								<ComboBoxItem Content="Мастерское"/>
+								<ComboBoxItem Content="Мифическое"/>
+							</ComboBox>
+						</StackPanel>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Height="18">
+						<TextBlock Text="Множитель урона:"/>
+						<TextBlock Width="40" TextAlignment="Center" x:Name="DamageMagic_textblock1" Text="1"  Visibility="Visible" MouseLeftButtonDown="DamageMagic_textblock_MouseLeftButtonDown"/>
+						<TextBox Style="{DynamicResource STYLE_NAME}" Foreground="{DynamicResource StandartForeColor}" Background="{DynamicResource StandartBackColor}" x:Name="DamageMagic_textbox1" Width="40" Height="17" Text="1" TextAlignment="Center" Visibility="Collapsed" materialDesign:HintAssist.Hint="Число"  DataObject.Pasting="DamageMagic_textbox_Pasting" AcceptsReturn="False" VerticalAlignment="Top" PreviewTextInput="DamageMagic_textbox_PreviewTextInput" PreviewKeyDown="DamageMagic_textbox_PreviewKeyDown" MaxLength="6"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" Margin="5,0,5,0" VerticalAlignment="Center" Height="42">
+						<StackPanel>
+							<TextBlock Text="Поиск"/>
+							<TextBox materialDesign:HintAssist.Hint="Название" x:Name="CastSearch_textbox1" Width="100" MaxLength="255"/>
+						</StackPanel>
+						<StackPanel Margin="15,0,0,0">
+							<TextBlock Text="Вид"/>
+							<ComboBox Width="120" SelectedIndex="3">
+								<ComboBoxItem Content="Все"/>
+								<ComboBoxItem Content="Обычные"/>
+								<ComboBoxItem Content="Тайные"/>
+								<ComboBoxItem Content="Запрещённые"/>
+								<ComboBoxItem Content="Проклятые"/>
+								<ComboBoxItem Content="Созданные"/>
+							</ComboBox>
+						</StackPanel>
+						<StackPanel Margin="15,0,0,0">
+							<TextBlock Text="Школа"/>
+							<ComboBox SelectedIndex="0" x:Name="SchoolSelect_Search_cb1" Width="130">
+								<ComboBoxItem Content="Любая"/>
+								<ComboBoxItem Content="Ограждения"/>
+								<ComboBoxItem Content="Вызова"/>
+								<ComboBoxItem Content="Прорицания"/>
+								<ComboBoxItem Content="Очарования"/>
+								<ComboBoxItem Content="Воплощения"/>
+								<ComboBoxItem Content="Иллюзии"/>
+								<ComboBoxItem Content="Некромантии"/>
+								<ComboBoxItem Content="Преобразования"/>
+							</ComboBox>
+						</StackPanel>
+						<StackPanel Margin="15,0,0,0">
+							<TextBlock Text="Урон"/>
+							<ComboBox SelectedIndex="0" x:Name="Damage_Search_cb1" Width="65">
+								<ComboBoxItem Content="Любой"/>
+								<ComboBoxItem Content="Есть"/>
+								<ComboBoxItem Content="Нет"/>
+							</ComboBox>
+						</StackPanel>
+						<StackPanel Margin="15,0,0,0">
+							<TextBlock Text="Ролл"/>
+							<ComboBox SelectedIndex="0" x:Name="Roll_Search_cb1" Width="60">
+								<ComboBoxItem Content="Любой"/>
+								<ComboBoxItem Content="&gt;0"/>
+								<ComboBoxItem Content="&lt;0"/>
+								<ComboBoxItem Content="0"/>
+							</ComboBox>
+						</StackPanel>
+						<StackPanel Margin="15,0,0,0">
+							<TextBlock Text="Уровень"/>
+							<ComboBox SelectedIndex="0" x:Name="LevelCast_Search_cb1" Width="70">
+								<ComboBoxItem Content="Заговор"/>
+								<ComboBoxItem Content="1"/>
+								<ComboBoxItem Content="2"/>
+								<ComboBoxItem Content="3"/>
+								<ComboBoxItem Content="4"/>
+								<ComboBoxItem Content="5"/>
+								<ComboBoxItem Content="6"/>
+								<ComboBoxItem Content="7"/>
+								<ComboBoxItem Content="8"/>
+								<ComboBoxItem Content="9"/>
+								<ComboBoxItem Content="10"/>
+								<ComboBoxItem Content="11"/>
+								<ComboBoxItem Content="12"/>
+							</ComboBox>
+						</StackPanel>
+					</StackPanel>
+					<DataGrid Grid.Row="2" Grid.ColumnSpan="3"
+			   x:Name="DataGridCurrentSpells1" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+			   AutoGenerateColumns="False"
+			   SelectionMode="Single"
+			   CanUserAddRows="False"
+			   CanUserDeleteRows="False"
+			   CanUserReorderColumns="False"
+			   CanUserResizeRows="False"
+			   CanUserResizeColumns="False"
+			   CanUserSortColumns="False">
+						<DataGrid.ContextMenu>
+							<ContextMenu>
+								<MenuItem x:Name="AddCustomSpellCurrent1" Header="Добавить"/>
+								<MenuItem x:Name="DeleteCustomSpellCurrent1" Header="Удалить"/>
+								<MenuItem x:Name="MoveSpellCurrent1" Header="Переместить вправо"/>
+							</ContextMenu>
+						</DataGrid.ContextMenu>
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="Название" Binding="{Binding CurrentSpellName}"/>
+							<DataGridTextColumn Header="Вид" Binding="{Binding CurrentSpellType}"/>
+							<DataGridTextColumn Header="Школа" Binding="{Binding CurrentSpellSchool}"/>
+							<DataGridTextColumn Header="Урон" Binding="{Binding CurrentSpellDamage}"/>
+							<DataGridTextColumn Header="Ролл" Binding="{Binding CurrentSpellRoll}"/>
+							<DataGridTextColumn Header="Уровень" Binding="{Binding CurrentSpellLevel}"/>
+							<DataGridTextColumn Header="Описание" Binding="{Binding CurrentSpellDescription}" Visibility="Collapsed"/>
+						</DataGrid.Columns>
+					</DataGrid>
+					<DataGrid Grid.Row="2" Grid.Column="1"
+			   x:Name="DataGridAllSpells1" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+			   AutoGenerateColumns="False"
+			   SelectionMode="Single"
+			   CanUserAddRows="False"
+			   CanUserDeleteRows="False"
+			   CanUserReorderColumns="False"
+			   CanUserResizeRows="False"
+			   CanUserResizeColumns="False"
+			   CanUserSortColumns="False" Grid.ColumnSpan="2"
+			   Visibility="{DynamicResource IsEdit}">
+						<DataGrid.ContextMenu>
+							<ContextMenu>
+								<MenuItem x:Name="MoveSpellAll1" Header="Переместить влево"/>
+							</ContextMenu>
+						</DataGrid.ContextMenu>
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="Название" Binding="{Binding AllSpellName}"/>
+							<DataGridTextColumn Header="Вид" Binding="{Binding AllSpellType}"/>
+							<DataGridTextColumn Header="Школа" Binding="{Binding AllSpellSchool}"/>
+							<DataGridTextColumn Header="Урон" Binding="{Binding AllSpellDamage}"/>
+							<DataGridTextColumn Header="Ролл" Binding="{Binding AllSpellRoll}"/>
+							<DataGridTextColumn Header="Уровень" Binding="{Binding AllSpellLevel}"/>
+							<DataGridTextColumn Header="Описание" Binding="{Binding AllSpellDescription}" Visibility="Collapsed"/>
+						</DataGrid.Columns>
+					</DataGrid>
+					<TextBlock x:Name="CurrentSpellDescription1" Grid.Row="3" Text="[[Описание]]" TextWrapping="Wrap" Margin="5,5,5,5" Grid.ColumnSpan="3"/>
+					<TextBlock x:Name="AllSpellDescription1" Grid.Row="3" Grid.Column="2" Text="[[Описание]]" TextWrapping="Wrap" Margin="6,5,5,5" Visibility="{DynamicResource IsEdit}"/>
+					<Border Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Visibility="{DynamicResource IsEdit}"/>
+					<Border Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3"/>
+					<Border Grid.ColumnSpan="3" Grid.RowSpan="4"/>
+					<Border Grid.ColumnSpan="3"/>
+					<Border Grid.ColumnSpan="3" Grid.Row="1"/>
+				</Grid>
 			</TabItem>
 		</TabControl>
 		<DataGrid Grid.Row="1" SelectionMode="Single" FontSize="12" x:Name="DataGridCharacterisctics" AutoGenerateColumns="False" Margin="0,0,0,-304" IsReadOnly="True"

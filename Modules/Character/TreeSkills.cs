@@ -19,7 +19,7 @@ namespace DNDHelper.Modules.Character
         public static List<string> Skills = new List<string>();
         public static int AddKD = 0;
 
-        public ObservableCollection<TreeGrid> treeGrids = new() {
+        public static ObservableCollection<TreeGrid> TreeGrids = new() {
             new TreeGrid { TreeName = "", TreeLevel = 0 },
             new TreeGrid { TreeName = "", TreeLevel = 0 },
             new TreeGrid { TreeName = "", TreeLevel = 0 }
@@ -27,7 +27,7 @@ namespace DNDHelper.Modules.Character
 
         public TreeSkills()
         {
-            main.DataGridTreeDevelopment.ItemsSource = treeGrids;
+            main.DataGridTreeDevelopment.ItemsSource = TreeGrids;
             ClearStats();    
         }
 
@@ -44,9 +44,9 @@ namespace DNDHelper.Modules.Character
         {
             int selectedIndex = main.DataGridTreeDevelopment.SelectedIndex;
 
-            if (points > 0 && treeGrids[selectedIndex].TreeLevel < 5)
+            if (points > 0 && TreeGrids[selectedIndex].TreeLevel < 5)
             {
-                treeGrids[selectedIndex].TreeLevel++;
+                TreeGrids[selectedIndex].TreeLevel++;
                 UpdateTreeLevel();
             }
         }
@@ -55,9 +55,9 @@ namespace DNDHelper.Modules.Character
         {
             int selectedIndex = main.DataGridTreeDevelopment.SelectedIndex;
 
-            if (treeGrids[selectedIndex].TreeLevel > 0)
+            if (TreeGrids[selectedIndex].TreeLevel > 0)
             {
-                treeGrids[selectedIndex].TreeLevel--;
+                TreeGrids[selectedIndex].TreeLevel--;
                 UpdateTreeLevel();
             }
         }
@@ -65,7 +65,7 @@ namespace DNDHelper.Modules.Character
         public void UpdateTreeLevel()
         {
             int usedPoints = 0;
-            foreach (TreeGrid treeGrid in treeGrids)
+            foreach (TreeGrid treeGrid in TreeGrids)
                 usedPoints += treeGrid.TreeLevel;
 
             points = LevelBaffs.PointsTree - usedPoints;
@@ -91,7 +91,7 @@ namespace DNDHelper.Modules.Character
             if (PlayerClass.SelectedClassData.ClassTrees.Count > 0)
             foreach (var item in PlayerClass.SelectedClassData.ClassTrees[0])
             {
-                    for (int j = 0; j < treeGrids[i].TreeLevel; j++)
+                    for (int j = 0; j < TreeGrids[i].TreeLevel; j++)
                         foreach (var stage in PlayerClass.SelectedClassData.ClassTrees[0][item.Key][0][j][0])
                             FindAddStats(stage.Key, stage.Value);
                 i++;
@@ -146,13 +146,13 @@ namespace DNDHelper.Modules.Character
 
         public void SetClassTree()
         {
-            int[] levels = new int[] { treeGrids[0].TreeLevel, treeGrids[1].TreeLevel, treeGrids[2].TreeLevel }; 
+            int[] levels = new int[] { TreeGrids[0].TreeLevel, TreeGrids[1].TreeLevel, TreeGrids[2].TreeLevel }; 
 
-            treeGrids.Clear();
+            TreeGrids.Clear();
             int i = 0;
             foreach (var item in PlayerClass.SelectedClassData.ClassTrees[0])
             {
-                treeGrids.Add(new TreeGrid() { TreeName = item.Key, TreeLevel = levels[i] } );
+                TreeGrids.Add(new TreeGrid() { TreeName = item.Key, TreeLevel = levels[i] } );
                 i++;
             }
             

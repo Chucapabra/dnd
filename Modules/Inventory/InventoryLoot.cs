@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Text.Json.Serialization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -15,7 +16,7 @@ using static MaterialDesignThemes.Wpf.Theme.ToolBar;
 
 namespace DNDHelper.Modules.Inventory
 {
-    internal class InventoryLoot
+    public class InventoryLoot
     {
         Main main = Main.Instance;
 
@@ -521,6 +522,7 @@ namespace DNDHelper.Modules.Inventory
             }
 
             private Brush _foreColorWeight = new SolidColorBrush(Settings.Settings.SelectedTheme[1]);
+            [JsonIgnore]
             public Brush ForeColorWeight
             {
                 get => _foreColorWeight;
@@ -549,6 +551,7 @@ namespace DNDHelper.Modules.Inventory
 
 
             private Brush _foreColorKD = new SolidColorBrush(Settings.Settings.SelectedTheme[1]);
+            [JsonIgnore]
             public Brush ForeColorKD
             {
                 get => _foreColorKD;
@@ -584,6 +587,7 @@ namespace DNDHelper.Modules.Inventory
             }
 
             private Brush _foreColorKDEquipped = new SolidColorBrush(Settings.Settings.SelectedTheme[1]);
+            [JsonIgnore]
             public Brush ForeColorKDEquipped
             {
                 get => _foreColorKDEquipped;

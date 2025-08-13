@@ -3,6 +3,7 @@ using DNDHelper.Modules.Character;
 using DNDHelper.Modules.Config;
 using DNDHelper.Modules.Diary;
 using DNDHelper.Modules.Inventory;
+using DNDHelper.Modules.MagicSpells;
 using DNDHelper.Modules.Сharacteristics;
 using Microsoft.Win32;
 using System;
@@ -63,6 +64,7 @@ namespace DNDHelper.Windows
             InventoryLoot inventoryLoot = new();
             Skills skills = new();
             Level level = new();
+			MagicSpells magicSpells = new();
             TreeSkillsScript = new();
             Characteristics = new();
             Characteristics.UpdateAllCharacterisitc();
@@ -117,6 +119,7 @@ namespace DNDHelper.Windows
 				Grid.SetColumnSpan(CurrentSpellDescription, 3);
 				DataGridAllSpells.Visibility = Visibility.Collapsed;
 				AllSpellDescription.Visibility = Visibility.Collapsed;
+				ChangeNameCharacter();
 			}
 			else
 			{
@@ -134,6 +137,11 @@ namespace DNDHelper.Windows
 				DataGridAllSpells.Visibility = Visibility.Visible;
 				AllSpellDescription.Visibility = Visibility.Visible;
 			}
+		}
+		private void ChangeNameCharacter()
+		{
+			character_name_textblock.Text = character_name_textbox.Text;
+			// Сюда нужно запихнуть сохранение
 		}
 
 		private void Settings_Click(object sender, RoutedEventArgs e)
@@ -369,7 +377,12 @@ namespace DNDHelper.Windows
 			{
 				DamageMagic_textblock.Visibility = Visibility.Visible;
 				DamageMagic_textbox.Visibility = Visibility.Collapsed;
-				if (DamageMagic_textbox.Text.Length == 0 || DamageMagic_textbox.Text == "-0" || DamageMagic_textbox.Text == "-" || DamageMagic_textbox.Text == ",")
+				if (DamageMagic_textbox.Text.Length == 0 ||
+					DamageMagic_textbox.Text == "-0" ||
+					DamageMagic_textbox.Text == "-" ||
+					DamageMagic_textbox.Text == "," ||
+					DamageMagic_textbox.Text == "-0,"
+					)
 				{
 					DamageMagic_textbox.Text = "0";
 					DamageHealth_textblock.Text = "0";

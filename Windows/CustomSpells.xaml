@@ -4,9 +4,72 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DNDHelper.Windows"
+		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+		Style="{StaticResource MaterialDesignWindow}"
         mc:Ignorable="d"
-        Title="CustomSpells" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Создание заклинания" Height="300" Width="635" ResizeMode="NoResize">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="55*"/>
+			<RowDefinition Height="171*"/>
+			<RowDefinition Height="58*"/>
+		</Grid.RowDefinitions>
+		<StackPanel Orientation="Horizontal" Margin="5,0,5,0" VerticalAlignment="Center" Height="42">
+			<StackPanel>
+				<TextBlock Text="Поиск"/>
+				<TextBox materialDesign:HintAssist.Hint="Название" materialDesign:TextFieldAssist.CharacterCounterVisibility="Hidden" x:Name="CastCustom_textbox" Width="100" MaxLength="255"/>
+			</StackPanel>
+			<StackPanel Margin="15,0,0,0">
+				<TextBlock Text="Вид"/>
+				<ComboBox x:Name="Custom_textbox" Width="120" SelectedIndex="0">
+					<ComboBoxItem Content="Обычное"/>
+					<ComboBoxItem Content="Тайное"/>
+					<ComboBoxItem Content="Запрещённое"/>
+					<ComboBoxItem Content="Проклятое"/>
+				</ComboBox>
+			</StackPanel>
+			<StackPanel Margin="15,0,0,0">
+				<TextBlock Text="Школа"/>
+				<ComboBox SelectedIndex="0" x:Name="SchoolSelect_Custom_cb" Width="130">
+					<ComboBoxItem Content="Отсутсвует"/>
+					<ComboBoxItem Content="Ограждения"/>
+					<ComboBoxItem Content="Вызова"/>
+					<ComboBoxItem Content="Прорицания"/>
+					<ComboBoxItem Content="Очарования"/>
+					<ComboBoxItem Content="Воплощения"/>
+					<ComboBoxItem Content="Иллюзии"/>
+					<ComboBoxItem Content="Некромантии"/>
+					<ComboBoxItem Content="Преобразования"/>
+				</ComboBox>
+			</StackPanel>
+			<StackPanel Margin="15,0,0,0">
+				<TextBlock Text="Урон"/>
+				<TextBox materialDesign:HintAssist.Hint="Число" x:Name="Damage_Custom_textbox" Width="65" PreviewTextInput="Damage_Custom_textbox_PreviewTextInput" DataObject.Pasting="Damage_Custom_textbox_Pasting" MaxLength="7" materialDesign:TextFieldAssist.CharacterCounterVisibility="Hidden"/>
+			</StackPanel>
+			<StackPanel Margin="15,0,0,0">
+				<TextBlock Text="Уровень"/>
+				<ComboBox SelectedIndex="0" x:Name="LevelCast_Custom_cb" Width="70">
+					<ComboBoxItem Content="Заговор"/>
+					<ComboBoxItem Content="1"/>
+					<ComboBoxItem Content="2"/>
+					<ComboBoxItem Content="3"/>
+					<ComboBoxItem Content="4"/>
+					<ComboBoxItem Content="5"/>
+					<ComboBoxItem Content="6"/>
+					<ComboBoxItem Content="7"/>
+					<ComboBoxItem Content="8"/>
+					<ComboBoxItem Content="9"/>
+					<ComboBoxItem Content="10"/>
+					<ComboBoxItem Content="11"/>
+					<ComboBoxItem Content="12"/>
+				</ComboBox>
+			</StackPanel>
+		</StackPanel>
+		<TextBox Grid.Row="1" materialDesign:HintAssist.Hint="Описание" materialDesign:TextFieldAssist.CharacterCounterVisibility="Hidden" Margin="5,5,5,5" MaxLength="5000" TextWrapping="Wrap"/>
+		<StackPanel Grid.Row="2" Orientation="Horizontal" Margin="5">
+			<Button Content="Добавить" Margin="5"/>
+			<CheckBox Content="Считать урон" Margin="5" IsChecked="True"/>
+			<CheckBox Content="Природное" Margin="5"/>
+		</StackPanel>
+	</Grid>
 </Window>

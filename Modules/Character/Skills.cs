@@ -13,7 +13,7 @@ using System.Windows.Media;
 
 namespace DNDHelper.Modules.Character
 {
-    internal class Skills
+    public class Skills
     {
         Main main = Main.Instance;
 
