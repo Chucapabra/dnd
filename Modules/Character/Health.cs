@@ -1,5 +1,6 @@
 ﻿using DNDHelper.Modules.Config;
 using DNDHelper.Modules.Inventory;
+using DNDHelper.Modules.Settings;
 using DNDHelper.Modules.Сharacteristics;
 using DNDHelper.Windows;
 using System.Windows;
@@ -10,7 +11,14 @@ namespace DNDHelper.Modules.Character
 {
     internal class Health
     {
-        public static int Damage = 0;
+        public static int Damage
+        {
+            get => DataManager.DataSave.Damage;
+            set
+            {
+                DataManager.DataSave.Damage = value;
+            }
+        }
         public static int MaxHealth = 0;
         Main main = Main.Instance;
         public Health() 

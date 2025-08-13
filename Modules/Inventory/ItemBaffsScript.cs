@@ -141,25 +141,25 @@ namespace DNDHelper.Modules.Inventory
                 foreach (var baff in ItemBaffsList)
                     if (baff.AddValue != 0 || baff.AddRoll != 0)
                         InventoryItems[selectedItemIndex].Baffs.Add(baff);
-
-                ClearItemBaffs();
-                foreach (var item in InventoryItems)
-                {                    
-                    if (item.Equipped)
-                        foreach (var baff in item.Baffs)
-                        {
-                            if (baff.SelectedIndex != -1)
-                            {
-                                ItemBaffs[baff.SelectedIndex][0] = baff.WholeAddValue;
-                                ItemBaffs[baff.SelectedIndex][1] = baff.WholeAddRoll;
-                            }
-                        }
-                }
-                Main.Characteristics.UpdateAllCharacterisitc();
-                Health.HealthUpdate();
-                AttributesCharacter.CallAllMethodInScript();
-                KDScript.UpdateAllKD();
             }
+
+            ClearItemBaffs();
+            foreach (var item in InventoryItems)
+            {
+                if (item.Equipped)
+                    foreach (var baff in item.Baffs)
+                    {
+                        if (baff.SelectedIndex != -1)
+                        {
+                            ItemBaffs[baff.SelectedIndex][0] += baff.WholeAddValue;
+                            ItemBaffs[baff.SelectedIndex][1] += baff.WholeAddRoll;
+                        }
+                    }
+            }
+            Main.Characteristics.UpdateAllCharacterisitc();
+            Health.HealthUpdate();
+            AttributesCharacter.CallAllMethodInScript();
+            KDScript.UpdateAllKD();
         }
 
         private void ClearItemBaffs()

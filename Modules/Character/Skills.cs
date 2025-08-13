@@ -1,4 +1,5 @@
 ﻿using DNDHelper.Modules.Config;
+using DNDHelper.Modules.Settings;
 using DNDHelper.Windows;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace DNDHelper.Modules.Character
         Main main = Main.Instance;
 
         public static ObservableCollection<Skill> ListSkills { get; set; } = new();
-        public static ObservableCollection<Skill> CustomSkills { get; set; } = new();
+        public static ObservableCollection<Skill> CustomSkills => DataManager.DataSave.CustomSkills;
 
         public Skills() 
         {
@@ -43,19 +44,26 @@ namespace DNDHelper.Modules.Character
         {
             int selectedIndex = main.DataGridChartherCharacterAbilities.SelectedIndex;
             if (selectedIndex != -1 && ListSkills[selectedIndex].Origin == "Своя")
+            {
                 ListSkills[selectedIndex].Description = main.Ability_TextBox.Text;
+                SaveCustomSkills();
+            }
         }
 
         private void DeleteMenuSkill_Click(object sender, RoutedEventArgs e)
         {
             int selectedIndex = main.DataGridChartherCharacterAbilities.SelectedIndex;
             if (selectedIndex != -1 && ListSkills[selectedIndex].Origin == "Своя")
+            {
                 ListSkills.RemoveAt(selectedIndex);
+                SaveCustomSkills();
+            }
         }
 
         private void AddMenuSkill_Click(object sender, RoutedEventArgs e)
         {
             ListSkills.Add(new());
+            SaveCustomSkills();
         }
 
         private void DataGridChartherCharacterAbilities_ContextMenuOpening(object sender, ContextMenuEventArgs e)
@@ -113,15 +121,17 @@ namespace DNDHelper.Modules.Character
                 e.Cancel = true;
         }
 
+        private static void SaveCustomSkills()
+        {
+            CustomSkills.Clear();
+            foreach (var skill in ListSkills)
+                if (skill.Origin == "Своя")
+                    CustomSkills.Add(skill);
+        }
+
+
         public static void ReloadDataGridSkills()
         {
-            // Сохранение кастомных способностей
-            CustomSkills.Clear();
-            foreach(var skill in ListSkills)
-                if(skill.Origin == "Своя")
-                    CustomSkills.Add(skill);
-
-
             ListSkills.Clear();
             if (Main.Instance.character_race_combobox.SelectedIndex != -1)
             {

@@ -68,18 +68,18 @@
 		<StackPanel VerticalAlignment="Center" Margin="10,50,0,0">
 			<StackPanel Orientation="Horizontal">
 				<TextBlock Text="Имя:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Width="60" />
-				<TextBlock Text="[[Имя]]" x:Name="character_name_textblock" Width="120" Visibility="Visible" VerticalAlignment="Center" />
-				<TextBox Width="120" x:Name="character_name_textbox" materialDesign:HintAssist.Hint="Имя" Visibility="Hidden" MaxLength="254"/>
+                <TextBlock Text="{Binding Name}" x:Name="character_name_textblock" Width="120" Visibility="Visible" VerticalAlignment="Center" />
+                <TextBox Text="{Binding Name}" Width="120" x:Name="character_name_textbox" materialDesign:HintAssist.Hint="Имя" Visibility="Hidden" MaxLength="254"/>
 			</StackPanel>
 			<StackPanel Orientation="Horizontal">
 				<TextBlock Text="Раса:" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0" Width="60" />
 				<TextBlock Text="[[Раса]]" x:Name="character_race_textblock" Width="120" Visibility="Visible" VerticalAlignment="Center" />
-				<ComboBox Width="120" x:Name="character_race_combobox" materialDesign:HintAssist.Hint="Раса" Visibility="Hidden"/>
+                <ComboBox SelectedIndex="{Binding SelectedRace}" Width="120" x:Name="character_race_combobox" materialDesign:HintAssist.Hint="Раса" Visibility="Hidden"/>
 			</StackPanel>
 			<StackPanel Orientation="Horizontal">
 				<TextBlock Text="Класс:" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0" Width="60"/>
 				<TextBlock Text="[[Класс]]" x:Name="character_class_textblock" Width="120" Visibility="Visible" VerticalAlignment="Center" />
-				<ComboBox Width="120" x:Name="character_class_combobox" materialDesign:HintAssist.Hint="Класс" Visibility="Hidden"/>
+                <ComboBox SelectedIndex="{Binding SelectedClass}" Width="120" x:Name="character_class_combobox" materialDesign:HintAssist.Hint="Класс" Visibility="Hidden"/>
 			</StackPanel>
 		</StackPanel>
 		<StackPanel>
@@ -442,15 +442,15 @@
 							</StackPanel>
 							<StackPanel  Orientation="Horizontal">
 								<TextBlock Text="Медяк" Margin="0,5,0,0" Width="110" Foreground="Orange"/>
-								<TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  materialDesign:HintAssist.Hint="Число" Width="40" x:Name="Cuprum_tb" PreviewTextInput="Cuprum_tb_PreviewTextInput" DataObject.Pasting="Cuprum_tb_Pasting"/>
+                                <TextBox Text="{Binding Copper}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  materialDesign:HintAssist.Hint="Число" Width="40" x:Name="Cuprum_tb" PreviewTextInput="Cuprum_tb_PreviewTextInput" DataObject.Pasting="Cuprum_tb_Pasting"/>
 							</StackPanel>
 							<StackPanel Margin="0,5,0,5" Orientation="Horizontal">
 								<TextBlock Text="Серебреник" Width="110" Foreground="Gray"/>
-								<TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="Число" Width="40" x:Name="Silver_tb" PreviewTextInput="Silver_tb_PreviewTextInput" DataObject.Pasting="Silver_tb_Pasting"/>
+                                <TextBox Text="{Binding Silver}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="Число" Width="40" x:Name="Silver_tb" PreviewTextInput="Silver_tb_PreviewTextInput" DataObject.Pasting="Silver_tb_Pasting"/>
 							</StackPanel>
 							<StackPanel Orientation="Horizontal">
 								<TextBlock Text="Золотой" Width="110" Foreground="Gold"/>
-								<TextBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="Число" Width="40" x:Name="Gold_tb" PreviewTextInput="Gold_tb_PreviewTextInput" DataObject.Pasting="Gold_tb_Pasting"/>
+                                <TextBox Text="{Binding Gold}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="Число" Width="40" x:Name="Gold_tb" PreviewTextInput="Gold_tb_PreviewTextInput" DataObject.Pasting="Gold_tb_Pasting"/>
 							</StackPanel>
 						</StackPanel>
 					</Border>
@@ -458,7 +458,7 @@
 						<StackPanel Margin="5,0,0,0" VerticalAlignment="Center">
 							<StackPanel  Orientation="Horizontal">
 								<TextBlock FontSize="12" Text="Рюкзак" Width="75" VerticalAlignment="Center"/>
-								<ComboBox materialDesign:HintAssist.Hint="Нет" Width="110" x:Name="backpack_cb" SelectionChanged="backpack_cb_SelectionChanged">
+                                <ComboBox materialDesign:HintAssist.Hint="Нет" Width="110" x:Name="backpack_cb" SelectedIndex="{Binding SelectedBackpack}" SelectionChanged="backpack_cb_SelectionChanged">
 									<ComboBoxItem Content="Нет"/>
 									<ComboBoxItem Content="Прото"/>
 									<ComboBoxItem Content="Плохой"/>
@@ -471,16 +471,16 @@
 							</StackPanel>
 							<StackPanel Margin="0,0,0,0" Orientation="Horizontal">
 								<TextBlock FontSize="12" Text="Кол-во" Width="75" VerticalAlignment="Center"/>
-								<ComboBox materialDesign:HintAssist.Hint="Нет" Width="40" x:Name="backpack_quantity_cb" ItemsSource="{x:Null}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="25"/>
+                                <ComboBox SelectedIndex="{Binding BackpackQuantity}" materialDesign:HintAssist.Hint="Нет" Width="40" x:Name="backpack_quantity_cb" ItemsSource="{x:Null}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="25"/>
 							</StackPanel>
 							<StackPanel Orientation="Horizontal">
 								<TextBlock FontSize="12" Text="Добавить к весу" TextWrapping="Wrap" Width="75"/>
-								<TextBox materialDesign:HintAssist.Hint="Число" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="40" x:Name="backpack_plus_tb" PreviewTextInput="backpack_plus_tb_PreviewTextInput" DataObject.Pasting="backpack_plus_tb_Pasting" MaxLength="7"/>
+								<TextBox Text="{Binding AddWeight}" materialDesign:HintAssist.Hint="Число" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="40" x:Name="backpack_plus_tb" PreviewTextInput="backpack_plus_tb_PreviewTextInput" DataObject.Pasting="backpack_plus_tb_Pasting" MaxLength="7"/>
 							</StackPanel>
 							<Separator/>
 							<StackPanel Orientation="Horizontal">
 								<TextBlock FontSize="12" Text="Тип брони" TextWrapping="Wrap" VerticalAlignment="Center" Width="75"/>
-								<ComboBox materialDesign:HintAssist.Hint="Число"  Width="72" SelectedIndex="0" x:Name="armor_type_cb">
+                                <ComboBox SelectedIndex="{Binding SelectedQualityArmor}" materialDesign:HintAssist.Hint="Число"  Width="72" x:Name="armor_type_cb">
 									<ComboBoxItem Content="Нет"/>
 									<ComboBoxItem Content="Лёгкая"/>
 									<ComboBoxItem Content="Средняя"/>

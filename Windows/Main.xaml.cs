@@ -4,6 +4,7 @@ using DNDHelper.Modules.Config;
 using DNDHelper.Modules.Diary;
 using DNDHelper.Modules.Inventory;
 using DNDHelper.Modules.MagicSpells;
+using DNDHelper.Modules.Settings;
 using DNDHelper.Modules.Сharacteristics;
 using Microsoft.Win32;
 using System;
@@ -39,7 +40,7 @@ namespace DNDHelper.Windows
 
         public static Main Instance;
 		public static GridCharacteristics Characteristics;
-        public static TreeSkills TreeSkillsScript;
+		public static TreeSkills TreeSkillsScript;
         public static ItemBaffsListScript ItemBaffsListScript;
 
         public Main()
@@ -55,9 +56,9 @@ namespace DNDHelper.Windows
 		public void InitializeClasses()
 		{
 			Instance = this;
+            DataContext = DataManager.DataSave;
 
 
-            
             Race @class = new ();
 			PlayerClass playerClass = new();
             ItemBaffsListScript = new();
@@ -74,6 +75,8 @@ namespace DNDHelper.Windows
             Health health = new Health();
 
             AttributesCharacter.CallAllMethodInScript();
+
+            DataManager.Load();
         }
 
 		public void SetTheme(Color Background, Color Foreground)
@@ -84,14 +87,16 @@ namespace DNDHelper.Windows
 		// Меню
 		private void UrlTusha(object sender, RoutedEventArgs e)
 		{
-			Process.Start(new ProcessStartInfo("https://docs.google.com/document/d/1rUMWdTp645Zy80d09ZMoJ6dmcw9lAP25tqxsdNkftaY/edit?usp=sharing") { UseShellExecute = true });
+            
+            Process.Start(new ProcessStartInfo("https://docs.google.com/document/d/1rUMWdTp645Zy80d09ZMoJ6dmcw9lAP25tqxsdNkftaY/edit?usp=sharing") { UseShellExecute = true });
 		}
 		private void UrlGunter(object sender, RoutedEventArgs e)
 		{
-			Process.Start(new ProcessStartInfo("https://sites.google.com/view/rulesdndgunter/%D0%BF%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0") { UseShellExecute = true });
-		}
+            Process.Start(new ProcessStartInfo("https://sites.google.com/view/rulesdndgunter/%D0%BF%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0") { UseShellExecute = true });
+        }
 		private void UrlWeapons(object sender, RoutedEventArgs e)
 		{
+			Debug.WriteLine(DataManager.DataSave.Damage);
 			Process.Start(new ProcessStartInfo("https://docs.google.com/document/d/1QRy-6NgwGB81BE0QE1DT_mO7DUGCf-PWrM9csBKEuno/edit?usp=sharing") { UseShellExecute = true });
 		}
 		private void UrlRaces(object sender, RoutedEventArgs e)

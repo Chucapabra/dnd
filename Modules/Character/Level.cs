@@ -1,4 +1,5 @@
-﻿using DNDHelper.Windows;
+﻿using DNDHelper.Modules.Settings;
+using DNDHelper.Windows;
 
 namespace DNDHelper.Modules.Character
 {
@@ -30,7 +31,7 @@ namespace DNDHelper.Modules.Character
             }
         }
 
-        private void SetLevel()
+        public static void SetLevel()
         {
             LevelBaffs.AddPoints = 0;
             LevelBaffs.MaxLevelTree = 2;
@@ -142,7 +143,11 @@ namespace DNDHelper.Modules.Character
 
     public static class LevelBaffs
     {
-        public static int Level = 1;
+        public static int Level
+        {
+            get => DataManager.DataSave.Level;
+            set => DataManager.DataSave.Level = value;
+        }
 
         public static int PointsTree = 0;
 

@@ -1,4 +1,5 @@
 ﻿using DNDHelper.Modules.Config;
+using DNDHelper.Modules.Settings;
 using DNDHelper.Modules.Сharacteristics;
 using DNDHelper.Windows;
 using System.Collections.ObjectModel;
@@ -19,11 +20,7 @@ namespace DNDHelper.Modules.Character
         public static List<string> Skills = new List<string>();
         public static int AddKD = 0;
 
-        public static ObservableCollection<TreeGrid> TreeGrids = new() {
-            new TreeGrid { TreeName = "", TreeLevel = 0 },
-            new TreeGrid { TreeName = "", TreeLevel = 0 },
-            new TreeGrid { TreeName = "", TreeLevel = 0 }
-            };
+        public static ObservableCollection<TreeGrid> TreeGrids => DataManager.DataSave.ClassTreeGrid;
 
         public TreeSkills()
         {
@@ -158,8 +155,6 @@ namespace DNDHelper.Modules.Character
             
             UpdateTreeLevel();
         }
-
-        
 
         public class TreeGrid : INotifyPropertyChanged
         {

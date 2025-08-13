@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DNDHelper.Modules.Settings;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Dynamic;
@@ -65,7 +66,7 @@ namespace DNDHelper.Modules.Сharacteristics
             "запугивание", "выступление", "убеждение"
         };
 
-        public static readonly int[] _baseStats = new int[Enum.GetValues(typeof(StatName)).Length];
+        public static int[] _baseStats => DataManager.DataSave.Characterisitics;
         private static readonly int[] _buffedStats = new int[_baseStats.Length];
         private static readonly int[] _OtherBuffStats = new int[_baseStats.Length];
 

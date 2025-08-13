@@ -1,4 +1,5 @@
 ﻿using DNDHelper.Modules.Character;
+using DNDHelper.Modules.Settings;
 using DNDHelper.Windows;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -20,7 +21,7 @@ namespace DNDHelper.Modules.Inventory
     {
         Main main = Main.Instance;
 
-        public static ObservableCollection<InventoryItem> InventoryItems { get; set; } = new();
+        public static ObservableCollection<InventoryItem> InventoryItems => DataManager.DataSave.Inventory;
 
         public InventoryLoot()
         {
