@@ -46,9 +46,9 @@ namespace DNDHelper.Windows
         public Main()
 		{
 			InitializeComponent();
-
-
+			
 			InitializeClasses();
+            DataManager.ReadSaves();
             Resources["StandartBackColor"] = new SolidColorBrush(DarkThem.SelectedTheme[0]);
 			Resources["StandartForeColor"] = new SolidColorBrush(DarkThem.SelectedTheme[1]);
 
@@ -56,6 +56,7 @@ namespace DNDHelper.Windows
 		public void InitializeClasses()
 		{
 			Instance = this;
+			SavesMenu savesMenu = new SavesMenu();
             DataContext = DataManager.DataSave;
 
 
@@ -75,8 +76,7 @@ namespace DNDHelper.Windows
             Health health = new Health();
 
             AttributesCharacter.CallAllMethodInScript();
-
-            DataManager.Load();
+			
         }
 
 		public void SetTheme(Color Background, Color Foreground)
@@ -124,7 +124,7 @@ namespace DNDHelper.Windows
 				Grid.SetColumnSpan(CurrentSpellDescription, 3);
 				DataGridAllSpells.Visibility = Visibility.Collapsed;
 				AllSpellDescription.Visibility = Visibility.Collapsed;
-				ChangeNameCharacter();
+				DataManager.Save();
 			}
 			else
 			{
@@ -142,11 +142,6 @@ namespace DNDHelper.Windows
 				DataGridAllSpells.Visibility = Visibility.Visible;
 				AllSpellDescription.Visibility = Visibility.Visible;
 			}
-		}
-		private void ChangeNameCharacter()
-		{
-			character_name_textblock.Text = character_name_textbox.Text;
-			// Сюда нужно запихнуть сохранение
 		}
 
 		private void Settings_Click(object sender, RoutedEventArgs e)
@@ -395,5 +390,10 @@ namespace DNDHelper.Windows
 				DamageMagic_textblock.Text = DamageMagic_textbox.Text;
 			}
 		}
-	}
+
+        private void character_name_textbox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            character_name_textblock.Text = character_name_textbox.Text;
+        }
+    }
 }

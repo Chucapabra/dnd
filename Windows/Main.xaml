@@ -38,15 +38,12 @@
 		</Grid.RowDefinitions>
 		<Menu Height="Auto" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" Grid.ColumnSpan="2" FontSize="15">
 			<MenuItem Header="Персонаж">
-				<MenuItem Header="Новый..."/>
+				<MenuItem x:Name="AddCharacter" Header="Новый..."/>
 				<MenuItem Header="Загрузить..."/>
 				<MenuItem Header="Сохранить как..."/>
 				<Separator />
-				<MenuItem Header="Персонажи">
-					<MenuItem Header="20 | Олег"/>
-					<Separator />
-					<MenuItem Header="Персонажи..."/>
-				</MenuItem>
+                <MenuItem x:Name="CharactersMenu" Header="Персонажи">
+                </MenuItem>
 			</MenuItem>
 			<MenuItem Header="Программа">
 				<MenuItem Header="Режим редактирования" IsCheckable="True" x:Name="EditMode_button" Click="EditMode_click"/>
@@ -69,7 +66,7 @@
 			<StackPanel Orientation="Horizontal">
 				<TextBlock Text="Имя:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Width="60" />
                 <TextBlock Text="{Binding Name}" x:Name="character_name_textblock" Width="120" Visibility="Visible" VerticalAlignment="Center" />
-                <TextBox Text="{Binding Name}" Width="120" x:Name="character_name_textbox" materialDesign:HintAssist.Hint="Имя" Visibility="Hidden" MaxLength="254"/>
+                <TextBox TextChanged ="character_name_textbox_TextChanged"  Text="{Binding Name}" Width="120" x:Name="character_name_textbox" materialDesign:HintAssist.Hint="Имя" Visibility="Hidden" MaxLength="254"/>
 			</StackPanel>
 			<StackPanel Orientation="Horizontal">
 				<TextBlock Text="Раса:" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0" Width="60" />
