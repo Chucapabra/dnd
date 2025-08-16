@@ -2,6 +2,7 @@
 using DNDHelper.Modules.Inventory;
 using DNDHelper.Modules.Сharacteristics;
 using DNDHelper.Windows;
+using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,10 +10,12 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Windows;
 using System.Windows.Controls;
 using static DNDHelper.Modules.Character.TreeSkills;
 using static DNDHelper.Modules.Сharacteristics.CharacteristicTable;
@@ -22,30 +25,24 @@ namespace DNDHelper.Modules.Settings
     class SavesMenu
     {
         Main main = Main.Instance;
-        public SavesMenu() 
+
+        private int SelectedIndex = -1;
+        public SavesMenu()
         {
-            main.CharactersMenu.Click += CharactersMenu_Click;
-            main.AddCharacter.Click += AddCharacter_Click; ;
+            main.AddCharacter.Click += AddCharacter_Click;
         }
+
 
         private void AddCharacter_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             DataManager.Create();
         }
 
-        private void CharactersMenu_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            var item = e.OriginalSource as MenuItem;
-            string nameSave = item.Header.ToString();
-            int indexSave = main.CharactersMenu.Items.IndexOf(nameSave);
-            DataManager.Load(indexSave);
-        }
     }
 
     public static class DataManager
-    {          
+    {
         private static string pathSaves = "Saves/";
-        private static List<string> SavesList = new();
 
         public static string SelectedSave = "";
 
@@ -64,18 +61,25 @@ namespace DNDHelper.Modules.Settings
 
 
             Main.Instance.CharactersMenu.Items.Clear();
-            SavesList.Clear();
+
             foreach (string folder in savefolders)
             {
                 var json = File.ReadAllText($"{folder}/Config.json");
                 if (json != null)
                 {
-                    var dataSave = JsonSerializer.Deserialize<DataSaveEmpty>(json);
-                    Main.Instance.CharactersMenu.Items.Add(dataSave.Name);
-                    SavesList.Add(folder);
-                }
+                    var deleteItem = new MenuItem { Header = "Удалить", Tag = folder };
+                    deleteItem.Click += DeleteItem_Click;
+                    var deleteContextMenu = new ContextMenu();
+                    deleteContextMenu.Items.Add(deleteItem);
 
-            }        
+
+                    var dataSave = JsonSerializer.Deserialize<DataSaveEmpty>(json);
+                    var newMenuItem = new MenuItem { Header = dataSave.Name, ContextMenu = deleteContextMenu, Tag = folder  };
+                    newMenuItem.Click += Load_Click;              
+                    Main.Instance.CharactersMenu.Items.Add(newMenuItem);
+                }
+            }
+
         }
 
 
@@ -107,7 +111,25 @@ namespace DNDHelper.Modules.Settings
             File.WriteAllText(newFile, json);
 
             ReadSaves();
-            Load(SavesList.Count - 1);
+            Load(newDirectory);
+        }
+
+        private static void DeleteItem_Click(object sender, RoutedEventArgs e)
+        {
+            var menuItemDelete = sender as MenuItem;
+            var path = menuItemDelete.Tag.ToString();
+            Delete(path);
+        }
+
+        public static void Delete(string path)
+        {
+            if (path != SelectedSave)
+            {
+                Directory.Delete(path, true);
+                ReadSaves();
+            }
+            else
+                MessageBox.Show("Это сохранение открыто", "Тыеб", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         public static void Save()
@@ -126,50 +148,54 @@ namespace DNDHelper.Modules.Settings
             ReadSaves();
         }
 
-        public static void Load(int indexSave)
+        private static void Load_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (true)
+            var clickedItem = sender as MenuItem;
+            Load(clickedItem.Tag.ToString());
+        }
+
+        public static void Load(string path)
+        {
+            SelectedSave = path;
+
+            var json = File.ReadAllText($"{SelectedSave}/Config.json");
+
+            var dataSave = JsonSerializer.Deserialize<DataSaveEmpty>(json);
+            DataSave.Name = dataSave.Name;
+            DataSave.SelectedRace = dataSave.SelectedRace;
+            DataSave.SelectedClass = dataSave.SelectedClass;
+            DataSave.SelectedBackpack = dataSave.SelectedBackpack;
+            DataSave.BackpackQuantity = dataSave.BackpackQuantity;
+            DataSave.AddWeight = dataSave.AddWeight;
+            DataSave.Level = dataSave.Level;
+            DataSave.Damage = dataSave.Damage;
+            DataSave.SelectedQualityArmor = dataSave.SelectedQualityArmor;
+            DataSave.Copper = dataSave.Copper;
+            DataSave.Silver = dataSave.Silver;
+            DataSave.Gold = dataSave.Gold;
+            DataSave.Characterisitics = dataSave.Characterisitics;
+
+
+            DataSave.ClassTreeGrid.Clear();
+            foreach (var item in dataSave.ClassTreeGrid)
+                DataSave.ClassTreeGrid.Add(item);
+
+            DataSave.Inventory.Clear();
+            foreach (var item in dataSave.Inventory)
             {
-                SelectedSave = SavesList[indexSave];
-
-                var json = File.ReadAllText($"{SelectedSave}/Config.json");
-
-                var dataSave = JsonSerializer.Deserialize<DataSaveEmpty>(json);
-                DataSave.Name = dataSave.Name;
-                DataSave.SelectedRace = dataSave.SelectedRace;
-                DataSave.SelectedClass = dataSave.SelectedClass;
-                DataSave.SelectedBackpack = dataSave.SelectedBackpack;
-                DataSave.BackpackQuantity = dataSave.BackpackQuantity;
-                DataSave.AddWeight = dataSave.AddWeight;
-                DataSave.Level = dataSave.Level;
-                DataSave.Damage = dataSave.Damage;
-                DataSave.SelectedQualityArmor = dataSave.SelectedQualityArmor;
-                DataSave.Copper = dataSave.Copper;
-                DataSave.Silver = dataSave.Silver;
-                DataSave.Gold = dataSave.Gold;
-                DataSave.Characterisitics = dataSave.Characterisitics;
-
-
-                DataSave.ClassTreeGrid.Clear();
-                foreach (var item in dataSave.ClassTreeGrid)
-                    DataSave.ClassTreeGrid.Add(item);
-
-                DataSave.Inventory.Clear();
-                foreach (var item in dataSave.Inventory)
-                {
-                    if (item.Weight != 0)
-                        item.Weight /= item.Count;
-                    DataSave.Inventory.Add(item);
-                }
-
-                DataSave.CustomSkills.Clear();
-                foreach (var item in dataSave.CustomSkills)
-                    DataSave.CustomSkills.Add(item);
-
-                Character.Skills.ReloadDataGridSkills();
-                Level.SetLevel();
-                Main.ItemBaffsListScript.UpdateValues();
+                if (item.Weight != 0)
+                    item.Weight /= item.Count;
+                DataSave.Inventory.Add(item);
             }
+
+            DataSave.CustomSkills.Clear();
+            foreach (var item in dataSave.CustomSkills)
+                DataSave.CustomSkills.Add(item);
+
+            Character.Skills.ReloadDataGridSkills();
+            Level.SetLevel();
+            Main.ItemBaffsListScript.UpdateValues();
+
         }
 
     }
