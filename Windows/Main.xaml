@@ -16,7 +16,7 @@
 			<Setter Property="FontFamily" Value="Bahnschrift"/>
 		</Style>
 		<Style TargetType="Border">
-			<Setter Property="BorderBrush" Value="Beige"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource StandartForeColor}"/>
 			<Setter Property="BorderThickness" Value="1"/>
 		</Style>
 		<SolidColorBrush x:Key="StandartBackColor"/>
@@ -197,14 +197,14 @@
 					</Grid.RowDefinitions>
 					<Border Grid.ColumnSpan="4">
 						<DataGrid x:Name="DataGridInventory" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
- Grid.ColumnSpan="4"
- AutoGenerateColumns="False"
- CanUserAddRows="False"
- CanUserDeleteRows="False"
- CanUserReorderColumns="False"
- CanUserResizeRows="False"
- CanUserResizeColumns="False"
- CanUserSortColumns="False">
+							 Grid.ColumnSpan="4"
+							 AutoGenerateColumns="False"
+							 CanUserAddRows="False"
+							 CanUserDeleteRows="False"
+							 CanUserReorderColumns="False"
+							 CanUserResizeRows="False"
+							 CanUserResizeColumns="False"
+							 CanUserSortColumns="False">
 							<DataGrid.ContextMenu>
 								<ContextMenu>
 									<MenuItem x:Name="AddMenuItem" Header="Добавить"/>
@@ -725,6 +725,7 @@
 							  CanUserReorderColumns="False"
 							  CanUserResizeRows="False"
 							  CanUserResizeColumns="False"
+							  IsReadOnly="True"
 							  CanUserSortColumns="False">
 						<DataGrid.ContextMenu>
 							<ContextMenu>
@@ -733,14 +734,37 @@
 								<MenuItem x:Name="MoveSpellCurrent" Header="Переместить вправо"/>
 							</ContextMenu>
 						</DataGrid.ContextMenu>
+						<DataGrid.ColumnHeaderStyle>
+							<Style TargetType="DataGridColumnHeader">
+								<Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
+								<Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
+							</Style>
+						</DataGrid.ColumnHeaderStyle>
+						<DataGrid.RowStyle>
+							<Style TargetType="DataGridRow" >
+								<Setter Property="Height" Value="15"/>
+								<Setter Property="Margin" Value="0"/>
+								<Setter Property="Padding" Value="0"/>
+								<Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
+								<Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
+							</Style>
+						</DataGrid.RowStyle>
+
+						<DataGrid.CellStyle>
+							<Style TargetType="DataGridCell">
+								<Setter Property="Padding" Value="5,0"/>
+								<Setter Property="Margin" Value="0"/>
+								<Setter Property="BorderThickness" Value="0"/>
+								<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+							</Style>
+						</DataGrid.CellStyle>
 						<DataGrid.Columns>
-							<DataGridTextColumn Header="Название" Binding="{Binding CurrentSpellName}"/>
-							<DataGridTextColumn Header="Вид" Binding="{Binding CurrentSpellType}"/>
-							<DataGridTextColumn Header="Школа" Binding="{Binding CurrentSpellSchool}"/>
-							<DataGridTextColumn Header="Урон" Binding="{Binding CurrentSpellDamage}"/>
-							<DataGridTextColumn Header="Ролл" Binding="{Binding CurrentSpellRoll}"/>
-							<DataGridTextColumn Header="Уровень" Binding="{Binding CurrentSpellLevel}"/>
-							<DataGridTextColumn Header="Описание" Binding="{Binding CurrentSpellDescription}" Visibility="Collapsed"/>
+							<DataGridTextColumn Header="Название" Binding="{Binding SpellName}" Width="200"/>
+							<DataGridTextColumn Header="Школа" Binding="{Binding SpellSchool}" Width="106"/>
+							<DataGridTextColumn Header="Урон" Binding="{Binding SpellDamage}" Width="36"/>
+							<DataGridTextColumn Header="Ролл" Binding="{Binding SpellRoll}" Width="35"/>
+							<DataGridTextColumn Header="УР" Binding="{Binding SpellLevel}" Width="30"/>
+							<DataGridTextColumn Header="Описание" Binding="{Binding SpellDescription}" Visibility="Hidden"/>
 						</DataGrid.Columns>
 					</DataGrid>
 					<DataGrid Grid.Row="2" Grid.Column="1"
@@ -753,25 +777,55 @@
 							  CanUserResizeRows="False"
 							  CanUserResizeColumns="False"
 							  CanUserSortColumns="False" Grid.ColumnSpan="2"
+							  IsReadOnly="True"
 							  Visibility="{DynamicResource IsEdit}">
 						<DataGrid.ContextMenu>
 							<ContextMenu>
 								<MenuItem x:Name="MoveSpellAll" Header="Переместить влево"/>
 							</ContextMenu>
 						</DataGrid.ContextMenu>
+						<DataGrid.ColumnHeaderStyle>
+							<Style TargetType="DataGridColumnHeader">
+								<Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
+								<Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
+							</Style>
+						</DataGrid.ColumnHeaderStyle>
+						<DataGrid.RowStyle>
+							<Style TargetType="DataGridRow" >
+								<Setter Property="Height" Value="15"/>
+								<Setter Property="Margin" Value="0"/>
+								<Setter Property="Padding" Value="0"/>
+								<Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
+								<Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
+							</Style>
+						</DataGrid.RowStyle>
+
+						<DataGrid.CellStyle>
+							<Style TargetType="DataGridCell">
+								<Setter Property="Padding" Value="5,0"/>
+								<Setter Property="Margin" Value="0"/>
+								<Setter Property="BorderThickness" Value="0"/>
+								<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+							</Style>
+						</DataGrid.CellStyle>
 						<DataGrid.Columns>
-							<DataGridTextColumn Header="Название" Binding="{Binding AllSpellName}"/>
-							<DataGridTextColumn Header="Вид" Binding="{Binding AllSpellType}"/>
-							<DataGridTextColumn Header="Школа" Binding="{Binding AllSpellSchool}"/>
-							<DataGridTextColumn Header="Урон" Binding="{Binding AllSpellDamage}"/>
-							<DataGridTextColumn Header="Ролл" Binding="{Binding AllSpellRoll}"/>
-							<DataGridTextColumn Header="Уровень" Binding="{Binding AllSpellLevel}"/>
-							<DataGridTextColumn Header="Описание" Binding="{Binding AllSpellDescription}" Visibility="Collapsed"/>
+							<DataGridTextColumn Header="Название" Binding="{Binding SpellName}" Width="200">
+								<DataGridTextColumn.ElementStyle>
+									<Style TargetType="TextBlock">
+										<Setter Property="Foreground" Value="{Binding colorbrush}"/>
+									</Style>
+								</DataGridTextColumn.ElementStyle>
+							</DataGridTextColumn>
+							<DataGridTextColumn Header="Школа" Binding="{Binding SpellSchool}" Width="106"/>
+							<DataGridTextColumn Header="Урон" Binding="{Binding SpellDamage}" Width="36"/>
+							<DataGridTextColumn Header="Ролл" Binding="{Binding SpellRoll}" Width="35"/>
+							<DataGridTextColumn Header="УР" Binding="{Binding SpellLevel}" Width="30"/>
+							<DataGridTextColumn Header="Описание" Binding="{Binding SpellDescription}" Visibility="Hidden"/>
 						</DataGrid.Columns>
 					</DataGrid>
-					<TextBlock x:Name="CurrentSpellDescription" Grid.Row="3" Text="[[Описание]]" TextWrapping="Wrap" Margin="5,5,5,5" Grid.ColumnSpan="3"/>
-					<TextBlock x:Name="AllSpellDescription" Grid.Row="3" Grid.Column="2" Text="[[Описание]]" TextWrapping="Wrap" Margin="6,5,5,5" Visibility="{DynamicResource IsEdit}"/>
-					<Border Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Visibility="{DynamicResource IsEdit}"/>
+					<TextBox x:Name="CurrentSpellDescription" Grid.Row="3" Text="[[Описание]]" TextWrapping="Wrap" Margin="0" Grid.ColumnSpan="3" IsReadOnly="True" Style="{DynamicResource STYLE_NAME}" Foreground="{DynamicResource StandartForeColor}" Background="{DynamicResource StandartBackColor}"/>
+					<TextBox x:Name="AllSpellDescription" Grid.Row="3" Grid.Column="2" Text="[[Описание]]" TextWrapping="Wrap" Margin="0" Visibility="{DynamicResource IsEdit}" IsReadOnly="True" Style="{DynamicResource STYLE_NAME}" Foreground="{DynamicResource StandartForeColor}" Background="{DynamicResource StandartBackColor}"/>
+						<Border Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Visibility="{DynamicResource IsEdit}"/>
 					<Border Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3"/>
 					<Border Grid.ColumnSpan="3" Grid.RowSpan="4"/>
 					<Border Grid.ColumnSpan="3"/>
@@ -867,14 +921,15 @@
 						<RichTextBox x:Name="diaryTB" AcceptsTab="True" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" Margin="10,0,0,0" SelectionChanged="DiaryTB_SelectionChanged" TextChanged="DiaryTB_TextChanged" MouseMove="DiaryTB_MouseMove" FontSize="24"></RichTextBox>
 					</DockPanel>
 					<GridSplitter Grid.RowSpan="3" IsEnabled="False" Grid.Column="1" ShowsPreview="False" Width="3" Height="400" HorizontalAlignment="Left" VerticalAlignment="Top" Cursor="SizeWE" />
-					<TextBox Grid.Row="0" Grid.Column="0" x:Name="NameNote" materialDesign:HintAssist.Hint="Название записи"/>
-					<Button Grid.Column="0" Grid.Row="1" x:Name="CreateNote" Content="Создать запись" Click="CreateNote_Click"/>
-					<ListBox Grid.Row="2" Grid.Column="0">
-						<ListBoxItem>dasasdasd</ListBoxItem>
-						<ListBoxItem>dasasdasd</ListBoxItem>
-						<ListBoxItem>dasasdasd</ListBoxItem>
-						<ListBoxItem>dasasdasd</ListBoxItem>
-					</ListBox>
+					<TextBox Grid.Row="0" Grid.Column="0" x:Name="NameNote" materialDesign:HintAssist.Hint="Название записи" MaxLength="120"/>
+					<Button Grid.Column="0" Grid.Row="1" x:Name="CreateNote" Content="Создать запись"/>
+                    <ListBox x:Name="ListBoxNotes" Grid.Row="2" Grid.Column="0">
+                        <ListBox.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem x:Name="DeleteMenuNote" Header="Удалить"/>
+                            </ContextMenu>
+                        </ListBox.ContextMenu>
+                    </ListBox>
 					<Grid.RowDefinitions>
 						<RowDefinition Height="40*"/>
 						<RowDefinition Height="40*"/>
@@ -887,188 +942,6 @@
 				</Grid>
 			</TabItem>
 			<TabItem Header="Справочники">
-			</TabItem>
-			<TabItem Header="Магия">
-				<Grid>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition/>
-						<ColumnDefinition Width="1"/>
-						<ColumnDefinition/>
-					</Grid.ColumnDefinitions>
-					<Grid.RowDefinitions>
-						<RowDefinition Height="21*"/>
-						<RowDefinition Height="21*"/>
-						<RowDefinition Height="96*"/>
-						<RowDefinition Height="47*"/>
-					</Grid.RowDefinitions>
-					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5,0,6,0" Height="36">
-						<StackPanel>
-							<TextBlock Text="Школа:"/>
-							<ComboBox x:Name="SchoolSelect_cb1" Width="120">
-								<ComboBoxItem Content="Отсутствует"/>
-								<ComboBoxItem Content="Ограждения"/>
-								<ComboBoxItem Content="Вызова"/>
-								<ComboBoxItem Content="Прорицания"/>
-								<ComboBoxItem Content="Очарования"/>
-								<ComboBoxItem Content="Воплощения"/>
-								<ComboBoxItem Content="Иллюзии"/>
-								<ComboBoxItem Content="Некромантии"/>
-								<ComboBoxItem Content="Преобразования"/>
-							</ComboBox>
-						</StackPanel>
-						<StackPanel Margin="10,0,0,0">
-							<TextBlock Text="Катализатор:"/>
-							<ComboBox x:Name="CatalyzerSelect_cb1">
-								<ComboBoxItem Content="Посох"/>
-								<ComboBoxItem Content="Палочка"/>
-								<ComboBoxItem Content="Талисман"/>
-							</ComboBox>
-						</StackPanel>
-						<StackPanel Margin="10,0,0,0">
-							<TextBlock Text="Качество:"/>
-							<ComboBox x:Name="CatalyzerQualitySelect_cb1" Width="100">
-								<ComboBoxItem Content="Прото"/>
-								<ComboBoxItem Content="Плохое"/>
-								<ComboBoxItem Content="Стандартное"/>
-								<ComboBoxItem Content="Высокое"/>
-								<ComboBoxItem Content="Великолепное"/>
-								<ComboBoxItem Content="Мастерское"/>
-								<ComboBoxItem Content="Мифическое"/>
-							</ComboBox>
-						</StackPanel>
-					</StackPanel>
-					<StackPanel Orientation="Horizontal" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Height="18">
-						<TextBlock Text="Множитель урона:"/>
-						<TextBlock Width="40" TextAlignment="Center" x:Name="DamageMagic_textblock1" Text="1"  Visibility="Visible" MouseLeftButtonDown="DamageMagic_textblock_MouseLeftButtonDown"/>
-						<TextBox Style="{DynamicResource STYLE_NAME}" Foreground="{DynamicResource StandartForeColor}" Background="{DynamicResource StandartBackColor}" x:Name="DamageMagic_textbox1" Width="40" Height="17" Text="1" TextAlignment="Center" Visibility="Collapsed" materialDesign:HintAssist.Hint="Число"  DataObject.Pasting="DamageMagic_textbox_Pasting" AcceptsReturn="False" VerticalAlignment="Top" PreviewTextInput="DamageMagic_textbox_PreviewTextInput" PreviewKeyDown="DamageMagic_textbox_PreviewKeyDown" MaxLength="6"/>
-					</StackPanel>
-					<StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" Margin="5,0,5,0" VerticalAlignment="Center" Height="42">
-						<StackPanel>
-							<TextBlock Text="Поиск"/>
-							<TextBox materialDesign:HintAssist.Hint="Название" x:Name="CastSearch_textbox1" Width="100" MaxLength="255"/>
-						</StackPanel>
-						<StackPanel Margin="15,0,0,0">
-							<TextBlock Text="Вид"/>
-							<ComboBox Width="120" SelectedIndex="3">
-								<ComboBoxItem Content="Все"/>
-								<ComboBoxItem Content="Обычные"/>
-								<ComboBoxItem Content="Тайные"/>
-								<ComboBoxItem Content="Запрещённые"/>
-								<ComboBoxItem Content="Проклятые"/>
-								<ComboBoxItem Content="Созданные"/>
-							</ComboBox>
-						</StackPanel>
-						<StackPanel Margin="15,0,0,0">
-							<TextBlock Text="Школа"/>
-							<ComboBox SelectedIndex="0" x:Name="SchoolSelect_Search_cb1" Width="130">
-								<ComboBoxItem Content="Любая"/>
-								<ComboBoxItem Content="Ограждения"/>
-								<ComboBoxItem Content="Вызова"/>
-								<ComboBoxItem Content="Прорицания"/>
-								<ComboBoxItem Content="Очарования"/>
-								<ComboBoxItem Content="Воплощения"/>
-								<ComboBoxItem Content="Иллюзии"/>
-								<ComboBoxItem Content="Некромантии"/>
-								<ComboBoxItem Content="Преобразования"/>
-							</ComboBox>
-						</StackPanel>
-						<StackPanel Margin="15,0,0,0">
-							<TextBlock Text="Урон"/>
-							<ComboBox SelectedIndex="0" x:Name="Damage_Search_cb1" Width="65">
-								<ComboBoxItem Content="Любой"/>
-								<ComboBoxItem Content="Есть"/>
-								<ComboBoxItem Content="Нет"/>
-							</ComboBox>
-						</StackPanel>
-						<StackPanel Margin="15,0,0,0">
-							<TextBlock Text="Ролл"/>
-							<ComboBox SelectedIndex="0" x:Name="Roll_Search_cb1" Width="60">
-								<ComboBoxItem Content="Любой"/>
-								<ComboBoxItem Content="&gt;0"/>
-								<ComboBoxItem Content="&lt;0"/>
-								<ComboBoxItem Content="0"/>
-							</ComboBox>
-						</StackPanel>
-						<StackPanel Margin="15,0,0,0">
-							<TextBlock Text="Уровень"/>
-							<ComboBox SelectedIndex="0" x:Name="LevelCast_Search_cb1" Width="70">
-								<ComboBoxItem Content="Заговор"/>
-								<ComboBoxItem Content="1"/>
-								<ComboBoxItem Content="2"/>
-								<ComboBoxItem Content="3"/>
-								<ComboBoxItem Content="4"/>
-								<ComboBoxItem Content="5"/>
-								<ComboBoxItem Content="6"/>
-								<ComboBoxItem Content="7"/>
-								<ComboBoxItem Content="8"/>
-								<ComboBoxItem Content="9"/>
-								<ComboBoxItem Content="10"/>
-								<ComboBoxItem Content="11"/>
-								<ComboBoxItem Content="12"/>
-							</ComboBox>
-						</StackPanel>
-					</StackPanel>
-					<DataGrid Grid.Row="2" Grid.ColumnSpan="3"
-			   x:Name="DataGridCurrentSpells1" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-			   AutoGenerateColumns="False"
-			   SelectionMode="Single"
-			   CanUserAddRows="False"
-			   CanUserDeleteRows="False"
-			   CanUserReorderColumns="False"
-			   CanUserResizeRows="False"
-			   CanUserResizeColumns="False"
-			   CanUserSortColumns="False">
-						<DataGrid.ContextMenu>
-							<ContextMenu>
-								<MenuItem x:Name="AddCustomSpellCurrent1" Header="Добавить"/>
-								<MenuItem x:Name="DeleteCustomSpellCurrent1" Header="Удалить"/>
-								<MenuItem x:Name="MoveSpellCurrent1" Header="Переместить вправо"/>
-							</ContextMenu>
-						</DataGrid.ContextMenu>
-						<DataGrid.Columns>
-							<DataGridTextColumn Header="Название" Binding="{Binding CurrentSpellName}"/>
-							<DataGridTextColumn Header="Вид" Binding="{Binding CurrentSpellType}"/>
-							<DataGridTextColumn Header="Школа" Binding="{Binding CurrentSpellSchool}"/>
-							<DataGridTextColumn Header="Урон" Binding="{Binding CurrentSpellDamage}"/>
-							<DataGridTextColumn Header="Ролл" Binding="{Binding CurrentSpellRoll}"/>
-							<DataGridTextColumn Header="Уровень" Binding="{Binding CurrentSpellLevel}"/>
-							<DataGridTextColumn Header="Описание" Binding="{Binding CurrentSpellDescription}" Visibility="Collapsed"/>
-						</DataGrid.Columns>
-					</DataGrid>
-					<DataGrid Grid.Row="2" Grid.Column="1"
-			   x:Name="DataGridAllSpells1" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-			   AutoGenerateColumns="False"
-			   SelectionMode="Single"
-			   CanUserAddRows="False"
-			   CanUserDeleteRows="False"
-			   CanUserReorderColumns="False"
-			   CanUserResizeRows="False"
-			   CanUserResizeColumns="False"
-			   CanUserSortColumns="False" Grid.ColumnSpan="2"
-			   Visibility="{DynamicResource IsEdit}">
-						<DataGrid.ContextMenu>
-							<ContextMenu>
-								<MenuItem x:Name="MoveSpellAll1" Header="Переместить влево"/>
-							</ContextMenu>
-						</DataGrid.ContextMenu>
-						<DataGrid.Columns>
-							<DataGridTextColumn Header="Название" Binding="{Binding AllSpellName}"/>
-							<DataGridTextColumn Header="Вид" Binding="{Binding AllSpellType}"/>
-							<DataGridTextColumn Header="Школа" Binding="{Binding AllSpellSchool}"/>
-							<DataGridTextColumn Header="Урон" Binding="{Binding AllSpellDamage}"/>
-							<DataGridTextColumn Header="Ролл" Binding="{Binding AllSpellRoll}"/>
-							<DataGridTextColumn Header="Уровень" Binding="{Binding AllSpellLevel}"/>
-							<DataGridTextColumn Header="Описание" Binding="{Binding AllSpellDescription}" Visibility="Collapsed"/>
-						</DataGrid.Columns>
-					</DataGrid>
-					<TextBlock x:Name="CurrentSpellDescription1" Grid.Row="3" Text="[[Описание]]" TextWrapping="Wrap" Margin="5,5,5,5" Grid.ColumnSpan="3"/>
-					<TextBlock x:Name="AllSpellDescription1" Grid.Row="3" Grid.Column="2" Text="[[Описание]]" TextWrapping="Wrap" Margin="6,5,5,5" Visibility="{DynamicResource IsEdit}"/>
-					<Border Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Visibility="{DynamicResource IsEdit}"/>
-					<Border Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3"/>
-					<Border Grid.ColumnSpan="3" Grid.RowSpan="4"/>
-					<Border Grid.ColumnSpan="3"/>
-					<Border Grid.ColumnSpan="3" Grid.Row="1"/>
-				</Grid>
 			</TabItem>
 		</TabControl>
 		<DataGrid Grid.Row="1" SelectionMode="Single" FontSize="12" x:Name="DataGridCharacterisctics" AutoGenerateColumns="False" Margin="0,0,0,-304" IsReadOnly="True"

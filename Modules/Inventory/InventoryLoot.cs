@@ -544,7 +544,7 @@ namespace DNDHelper.Modules.Inventory
                     if (_countWeight)
                         ForeColorWeight = new SolidColorBrush(Settings.Settings.SelectedTheme[1]);
                     else
-                        ForeColorWeight = Brushes.Red;
+                        ForeColorWeight = Brushes.Firebrick;
                     OnPropertyChanged();
                 }
             }
@@ -609,7 +609,7 @@ namespace DNDHelper.Modules.Inventory
                     if (_equipped)
                         ForeColorKDEquipped = new SolidColorBrush(Settings.Settings.SelectedTheme[1]);
                     else
-                        ForeColorKDEquipped = Brushes.Red;
+                        ForeColorKDEquipped = Brushes.Firebrick;
                     Main.ItemBaffsListScript.UpdateValues();
                     KDScript.CountKD();
                     OnPropertyChanged();
@@ -619,13 +619,13 @@ namespace DNDHelper.Modules.Inventory
             private void SetCountKD()
             {
                 if (_countKD == false && _countKDHelmet == false)
-                    ForeColorKD = Brushes.Red;
+                    ForeColorKD = Brushes.Firebrick;
                 if (_countKD == true && _countKDHelmet == false)
                     ForeColorKD = new SolidColorBrush(Settings.Settings.SelectedTheme[1]);
                 if (_countKD == false && _countKDHelmet == true)
                     ForeColorKD = Brushes.Orange;
                 if (_countKD == true && _countKDHelmet == true)
-                    ForeColorKD = Brushes.Green;
+                    ForeColorKD = Brushes.YellowGreen;
                 KDScript.CountKD();
             }
 

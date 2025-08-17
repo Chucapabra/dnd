@@ -15,6 +15,7 @@ using MaterialDesignColors;
 using MaterialDesignThemes.Wpf;
 using DarkThem = DNDHelper.Modules.Settings.Settings;
 using DNDHelper.Modules.Inventory;
+using DNDHelper.Modules.MagicSpells;
 
 namespace DNDHelper.Windows
 {
@@ -54,6 +55,7 @@ namespace DNDHelper.Windows
                 }
                 Main.Instance.SetTheme(DarkThem.SelectedTheme[0], DarkThem.SelectedTheme[1]);
                 paletteHelper.SetTheme(theme);
+                MagicSpells.RepositoryLoad();
 
                 // Обновление шрифта в инвенторе
                 foreach (var item in InventoryLoot.InventoryItems)

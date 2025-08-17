@@ -67,6 +67,7 @@ namespace DNDHelper.Windows
             Skills skills = new();
             Level level = new();
 			MagicSpells magicSpells = new();
+            DiaryManager diaryManager = new DiaryManager();
             TreeSkillsScript = new();
             Characteristics = new();
             Characteristics.UpdateAllCharacterisitc();
@@ -171,16 +172,6 @@ namespace DNDHelper.Windows
             TreeSkillsScript.SubstractTreeLevel();
         }
         // Дневник
-        private void CreateNote_Click(object sender, RoutedEventArgs e)
-		{
-			FlowDocument flowDocument = diaryTB.Document;
-
-			string text = new TextRange(
-				flowDocument.ContentStart,
-				flowDocument.ContentEnd
-				).Text;
-			MessageBox.Show(text);
-		}
 
 		private void DiaryTB_SelectionChanged(object sender, RoutedEventArgs e)
 		{

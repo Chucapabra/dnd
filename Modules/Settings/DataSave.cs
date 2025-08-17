@@ -1,4 +1,5 @@
 ﻿using DNDHelper.Modules.Character;
+using DNDHelper.Modules.Diary;
 using DNDHelper.Modules.Inventory;
 using DNDHelper.Modules.Сharacteristics;
 using DNDHelper.Windows;
@@ -74,8 +75,8 @@ namespace DNDHelper.Modules.Settings
 
 
                     var dataSave = JsonSerializer.Deserialize<DataSaveEmpty>(json);
-                    var newMenuItem = new MenuItem { Header = dataSave.Name, ContextMenu = deleteContextMenu, Tag = folder  };
-                    newMenuItem.Click += Load_Click;              
+                    var newMenuItem = new MenuItem { Header = dataSave.Name, ContextMenu = deleteContextMenu, Tag = folder };
+                    newMenuItem.Click += Load_Click;
                     Main.Instance.CharactersMenu.Items.Add(newMenuItem);
                 }
             }
@@ -125,8 +126,15 @@ namespace DNDHelper.Modules.Settings
         {
             if (path != SelectedSave)
             {
-                Directory.Delete(path, true);
-                ReadSaves();
+                var json = File.ReadAllText($"{path}/Config.json");
+                var dataSave = JsonSerializer.Deserialize<DataSaveEmpty>(json);
+                var messageBox = MessageBox.Show($"Вы уверены, что хотите удалить персонажа {dataSave.Name}", "Удаление персонажа", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (messageBox == MessageBoxResult.Yes)
+                {
+
+                    Directory.Delete(path, true);
+                    ReadSaves();
+                }
             }
             else
                 MessageBox.Show("Это сохранение открыто", "Тыеб", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -195,7 +203,8 @@ namespace DNDHelper.Modules.Settings
             Character.Skills.ReloadDataGridSkills();
             Level.SetLevel();
             Main.ItemBaffsListScript.UpdateValues();
-
+            DiaryManager.LoadNotes();
+            Main.Instance.diaryTB.Document.Blocks.Clear();
         }
 
     }
