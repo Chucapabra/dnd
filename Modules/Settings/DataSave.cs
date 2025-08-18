@@ -182,9 +182,11 @@ namespace DNDHelper.Modules.Settings
             DataSave.Silver = dataSave.Silver;
             DataSave.Gold = dataSave.Gold;
             DataSave.Characterisitics = dataSave.Characterisitics;
+            DataSave.SubtractMagicBullet = dataSave.SubtractMagicBullet;
 
 
-            DataSave.ClassTreeGrid.Clear();
+
+			DataSave.ClassTreeGrid.Clear();
             foreach (var item in dataSave.ClassTreeGrid)
                 DataSave.ClassTreeGrid.Add(item);
 
@@ -325,6 +327,7 @@ namespace DNDHelper.Modules.Settings
 
         public int Level { get; set; } = 1;
         public int Damage { get; set; } = 0;
+        public int SubtractMagicBullet { get; set; } = 0;
 
         public ObservableCollection<TreeGrid> ClassTreeGrid { get; set; } = new() {
             new TreeGrid { TreeName = "", TreeLevel = 0 },
@@ -337,6 +340,8 @@ namespace DNDHelper.Modules.Settings
         public ObservableCollection<Skills.Skill> CustomSkills { get; set; } = new();
 
         public ObservableCollection<InventoryLoot.InventoryItem> Inventory { get; set; } = new();
+        
+        //public ObservableCollection
 
         public event PropertyChangedEventHandler PropertyChanged;
 

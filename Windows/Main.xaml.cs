@@ -34,51 +34,51 @@ namespace DNDHelper.Windows
 	/// Логика взаимодействия для Main.xaml
 	/// </summary>
 
-    public partial class Main : Window
+	public partial class Main : Window
 	{
 
 
-        public static Main Instance;
+		public static Main Instance;
 		public static GridCharacteristics Characteristics;
 		public static TreeSkills TreeSkillsScript;
-        public static ItemBaffsListScript ItemBaffsListScript;
+		public static ItemBaffsListScript ItemBaffsListScript;
 
-        public Main()
+		public Main()
 		{
 			InitializeComponent();
-			
+
 			InitializeClasses();
-            DataManager.ReadSaves();
-            Resources["StandartBackColor"] = new SolidColorBrush(DarkThem.SelectedTheme[0]);
+			DataManager.ReadSaves();
+			Resources["StandartBackColor"] = new SolidColorBrush(DarkThem.SelectedTheme[0]);
 			Resources["StandartForeColor"] = new SolidColorBrush(DarkThem.SelectedTheme[1]);
 
-        }
+		}
 		public void InitializeClasses()
 		{
 			Instance = this;
 			SavesMenu savesMenu = new SavesMenu();
-            DataContext = DataManager.DataSave;
+			DataContext = DataManager.DataSave;
 
 
-            Race @class = new ();
+			Race @class = new();
 			PlayerClass playerClass = new();
-            ItemBaffsListScript = new();
-            InventoryLoot inventoryLoot = new();
-            Skills skills = new();
-            Level level = new();
+			ItemBaffsListScript = new();
+			InventoryLoot inventoryLoot = new();
+			Skills skills = new();
+			Level level = new();
 			MagicSpells magicSpells = new();
-            DiaryManager diaryManager = new DiaryManager();
-            TreeSkillsScript = new();
-            Characteristics = new();
-            Characteristics.UpdateAllCharacterisitc();
+			DiaryManager diaryManager = new DiaryManager();
+			TreeSkillsScript = new();
+			Characteristics = new();
+			Characteristics.UpdateAllCharacterisitc();
 
 
-            WeightScript weightScript = new WeightScript();
-            Health health = new Health();
+			WeightScript weightScript = new WeightScript();
+			Health health = new Health();
 
-            AttributesCharacter.CallAllMethodInScript();
-			
-        }
+			AttributesCharacter.CallAllMethodInScript();
+
+		}
 
 		public void SetTheme(Color Background, Color Foreground)
 		{
@@ -88,13 +88,13 @@ namespace DNDHelper.Windows
 		// Меню
 		private void UrlTusha(object sender, RoutedEventArgs e)
 		{
-            
-            Process.Start(new ProcessStartInfo("https://docs.google.com/document/d/1rUMWdTp645Zy80d09ZMoJ6dmcw9lAP25tqxsdNkftaY/edit?usp=sharing") { UseShellExecute = true });
+
+			Process.Start(new ProcessStartInfo("https://docs.google.com/document/d/1rUMWdTp645Zy80d09ZMoJ6dmcw9lAP25tqxsdNkftaY/edit?usp=sharing") { UseShellExecute = true });
 		}
 		private void UrlGunter(object sender, RoutedEventArgs e)
 		{
-            Process.Start(new ProcessStartInfo("https://sites.google.com/view/rulesdndgunter/%D0%BF%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0") { UseShellExecute = true });
-        }
+			Process.Start(new ProcessStartInfo("https://sites.google.com/view/rulesdndgunter/%D0%BF%D1%80%D0%B0%D0%B2%D0%B8%D0%BB%D0%B0") { UseShellExecute = true });
+		}
 		private void UrlWeapons(object sender, RoutedEventArgs e)
 		{
 			Debug.WriteLine(DataManager.DataSave.Damage);
@@ -131,8 +131,8 @@ namespace DNDHelper.Windows
 			{
 				Resources["IsEdit"] = Visibility.Visible;
 				Characteristics.UpdatePointText(true);
-                TreeSkillsScript.UpdateDisplayPoints();
-                character_name_textblock.Visibility = Visibility.Collapsed;
+				TreeSkillsScript.UpdateDisplayPoints();
+				character_name_textblock.Visibility = Visibility.Collapsed;
 				character_name_textbox.Visibility = Visibility.Visible;
 				character_race_textblock.Visibility = Visibility.Collapsed;
 				character_race_combobox.Visibility = Visibility.Visible;
@@ -161,17 +161,17 @@ namespace DNDHelper.Windows
 		{
 			Characteristics.SubtractCharacteristic_Click();
 		}
-        // Древо Развитие
-        private void AddTreeLevel_Click(object sender, RoutedEventArgs e)
-        {
+		// Древо Развитие
+		private void AddTreeLevel_Click(object sender, RoutedEventArgs e)
+		{
 			TreeSkillsScript.AddTreeLevel();
-        }
+		}
 
-        private void SubtractTreeLevel_Click(object sender, RoutedEventArgs e)
-        {
-            TreeSkillsScript.SubstractTreeLevel();
-        }
-        // Дневник
+		private void SubtractTreeLevel_Click(object sender, RoutedEventArgs e)
+		{
+			TreeSkillsScript.SubstractTreeLevel();
+		}
+		// Дневник
 
 		private void DiaryTB_SelectionChanged(object sender, RoutedEventArgs e)
 		{
@@ -267,7 +267,7 @@ namespace DNDHelper.Windows
 		// Изменение ХП
 		private void CurrentHealth_tb_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
-			
+
 		}
 		private void CurrentHealth_tb_Pasting(object sender, DataObjectPastingEventArgs e)
 		{
@@ -294,8 +294,8 @@ namespace DNDHelper.Windows
 		private void CountDamage_button_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
 			MessageBox.Show("213");
-        }
-		
+		}
+
 		private void shield_health_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
 			TextboxProcessing.WholeNumbersOnly(shield_health_textbox, e);
@@ -317,31 +317,31 @@ namespace DNDHelper.Windows
 		}
 
 		// Инвентарь
-        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            TextboxProcessing.WholeNumbersOnly(sender, e);
-        }
+		private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			TextboxProcessing.WholeNumbersOnly(sender, e);
+		}
 
-        private void TextBox_Pasting(object sender, DataObjectPastingEventArgs e)
-        {
-            if (e.DataObject.GetDataPresent(typeof(string)))
-            {
-                string text = (string)e.DataObject.GetData(typeof(string));
-                if (text.Any(c => !char.IsDigit(c)))
-                {
-                    e.CancelCommand();
-                }
-            }
-            else
-            {
-                e.CancelCommand();
-            }
-        }
+		private void TextBox_Pasting(object sender, DataObjectPastingEventArgs e)
+		{
+			if (e.DataObject.GetDataPresent(typeof(string)))
+			{
+				string text = (string)e.DataObject.GetData(typeof(string));
+				if (text.Any(c => !char.IsDigit(c)))
+				{
+					e.CancelCommand();
+				}
+			}
+			else
+			{
+				e.CancelCommand();
+			}
+		}
 
-        private void ComboBoxDataGridItemBaffsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+		private void ComboBoxDataGridItemBaffsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
 			ItemBaffsListScript.UpdateValues();
-        }
+		}
 		// Множитель урона магии
 		private void DamageMagic_textbox_Pasting(object sender, DataObjectPastingEventArgs e)
 		{
@@ -382,9 +382,68 @@ namespace DNDHelper.Windows
 			}
 		}
 
-        private void character_name_textbox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            character_name_textblock.Text = character_name_textbox.Text;
-        }
-    }
+		private void character_name_textbox_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			character_name_textblock.Text = character_name_textbox.Text;
+		}
+		// Магические пули
+		private void MagicBulletCurrent_textbox_Pasting(object sender, DataObjectPastingEventArgs e)
+		{
+			e.CancelCommand();
+			e.Handled = true;
+		}
+		private void MagicBulletCurrent_textblock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			MagicBulletCurrent_textblock.Visibility = Visibility.Collapsed;
+			MagicBulletCurrent_textbox.Visibility = Visibility.Visible;
+			MagicBulletCurrent_textbox.Text = MagicBulletCurrent_textblock.Text;
+			MagicBulletCurrent_textbox.Focus();
+		}
+		private void MagicBulletCurrent_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			TextboxProcessing.WholeNumbersOnly(MagicBulletCurrent_textbox, e);
+		}
+		private void MagicBulletCurrent_textbox_PreviewKeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Enter)
+			{
+				MagicBulletCurrent_textblock.Visibility = Visibility.Visible;
+				MagicBulletCurrent_textbox.Visibility = Visibility.Collapsed;
+				if (MagicBulletCurrent_textbox.Text.Length == 0 ||
+					MagicBulletCurrent_textbox.Text == "-0" ||
+					MagicBulletCurrent_textbox.Text == "-" ||
+					MagicBulletCurrent_textbox.Text == "00" ||
+					Convert.ToInt32(MagicBulletCurrent_textbox.Text) < 0
+					)
+				{
+					MagicBulletCurrent_textbox.Text = "0";
+					MagicBulletCurrent_textblock.Text = "0";
+				}
+				MagicSpells.MagicBulletsCurrent = Convert.ToInt32(MagicBulletCurrent_textbox.Text);
+				MagicBulletCurrent_textblock.Text = MagicBulletCurrent_textbox.Text;
+			}
+		}
+
+		private void plusMagicBullet_Click(object sender, RoutedEventArgs e)
+		{
+			MagicSpells.MagicBulletsCurrent++;
+			MagicBulletCurrent_textblock.Text = Convert.ToString(MagicSpells.MagicBulletsCurrent);
+		}
+
+		private void MinusMagicBullet_Click(object sender, RoutedEventArgs e)
+		{
+			if (MagicSpells.MagicBulletsCurrent > 0)
+			{
+				MagicSpells.MagicBulletsCurrent--;
+			}
+			
+			MagicBulletCurrent_textblock.Text = Convert.ToString(MagicSpells.MagicBulletsCurrent);
+		}
+
+		private void ResetMagicBullet_Click(object sender, RoutedEventArgs e)
+		{
+			MagicSpells.MagicBulletsCurrent = Convert.ToUInt16(MagicBulletAll_textblock.Text);
+			MagicBulletCurrent_textblock.Text = Convert.ToString(MagicSpells.MagicBulletsCurrent);
+		}
+	}
 }

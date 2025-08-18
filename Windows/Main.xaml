@@ -234,8 +234,8 @@
 								</DataGridTextColumn>
 
 								<DataGridComboBoxColumn Header="Качество"
-			SelectedValueBinding="{Binding Quality}"
-			x:Name="QualityColumn" Width="115">
+									SelectedValueBinding="{Binding Quality}"
+									x:Name="QualityColumn" Width="115">
 									<DataGridComboBoxColumn.ElementStyle>
 										<Style TargetType="ComboBox">
 											<Setter Property="ItemsSource">
@@ -649,6 +649,20 @@
 						<TextBlock Text="Множитель урона:"/>
 						<TextBlock Width="40" TextAlignment="Center" x:Name="DamageMagic_textblock" Text="1"  Visibility="Visible" MouseLeftButtonDown="DamageMagic_textblock_MouseLeftButtonDown"/>
 						<TextBox Style="{DynamicResource STYLE_NAME}" Foreground="{DynamicResource StandartForeColor}" Background="{DynamicResource StandartBackColor}" x:Name="DamageMagic_textbox" Width="40" Height="17" Text="1" TextAlignment="Center" Visibility="Collapsed" materialDesign:HintAssist.Hint="Число"  DataObject.Pasting="DamageMagic_textbox_Pasting" AcceptsReturn="False" VerticalAlignment="Top" PreviewTextInput="DamageMagic_textbox_PreviewTextInput" PreviewKeyDown="DamageMagic_textbox_PreviewKeyDown" MaxLength="6"/>
+						<TextBlock Text="Магические пули:"/>
+						<TextBlock Width="40" TextAlignment="Center" x:Name="MagicBulletCurrent_textblock" Text="1"  Visibility="Visible" MouseLeftButtonDown="MagicBulletCurrent_textblock_MouseLeftButtonDown"/>
+						<TextBox Style="{DynamicResource STYLE_NAME}" Foreground="{DynamicResource StandartForeColor}" Background="{DynamicResource StandartBackColor}" x:Name="MagicBulletCurrent_textbox" Width="40" Height="17" Text="1" TextAlignment="Center" Visibility="Collapsed" materialDesign:HintAssist.Hint="Число"  DataObject.Pasting="MagicBulletCurrent_textbox_Pasting" AcceptsReturn="False" VerticalAlignment="Top" PreviewTextInput="MagicBulletCurrent_textbox_PreviewTextInput" PreviewKeyDown="MagicBulletCurrent_textbox_PreviewKeyDown" MaxLength="2"/>
+						<TextBlock Text="|"/>
+						<TextBlock Width="40" TextAlignment="Center" x:Name="MagicBulletAll_textblock" Text="1"  Visibility="Visible"/>
+						<Button x:Name="plusMagicBullet" Style="{DynamicResource MaterialDesignIconForegroundButton}" Width="10" Height="10" Click="plusMagicBullet_Click">
+							<TextBlock Text="+" Margin="0,-5,0,0" FontSize="18" Cursor=""/>
+						</Button>
+						<Button x:Name="MinusMagicBullet" Style="{DynamicResource MaterialDesignIconForegroundButton}" Width="10" Height="10" Margin="5,0,0,0" Click="MinusMagicBullet_Click">
+							<TextBlock Text="-" Margin="0,-6.29,0,0" FontSize="18" Cursor=""/>
+						</Button>
+						<Button x:Name="ResetMagicBullet" Margin="5,0,0,0" Height="10" Width="10" Style="{DynamicResource MaterialDesignIconForegroundButton}" Cursor="Hand" Click="ResetMagicBullet_Click">
+							<materialDesign:PackIcon Kind="Reload" Height="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+						</Button>
 					</StackPanel>
 					<StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" Margin="5,0,5,0" VerticalAlignment="Center" Height="42">
 						<StackPanel>
@@ -726,62 +740,13 @@
 							  CanUserResizeRows="False"
 							  CanUserResizeColumns="False"
 							  IsReadOnly="True"
+							  Grid.RowSpan="2"
 							  CanUserSortColumns="False">
 						<DataGrid.ContextMenu>
 							<ContextMenu>
 								<MenuItem x:Name="AddCustomSpellCurrent" Header="Добавить"/>
 								<MenuItem x:Name="DeleteCustomSpellCurrent" Header="Удалить"/>
 								<MenuItem x:Name="MoveSpellCurrent" Header="Переместить вправо"/>
-							</ContextMenu>
-						</DataGrid.ContextMenu>
-						<DataGrid.ColumnHeaderStyle>
-							<Style TargetType="DataGridColumnHeader">
-								<Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
-								<Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
-							</Style>
-						</DataGrid.ColumnHeaderStyle>
-						<DataGrid.RowStyle>
-							<Style TargetType="DataGridRow" >
-								<Setter Property="Height" Value="15"/>
-								<Setter Property="Margin" Value="0"/>
-								<Setter Property="Padding" Value="0"/>
-								<Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
-								<Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
-							</Style>
-						</DataGrid.RowStyle>
-
-						<DataGrid.CellStyle>
-							<Style TargetType="DataGridCell">
-								<Setter Property="Padding" Value="5,0"/>
-								<Setter Property="Margin" Value="0"/>
-								<Setter Property="BorderThickness" Value="0"/>
-								<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-							</Style>
-						</DataGrid.CellStyle>
-						<DataGrid.Columns>
-							<DataGridTextColumn Header="Название" Binding="{Binding SpellName}" Width="200"/>
-							<DataGridTextColumn Header="Школа" Binding="{Binding SpellSchool}" Width="106"/>
-							<DataGridTextColumn Header="Урон" Binding="{Binding SpellDamage}" Width="36"/>
-							<DataGridTextColumn Header="Ролл" Binding="{Binding SpellRoll}" Width="35"/>
-							<DataGridTextColumn Header="УР" Binding="{Binding SpellLevel}" Width="30"/>
-							<DataGridTextColumn Header="Описание" Binding="{Binding SpellDescription}" Visibility="Hidden"/>
-						</DataGrid.Columns>
-					</DataGrid>
-					<DataGrid Grid.Row="2" Grid.Column="1"
-							  x:Name="DataGridAllSpells" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-							  AutoGenerateColumns="False"
-                              SelectionMode="Single"
-							  CanUserAddRows="False"
-							  CanUserDeleteRows="False"
-							  CanUserReorderColumns="False"
-							  CanUserResizeRows="False"
-							  CanUserResizeColumns="False"
-							  CanUserSortColumns="False" Grid.ColumnSpan="2"
-							  IsReadOnly="True"
-							  Visibility="{DynamicResource IsEdit}">
-						<DataGrid.ContextMenu>
-							<ContextMenu>
-								<MenuItem x:Name="MoveSpellAll" Header="Переместить влево"/>
 							</ContextMenu>
 						</DataGrid.ContextMenu>
 						<DataGrid.ColumnHeaderStyle>
@@ -816,7 +781,75 @@
 									</Style>
 								</DataGridTextColumn.ElementStyle>
 							</DataGridTextColumn>
-							<DataGridTextColumn Header="Школа" Binding="{Binding SpellSchool}" Width="106"/>
+							<DataGridTextColumn Header="Школа" Binding="{Binding SpellSchool}" Width="106">
+								<DataGridTextColumn.ElementStyle>
+									<Style TargetType="TextBlock">
+										<Setter Property="Foreground" Value="{Binding colorbrushnature}"/>
+									</Style>
+								</DataGridTextColumn.ElementStyle>
+							</DataGridTextColumn>
+							<DataGridTextColumn Header="Урон" Binding="{Binding SpellDamage}" Width="36"/>
+							<DataGridTextColumn Header="Ролл" Binding="{Binding SpellRoll}" Width="35"/>
+							<DataGridTextColumn Header="УР" Binding="{Binding SpellLevel}" Width="30"/>
+							<DataGridTextColumn Header="Описание" Binding="{Binding SpellDescription}" Visibility="Hidden"/>
+						</DataGrid.Columns>
+					</DataGrid>
+					<DataGrid Grid.Row="2" Grid.Column="1"
+							  x:Name="DataGridAllSpells" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+							  AutoGenerateColumns="False"
+                              SelectionMode="Single"
+							  CanUserAddRows="False"
+							  CanUserDeleteRows="False"
+							  CanUserReorderColumns="False"
+							  CanUserResizeRows="False"
+							  CanUserResizeColumns="False"
+							  CanUserSortColumns="False" Grid.ColumnSpan="2"
+							  IsReadOnly="True"
+							  Visibility="{DynamicResource IsEdit}">
+						<DataGrid.ContextMenu>
+							<ContextMenu>
+								<MenuItem x:Name="MoveSpellAll" Header="Переместить влево"/>
+							</ContextMenu>
+						</DataGrid.ContextMenu>
+						<DataGrid.ColumnHeaderStyle>
+							<Style TargetType="DataGridColumnHeader">
+								<Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
+								<Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
+							</Style>
+						</DataGrid.ColumnHeaderStyle>
+						<DataGrid.RowStyle>
+							<Style TargetType="DataGridRow" >
+								<Setter Property="Height" Value="20"/>
+								<Setter Property="Margin" Value="0"/>
+								<Setter Property="Padding" Value="0"/>
+								<Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
+								<Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
+							</Style>
+						</DataGrid.RowStyle>
+
+						<DataGrid.CellStyle>
+							<Style TargetType="DataGridCell">
+								<Setter Property="Padding" Value="5,0"/>
+								<Setter Property="Margin" Value="0"/>
+								<Setter Property="BorderThickness" Value="0"/>
+								<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+							</Style>
+						</DataGrid.CellStyle>
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="Название" Binding="{Binding SpellName}" Width="200">
+								<DataGridTextColumn.ElementStyle>
+									<Style TargetType="TextBlock">
+										<Setter Property="Foreground" Value="{Binding colorbrush}"/>
+									</Style>
+								</DataGridTextColumn.ElementStyle>
+							</DataGridTextColumn>
+							<DataGridTextColumn Header="Школа" Binding="{Binding SpellSchool}" Width="106">
+								<DataGridTextColumn.ElementStyle>
+									<Style TargetType="TextBlock">
+										<Setter Property="Foreground" Value="{Binding colorbrushnature}"/>
+									</Style>
+								</DataGridTextColumn.ElementStyle>
+							</DataGridTextColumn>
 							<DataGridTextColumn Header="Урон" Binding="{Binding SpellDamage}" Width="36"/>
 							<DataGridTextColumn Header="Ролл" Binding="{Binding SpellRoll}" Width="35"/>
 							<DataGridTextColumn Header="УР" Binding="{Binding SpellLevel}" Width="30"/>
