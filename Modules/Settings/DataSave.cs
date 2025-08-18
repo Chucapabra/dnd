@@ -142,6 +142,9 @@ namespace DNDHelper.Modules.Settings
 
         public static void Save()
         {
+            if (SelectedSave.Length == 0)
+                return;
+
             var options = new JsonSerializerOptions
             {
                 ReferenceHandler = ReferenceHandler.IgnoreCycles,
@@ -149,7 +152,7 @@ namespace DNDHelper.Modules.Settings
                 Converters = { new JsonStringEnumConverter() }
             };
 
-
+            Debug.WriteLine($"{SelectedSave}/Config.json");
             var json = JsonSerializer.Serialize(DataSave, options);
 
             File.WriteAllText($"{SelectedSave}/Config.json", json);
@@ -172,8 +175,6 @@ namespace DNDHelper.Modules.Settings
             DataSave.Name = dataSave.Name;
             DataSave.SelectedRace = dataSave.SelectedRace;
             DataSave.SelectedClass = dataSave.SelectedClass;
-            DataSave.SelectedBackpack = dataSave.SelectedBackpack;
-            DataSave.BackpackQuantity = dataSave.BackpackQuantity;
             DataSave.AddWeight = dataSave.AddWeight;
             DataSave.Level = dataSave.Level;
             DataSave.Damage = dataSave.Damage;
@@ -197,6 +198,8 @@ namespace DNDHelper.Modules.Settings
                     item.Weight /= item.Count;
                 DataSave.Inventory.Add(item);
             }
+            DataSave.SelectedBackpack = dataSave.SelectedBackpack;
+            DataSave.BackpackQuantity = dataSave.BackpackQuantity;
 
             DataSave.CustomSkills.Clear();
             foreach (var item in dataSave.CustomSkills)
@@ -335,7 +338,7 @@ namespace DNDHelper.Modules.Settings
             new TreeGrid { TreeName = "", TreeLevel = 0 }
             };
 
-        public int[] Characterisitics { get; set; } = new int[Enum.GetValues(typeof(StatName)).Length];
+        public int[] Characterisitics { get; set; } = {5,5,5,3,3,3,5,5,3,3,3,3,3,3,5,3,3,3,3,3,5,3,3,3,3};
 
         public ObservableCollection<Skills.Skill> CustomSkills { get; set; } = new();
 

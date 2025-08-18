@@ -474,7 +474,7 @@ namespace DNDHelper.Modules.Inventory
                 {
                     _crushing = (_crushing - DamageSeverity) / QualityToDouble(_quality);
                     _severity = value;
-                    DamageSeverity = CalculateHeavinessDamage(_severity, _quality, 1);
+                    DamageSeverity = CalculateHeavinessDamage(_severity, _quality, GlobalMultiply.Multiply);
                     Crushing = _crushing * QualityToDouble(_quality) + DamageSeverity;
                     OnPropertyChanged();
                 }
@@ -644,7 +644,7 @@ namespace DNDHelper.Modules.Inventory
             }
             private void UpdateAllValue()
             {
-                DamageSeverity = CalculateHeavinessDamage(_severity, _quality, 1);
+                DamageSeverity = CalculateHeavinessDamage(_severity, _quality, GlobalMultiply.Multiply);
                 if (_chopping != 0)
                     Chopping = _chopping * QualityToDouble(_quality);
                 if (_stabbing != 0)
