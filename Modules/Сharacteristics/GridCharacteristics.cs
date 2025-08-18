@@ -140,7 +140,7 @@ namespace DNDHelper.Modules.Сharacteristics
                     PointsCharismaSkillsNow = PointsCharismaSkills - Base(Deception) - Base(Intimidation) - Base(Speech) - Base(Persuasion);
                     break;
             }
-            PointsNow = LevelBaffs.AddPoints + Points - Base(Strength) - Base(Agility) - Base(Body) - Base(Intellect) - Base(Wisdom) - Base(Charisma);
+            PointsNow = Race.SelectedClassData.AddPoints + LevelBaffs.AddPoints + Points - Base(Strength) - Base(Agility) - Base(Body) - Base(Intellect) - Base(Wisdom) - Base(Charisma);
             UpdatePointText(main.EditMode_button.IsChecked);
         }
 
@@ -223,7 +223,7 @@ namespace DNDHelper.Modules.Сharacteristics
 
         public void AgilityMethod()
         {
-            PointsAgilitySkills = (int)((Base(Agility) + Race.Stats[2].Value + PlayerClass.Stats[2].Value) * 3 * 0.75);
+            PointsAgilitySkills = (int)((Base(Agility) + Race.Stats[2].Value + PlayerClass.Stats[2].Value + TreeSkills.Stats[2].Value) * 3 * 0.75);
 
             AttributesCharacter.СountAvailableActions();
             AttributesCharacter.StickMethod();
@@ -238,18 +238,18 @@ namespace DNDHelper.Modules.Сharacteristics
 
         public void IntellectMethod()
         {
-            PointsIntellectSkills = (int)((Base(Intellect) + Race.Stats[7].Value + PlayerClass.Stats[7].Value) * 6 * 0.75);
+            PointsIntellectSkills = (int)((Base(Intellect) + Race.Stats[7].Value + PlayerClass.Stats[7].Value + TreeSkills.Stats[7].Value) * 6 * 0.75);
 
             KDScript.CountMentalKD();
         }
 
         public void WisdomMethod()
         {
-            PointsWisdomSkills = (int)((Base(Wisdom) + Race.Stats[14].Value + PlayerClass.Stats[14].Value) * 5 * 0.75);
+            PointsWisdomSkills = (int)((Base(Wisdom) + Race.Stats[14].Value + PlayerClass.Stats[14].Value + TreeSkills.Stats[14].Value) * 5 * 0.75);
         }
         public void CharismaMethod()
         {
-            PointsCharismaSkills = (int)((Base(Charisma) + Race.Stats[20].Value + PlayerClass.Stats[20].Value + OtherBuff(Charisma)) * 4 * 0.75);
+            PointsCharismaSkills = (int)((Base(Charisma) + Race.Stats[20].Value + PlayerClass.Stats[20].Value + OtherBuff(Charisma) + TreeSkills.Stats[20].Value) * 4 * 0.75);
         }
     }
 
