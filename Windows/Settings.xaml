@@ -35,6 +35,7 @@
                                 <Setter Property="Height" Value="45"/>
                                 <Setter Property="FontSize" Value="20"/>
                                 <Setter Property="FontFamily" Value="Bahnschrift"/>
+                                <Setter Property="Foreground" Value="{Binding Foreground}"/>
                             </Style>
                         </ListBox.ItemContainerStyle>
                     </ListBox>

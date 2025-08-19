@@ -1,5 +1,6 @@
 ﻿using DNDHelper.Modules.Character;
 using DNDHelper.Modules.Inventory;
+using DNDHelper.Modules.Settings;
 using DNDHelper.Windows;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -22,20 +23,28 @@ namespace DNDHelper.Modules.Config
         {
             Main.Instance.character_race_combobox.SelectionChanged += character_race_combobox_SelectionChanged;
 
-            string json = File.ReadAllText("Race.json");
+
+            Update();
+
+            ClearStats();
+        }
+
+        public void Update()
+        {
+            //     string json = File.ReadAllText($"Cache/{DataManager.DataSave.SelectedRepository}/Race.json");
+            string json = File.ReadAllText($"Race.json");
             var options = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true,
                 WriteIndented = true
             };
 
-
             data = JsonSerializer.Deserialize<Dictionary<string, List<RaceData>>>(json, options);
 
             Main.Instance.character_race_combobox.ItemsSource = data.Keys;
-
-            ClearStats();
         }
+
+
 
         private void ClearStats() 
         {

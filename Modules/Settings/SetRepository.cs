@@ -82,6 +82,11 @@ namespace DNDHelper.Modules.Settings
             }
         }
 
+        public static void UpdateRepository()
+        {
+
+        }
+
 
 
         public static string FileSpells = "";
@@ -151,12 +156,13 @@ namespace DNDHelper.Modules.Settings
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
 
-            var spell_ = CheckCacheFile("FileSpells.txt", FileSpells, path);
-            var race_ = CheckCacheFile("FileRace.json", FileRace, path);
-            var class_ = CheckCacheFile("FileClass.json", FileClass, path);
-            var typeDamage_ = CheckCacheFile("FileTypeDamage.json", FileTypeDamage, path);
-            var multiplyGlobal_ = CheckCacheFile("FileMultiplyGlobal.json", FileMultiplyGlobal, path);
-            if (spell_ || race_ || class_ || typeDamage_ || multiplyGlobal_) ;
+            var spell_ = CheckCacheFile("Spells.txt", FileSpells, path);
+            var race_ = CheckCacheFile("Race.json", FileRace, path);
+            var class_ = CheckCacheFile("Class.json", FileClass, path);
+            var typeDamage_ = CheckCacheFile("TypeDamage.json", FileTypeDamage, path);
+            var multiplyGlobal_ = CheckCacheFile("MultiplyGlobal.json", FileMultiplyGlobal, path);
+            if (spell_ || race_ || class_ || typeDamage_ || multiplyGlobal_)
+                UpdateRepository();
         }
 
         public static bool CheckCacheFile(string name, string content, string path)
@@ -188,5 +194,7 @@ namespace DNDHelper.Modules.Settings
         public string Name { get; set; }
 
         public string Link { get; set; }
+
+        public Brush Foreground { get; set; }
     }
 }

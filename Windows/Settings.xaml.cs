@@ -33,6 +33,13 @@ namespace DNDHelper.Windows
             Instance = this;
 
             SetRepository setRepository = new SetRepository();
+
+            Loaded += Settings_Loaded;
+        }
+
+        private void Settings_Loaded(object sender, RoutedEventArgs e)
+        {
+            SetRepository.UpdateListBox();
         }
 
         private void ComboBoxTheme_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -62,6 +69,7 @@ namespace DNDHelper.Windows
                 Main.Instance.SetTheme(DarkThem.SelectedTheme[0], DarkThem.SelectedTheme[1]);
                 paletteHelper.SetTheme(theme);
                 MagicSpells.RepositoryLoad();
+                SetRepository.UpdateListBox();
 
                 // Обновление шрифта в инвенторе
                 foreach (var item in InventoryLoot.InventoryItems)

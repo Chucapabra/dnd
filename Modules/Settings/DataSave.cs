@@ -172,6 +172,7 @@ namespace DNDHelper.Modules.Settings
             var json = File.ReadAllText($"{SelectedSave}/Config.json");
 
             var dataSave = JsonSerializer.Deserialize<DataSaveEmpty>(json);
+            DataSave.SelectedRepository = dataSave.SelectedRepository;
             DataSave.Name = dataSave.Name;
             DataSave.SelectedRace = dataSave.SelectedRace;
             DataSave.SelectedClass = dataSave.SelectedClass;
@@ -216,7 +217,18 @@ namespace DNDHelper.Modules.Settings
 
     public class DataSaveEmpty : INotifyPropertyChanged
     {
-        public string SelectedRepository { get; set; } = "";
+
+        private string _selectedRepository = "";
+        public string SelectedRepository
+        {
+            get => _selectedRepository;
+            set
+            {
+                _selectedRepository = value;
+                SetRepository.UpdateRepository();
+                OnPropertyChanged();
+            }
+        }
 
         private string _name = "Имя";
         public string Name
