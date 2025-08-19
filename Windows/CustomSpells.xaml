@@ -7,7 +7,7 @@
 		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 		Style="{StaticResource MaterialDesignWindow}"
         mc:Ignorable="d"
-        Title="Создание заклинания" Height="300" Width="635" ResizeMode="NoResize">
+        Title="Создание заклинания" Height="300" Width="641" ResizeMode="NoResize">
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="55*"/>
@@ -16,8 +16,8 @@
 		</Grid.RowDefinitions>
 		<StackPanel Orientation="Horizontal" Margin="5,0,5,0" VerticalAlignment="Center" Height="42">
 			<StackPanel>
-				<TextBlock Text="Поиск"/>
-				<TextBox materialDesign:HintAssist.Hint="Название" materialDesign:TextFieldAssist.CharacterCounterVisibility="Hidden" x:Name="CastCustom_textbox" Width="100" MaxLength="255"/>
+				<TextBlock Text="Заклинание"/>
+				<TextBox materialDesign:HintAssist.Hint="Название" materialDesign:TextFieldAssist.CharacterCounterVisibility="Hidden" x:Name="CastCustom_textbox" Width="170" MaxLength="255"/>
 			</StackPanel>
 			<StackPanel Margin="15,0,0,0">
 				<TextBlock Text="Вид"/>

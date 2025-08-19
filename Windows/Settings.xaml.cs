@@ -16,6 +16,7 @@ using MaterialDesignThemes.Wpf;
 using DarkThem = DNDHelper.Modules.Settings.Settings;
 using DNDHelper.Modules.Inventory;
 using DNDHelper.Modules.MagicSpells;
+using DNDHelper.Modules.Settings;
 
 namespace DNDHelper.Windows
 {
@@ -24,9 +25,14 @@ namespace DNDHelper.Windows
     /// </summary>
     public partial class Settings : Window
     {
+        public static Settings Instance { get; set; }
+
         public Settings()
         {
             InitializeComponent();
+            Instance = this;
+
+            SetRepository setRepository = new SetRepository();
         }
 
         private void ComboBoxTheme_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -24,25 +24,21 @@
 						<ColumnDefinition Width="*"/>
 						<ColumnDefinition Width="Auto"/>
 					</Grid.ColumnDefinitions>
-
-					<TextBox x:Name="NameProfile" Grid.Row="0" Grid.Column="0" materialDesign:HintAssist.Hint="Название"/>
-					<Button x:Name="AddProfile" Grid.Row="0" Grid.Column="1" Content="Добавить" Click="AddProfile_Click"/>
-					<TextBox x:Name="UrlProfile" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="Wrap" materialDesign:HintAssist.Hint="Ссылка"/>
-					<ListBox x:Name="ListProfiles" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-						<ListBoxItem Grid.ColumnSpan="2">
-							<StackPanel>
-								<TextBlock Text="Гюнтер" FontWeight="Bold"/>
-								<TextBlock Text="https://raw.githubusercontent.com/GunterSuperPenguin/dnd-configs-gunter/refs/heads/main" TextWrapping="Wrap"/>
-							</StackPanel>
-						</ListBoxItem>
-						<ListBoxItem>
-							<StackPanel>
-								<TextBlock Text="Туша" FontWeight="Bold"/>
-								<TextBlock Text="https://github.com/Chucapabra/dnd/tree/Settings" TextWrapping="Wrap"/>
-							</StackPanel>
-						</ListBoxItem>
-					</ListBox>
-				</Grid>
+                    <ListBox x:Name="ListProfiles" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                        <ListBox.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem x:Name="SelectedRepository" Header="Выбрать"/>
+                            </ContextMenu>
+                        </ListBox.ContextMenu>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                                <Setter Property="Height" Value="45"/>
+                                <Setter Property="FontSize" Value="20"/>
+                                <Setter Property="FontFamily" Value="Bahnschrift"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+                </Grid>
 			</TabItem>
 			<TabItem Header="Программа">
 				<StackPanel>

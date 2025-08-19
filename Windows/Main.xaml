@@ -42,8 +42,8 @@
 				<MenuItem Header="Загрузить..."/>
 				<MenuItem Header="Сохранить как..."/>
 				<Separator />
-                <MenuItem x:Name="CharactersMenu" Header="Персонажи">
-                </MenuItem>
+				<MenuItem x:Name="CharactersMenu" Header="Персонажи">
+				</MenuItem>
 			</MenuItem>
 			<MenuItem Header="Программа">
 				<MenuItem Header="Режим редактирования" IsCheckable="True" x:Name="EditMode_button" Click="EditMode_click"/>
@@ -65,18 +65,18 @@
 		<StackPanel VerticalAlignment="Center" Margin="10,50,0,0">
 			<StackPanel Orientation="Horizontal">
 				<TextBlock Text="Имя:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Width="60" />
-                <TextBlock Text="{Binding Name}" x:Name="character_name_textblock" Width="120" Visibility="Visible" VerticalAlignment="Center" />
-                <TextBox TextChanged ="character_name_textbox_TextChanged"  Text="{Binding Name}" Width="120" x:Name="character_name_textbox" materialDesign:HintAssist.Hint="Имя" Visibility="Hidden" MaxLength="254"/>
+				<TextBlock Text="{Binding Name}" x:Name="character_name_textblock" Width="120" Visibility="Visible" VerticalAlignment="Center" />
+				<TextBox TextChanged ="character_name_textbox_TextChanged"  Text="{Binding Name}" Width="120" x:Name="character_name_textbox" materialDesign:HintAssist.Hint="Имя" Visibility="Hidden" MaxLength="254"/>
 			</StackPanel>
 			<StackPanel Orientation="Horizontal">
 				<TextBlock Text="Раса:" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0" Width="60" />
 				<TextBlock Text="[[Раса]]" x:Name="character_race_textblock" Width="120" Visibility="Visible" VerticalAlignment="Center" />
-                <ComboBox SelectedIndex="{Binding SelectedRace}" Width="120" x:Name="character_race_combobox" materialDesign:HintAssist.Hint="Раса" Visibility="Hidden"/>
+				<ComboBox SelectedIndex="{Binding SelectedRace}" Width="120" x:Name="character_race_combobox" materialDesign:HintAssist.Hint="Раса" Visibility="Hidden"/>
 			</StackPanel>
 			<StackPanel Orientation="Horizontal">
 				<TextBlock Text="Класс:" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0" Width="60"/>
 				<TextBlock Text="[[Класс]]" x:Name="character_class_textblock" Width="120" Visibility="Visible" VerticalAlignment="Center" />
-                <ComboBox SelectedIndex="{Binding SelectedClass}" Width="120" x:Name="character_class_combobox" materialDesign:HintAssist.Hint="Класс" Visibility="Hidden"/>
+				<ComboBox SelectedIndex="{Binding SelectedClass}" Width="120" x:Name="character_class_combobox" materialDesign:HintAssist.Hint="Класс" Visibility="Hidden"/>
 			</StackPanel>
 		</StackPanel>
 		<StackPanel>
@@ -211,6 +211,11 @@
 									<MenuItem x:Name="DeleteMenuItem" Header="Удалить"/>
 								</ContextMenu>
 							</DataGrid.ContextMenu>
+							<!--<DataGrid.RowStyle>
+								<Style TargetType="DataGridRow">
+									<Setter Property="ToolTip" Value="{Binding Name}"/>
+								</Style>
+							</DataGrid.RowStyle>-->
 							<DataGrid.Columns>
 								<DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="140">
 									<DataGridTextColumn.ElementStyle>
@@ -439,15 +444,15 @@
 							</StackPanel>
 							<StackPanel  Orientation="Horizontal">
 								<TextBlock Text="Медяк" Margin="0,5,0,0" Width="110" Foreground="Orange"/>
-                                <TextBox Text="{Binding Copper}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  materialDesign:HintAssist.Hint="Число" Width="40" x:Name="Cuprum_tb" PreviewTextInput="Cuprum_tb_PreviewTextInput" DataObject.Pasting="Cuprum_tb_Pasting"/>
+								<TextBox Text="{Binding Copper}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  materialDesign:HintAssist.Hint="Число" Width="40" x:Name="Cuprum_tb" PreviewTextInput="Cuprum_tb_PreviewTextInput" DataObject.Pasting="Cuprum_tb_Pasting"/>
 							</StackPanel>
 							<StackPanel Margin="0,5,0,5" Orientation="Horizontal">
 								<TextBlock Text="Серебреник" Width="110" Foreground="Gray"/>
-                                <TextBox Text="{Binding Silver}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="Число" Width="40" x:Name="Silver_tb" PreviewTextInput="Silver_tb_PreviewTextInput" DataObject.Pasting="Silver_tb_Pasting"/>
+								<TextBox Text="{Binding Silver}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="Число" Width="40" x:Name="Silver_tb" PreviewTextInput="Silver_tb_PreviewTextInput" DataObject.Pasting="Silver_tb_Pasting"/>
 							</StackPanel>
 							<StackPanel Orientation="Horizontal">
 								<TextBlock Text="Золотой" Width="110" Foreground="Gold"/>
-                                <TextBox Text="{Binding Gold}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="Число" Width="40" x:Name="Gold_tb" PreviewTextInput="Gold_tb_PreviewTextInput" DataObject.Pasting="Gold_tb_Pasting"/>
+								<TextBox Text="{Binding Gold}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" materialDesign:HintAssist.Hint="Число" Width="40" x:Name="Gold_tb" PreviewTextInput="Gold_tb_PreviewTextInput" DataObject.Pasting="Gold_tb_Pasting"/>
 							</StackPanel>
 						</StackPanel>
 					</Border>
@@ -455,7 +460,7 @@
 						<StackPanel Margin="5,0,0,0" VerticalAlignment="Center">
 							<StackPanel  Orientation="Horizontal">
 								<TextBlock FontSize="12" Text="Рюкзак" Width="75" VerticalAlignment="Center"/>
-                                <ComboBox materialDesign:HintAssist.Hint="Нет" Width="110" x:Name="backpack_cb" SelectedIndex="{Binding SelectedBackpack}" SelectionChanged="backpack_cb_SelectionChanged">
+								<ComboBox materialDesign:HintAssist.Hint="Нет" Width="110" x:Name="backpack_cb" SelectedIndex="{Binding SelectedBackpack}" SelectionChanged="backpack_cb_SelectionChanged">
 									<ComboBoxItem Content="Нет"/>
 									<ComboBoxItem Content="Прото"/>
 									<ComboBoxItem Content="Плохой"/>
@@ -468,7 +473,7 @@
 							</StackPanel>
 							<StackPanel Margin="0,0,0,0" Orientation="Horizontal">
 								<TextBlock FontSize="12" Text="Кол-во" Width="75" VerticalAlignment="Center"/>
-                                <ComboBox SelectedIndex="{Binding BackpackQuantity}" materialDesign:HintAssist.Hint="Нет" Width="40" x:Name="backpack_quantity_cb" ItemsSource="{x:Null}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="25"/>
+								<ComboBox SelectedIndex="{Binding BackpackQuantity}" materialDesign:HintAssist.Hint="Нет" Width="40" x:Name="backpack_quantity_cb" ItemsSource="{x:Null}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="25"/>
 							</StackPanel>
 							<StackPanel Orientation="Horizontal">
 								<TextBlock FontSize="12" Text="Добавить к весу" TextWrapping="Wrap" Width="75"/>
@@ -477,7 +482,7 @@
 							<Separator/>
 							<StackPanel Orientation="Horizontal">
 								<TextBlock FontSize="12" Text="Тип брони" TextWrapping="Wrap" VerticalAlignment="Center" Width="75"/>
-                                <ComboBox SelectedIndex="{Binding SelectedQualityArmor}" materialDesign:HintAssist.Hint="Число"  Width="72" x:Name="armor_type_cb">
+								<ComboBox SelectedIndex="{Binding SelectedQualityArmor}" materialDesign:HintAssist.Hint="Число"  Width="72" x:Name="armor_type_cb">
 									<ComboBoxItem Content="Нет"/>
 									<ComboBoxItem Content="Лёгкая"/>
 									<ComboBoxItem Content="Средняя"/>
@@ -599,9 +604,10 @@
 			<TabItem Header="Магия">
 				<Grid>
 					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="59*"/>
 						<ColumnDefinition/>
 						<ColumnDefinition Width="1"/>
-						<ColumnDefinition/>
+						<ColumnDefinition Width="60*"/>
 					</Grid.ColumnDefinitions>
 					<Grid.RowDefinitions>
 						<RowDefinition Height="21*"/>
@@ -609,7 +615,7 @@
 						<RowDefinition Height="96*"/>
 						<RowDefinition Height="47*"/>
 					</Grid.RowDefinitions>
-					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5,0,6,0" Height="36">
+					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5,0,6,0" Height="36" Grid.ColumnSpan="2">
 						<StackPanel>
 							<TextBlock Text="Школа:"/>
 							<ComboBox x:Name="SchoolSelect_cb" Width="120">
@@ -645,7 +651,7 @@
 							</ComboBox>
 						</StackPanel>
 					</StackPanel>
-					<StackPanel Orientation="Horizontal" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Height="18">
+					<StackPanel Orientation="Horizontal" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center" Height="18">
 						<TextBlock Text="Множитель урона:"/>
 						<TextBlock Width="40" TextAlignment="Center" x:Name="DamageMagic_textblock" Text="1"  Visibility="Visible" MouseLeftButtonDown="DamageMagic_textblock_MouseLeftButtonDown"/>
 						<TextBox Style="{DynamicResource STYLE_NAME}" Foreground="{DynamicResource StandartForeColor}" Background="{DynamicResource StandartBackColor}" x:Name="DamageMagic_textbox" Width="40" Height="17" Text="1" TextAlignment="Center" Visibility="Collapsed" materialDesign:HintAssist.Hint="Число"  DataObject.Pasting="DamageMagic_textbox_Pasting" AcceptsReturn="False" VerticalAlignment="Top" PreviewTextInput="DamageMagic_textbox_PreviewTextInput" PreviewKeyDown="DamageMagic_textbox_PreviewKeyDown" MaxLength="6"/>
@@ -664,14 +670,14 @@
 							<materialDesign:PackIcon Kind="Reload" Height="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 						</Button>
 					</StackPanel>
-					<StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" Margin="5,0,5,0" VerticalAlignment="Center" Height="42">
+					<StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="4" Margin="5,0,5,0" VerticalAlignment="Center" Height="42">
 						<StackPanel>
 							<TextBlock Text="Поиск"/>
-							<TextBox materialDesign:HintAssist.Hint="Название" x:Name="CastSearch_textbox" Width="100" MaxLength="255"/>
+							<TextBox materialDesign:HintAssist.Hint="Название" x:Name="CastSearch_textbox" Width="180" MaxLength="255"/>
 						</StackPanel>
 						<StackPanel Margin="15,0,0,0">
 							<TextBlock Text="Вид"/>
-							<ComboBox Width="120" SelectedIndex="3">
+							<ComboBox Width="120" SelectedIndex="0" x:Name="CastSearch_Type_cb">
 								<ComboBoxItem Content="Все"/>
 								<ComboBoxItem Content="Обычные"/>
 								<ComboBoxItem Content="Тайные"/>
@@ -713,8 +719,9 @@
 						</StackPanel>
 						<StackPanel Margin="15,0,0,0">
 							<TextBlock Text="Уровень"/>
-							<ComboBox SelectedIndex="0" x:Name="LevelCast_Search_cb" Width="70">
-								<ComboBoxItem Content="Заговор"/>
+							<ComboBox SelectedIndex="0" x:Name="LevelCast_Search_cb" Width="80">
+								<ComboBoxItem Content="Все"/>
+								<ComboBoxItem Content="Заговоры"/>
 								<ComboBoxItem Content="1"/>
 								<ComboBoxItem Content="2"/>
 								<ComboBoxItem Content="3"/>
@@ -730,7 +737,7 @@
 							</ComboBox>
 						</StackPanel>
 					</StackPanel>
-					<DataGrid Grid.Row="2" Grid.ColumnSpan="3"
+					<DataGrid Grid.Row="1" Grid.ColumnSpan="4"
 							  x:Name="DataGridCurrentSpells" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
 							  AutoGenerateColumns="False"
                               SelectionMode="Single"
@@ -740,8 +747,8 @@
 							  CanUserResizeRows="False"
 							  CanUserResizeColumns="False"
 							  IsReadOnly="True"
-							  Grid.RowSpan="2"
-							  CanUserSortColumns="False">
+							  Grid.RowSpan="3"
+							  CanUserSortColumns="False" Margin="0,42,0,0">
 						<DataGrid.ContextMenu>
 							<ContextMenu>
 								<MenuItem x:Name="AddCustomSpellCurrent" Header="Добавить"/>
@@ -757,11 +764,12 @@
 						</DataGrid.ColumnHeaderStyle>
 						<DataGrid.RowStyle>
 							<Style TargetType="DataGridRow" >
-								<Setter Property="Height" Value="15"/>
+								<Setter Property="Height" Value="20"/>
 								<Setter Property="Margin" Value="0"/>
 								<Setter Property="Padding" Value="0"/>
 								<Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
 								<Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
+								<Setter Property="ToolTip" Value="{Binding SpellName}"/>
 							</Style>
 						</DataGrid.RowStyle>
 
@@ -774,7 +782,7 @@
 							</Style>
 						</DataGrid.CellStyle>
 						<DataGrid.Columns>
-							<DataGridTextColumn Header="Название" Binding="{Binding SpellName}" Width="200">
+							<DataGridTextColumn x:Name="DataGridCurrentSpellsSpellName" Header="Название" Binding="{Binding SpellName}" Width="600">
 								<DataGridTextColumn.ElementStyle>
 									<Style TargetType="TextBlock">
 										<Setter Property="Foreground" Value="{Binding colorbrush}"/>
@@ -794,7 +802,7 @@
 							<DataGridTextColumn Header="Описание" Binding="{Binding SpellDescription}" Visibility="Hidden"/>
 						</DataGrid.Columns>
 					</DataGrid>
-					<DataGrid Grid.Row="2" Grid.Column="1"
+					<DataGrid Grid.Row="1" Grid.Column="2"
 							  x:Name="DataGridAllSpells" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
 							  AutoGenerateColumns="False"
                               SelectionMode="Single"
@@ -805,7 +813,7 @@
 							  CanUserResizeColumns="False"
 							  CanUserSortColumns="False" Grid.ColumnSpan="2"
 							  IsReadOnly="True"
-							  Visibility="{DynamicResource IsEdit}">
+							  Visibility="{DynamicResource IsEdit}" Margin="0,42,0,0" Grid.RowSpan="2">
 						<DataGrid.ContextMenu>
 							<ContextMenu>
 								<MenuItem x:Name="MoveSpellAll" Header="Переместить влево"/>
@@ -824,9 +832,9 @@
 								<Setter Property="Padding" Value="0"/>
 								<Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
 								<Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
+								<Setter Property="ToolTip" Value="{Binding SpellName}"/>
 							</Style>
 						</DataGrid.RowStyle>
-
 						<DataGrid.CellStyle>
 							<Style TargetType="DataGridCell">
 								<Setter Property="Padding" Value="5,0"/>
@@ -856,13 +864,12 @@
 							<DataGridTextColumn Header="Описание" Binding="{Binding SpellDescription}" Visibility="Hidden"/>
 						</DataGrid.Columns>
 					</DataGrid>
-					<TextBox x:Name="CurrentSpellDescription" Grid.Row="3" Text="[[Описание]]" TextWrapping="Wrap" Margin="0" Grid.ColumnSpan="3" IsReadOnly="True" Style="{DynamicResource STYLE_NAME}" Foreground="{DynamicResource StandartForeColor}" Background="{DynamicResource StandartBackColor}"/>
-					<TextBox x:Name="AllSpellDescription" Grid.Row="3" Grid.Column="2" Text="[[Описание]]" TextWrapping="Wrap" Margin="0" Visibility="{DynamicResource IsEdit}" IsReadOnly="True" Style="{DynamicResource STYLE_NAME}" Foreground="{DynamicResource StandartForeColor}" Background="{DynamicResource StandartBackColor}"/>
-						<Border Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Visibility="{DynamicResource IsEdit}"/>
-					<Border Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3"/>
-					<Border Grid.ColumnSpan="3" Grid.RowSpan="4"/>
-					<Border Grid.ColumnSpan="3"/>
-					<Border Grid.ColumnSpan="3" Grid.Row="1"/>
+					<TextBox x:Name="CurrentSpellDescription" Grid.Row="2" Text="[[Описание]]" Visibility="Collapsed" Grid.RowSpan="2" TextWrapping="Wrap" Margin="0,195,0,0" Grid.ColumnSpan="4" IsReadOnly="True" Style="{DynamicResource STYLE_NAME}" Foreground="{DynamicResource StandartForeColor}" Background="{DynamicResource StandartBackColor}"/>
+					<TextBox x:Name="AllSpellDescription" Grid.Row="2" Grid.Column="2" Text="[[Описание]]" TextWrapping="Wrap" Margin="0,195,0,0" Visibility="{DynamicResource IsEdit}" IsReadOnly="True" Style="{DynamicResource STYLE_NAME}" Foreground="{DynamicResource StandartForeColor}" Background="{DynamicResource StandartBackColor}" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+					<Border Grid.Column="2" Grid.Row="1" Grid.RowSpan="3" Visibility="{DynamicResource IsEdit}" Margin="0,42,0,0"/>
+					<Border Grid.ColumnSpan="4" Grid.RowSpan="4"/>
+					<Border Grid.ColumnSpan="4" Margin="0,0,0,42" Grid.RowSpan="2"/>
+					<Border Grid.ColumnSpan="4" Grid.Row="1"/>
 				</Grid>
 			</TabItem>
 			<TabItem Header="Дневник">
@@ -874,7 +881,6 @@
 							<Setter Property="FontSize" Value ="14"></Setter>
 							<Setter Property="CommandTarget" Value="{Binding ElementName=mainRTB}"></Setter>
 						</Style>
-
 						<Style TargetType="{x:Type Button}" x:Key="formatImageStyle">
 							<Setter Property="Width" Value="30"></Setter>
 							<Setter Property="CommandTarget" Value="{Binding ElementName=mainRTB}"></Setter>
@@ -949,20 +955,19 @@
 							<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.DecreaseIndentation" ToolTip="Уменшить отступ">
 								<materialDesign:PackIcon Kind="FormatIndentDecrease"/>
 							</Button>
-
 						</ToolBar>
 						<RichTextBox x:Name="diaryTB" AcceptsTab="True" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" Margin="10,0,0,0" SelectionChanged="DiaryTB_SelectionChanged" TextChanged="DiaryTB_TextChanged" MouseMove="DiaryTB_MouseMove" FontSize="24"></RichTextBox>
 					</DockPanel>
 					<GridSplitter Grid.RowSpan="3" IsEnabled="False" Grid.Column="1" ShowsPreview="False" Width="3" Height="400" HorizontalAlignment="Left" VerticalAlignment="Top" Cursor="SizeWE" />
 					<TextBox Grid.Row="0" Grid.Column="0" x:Name="NameNote" materialDesign:HintAssist.Hint="Название записи" MaxLength="120"/>
 					<Button Grid.Column="0" Grid.Row="1" x:Name="CreateNote" Content="Создать запись"/>
-                    <ListBox x:Name="ListBoxNotes" Grid.Row="2" Grid.Column="0">
-                        <ListBox.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem x:Name="DeleteMenuNote" Header="Удалить"/>
-                            </ContextMenu>
-                        </ListBox.ContextMenu>
-                    </ListBox>
+					<ListBox x:Name="ListBoxNotes" Grid.Row="2" Grid.Column="0">
+						<ListBox.ContextMenu>
+							<ContextMenu>
+								<MenuItem x:Name="DeleteMenuNote" Header="Удалить"/>
+							</ContextMenu>
+						</ListBox.ContextMenu>
+					</ListBox>
 					<Grid.RowDefinitions>
 						<RowDefinition Height="40*"/>
 						<RowDefinition Height="40*"/>
@@ -987,8 +992,7 @@
               CanUserResizeColumns="False"
               CanUserSortColumns="False"
               GridLinesVisibility="None"
-              BorderThickness="0"
->
+              BorderThickness="0">
 			<DataGrid.Columns>
 				<DataGridTextColumn Header=" Навык" Binding="{Binding Name}" Width="150" FontSize="12"/>
 				<DataGridTemplateColumn Header="Значение" Width="70">
@@ -997,10 +1001,10 @@
 							<Grid>
 								<TextBlock Text="{Binding Value}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 								<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="15,0,0,0">
-									<Button Style="{DynamicResource MaterialDesignIconForegroundButton }" Visibility="{DynamicResource IsEdit}"  Width="12" Height="12" Margin="2" Click="AddCharacteristic_Click">
+									<Button Style="{DynamicResource MaterialDesignIconForegroundButton}" Visibility="{DynamicResource IsEdit}"  Width="12" Height="12" Margin="2" Click="AddCharacteristic_Click">
 										<TextBlock Text="+" Margin="0,-5,0,0" FontSize="16" />
 									</Button>
-									<Button Style="{DynamicResource MaterialDesignIconForegroundButton }" Visibility="{DynamicResource IsEdit}" Width="12" Height="12" Margin="2" Click="SubtractCharacteristic_Click">
+									<Button Style="{DynamicResource MaterialDesignIconForegroundButton}" Visibility="{DynamicResource IsEdit}" Width="12" Height="12" Margin="2" Click="SubtractCharacteristic_Click">
 										<TextBlock Text="-" Margin="0,-8,0,0" FontSize="22" />
 									</Button>
 								</StackPanel>

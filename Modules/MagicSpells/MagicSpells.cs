@@ -21,48 +21,132 @@ namespace DNDHelper.Modules.MagicSpells
 	internal class MagicSpells
     {
 		Main main = Main.Instance;
-		static ObservableCollection<Cast> AllCasts = new ObservableCollection<Cast>();
-		static ObservableCollection<Cast> CurrentCasts = new ObservableCollection<Cast>();
+		public static ObservableCollection<Cast> AllCasts = new ObservableCollection<Cast>();
+		public static ObservableCollection<Cast> CurrentCasts = new ObservableCollection<Cast>();
 		public MagicSpells() 
 		{
 			main.AddCustomSpellCurrent.Click += AddCustomSpellCurrent_Click;
 			main.MoveSpellAll.Click += MoveSpellAll_Click;
 			main.DataGridAllSpells.SelectionChanged += DataGridAllSpells_SelectionChanged;
 			main.DataGridAllSpells.PreviewMouseLeftButtonDown += DataGridAllSpells_PreviewMouseLeftButtonDown;
+			main.DataGridCurrentSpells.SelectionChanged += DataGridCurrentSpells_SelectionChanged;
+			main.DataGridCurrentSpells.PreviewMouseLeftButtonDown += DataGridCurrentSpells_PreviewMouseLeftButtonDown;
 			RepositoryLoad();
 			main.DataGridAllSpells.ItemsSource = AllCasts;
 			main.DataGridCurrentSpells.ItemsSource = CurrentCasts;
 			
 		}
-		private object _lastSelectedItem;
+		private object _lastSelectedItemAll;
+		private int _clickCountAll = 0;
+		private object _lastSelectedItemCurrent;
+		private int _clickCountCurrent = 0;
 		public static int MagicBulletsCurrent;
 		public static int MagicBulletsMax;
+		private void DataGridCurrentSpells_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			var row = ItemsControl.ContainerFromElement((System.Windows.Controls.DataGrid)sender, e.OriginalSource as DependencyObject) as DataGridRow;
+
+			if (row == null)
+			{
+				_lastSelectedItemCurrent = null;
+				_clickCountCurrent = 0;
+				return;
+			}
+
+			if (Equals(_lastSelectedItemCurrent, row.Item))
+			{
+				_clickCountCurrent++;
+			}
+			else
+			{
+				_lastSelectedItemCurrent = row.Item;
+				_clickCountCurrent = 1;
+			}
+
+			if (row.IsSelected)
+			{
+				if (_clickCountCurrent == 2)
+				{
+					main.DataGridCurrentSpells.SetValue(Grid.RowSpanProperty, 4);
+					main.CurrentSpellDescription.Visibility = Visibility.Collapsed;
+					e.Handled = true;
+				}
+				else if (_clickCountCurrent == 3)
+				{
+					if (main.DataGridCurrentSpells.SelectedIndex != -1)
+					{
+						main.DataGridCurrentSpells.SetValue(Grid.RowSpanProperty, 3);
+						main.CurrentSpellDescription.Visibility = Visibility.Visible;
+						var cast = main.DataGridCurrentSpells.Items[main.DataGridCurrentSpells.SelectedIndex] as Cast;
+						main.CurrentSpellDescription.Text = cast.SpellDescription;
+					}
+
+					e.Handled = true;
+					_clickCountCurrent = 1;
+				}
+			}
+		}
+
+		private void DataGridCurrentSpells_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			if (main.DataGridCurrentSpells.SelectedIndex != -1)
+			{
+				main.DataGridCurrentSpells.SetValue(Grid.RowSpanProperty, 3);
+				main.CurrentSpellDescription.Visibility = Visibility.Visible;
+				var cast = main.DataGridCurrentSpells.Items[main.DataGridCurrentSpells.SelectedIndex] as Cast;
+				main.CurrentSpellDescription.Text = cast.SpellDescription;
+			}
+		}
+
 		private void DataGridAllSpells_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
 			var row = ItemsControl.ContainerFromElement((System.Windows.Controls.DataGrid)sender, e.OriginalSource as DependencyObject) as DataGridRow;
 
 			if (row == null)
 			{
-				_lastSelectedItem = null;
+				_lastSelectedItemAll = null;
+				_clickCountAll = 0;
 				return;
 			}
 
-			if (row.IsSelected && Equals(_lastSelectedItem, row.Item))
+			if (Equals(_lastSelectedItemAll, row.Item))
 			{
-				main.DataGridAllSpells.SetValue(Grid.RowSpanProperty, 1);
-				main.AllSpellDescription.Visibility = Visibility.Collapsed	;
-				e.Handled = true;
+				_clickCountAll++;
 			}
 			else
 			{
-				_lastSelectedItem = row.Item;
+				_lastSelectedItemAll = row.Item;
+				_clickCountAll = 1;
+			}
+
+			if (row.IsSelected)
+			{
+				if (_clickCountAll == 2)
+				{
+					main.DataGridAllSpells.SetValue(Grid.RowSpanProperty, 4);
+					main.AllSpellDescription.Visibility = Visibility.Collapsed;
+					e.Handled = true;
+				}
+				else if (_clickCountAll == 3)
+				{
+					if (main.DataGridAllSpells.SelectedIndex != -1)
+					{
+						main.DataGridAllSpells.SetValue(Grid.RowSpanProperty, 3);
+						main.AllSpellDescription.Visibility = Visibility.Visible;
+						var cast = main.DataGridAllSpells.Items[main.DataGridAllSpells.SelectedIndex] as Cast;
+						main.AllSpellDescription.Text = cast.SpellDescription;
+					}
+
+					e.Handled = true;
+					_clickCountAll = 1;
+				}
 			}
 		}
 		private void DataGridAllSpells_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{ 
 			if (main.DataGridAllSpells.SelectedIndex != -1)
 			{
-				main.DataGridAllSpells.SetValue(Grid.RowSpanProperty, 2);
+				main.DataGridAllSpells.SetValue(Grid.RowSpanProperty, 3);
 				main.AllSpellDescription.Visibility = Visibility.Visible;
 				var cast = main.DataGridAllSpells.Items[main.DataGridAllSpells.SelectedIndex] as Cast;
 				main.AllSpellDescription.Text = cast.SpellDescription;
@@ -157,7 +241,6 @@ namespace DNDHelper.Modules.MagicSpells
 		
 		private void MoveSpellAll_Click(object sender, RoutedEventArgs e)
 		{
-			Debug.WriteLine("1231");
 			if (main.DataGridAllSpells.SelectedIndex == -1)
 			{
 				return;
@@ -169,8 +252,17 @@ namespace DNDHelper.Modules.MagicSpells
 
 		private void AddCustomSpellCurrent_Click(object sender, RoutedEventArgs e)
 		{
-			CustomSpells customSpells = new();
-			customSpells.ShowDialog();
+			
+			bool isCustomSpellsOpen = Application.Current.Windows.OfType<CustomSpells>().Any();
+			if (isCustomSpellsOpen)
+			{
+				Application.Current.Windows.OfType<CustomSpells>().First().Activate();
+			}
+			else
+			{
+				CustomSpells customSpells = new();
+				customSpells.Show();
+			}
 		}
 
 	}

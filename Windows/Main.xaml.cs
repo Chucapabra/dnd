@@ -71,6 +71,7 @@ namespace DNDHelper.Windows
 			TreeSkillsScript = new();
 			Characteristics = new();
 			Characteristics.UpdateAllCharacterisitc();
+			MagicSearch magicSearch = new MagicSearch();
 
 
 			WeightScript weightScript = new WeightScript();
@@ -125,6 +126,7 @@ namespace DNDHelper.Windows
 				Grid.SetColumnSpan(CurrentSpellDescription, 3);
 				DataGridAllSpells.Visibility = Visibility.Collapsed;
 				AllSpellDescription.Visibility = Visibility.Collapsed;
+				DataGridCurrentSpellsSpellName.Width = 600;
 				DataManager.Save();
 			}
 			else
@@ -138,10 +140,13 @@ namespace DNDHelper.Windows
 				character_race_combobox.Visibility = Visibility.Visible;
 				character_class_textblock.Visibility = Visibility.Collapsed;
 				character_class_combobox.Visibility = Visibility.Visible;
+				DataGridCurrentSpellsSpellName.Width = 200;
 				Grid.SetColumnSpan(DataGridCurrentSpells, 2);
 				Grid.SetColumnSpan(CurrentSpellDescription, 2);
+				Grid.SetRowSpan(DataGridAllSpells, 4);
 				DataGridAllSpells.Visibility = Visibility.Visible;
-				AllSpellDescription.Visibility = Visibility.Visible;
+				AllSpellDescription.Visibility = Visibility.Collapsed;
+				
 			}
 		}
 

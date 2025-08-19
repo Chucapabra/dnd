@@ -187,7 +187,7 @@ namespace DNDHelper.Modules.Settings
 
 
 
-			DataSave.ClassTreeGrid.Clear();
+            DataSave.ClassTreeGrid.Clear();
             foreach (var item in dataSave.ClassTreeGrid)
                 DataSave.ClassTreeGrid.Add(item);
 
@@ -216,6 +216,7 @@ namespace DNDHelper.Modules.Settings
 
     public class DataSaveEmpty : INotifyPropertyChanged
     {
+        public string SelectedRepository { get; set; } = "";
 
         private string _name = "Имя";
         public string Name
@@ -338,12 +339,12 @@ namespace DNDHelper.Modules.Settings
             new TreeGrid { TreeName = "", TreeLevel = 0 }
             };
 
-        public int[] Characterisitics { get; set; } = {5,5,5,3,3,3,5,5,3,3,3,3,3,3,5,3,3,3,3,3,5,3,3,3,3};
+        public int[] Characterisitics { get; set; } = { 5, 5, 5, 3, 3, 3, 5, 5, 3, 3, 3, 3, 3, 3, 5, 3, 3, 3, 3, 3, 5, 3, 3, 3, 3 };
 
         public ObservableCollection<Skills.Skill> CustomSkills { get; set; } = new();
 
         public ObservableCollection<InventoryLoot.InventoryItem> Inventory { get; set; } = new();
-        
+
         //public ObservableCollection
 
         public event PropertyChangedEventHandler PropertyChanged;
