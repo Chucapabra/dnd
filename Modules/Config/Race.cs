@@ -14,7 +14,7 @@ namespace DNDHelper.Modules.Config
 {
     class Race
     {
-        Dictionary<string, List<RaceData>> data;
+        private static Dictionary<string, List<RaceData>> data;
 
         public static RaceData SelectedClassData = new();
         public static List<Stat> Stats = new List<Stat>();
@@ -23,30 +23,41 @@ namespace DNDHelper.Modules.Config
         {
             Main.Instance.character_race_combobox.SelectionChanged += character_race_combobox_SelectionChanged;
 
-
-            Update();
-
             ClearStats();
         }
 
-        public void Update()
+        public static void Update()
         {
-            //     string json = File.ReadAllText($"Cache/{DataManager.DataSave.SelectedRepository}/Race.json");
-            string json = File.ReadAllText($"Race.json");
-            var options = new JsonSerializerOptions
+            string pathFile = $"Cache/{DataManager.DataSave.SelectedRepository}/Race.json";
+            if (File.Exists(pathFile))
             {
-                PropertyNameCaseInsensitive = true,
-                WriteIndented = true
-            };
+                string json = File.ReadAllText(pathFile);
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true,
+                    WriteIndented = true
+                };
 
-            data = JsonSerializer.Deserialize<Dictionary<string, List<RaceData>>>(json, options);
-
-            Main.Instance.character_race_combobox.ItemsSource = data.Keys;
+                try
+                {
+                    data = JsonSerializer.Deserialize<Dictionary<string, List<RaceData>>>(json, options);
+                    Main.Instance.character_race_combobox.ItemsSource = data.Keys;
+                }
+                catch
+                {
+               
+                }
+            }
+            else
+            {
+                Main.Instance.character_race_combobox.ItemsSource = null;
+                Main.Instance.character_race_textblock.Text = "[[Раса]]";
+            }
         }
 
 
 
-        private void ClearStats() 
+        private static void ClearStats() 
         {
             Stats.Clear();
             for (int i = 0; i < 26; i++)
@@ -57,27 +68,36 @@ namespace DNDHelper.Modules.Config
 
         private void character_race_combobox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            ClearStats();
+            UpdateRace();
+        }
 
-            string selectText = Main.Instance.character_race_combobox.SelectedValue.ToString();
-            SelectedClassData = data[selectText][0];
-
-            foreach (var item in SelectedClassData.StandartStats[0])
+        private static void UpdateRace()
+        {
+            if (Main.Instance.character_race_combobox.SelectedValue != null)
             {
-                int index = Array.IndexOf(StatNameRus, item.Key.ToLower());
+                ClearStats();
 
-                if (index != -1)
+                string selectText = Main.Instance.character_race_combobox.SelectedValue.ToString();
+                SelectedClassData = data[selectText][0];
+
+                foreach (var item in SelectedClassData.StandartStats[0])
                 {
-                    int[] stat = SelectedClassData.StandartStats[0][item.Key];
-                    Stats[index].Value = stat[0];
-                    Stats[index].Roll = stat[1];
+                    int index = Array.IndexOf(StatNameRus, item.Key.ToLower());
+
+                    if (index != -1)
+                    {
+                        int[] stat = SelectedClassData.StandartStats[0][item.Key];
+                        Stats[index].Value = stat[0];
+                        Stats[index].Roll = stat[1];
+                    }
                 }
+
+                Main.Characteristics.UpdateAllCharacterisitc();
+                Skills.ReloadDataGridSkills();
+
+                Main.Instance.character_race_textblock.Text = selectText;
+
             }
-
-            Main.Characteristics.UpdateAllCharacterisitc();
-            Skills.ReloadDataGridSkills();
-
-            Main.Instance.character_race_textblock.Text = selectText;
         }
 
     }

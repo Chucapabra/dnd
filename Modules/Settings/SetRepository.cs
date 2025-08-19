@@ -1,5 +1,6 @@
 ﻿using DNDHelper.Modules.Config;
 using DNDHelper.Modules.Inventory;
+using DNDHelper.Windows;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,7 +29,7 @@ namespace DNDHelper.Modules.Settings
             }
         }
 
-        List<Repository> repositories = new()
+        private static List<Repository> repositories = new()
         {
             new Repository { Name = "Санекхуек", Link = "https://raw.githubusercontent.com/Chucapabra/dnd/refs/heads/Settings"  },
             new Repository { Name = "Гунер", Link = "https://raw.githubusercontent.com/GunterSuperPenguin/dnd-configs-gunter/refs/heads/main"  },
@@ -84,22 +85,25 @@ namespace DNDHelper.Modules.Settings
 
         public static void UpdateRepository()
         {
-
+            Race.Update();
+            PlayerClass.Update();
         }
 
 
 
-        public static string FileSpells = "";
-        public static string FileRace = "";
-        public static string FileClass = "";
-        public static string FileTypeDamage = "";
-        public static string FileMultiplyGlobal = "";
+        private static string FileSpells = "";
+        private static string FileRace = "";
+        private static string FileClass = "";
+        private static string FileTypeDamage = "";
+        private static string FileMultiplyGlobal = "";
 
-        public async Task FileСonnection()
+        public static async Task FileСonnection()
         {
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
 
-            string Repos = repositories[settings.ListProfiles.SelectedIndex].Link;
+
+            int index = repositories.FindIndex(x => { return x.Name == DataManager.DataSave.SelectedRepository; });
+            string Repos = repositories[index].Link;
 
 
             string castFileUrl = $"{Repos}/Casts";
@@ -162,7 +166,7 @@ namespace DNDHelper.Modules.Settings
             var typeDamage_ = CheckCacheFile("TypeDamage.json", FileTypeDamage, path);
             var multiplyGlobal_ = CheckCacheFile("MultiplyGlobal.json", FileMultiplyGlobal, path);
             if (spell_ || race_ || class_ || typeDamage_ || multiplyGlobal_)
-                UpdateRepository();
+                DataManager.Load(DataManager.SelectedSave);
         }
 
         public static bool CheckCacheFile(string name, string content, string path)

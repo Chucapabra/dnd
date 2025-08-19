@@ -172,7 +172,12 @@ namespace DNDHelper.Modules.Settings
             var json = File.ReadAllText($"{SelectedSave}/Config.json");
 
             var dataSave = JsonSerializer.Deserialize<DataSaveEmpty>(json);
+
+
             DataSave.SelectedRepository = dataSave.SelectedRepository;
+            SetRepository.UpdateRepository();
+
+
             DataSave.Name = dataSave.Name;
             DataSave.SelectedRace = dataSave.SelectedRace;
             DataSave.SelectedClass = dataSave.SelectedClass;
@@ -211,6 +216,8 @@ namespace DNDHelper.Modules.Settings
             Main.ItemBaffsListScript.UpdateValues();
             DiaryManager.LoadNotes();
             Main.Instance.diaryTB.Document.Blocks.Clear();
+
+            SetRepository.FileСonnection();
         }
 
     }
@@ -224,8 +231,7 @@ namespace DNDHelper.Modules.Settings
             get => _selectedRepository;
             set
             {
-                _selectedRepository = value;
-                SetRepository.UpdateRepository();
+                _selectedRepository = value;                            
                 OnPropertyChanged();
             }
         }

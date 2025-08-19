@@ -1,4 +1,5 @@
 ﻿using DNDHelper.Modules.Character;
+using DNDHelper.Modules.Settings;
 using DNDHelper.Windows;
 using System.Diagnostics;
 using System.IO;
@@ -11,7 +12,7 @@ namespace DNDHelper.Modules.Config
 {
     internal class PlayerClass
     {
-        Dictionary<string, List<ClassData>> data;
+        private static Dictionary<string, List<ClassData>> data;
 
         public static ClassData SelectedClassData = new ClassData();
         public static List<Stat> Stats = new List<Stat>();
@@ -21,45 +22,69 @@ namespace DNDHelper.Modules.Config
 
             Main.Instance.character_class_combobox.SelectionChanged += character_class_combobox_SelectionChanged;
 
-            string json = File.ReadAllText("Class.json");
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true,
-                WriteIndented = true
-            };
-
-
-            data = JsonSerializer.Deserialize<Dictionary<string, List<ClassData>>>(json, options);
-
-            Main.Instance.character_class_combobox.ItemsSource = data.Keys;
 
             ClearStats();
         }
 
+        public static void Update()
+        {
+            string pathFile = $"Cache/{DataManager.DataSave.SelectedRepository}/Class.json";
+            if (File.Exists(pathFile))
+            {
+                string json = File.ReadAllText(pathFile);
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true,
+                    WriteIndented = true
+                };
+
+                try
+                {
+                    data = JsonSerializer.Deserialize<Dictionary<string, List<ClassData>>>(json, options);
+                    Main.Instance.character_class_combobox.ItemsSource = data.Keys;
+                }
+                catch
+                {
+
+                }
+
+                
+
+            }
+            else
+            {
+                Main.Instance.character_class_combobox.ItemsSource = null;
+                Main.Instance.character_class_textblock.Text = "[[Класс]]";
+            }
+        }
+
         private void character_class_combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ClearStats();
-
-            string selectText = Main.Instance.character_class_combobox.SelectedValue.ToString();
-            SelectedClassData = data[selectText][0];
-
-            foreach (var item in SelectedClassData.StandartStats[0])
+            if (Main.Instance.character_class_combobox.SelectedValue != null)
             {
-                int index = Array.IndexOf(StatNameRus, item.Key.ToLower());
+                ClearStats();
 
-                if (index != -1)
+                string selectText = Main.Instance.character_class_combobox.SelectedValue.ToString();
+                SelectedClassData = data[selectText][0];
+
+                foreach (var item in SelectedClassData.StandartStats[0])
                 {
-                    int[] stat = SelectedClassData.StandartStats[0][item.Key];
-                    Stats[index].Value = stat[0];
-                    Stats[index].Roll = stat[1];
+                    int index = Array.IndexOf(StatNameRus, item.Key.ToLower());
+
+                    if (index != -1)
+                    {
+                        int[] stat = SelectedClassData.StandartStats[0][item.Key];
+                        Stats[index].Value = stat[0];
+                        Stats[index].Roll = stat[1];
+                    }
                 }
+
+                Main.TreeSkillsScript.SetClassTree();
+
+                Main.Characteristics.UpdateAllCharacterisitc();
+                Health.HealthUpdate();
+                Main.Instance.character_class_textblock.Text = selectText;
             }
-
-            Main.TreeSkillsScript.SetClassTree();
-
-            Main.Characteristics.UpdateAllCharacterisitc();
-            Health.HealthUpdate();
-            Main.Instance.character_class_textblock.Text = selectText;
         }
 
         private void ClearStats()
