@@ -50,10 +50,10 @@ namespace DNDHelper.Modules.Settings
         public static void UpdateListBox()
         {
             for (int i = 0; i < Windows.Settings.Instance.ListProfiles.Items.Count; i++)
-            {
+            {            
                 var container = Windows.Settings.Instance.ListProfiles.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem;
                 if (container != null)
-                    if (container.Content == SelectedRepository)
+                    if (container.Content.ToString() == SelectedRepository)
                     {
                         container.Foreground = Brushes.Green;
                     }
@@ -71,10 +71,10 @@ namespace DNDHelper.Modules.Settings
                 {
                     var container = settings.ListProfiles.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem;
                     if (container != null)
-                        if (container.Content == SelectedRepository)
+                        if (container.Content.ToString() == SelectedRepository)
                         {
                             container.Foreground = Brushes.Green;
-                            FileСonnection();
+                            DataManager.Load(DataManager.SelectedSave);
                         }
                         else if (container != null)
                             container.Foreground = new SolidColorBrush(Settings.SelectedTheme[1]);

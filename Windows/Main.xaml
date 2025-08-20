@@ -48,7 +48,7 @@
 			<MenuItem Header="Программа">
 				<MenuItem Header="Режим редактирования" IsCheckable="True" x:Name="EditMode_button" Click="EditMode_click"/>
 				<MenuItem Header="Настройки" Click="Settings_Click" x:Name="Settings_Button"/>
-				<MenuItem Header="Обновить конфиг"/>
+				<MenuItem Header="Обновить конфиг" Click="UpdateConfingsInHands_Click"/>
 				<MenuItem Header="Проверить обновления"/>
 				<MenuItem Header="О программе"/>
 			</MenuItem>

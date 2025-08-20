@@ -1,6 +1,7 @@
 ﻿using DNDHelper.Modules.Character;
 using DNDHelper.Modules.Config;
 using DNDHelper.Modules.Inventory;
+using DNDHelper.Modules.Settings;
 using DNDHelper.Windows;
 using System;
 using System.Collections.ObjectModel;
@@ -61,6 +62,7 @@ namespace DNDHelper.Modules.Сharacteristics
                 AddCharacteristic(selectedIndex, 1);
                 FindAVariableCharacteristic(selectedIndex);
                 UpdateCharacterisitc(selectedIndex);
+                DataManager.Save();
             }
         }
 
@@ -73,6 +75,7 @@ namespace DNDHelper.Modules.Сharacteristics
                 AddCharacteristic(selectedIndex, -1);
                 FindAVariableCharacteristic(selectedIndex);
                 UpdateCharacterisitc(selectedIndex);
+                DataManager.Save();
             }
         }
 

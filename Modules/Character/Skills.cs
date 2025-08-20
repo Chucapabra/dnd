@@ -32,6 +32,13 @@ namespace DNDHelper.Modules.Character
             main.Ability_TextBox.PreviewTextInput += Ability_TextBox_PreviewTextInput;
             main.AddMenuSkill.Click += AddMenuSkill_Click;
             main.DeleteMenuSkill.Click += DeleteMenuSkill_Click;
+
+            CustomSkills.CollectionChanged += CustomSkills_CollectionChanged;
+        }
+
+        private void CustomSkills_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            DataManager.Save();
         }
 
         private void Ability_TextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)

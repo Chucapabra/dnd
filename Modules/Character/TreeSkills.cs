@@ -96,6 +96,7 @@ namespace DNDHelper.Modules.Character
 
             Main.Characteristics.UpdateAllCharacterisitc();
             Character.Skills.ReloadDataGridSkills();
+            DataManager.Save();
         }
 
         private void FindAddStats(string key, object value)

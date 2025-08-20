@@ -86,8 +86,13 @@ namespace DNDHelper.Windows
 			Resources["StandartBackColor"] = new SolidColorBrush(Background);
 			Resources["StandartForeColor"] = new SolidColorBrush(Foreground);
 		}
-		// Меню
-		private void UrlTusha(object sender, RoutedEventArgs e)
+        // Меню
+        private void UpdateConfingsInHands_Click(object sender, RoutedEventArgs e)
+        {
+			SetRepository.FileСonnection();
+        }
+
+        private void UrlTusha(object sender, RoutedEventArgs e)
 		{
 
 			Process.Start(new ProcessStartInfo("https://docs.google.com/document/d/1rUMWdTp645Zy80d09ZMoJ6dmcw9lAP25tqxsdNkftaY/edit?usp=sharing") { UseShellExecute = true });
@@ -98,7 +103,6 @@ namespace DNDHelper.Windows
 		}
 		private void UrlWeapons(object sender, RoutedEventArgs e)
 		{
-			Debug.WriteLine(DataManager.DataSave.Damage);
 			Process.Start(new ProcessStartInfo("https://docs.google.com/document/d/1QRy-6NgwGB81BE0QE1DT_mO7DUGCf-PWrM9csBKEuno/edit?usp=sharing") { UseShellExecute = true });
 		}
 		private void UrlRaces(object sender, RoutedEventArgs e)
@@ -390,7 +394,8 @@ namespace DNDHelper.Windows
 		private void character_name_textbox_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			character_name_textblock.Text = character_name_textbox.Text;
-		}
+            DataManager.ReadSaves();
+        }
 		// Магические пули
 		private void MagicBulletCurrent_textbox_Pasting(object sender, DataObjectPastingEventArgs e)
 		{
@@ -450,5 +455,6 @@ namespace DNDHelper.Windows
 			MagicSpells.MagicBulletsCurrent = Convert.ToUInt16(MagicBulletAll_textblock.Text);
 			MagicBulletCurrent_textblock.Text = Convert.ToString(MagicSpells.MagicBulletsCurrent);
 		}
-	}
+
+    }
 }

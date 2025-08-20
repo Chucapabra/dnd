@@ -140,11 +140,25 @@ namespace DNDHelper.Modules.Settings
                 MessageBox.Show("Это сохранение открыто", "Тыеб", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
+        private static bool isLoad = false;
+
+
+
+
+        private static readonly FireAndForgetDebouncer _debouncer = new FireAndForgetDebouncer();
         public static void Save()
         {
-            if (SelectedSave.Length == 0)
+            if (SelectedSave.Length == 0 || isLoad)
                 return;
 
+            _debouncer.ExecuteDebounced(async () =>
+            {
+                save();
+            });
+        }
+
+        private static void save()
+        {
             var options = new JsonSerializerOptions
             {
                 ReferenceHandler = ReferenceHandler.IgnoreCycles,
@@ -156,7 +170,6 @@ namespace DNDHelper.Modules.Settings
             var json = JsonSerializer.Serialize(DataSave, options);
 
             File.WriteAllText($"{SelectedSave}/Config.json", json);
-            ReadSaves();
         }
 
         private static void Load_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -167,6 +180,8 @@ namespace DNDHelper.Modules.Settings
 
         public static void Load(string path)
         {
+            isLoad = true;
+
             SelectedSave = path;
 
             var json = File.ReadAllText($"{SelectedSave}/Config.json");
@@ -218,6 +233,8 @@ namespace DNDHelper.Modules.Settings
             Main.Instance.diaryTB.Document.Blocks.Clear();
 
             SetRepository.FileСonnection();
+
+            isLoad = false;
         }
 
     }
@@ -231,7 +248,7 @@ namespace DNDHelper.Modules.Settings
             get => _selectedRepository;
             set
             {
-                _selectedRepository = value;                            
+                _selectedRepository = value;     
                 OnPropertyChanged();
             }
         }
@@ -242,7 +259,7 @@ namespace DNDHelper.Modules.Settings
             get => _name;
             set
             {
-                _name = value;
+                _name = value;            
                 OnPropertyChanged();
             }
         }
@@ -347,9 +364,36 @@ namespace DNDHelper.Modules.Settings
             }
         }
 
-        public int Level { get; set; } = 1;
-        public int Damage { get; set; } = 0;
-        public int SubtractMagicBullet { get; set; } = 0;
+        private int _level { get; set; } = 1;
+        public int Level
+        {
+            get => _level;
+            set
+            {
+                _level = value;
+                OnPropertyChanged();
+            }
+        }
+        private int _damage = 0;
+        public int Damage
+        {
+            get => _damage;
+            set
+            {
+                _damage = value;
+                OnPropertyChanged();
+            }
+        }
+        private int _subtractMagicBullet = 0;
+        public int SubtractMagicBullet
+        {
+            get => _subtractMagicBullet;
+            set
+            {
+                _subtractMagicBullet = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ObservableCollection<TreeGrid> ClassTreeGrid { get; set; } = new() {
             new TreeGrid { TreeName = "", TreeLevel = 0 },
@@ -363,13 +407,47 @@ namespace DNDHelper.Modules.Settings
 
         public ObservableCollection<InventoryLoot.InventoryItem> Inventory { get; set; } = new();
 
-        //public ObservableCollection
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
+            DataManager.Save();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+
+
+
+    public class FireAndForgetDebouncer
+    {
+        private DateTime _lastRequestTime = DateTime.MinValue;
+        private CancellationTokenSource _cts = new CancellationTokenSource();
+        private readonly object _lock = new object();
+
+        public void ExecuteDebounced(Func<Task> action)
+        {
+            lock (_lock)
+            {
+                // Отменяем предыдущую отложенную задачу
+                _cts.Cancel();
+                _cts = new CancellationTokenSource();
+
+                var now = DateTime.UtcNow;
+                _lastRequestTime = now;
+
+                var token = _cts.Token;
+                _ = Task.Run(async () =>
+                {
+                    // Ждем 1 секунду с момента последнего вызова
+                    await Task.Delay(2500, token);
+
+                    if (!token.IsCancellationRequested)
+                    {
+                        await action();
+                    }
+                }, token);
+            }
         }
     }
 

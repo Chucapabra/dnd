@@ -41,6 +41,13 @@ namespace DNDHelper.Modules.Inventory
             main.kd_count_checkbox.Click += Kd_count_checkbox_Checked; ;
             main.kdhelmet_count_checkbox.Click += Kdhelmet_count_checkbox_Checked;
             main.equipped_checkbox.Click += Equipped_checkbox_Click;
+
+            InventoryItems.CollectionChanged += InventoryItems_CollectionChanged;
+        }
+
+        private void InventoryItems_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            DataManager.Save();
         }
 
         private void DataGridInventory_ContextMenuOpening(object sender, ContextMenuEventArgs e)
@@ -128,13 +135,23 @@ namespace DNDHelper.Modules.Inventory
             }
         }
 
+
+        private int _lastSelectedItem = 0;
+
         private void DataGridInventory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (main.DataGridInventory.SelectedItems.Count > 0)
             {
+                if (_lastSelectedItem != main.DataGridInventory.SelectedIndex)
+                {
+                    _lastSelectedItem = main.DataGridInventory.SelectedIndex;
+                    main.DataGridInventory.CommitEdit();                 
+                }
+
+
                 var item = InventoryItems[main.DataGridInventory.SelectedIndex];
                 if (item != null)
-                {
+                {                   
                     main.DescriptionTextBox.IsReadOnly = false;
                     main.weight_count_checkbox.IsEnabled = true;
                     main.kd_count_checkbox.IsEnabled = true;
@@ -365,7 +382,16 @@ namespace DNDHelper.Modules.Inventory
 
         public class InventoryItem : INotifyPropertyChanged
         {
-            public string Name { get; set; }
+            public string _name = "";
+            public string Name
+            {
+                get => _name;
+                set
+                {
+                    _name = value;
+                    OnPropertyChanged();
+                }
+            }
 
             private int _weight;
             public int Weight
@@ -658,6 +684,7 @@ namespace DNDHelper.Modules.Inventory
             public event PropertyChangedEventHandler PropertyChanged;
             protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
             {
+                DataManager.Save();
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
         }
