@@ -16,6 +16,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using static DNDHelper.Modules.Character.TreeSkills;
@@ -145,16 +146,26 @@ namespace DNDHelper.Modules.Settings
 
 
 
-        private static readonly FireAndForgetDebouncer _debouncer = new FireAndForgetDebouncer();
-        public static void Save()
+        private static readonly SmartDebouncer _debouncer = new();
+        public static void Save(bool Force = false)
         {
             if (SelectedSave.Length == 0 || isLoad)
                 return;
 
+            if(!Force)
             _debouncer.ExecuteDebounced(async () =>
             {
                 save();
             });
+            else
+                ForceSaveDataAsync();
+        }
+
+        private static void ForceSaveDataAsync()
+        {
+
+            _debouncer.Reset();
+            save();
         }
 
         private static void save()
@@ -180,6 +191,9 @@ namespace DNDHelper.Modules.Settings
 
         public static void Load(string path)
         {
+            if(SelectedSave.Length > 0) Save(true);
+
+
             isLoad = true;
 
             SelectedSave = path;
@@ -419,16 +433,21 @@ namespace DNDHelper.Modules.Settings
 
 
 
-    public class FireAndForgetDebouncer
+    public class SmartDebouncer
     {
         private DateTime _lastRequestTime = DateTime.MinValue;
         private CancellationTokenSource _cts = new CancellationTokenSource();
+        private Func<Task> _pendingAction = null;
         private readonly object _lock = new object();
 
+        // Основной метод для отложенного выполнения
         public void ExecuteDebounced(Func<Task> action)
         {
             lock (_lock)
             {
+                // Сохраняем действие
+                _pendingAction = action;
+
                 // Отменяем предыдущую отложенную задачу
                 _cts.Cancel();
                 _cts = new CancellationTokenSource();
@@ -439,14 +458,73 @@ namespace DNDHelper.Modules.Settings
                 var token = _cts.Token;
                 _ = Task.Run(async () =>
                 {
-                    // Ждем 1 секунду с момента последнего вызова
                     await Task.Delay(2500, token);
 
                     if (!token.IsCancellationRequested)
                     {
-                        await action();
+                        await ExecutePendingAction();
                     }
                 }, token);
+            }
+        }
+
+        // Принудительное сохранение (немедленное выполнение)
+        public async Task ForceSaveAsync()
+        {
+            Func<Task> actionToExecute = null;
+
+            lock (_lock)
+            {
+                // Отменяем отложенную задачу
+                _cts.Cancel();
+                _cts = new CancellationTokenSource();
+
+                // Берем текущее действие для выполнения
+                actionToExecute = _pendingAction;
+                _pendingAction = null;
+            }
+
+            if (actionToExecute != null)
+            {
+                await actionToExecute();
+            }
+        }
+
+        // Сброс всех таймеров и ожиданий
+        public void Reset()
+        {
+            lock (_lock)
+            {
+                _cts.Cancel();
+                _cts = new CancellationTokenSource();
+                _pendingAction = null;
+                _lastRequestTime = DateTime.MinValue;
+            }
+        }
+
+        // Проверка есть ли отложенные действия
+        public bool HasPendingActions()
+        {
+            lock (_lock)
+            {
+                return _pendingAction != null;
+            }
+        }
+
+        // Внутренний метод выполнения
+        private async Task ExecutePendingAction()
+        {
+            Func<Task> actionToExecute = null;
+
+            lock (_lock)
+            {
+                actionToExecute = _pendingAction;
+                _pendingAction = null;
+            }
+
+            if (actionToExecute != null)
+            {
+                await actionToExecute();
             }
         }
     }

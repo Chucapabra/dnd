@@ -194,7 +194,7 @@ namespace DNDHelper.Modules.Сharacteristics
 
         private void CountCharacterisitc(int index)
         {
-            Buffed(index) = Base(index) + OtherBuff(index) + Race.Stats[index].Value + PlayerClass.Stats[index].Value + TreeSkills.Stats[index].Value + ItemBaffsListScript.ItemBaffs[index][0];
+            Buffed(index) = Base(index) + OtherBaff(index) + Race.Stats[index].Value + PlayerClass.Stats[index].Value + TreeSkills.Stats[index].Value + ItemBaffsListScript.ItemBaffs[index][0];
             DataGridChar[index].Value = Buffed(index);
             DataGridChar[index].Roll = CalculateRoll(index);
             FindAVariableCharacteristic(index);
@@ -210,14 +210,14 @@ namespace DNDHelper.Modules.Сharacteristics
         {
             // Бафф к харизме
             int strength = Base(Strength) + Race.Stats[0].Value + PlayerClass.Stats[0].Value;
-            OtherBuff(Athlete) = Race.Stats[0].Value + PlayerClass.Stats[0].Value;
+            OtherBaff(Athlete) = Race.Stats[0].Value + PlayerClass.Stats[0].Value;
             UpdateCharacterisitc(Athlete);
             if (strength > 0)
             {
                 int addRollCharisma = (int)(strength / 5) - 2;
                 if (addRollCharisma < 0)
                     addRollCharisma = 0;
-                OtherBuff(Charisma) = addRollCharisma;
+                OtherBaff(Charisma) = addRollCharisma;
                 UpdateCharacterisitc(Charisma);
             }
 
@@ -252,7 +252,7 @@ namespace DNDHelper.Modules.Сharacteristics
         }
         public void CharismaMethod()
         {
-            PointsCharismaSkills = (int)((Base(Charisma) + Race.Stats[20].Value + PlayerClass.Stats[20].Value + OtherBuff(Charisma) + TreeSkills.Stats[20].Value) * 4 * 0.75);
+            PointsCharismaSkills = (int)((Base(Charisma) + Race.Stats[20].Value + PlayerClass.Stats[20].Value + OtherBaff(Charisma) + TreeSkills.Stats[20].Value) * 4 * 0.75);
         }
     }
 

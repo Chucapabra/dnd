@@ -17,10 +17,10 @@ namespace DNDHelper.Modules.Character
         public static void UpdateRolls()
         {
             Main main = Main.Instance;
-            main.character_rollattack_textblock.Text = (ItemBaffsListScript.ItemBaffs[25][0]).ToString();
-            main.character_block_textblock.Text = (ItemBaffsListScript.ItemBaffs[26][0]).ToString();
-            main.character_dodge_textblock.Text = (ItemBaffsListScript.ItemBaffs[27][0]).ToString();
-            main.character_counteraction_textblock.Text = (ItemBaffsListScript.ItemBaffs[28][0]).ToString();
+            main.character_rollattack_textblock.Text = (ItemBaffsListScript.ItemBaffs[25][0] + CharacteristicTable.OtherBaff(25)).ToString();
+            main.character_block_textblock.Text = (ItemBaffsListScript.ItemBaffs[26][0] + CharacteristicTable.OtherBaff(26)).ToString();
+            main.character_dodge_textblock.Text = (ItemBaffsListScript.ItemBaffs[27][0] + CharacteristicTable.OtherBaff(27)).ToString();
+            main.character_counteraction_textblock.Text = (ItemBaffsListScript.ItemBaffs[28][0] + CharacteristicTable.OtherBaff(28)).ToString();
             main.character_fistattack_textblock.Text = (ItemBaffsListScript.ItemBaffs[29][0]).ToString();
             main.character_longrangeattack_textblock.Text = (ItemBaffsListScript.ItemBaffs[30][0]).ToString();
         }

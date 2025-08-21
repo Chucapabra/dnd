@@ -52,14 +52,22 @@ namespace DNDHelper.Windows
 			Resources["StandartBackColor"] = new SolidColorBrush(DarkThem.SelectedTheme[0]);
 			Resources["StandartForeColor"] = new SolidColorBrush(DarkThem.SelectedTheme[1]);
 
+
+            Closed += Main_Closed;
 		}
-		public void InitializeClasses()
+
+        private void Main_Closed(object? sender, EventArgs e)
+        {
+			DataManager.Save(true);
+        }
+
+        public void InitializeClasses()
 		{
 			Instance = this;
 			SavesMenu savesMenu = new SavesMenu();
 			DataContext = DataManager.DataSave;
 
-
+			
 			Race @class = new();
 			PlayerClass playerClass = new();
 			ItemBaffsListScript = new();
@@ -72,9 +80,10 @@ namespace DNDHelper.Windows
 			Characteristics = new();
 			Characteristics.UpdateAllCharacterisitc();
 			MagicSearch magicSearch = new MagicSearch();
+            TypeArmorBaffs typeArmorBaffs = new();
 
 
-			WeightScript weightScript = new WeightScript();
+            WeightScript weightScript = new WeightScript();
 			Health health = new Health();
 
 			AttributesCharacter.CallAllMethodInScript();

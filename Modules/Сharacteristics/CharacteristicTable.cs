@@ -68,19 +68,19 @@ namespace DNDHelper.Modules.Сharacteristics
 
         public static int[] _baseStats => DataManager.DataSave.Characterisitics;
         private static readonly int[] _buffedStats = new int[_baseStats.Length];
-        private static readonly int[] _OtherBuffStats = new int[_baseStats.Length];
+        private static readonly int[] _OtherBaffStats = new int[37];
 
         // === Доступ по имени ===
         private static ref int GetBase(StatName name) => ref _baseStats[(int)name];
 
         private static ref int GetBuffed(StatName name) => ref _buffedStats[(int)name];
 
-        private static ref int GetOtherBuff(StatName name) => ref _OtherBuffStats[(int)name];
+        private static ref int GetOtherBaff(StatName name) => ref _OtherBaffStats[(int)name];
 
         // === Доступ по индексу ===
         private static ref int GetBaseByIndex(int index) => ref _baseStats[index];
         private static ref int GetBuffedByIndex(int index) => ref _buffedStats[index];
-        private static ref int GetOtherBuffByIndex(int index) => ref _OtherBuffStats[index];
+        private static ref int GetOtherBaffByIndex(int index) => ref _OtherBaffStats[index];
 
 
 
@@ -91,8 +91,8 @@ namespace DNDHelper.Modules.Сharacteristics
         public static ref int Buffed(StatName name) => ref GetBuffed(name);
         public static ref int Buffed(int index) => ref GetBuffedByIndex(index);
 
-        public static ref int OtherBuff(StatName name) => ref GetOtherBuff(name);
-        public static ref int OtherBuff(int index) => ref GetOtherBuffByIndex(index);
+        public static ref int OtherBaff(StatName name) => ref GetOtherBaff(name);
+        public static ref int OtherBaff(int index) => ref GetOtherBaffByIndex(index);
     }
 }
 
