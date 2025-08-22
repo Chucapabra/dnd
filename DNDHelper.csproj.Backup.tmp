@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>$(SolutionDir)bin\Release\Data</OutputPath>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <CETCompat>false</CETCompat>
+    <ApplicationIcon>Resources\dndhelper.ico</ApplicationIcon>
+    <Configurations>Debug;Release;das</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='das|AnyCPU'">
+    <OutputPath>$(SolutionDir)bin\Release\Data</OutputPath>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <CETCompat>false</CETCompat>
+    <ApplicationIcon>Resources\dndhelper.ico</ApplicationIcon>
+    <Configurations>Debug;Release;das</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\dndhelper.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignColors" Version="5.2.1" />
+    <PackageReference Include="MaterialDesignThemes" Version="5.2.1" />
+    <PackageReference Include="MaterialDesignThemes.MahApps" Version="5.2.1" />
+  </ItemGroup>
+  <Target Name="CreateFolders" AfterTargets="Build">
+    <MakeDir Directories="$(OutputPath)Data" />
+</Target>
+</Project>

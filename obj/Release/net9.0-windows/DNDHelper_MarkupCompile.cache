@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-E:\Project\DNDHelper\obj\Release\net9.0-windows\
+E:\Project\DND-github\dnd-2\dnd\dnd\obj\Release\net9.0-windows\
 DNDHelper
 none
 false
 TRACE;RELEASE;NET;NET9_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
-E:\Project\DNDHelper\App.xaml
-5-1099964538
-
-6-1253554744
-202307298462
-Resources\Dark.xaml;Resources\Light.xaml;Windows\CustomSpells.xaml;Windows\Main.xaml;Windows\Settings.xaml;
+E:\Project\DND-github\dnd-2\dnd\dnd\App.xaml
+3-1541475997
+1498363184
+30-1153352784
+206-99043035
+Windows\CustomSpells.xaml;Windows\Main.xaml;Windows\Settings.xaml;
 
 False
 

@@ -85,6 +85,7 @@ namespace DNDHelper.Modules.Settings
 
         public static void UpdateRepository()
         {
+            MagicSpells.MagicSpells.RepositoryLoad();
             Race.Update();
             PlayerClass.Update();
         }

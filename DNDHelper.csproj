@@ -8,6 +8,10 @@
     <UseWPF>true</UseWPF>
     <CETCompat>false</CETCompat>
     <ApplicationIcon>Resources\dndhelper.ico</ApplicationIcon>
+    <PackageOutputPath>$(OutputPath)\Data</PackageOutputPath>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <OutputPath>bin\$(Configuration)\Data\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,5 +23,7 @@
     <PackageReference Include="MaterialDesignThemes" Version="5.2.1" />
     <PackageReference Include="MaterialDesignThemes.MahApps" Version="5.2.1" />
   </ItemGroup>
-
+  <Target Name="CreateFolders" AfterTargets="Build">
+    <MakeDir Directories="$(OutputPath)Data" />
+</Target>
 </Project>

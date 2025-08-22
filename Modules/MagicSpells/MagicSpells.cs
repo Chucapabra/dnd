@@ -1,4 +1,5 @@
-﻿using DNDHelper.Windows;
+﻿using DNDHelper.Modules.Settings;
+using DNDHelper.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -31,7 +32,6 @@ namespace DNDHelper.Modules.MagicSpells
 			main.DataGridAllSpells.PreviewMouseLeftButtonDown += DataGridAllSpells_PreviewMouseLeftButtonDown;
 			main.DataGridCurrentSpells.SelectionChanged += DataGridCurrentSpells_SelectionChanged;
 			main.DataGridCurrentSpells.PreviewMouseLeftButtonDown += DataGridCurrentSpells_PreviewMouseLeftButtonDown;
-			RepositoryLoad();
 			main.DataGridAllSpells.ItemsSource = AllCasts;
 			main.DataGridCurrentSpells.ItemsSource = CurrentCasts;
 			
@@ -75,7 +75,7 @@ namespace DNDHelper.Modules.MagicSpells
 				{
 					if (main.DataGridCurrentSpells.SelectedIndex != -1)
 					{
-						main.DataGridCurrentSpells.SetValue(Grid.RowSpanProperty, 3);
+						main.DataGridCurrentSpells.SetValue(Grid.RowSpanProperty, 2);
 						main.CurrentSpellDescription.Visibility = Visibility.Visible;
 						var cast = main.DataGridCurrentSpells.Items[main.DataGridCurrentSpells.SelectedIndex] as Cast;
 						main.CurrentSpellDescription.Text = cast.SpellDescription;
@@ -91,7 +91,7 @@ namespace DNDHelper.Modules.MagicSpells
 		{
 			if (main.DataGridCurrentSpells.SelectedIndex != -1)
 			{
-				main.DataGridCurrentSpells.SetValue(Grid.RowSpanProperty, 3);
+				main.DataGridCurrentSpells.SetValue(Grid.RowSpanProperty, 2);
 				main.CurrentSpellDescription.Visibility = Visibility.Visible;
 				var cast = main.DataGridCurrentSpells.Items[main.DataGridCurrentSpells.SelectedIndex] as Cast;
 				main.CurrentSpellDescription.Text = cast.SpellDescription;
@@ -131,7 +131,7 @@ namespace DNDHelper.Modules.MagicSpells
 				{
 					if (main.DataGridAllSpells.SelectedIndex != -1)
 					{
-						main.DataGridAllSpells.SetValue(Grid.RowSpanProperty, 3);
+						main.DataGridAllSpells.SetValue(Grid.RowSpanProperty, 2);
 						main.AllSpellDescription.Visibility = Visibility.Visible;
 						var cast = main.DataGridAllSpells.Items[main.DataGridAllSpells.SelectedIndex] as Cast;
 						main.AllSpellDescription.Text = cast.SpellDescription;
@@ -146,7 +146,7 @@ namespace DNDHelper.Modules.MagicSpells
 		{ 
 			if (main.DataGridAllSpells.SelectedIndex != -1)
 			{
-				main.DataGridAllSpells.SetValue(Grid.RowSpanProperty, 3);
+				main.DataGridAllSpells.SetValue(Grid.RowSpanProperty, 2);
 				main.AllSpellDescription.Visibility = Visibility.Visible;
 				var cast = main.DataGridAllSpells.Items[main.DataGridAllSpells.SelectedIndex] as Cast;
 				main.AllSpellDescription.Text = cast.SpellDescription;
@@ -155,7 +155,12 @@ namespace DNDHelper.Modules.MagicSpells
 
 		public static void RepositoryLoad()
 		{
-			var casts = File.ReadAllLines("Casts.txt");
+			string spells = $"Cache/{DataManager.DataSave.SelectedRepository}/Spells.txt";
+			if (!File.Exists(spells))
+			{
+				return;
+			}
+			var casts = File.ReadAllLines(spells);
 			AllCasts.Clear();
 			int count = 0;
 			foreach (var line in casts)

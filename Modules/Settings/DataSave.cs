@@ -52,7 +52,9 @@ namespace DNDHelper.Modules.Settings
 
         public static void ReadSaves()
         {
-            string[] allfolders = Directory.GetDirectories(pathSaves);
+			if (!Directory.Exists(pathSaves))
+				Directory.CreateDirectory(pathSaves);
+			string[] allfolders = Directory.GetDirectories(pathSaves);
             List<string> savefolders = new();
             foreach (string folder in allfolders)
             {
