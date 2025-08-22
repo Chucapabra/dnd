@@ -74,6 +74,9 @@ namespace DNDHelper.Modules.Diary
 
             string pathNotes = $"{DataManager.SelectedSave}/Notes";
 
+            if(!Directory.Exists(pathNotes)) 
+                Directory.CreateDirectory(pathNotes);
+
             var notes = Directory.GetFiles(pathNotes);
             foreach (var notePath in notes)
             {

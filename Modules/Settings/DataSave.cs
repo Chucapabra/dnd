@@ -221,6 +221,9 @@ namespace DNDHelper.Modules.Settings
             DataSave.Gold = dataSave.Gold;
             DataSave.Characterisitics = dataSave.Characterisitics;
             DataSave.SubtractMagicBullet = dataSave.SubtractMagicBullet;
+            DataSave.CatalyzerSelect = dataSave.CatalyzerSelect;
+            DataSave.CatalyzerQualitySelect = dataSave.CatalyzerQualitySelect;
+            DataSave.MagicSchool = dataSave.MagicSchool;
 
 
 
@@ -410,6 +413,40 @@ namespace DNDHelper.Modules.Settings
                 OnPropertyChanged();
             }
         }
+
+        private int _magicSchool = 0;
+        public int MagicSchool
+        {
+            get => _magicSchool;
+            set
+            {
+                _magicSchool = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _catalyzerSelect = 1;
+        public int CatalyzerSelect
+        {
+            get => _catalyzerSelect;
+            set
+            {
+                _catalyzerSelect = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _catalyzerQualitySelect = 2;
+        public int CatalyzerQualitySelect
+        {
+            get => _catalyzerQualitySelect;
+            set
+            {
+                _catalyzerQualitySelect = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         public ObservableCollection<TreeGrid> ClassTreeGrid { get; set; } = new() {
             new TreeGrid { TreeName = "", TreeLevel = 0 },

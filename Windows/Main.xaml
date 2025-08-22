@@ -618,7 +618,7 @@
 					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5,0,6,0" Height="36" Grid.ColumnSpan="2">
 						<StackPanel>
 							<TextBlock Text="Школа:"/>
-							<ComboBox x:Name="SchoolSelect_cb" Width="120">
+                            <ComboBox SelectedIndex="{Binding MagicSchool}" x:Name="SchoolSelect_cb" Width="120">
 								<ComboBoxItem Content="Отсутствует"/>
 								<ComboBoxItem Content="Ограждения"/>
 								<ComboBoxItem Content="Вызова"/>
@@ -632,7 +632,7 @@
 						</StackPanel>
 						<StackPanel Margin="10,0,0,0">
 							<TextBlock Text="Катализатор:"/>
-							<ComboBox x:Name="CatalyzerSelect_cb">
+                            <ComboBox SelectedIndex="{Binding CatalyzerSelect}" x:Name="CatalyzerSelect_cb">
 								<ComboBoxItem Content="Посох"/>
 								<ComboBoxItem Content="Палочка"/>
 								<ComboBoxItem Content="Талисман"/>
@@ -640,7 +640,7 @@
 						</StackPanel>
 						<StackPanel Margin="10,0,0,0">
 							<TextBlock Text="Качество:"/>
-							<ComboBox x:Name="CatalyzerQualitySelect_cb" Width="100">
+                            <ComboBox SelectedIndex="{Binding CatalyzerQualitySelect}"  x:Name="CatalyzerQualitySelect_cb" Width="100">
 								<ComboBoxItem Content="Прото"/>
 								<ComboBoxItem Content="Плохое"/>
 								<ComboBoxItem Content="Стандартное"/>

@@ -32,11 +32,14 @@ namespace DNDHelper.Modules.MagicSpells
 			main.DataGridAllSpells.PreviewMouseLeftButtonDown += DataGridAllSpells_PreviewMouseLeftButtonDown;
 			main.DataGridCurrentSpells.SelectionChanged += DataGridCurrentSpells_SelectionChanged;
 			main.DataGridCurrentSpells.PreviewMouseLeftButtonDown += DataGridCurrentSpells_PreviewMouseLeftButtonDown;
-			main.DataGridAllSpells.ItemsSource = AllCasts;
+            main.CatalyzerQualitySelect_cb.SelectionChanged += CatalyzerQualitySelect_cb_SelectionChanged;
+            main.CatalyzerSelect_cb.SelectionChanged += CatalyzerSelect_cb_SelectionChanged; 
+            main.DataGridAllSpells.ItemsSource = AllCasts;
 			main.DataGridCurrentSpells.ItemsSource = CurrentCasts;
 			
 		}
-		private object _lastSelectedItemAll;
+
+        private object _lastSelectedItemAll;
 		private int _clickCountAll = 0;
 		private object _lastSelectedItemCurrent;
 		private int _clickCountCurrent = 0;
@@ -157,9 +160,9 @@ namespace DNDHelper.Modules.MagicSpells
 		{
 			string spells = $"Cache/{DataManager.DataSave.SelectedRepository}/Spells.txt";
 			if (!File.Exists(spells))
-			{
 				return;
-			}
+
+
 			var casts = File.ReadAllLines(spells);
 			AllCasts.Clear();
 			int count = 0;
@@ -188,47 +191,12 @@ namespace DNDHelper.Modules.MagicSpells
 					}
 					cast.SpellName = separator[0 + add];
 					//cast.SpellType = separator[1 + add];
-					switch (cast.SpellSchool = separator[1 + add].ToString())
-					{
-						case "-1":
-							cast.SpellSchool = "Заговор";
-							break;
-						case "0":
-							cast.SpellSchool = "Ограждения";
-							break;
-						case "1":
-							cast.SpellSchool = "Вызова";
-							break;
-						case "2":
-							cast.SpellSchool = "Прорицания";
-							break;
-						case "3":
-							cast.SpellSchool = "Очарования";
-							break;
-						case "4":
-							cast.SpellSchool = "Воплощения";
-							break;
-						case "5":
-							cast.SpellSchool = "Иллюзии";
-							break;
-						case "6":
-							cast.SpellSchool = "Некромантии";
-							break;
-						case "7":
-							cast.SpellSchool = "Преобразования";
-							break;
-						case "8":
-							cast.SpellSchool = "Нет";
-							break;
-						default:
-							cast.SpellSchool = "Нет";
-							break;
-					}
+					cast.SpellSchool = NumberToSchool(separator[1 + add].ToString());
+
 					if (cast.SpellName.Contains("@"))
-					{
 						cast.colorbrushnature = Brushes.Green;
-					}
-					cast.SpellDamage = Convert.ToInt32(separator[2 + add].Replace("*", ""));
+
+					cast.SpellDamage = CheckDamageSpell(separator[2 + add]);
 					//cast.SpellRoll = Convert.ToInt32(separator[3 + add]);
 					cast.SpellLevel = separator[3 + add];
 					cast.SpellDescription = separator[4 + add];
@@ -243,8 +211,94 @@ namespace DNDHelper.Modules.MagicSpells
 			}
 			Debug.WriteLine(count.ToString());
 		}
-		
-		private void MoveSpellAll_Click(object sender, RoutedEventArgs e)
+
+
+
+		private static float muliplyStaff;
+        private static float muliplyTypeStaff;
+        private void CatalyzerQualitySelect_cb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (main.CatalyzerQualitySelect_cb.SelectedIndex)
+            {
+				case 0:
+                    muliplyStaff = 0.5f;
+                    break;
+                case 1:
+                    muliplyStaff = 0.75f;
+                    break;
+                case 2:
+                    muliplyStaff = 1f;
+                    break;
+                case 3:
+                    muliplyStaff = 1.25f;
+                    break;
+                case 4:
+                    muliplyStaff = 1.5f;
+                    break;
+                case 5:
+                    muliplyStaff = 2;
+                    break;
+                case 6:
+                    muliplyStaff = 3;
+                    break;
+				default:
+					muliplyStaff = 1;
+					break;
+            }
+
+			RepositoryLoad();
+        }
+        private void CatalyzerSelect_cb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (main.CatalyzerSelect_cb.SelectedIndex)
+            {
+                case 0:
+                    muliplyTypeStaff = 1.5f;
+                    break;
+                default:
+                    muliplyTypeStaff = 1;
+                    break;
+            }
+
+			RepositoryLoad();
+        }
+        private static int CheckDamageSpell(string damageString)
+        {
+			if (damageString.Contains("*")) return int.Parse(damageString.Replace("*", ""));
+
+			int damage = int.Parse(damageString);
+            return (int)(damage * muliplyStaff * muliplyTypeStaff);
+        }
+		private static string NumberToSchool(string number)
+		{
+            switch (number)
+            {
+                case "-1":
+                    return   "Заговор";
+                case "0":
+                    return   "Ограждения";
+                case "1":
+                    return   "Вызова";
+                case "2":
+                    return   "Прорицания";
+                case "3":
+                    return   "Очарования";
+                case "4":
+                    return   "Воплощения";                    
+                case "5":
+                    return   "Иллюзии";                     
+                case "6":
+                    return   "Некромантии";
+                case "7":
+                    return   "Преобразования";                     
+                case "8":
+                    return   "Нет";                     
+                default:
+                    return   "Нет";                    
+            }
+		}
+
+        private void MoveSpellAll_Click(object sender, RoutedEventArgs e)
 		{
 			if (main.DataGridAllSpells.SelectedIndex == -1)
 			{
