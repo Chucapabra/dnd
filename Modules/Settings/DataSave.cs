@@ -1,4 +1,5 @@
 ﻿using DNDHelper.Modules.Character;
+using DNDHelper.Modules.Config;
 using DNDHelper.Modules.Diary;
 using DNDHelper.Modules.Inventory;
 using DNDHelper.Modules.Сharacteristics;
@@ -49,6 +50,14 @@ namespace DNDHelper.Modules.Settings
         public static string SelectedSave = "";
 
         public static DataSaveEmpty DataSave = new DataSaveEmpty();
+
+        public static void FindPathSaves()
+        {
+            string[] path = Assembly.GetExecutingAssembly().Location.Split('\\');
+            pathSaves = string.Join("\\", path, 0, path.Count() - 2) + "\\Saves\\";
+        }
+
+
 
         public static void ReadSaves()
         {
@@ -143,7 +152,7 @@ namespace DNDHelper.Modules.Settings
                 MessageBox.Show("Это сохранение открыто", "Тыеб", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
-        private static bool isLoad = false;
+        public static bool IsLoad = true;
 
 
 
@@ -151,13 +160,14 @@ namespace DNDHelper.Modules.Settings
         private static readonly SmartDebouncer _debouncer = new();
         public static void Save(bool Force = false)
         {
-            if (SelectedSave.Length == 0 || isLoad)
+            if (SelectedSave.Length == 0 || IsLoad)
                 return;
 
             if(!Force)
             _debouncer.ExecuteDebounced(async () =>
             {
                 save();
+                ReadSaves();
             });
             else
                 ForceSaveDataAsync();
@@ -165,9 +175,8 @@ namespace DNDHelper.Modules.Settings
 
         private static void ForceSaveDataAsync()
         {
-
             _debouncer.Reset();
-            save();
+            save();        
         }
 
         private static void save()
@@ -182,7 +191,7 @@ namespace DNDHelper.Modules.Settings
             Debug.WriteLine($"{SelectedSave}/Config.json");
             var json = JsonSerializer.Serialize(DataSave, options);
 
-            File.WriteAllText($"{SelectedSave}/Config.json", json);
+            File.WriteAllText($"{SelectedSave}/Config.json", json);    
         }
 
         private static void Load_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -196,7 +205,7 @@ namespace DNDHelper.Modules.Settings
             if(SelectedSave.Length > 0) Save(true);
 
 
-            isLoad = true;
+            IsLoad = true;
 
             SelectedSave = path;
 
@@ -221,6 +230,7 @@ namespace DNDHelper.Modules.Settings
             DataSave.Gold = dataSave.Gold;
             DataSave.Characterisitics = dataSave.Characterisitics;
             DataSave.SubtractMagicBullet = dataSave.SubtractMagicBullet;
+            DataSave.MultiplyMagicDamage = dataSave.MultiplyMagicDamage;
             DataSave.CatalyzerSelect = dataSave.CatalyzerSelect;
             DataSave.CatalyzerQualitySelect = dataSave.CatalyzerQualitySelect;
             DataSave.MagicSchool = dataSave.MagicSchool;
@@ -245,6 +255,10 @@ namespace DNDHelper.Modules.Settings
             foreach (var item in dataSave.CustomSkills)
                 DataSave.CustomSkills.Add(item);
 
+            DataSave.CurrentCastsNames.Clear();
+            foreach (var item in dataSave.CurrentCastsNames)
+                DataSave.CurrentCastsNames.Add(item);
+
             Character.Skills.ReloadDataGridSkills();
             Level.SetLevel();
             Main.ItemBaffsListScript.UpdateValues();
@@ -253,7 +267,9 @@ namespace DNDHelper.Modules.Settings
 
             SetRepository.FileСonnection();
 
-            isLoad = false;
+            IsLoad = false;
+
+            PlayerClass.UpdateCharacteristicMagic();
         }
 
     }
@@ -278,7 +294,7 @@ namespace DNDHelper.Modules.Settings
             get => _name;
             set
             {
-                _name = value;            
+                _name = value;
                 OnPropertyChanged();
             }
         }
@@ -410,6 +426,20 @@ namespace DNDHelper.Modules.Settings
             set
             {
                 _subtractMagicBullet = value;
+                MagicSpells.MagicSpells.UpdateMagicBullet();
+                OnPropertyChanged();
+            }
+        }
+
+        private double _multiplyMagicDamage = 1;
+        public double MultiplyMagicDamage
+        {
+            get => _multiplyMagicDamage;
+            set
+            {
+                _multiplyMagicDamage = value;
+                Main.Instance.DamageMagic_textblock.Text = value.ToString();
+                Main.Instance.DamageMagic_textbox.Text = value.ToString();
                 OnPropertyChanged();
             }
         }
@@ -459,6 +489,8 @@ namespace DNDHelper.Modules.Settings
         public ObservableCollection<Skills.Skill> CustomSkills { get; set; } = new();
 
         public ObservableCollection<InventoryLoot.InventoryItem> Inventory { get; set; } = new();
+
+        public ObservableCollection<string> CurrentCastsNames { get; set; } = new ObservableCollection<string>();
 
 
         public event PropertyChangedEventHandler PropertyChanged;

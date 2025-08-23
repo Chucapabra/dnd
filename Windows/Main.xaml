@@ -660,84 +660,85 @@
 						<TextBox Style="{DynamicResource STYLE_NAME}" Foreground="{DynamicResource StandartForeColor}" Background="{DynamicResource StandartBackColor}" x:Name="MagicBulletCurrent_textbox" Width="40" Height="17" Text="1" TextAlignment="Center" Visibility="Collapsed" materialDesign:HintAssist.Hint="Число"  DataObject.Pasting="MagicBulletCurrent_textbox_Pasting" AcceptsReturn="False" VerticalAlignment="Top" PreviewTextInput="MagicBulletCurrent_textbox_PreviewTextInput" PreviewKeyDown="MagicBulletCurrent_textbox_PreviewKeyDown" MaxLength="2"/>
 						<TextBlock Text="|"/>
 						<TextBlock Width="40" TextAlignment="Center" x:Name="MagicBulletAll_textblock" Text="1"  Visibility="Visible"/>
-						<Button x:Name="plusMagicBullet" Style="{DynamicResource MaterialDesignIconForegroundButton}" Width="10" Height="10" Click="plusMagicBullet_Click">
+						<Button x:Name="plusMagicBullet" Style="{DynamicResource MaterialDesignIconForegroundButton}" Width="10" Height="10">
 							<TextBlock Text="+" Margin="0,-5,0,0" FontSize="18" Cursor=""/>
 						</Button>
-						<Button x:Name="MinusMagicBullet" Style="{DynamicResource MaterialDesignIconForegroundButton}" Width="10" Height="10" Margin="5,0,0,0" Click="MinusMagicBullet_Click">
+						<Button x:Name="MinusMagicBullet" Style="{DynamicResource MaterialDesignIconForegroundButton}" Width="10" Height="10" Margin="5,0,0,0">
 							<TextBlock Text="-" Margin="0,-6.29,0,0" FontSize="18" Cursor=""/>
 						</Button>
-						<Button x:Name="ResetMagicBullet" Margin="5,0,0,0" Height="10" Width="10" Style="{DynamicResource MaterialDesignIconForegroundButton}" Cursor="Hand" Click="ResetMagicBullet_Click">
+						<Button x:Name="ResetMagicBullet" Margin="5,0,0,0" Height="10" Width="10" Style="{DynamicResource MaterialDesignIconForegroundButton}" Cursor="Hand">
 							<materialDesign:PackIcon Kind="Reload" Height="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 						</Button>
 					</StackPanel>
-					<StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="4" Margin="5,0,5,0" VerticalAlignment="Center" Height="42">
-						<StackPanel>
-							<TextBlock Text="Поиск"/>
-							<TextBox materialDesign:HintAssist.Hint="Название" x:Name="CastSearch_textbox" Width="180" MaxLength="255"/>
-						</StackPanel>
-						<StackPanel Margin="15,0,0,0">
-							<TextBlock Text="Вид"/>
-							<ComboBox Width="120" SelectedIndex="0" x:Name="CastSearch_Type_cb">
-								<ComboBoxItem Content="Все"/>
-								<ComboBoxItem Content="Обычные"/>
-								<ComboBoxItem Content="Тайные"/>
-								<ComboBoxItem Content="Запрещённые"/>
-								<ComboBoxItem Content="Проклятые"/>
-								<ComboBoxItem Content="Созданные"/>
-							</ComboBox>
-						</StackPanel>
-						<StackPanel Margin="15,0,0,0">
-							<TextBlock Text="Школа"/>
-							<ComboBox SelectedIndex="0" x:Name="SchoolSelect_Search_cb" Width="130">
-								<ComboBoxItem Content="Любая"/>
-								<ComboBoxItem Content="Ограждения"/>
-								<ComboBoxItem Content="Вызова"/>
-								<ComboBoxItem Content="Прорицания"/>
-								<ComboBoxItem Content="Очарования"/>
-								<ComboBoxItem Content="Воплощения"/>
-								<ComboBoxItem Content="Иллюзии"/>
-								<ComboBoxItem Content="Некромантии"/>
-								<ComboBoxItem Content="Преобразования"/>
-							</ComboBox>
-						</StackPanel>
-						<StackPanel Margin="15,0,0,0">
-							<TextBlock Text="Урон"/>
-							<ComboBox SelectedIndex="0" x:Name="Damage_Search_cb" Width="65">
-								<ComboBoxItem Content="Любой"/>
-								<ComboBoxItem Content="Есть"/>
-								<ComboBoxItem Content="Нет"/>
-							</ComboBox>
-						</StackPanel>
-						<StackPanel Margin="15,0,0,0">
-							<TextBlock Text="Ролл"/>
-							<ComboBox SelectedIndex="0" x:Name="Roll_Search_cb" Width="60">
-								<ComboBoxItem Content="Любой"/>
-								<ComboBoxItem Content="&gt;0"/>
-								<ComboBoxItem Content="&lt;0"/>
-								<ComboBoxItem Content="0"/>
-							</ComboBox>
-						</StackPanel>
-						<StackPanel Margin="15,0,0,0">
-							<TextBlock Text="Уровень"/>
-							<ComboBox SelectedIndex="0" x:Name="LevelCast_Search_cb" Width="80">
-								<ComboBoxItem Content="Все"/>
-								<ComboBoxItem Content="Заговоры"/>
-								<ComboBoxItem Content="1"/>
-								<ComboBoxItem Content="2"/>
-								<ComboBoxItem Content="3"/>
-								<ComboBoxItem Content="4"/>
-								<ComboBoxItem Content="5"/>
-								<ComboBoxItem Content="6"/>
-								<ComboBoxItem Content="7"/>
-								<ComboBoxItem Content="8"/>
-								<ComboBoxItem Content="9"/>
-								<ComboBoxItem Content="10"/>
-								<ComboBoxItem Content="11"/>
-								<ComboBoxItem Content="12"/>
-							</ComboBox>
-						</StackPanel>
-					</StackPanel>
-					<DataGrid Grid.Row="1" Grid.ColumnSpan="4"
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="4" Margin="5,0,5,0" VerticalAlignment="Center" Height="42">
+                        <StackPanel>
+                            <TextBlock Text="Поиск"/>
+                            <TextBox materialDesign:HintAssist.Hint="Название" x:Name="CastSearch_textbox" Width="180" MaxLength="255"/>
+                        </StackPanel>
+                        <StackPanel Margin="15,0,0,0">
+                            <TextBlock Text="Вид"/>
+                            <ComboBox Width="120" SelectedIndex="0" x:Name="CastSearch_Type_cb">
+                                <ComboBoxItem Content="Все"/>
+                                <ComboBoxItem Content="Обычные"/>
+                                <ComboBoxItem Content="Запрещённые"/>
+                                <ComboBoxItem Content="Тайные"/>
+                                <ComboBoxItem Content="Проклятые"/>
+                                <ComboBoxItem Content="Созданные"/>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Margin="15,0,0,0">
+                            <TextBlock Text="Школа"/>
+                            <ComboBox SelectedIndex="0" x:Name="SchoolSelect_Search_cb" Width="130">
+                                <ComboBoxItem Content="Любая"/>
+                                <ComboBoxItem Content="Ограждения"/>
+                                <ComboBoxItem Content="Вызова"/>
+                                <ComboBoxItem Content="Прорицания"/>
+                                <ComboBoxItem Content="Очарования"/>
+                                <ComboBoxItem Content="Воплощения"/>
+                                <ComboBoxItem Content="Иллюзии"/>
+                                <ComboBoxItem Content="Некромантии"/>
+                                <ComboBoxItem Content="Преобразования"/>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Margin="15,0,0,0">
+                            <TextBlock Text="Урон"/>
+                            <ComboBox SelectedIndex="0" x:Name="Damage_Search_cb" Width="65">
+                                <ComboBoxItem Content="Любой"/>
+                                <ComboBoxItem Content="Есть"/>
+                                <ComboBoxItem Content="Нет"/>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Margin="15,0,0,0">
+                            <TextBlock Text="Ролл"/>
+                            <ComboBox SelectedIndex="0" x:Name="Roll_Search_cb" Width="60">
+                                <ComboBoxItem Content="Любой"/>
+                                <ComboBoxItem Content="&gt;0"/>
+                                <ComboBoxItem Content="&lt;0"/>
+                                <ComboBoxItem Content="0"/>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Margin="15,0,0,0">
+                            <TextBlock Text="Уровень"/>
+                            <ComboBox SelectedIndex="0" x:Name="LevelCast_Search_cb" Width="80">
+                                <ComboBoxItem Content="Все"/>
+                                <ComboBoxItem Content="Заговоры"/>
+                                <ComboBoxItem Content="1"/>
+                                <ComboBoxItem Content="2"/>
+                                <ComboBoxItem Content="3"/>
+                                <ComboBoxItem Content="4"/>
+                                <ComboBoxItem Content="5"/>
+                                <ComboBoxItem Content="6"/>
+                                <ComboBoxItem Content="7"/>
+                                <ComboBoxItem Content="8"/>
+                                <ComboBoxItem Content="9"/>
+                                <ComboBoxItem Content="10"/>
+                                <ComboBoxItem Content="11"/>
+                                <ComboBoxItem Content="12"/>
+                            </ComboBox>
+                        </StackPanel>
+                        <CheckBox x:Name="NatureCast_Search_cb" Content="Природное" Margin="10,15,0,0"/>
+                    </StackPanel>
+                    <DataGrid Grid.Row="1" Grid.ColumnSpan="4"
 							  x:Name="DataGridCurrentSpells" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
 							  AutoGenerateColumns="False"
                               SelectionMode="Single"

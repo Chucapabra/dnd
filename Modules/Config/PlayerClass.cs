@@ -1,5 +1,7 @@
 ﻿using DNDHelper.Modules.Character;
+using DNDHelper.Modules.MagicSpells;
 using DNDHelper.Modules.Settings;
+using DNDHelper.Modules.Сharacteristics;
 using DNDHelper.Windows;
 using System.Diagnostics;
 using System.IO;
@@ -17,6 +19,8 @@ namespace DNDHelper.Modules.Config
         public static ClassData SelectedClassData = new ClassData();
         public static List<Stat> Stats = new List<Stat>();
 
+
+        public static int AddRollMagic = 0;
         public PlayerClass()
         {
 
@@ -28,7 +32,7 @@ namespace DNDHelper.Modules.Config
 
         public static void Update()
         {
-            string pathFile = $"Cache/{DataManager.DataSave.SelectedRepository}/Class.json";
+            string pathFile = Main.PathMain + $"Cache/{DataManager.DataSave.SelectedRepository}/Class.json";
             if (File.Exists(pathFile))
             {
                 string json = File.ReadAllText(pathFile);
@@ -84,6 +88,9 @@ namespace DNDHelper.Modules.Config
                 Main.Characteristics.UpdateAllCharacterisitc();
                 Health.HealthUpdate();
                 Main.Instance.character_class_textblock.Text = selectText;
+                MagicSpells.MagicSpells.UpdateMagicBullet();
+
+                UpdateCharacteristicMagic();
             }
         }
 
@@ -95,6 +102,30 @@ namespace DNDHelper.Modules.Config
                 Stats.Add(new Stat { Value = 0, Roll = 0 });
             }
         }
+
+        public static void UpdateCharacteristicMagic()
+        {
+            if(DataManager.IsLoad)
+                return;
+
+            int characterisitic;
+            switch (SelectedClassData.CharacteristicMagic.ToLower())
+            {
+                case "м":
+                    characterisitic = Buffed(StatName.Wisdom);
+                    break;
+                case "х":
+                    characterisitic = Buffed(StatName.Charisma);
+                    break;
+                default:
+                    characterisitic = Buffed(StatName.Intellect);
+                    break;
+            }
+
+            AddRollMagic = (int)Math.Floor((characterisitic - 10) * 0.5);
+
+            MagicSpells.MagicSpells.RepositoryLoad();
+        }
     }
 
     //SelectedClassData.ClassTrees[0][Имя ветви][0][номер ступени][0].Skills.Count
@@ -105,6 +136,9 @@ namespace DNDHelper.Modules.Config
 
         [JsonPropertyName("ДопКД")]
         public int AddKD { get; set; } = 0;
+
+        [JsonPropertyName("Кастует")]
+        public string CharacteristicMagic { get; set; } = "И";
 
         [JsonPropertyName("ДеБаф_к_пулям")]
         public int AddMagBullet { get; set; } = 0;

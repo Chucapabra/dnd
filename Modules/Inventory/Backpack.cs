@@ -63,7 +63,7 @@ namespace DNDHelper.Modules.Inventory
 				case 2:
                     divideItemWeight = 1;
                     IsDivideArmorWeight = false;
-                    addBackpackWeight = 30;
+                    addBackpackWeight = 60;
                     main.backpack_quantity_cb.ItemsSource = quantitymax2;
 					main.backpack_quantity_cb.SelectedIndex = 0;
                     break;

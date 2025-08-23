@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -157,7 +158,9 @@ namespace DNDHelper.Modules.Settings
 
         public static void CheckCacheFiles()
         {
-            string path = $"Cache/{SelectedRepository}/";
+            string[] pathMain = Assembly.GetExecutingAssembly().Location.Split('\\');
+            string path = Main.PathMain + $"Cache\\{SelectedRepository}\\";
+
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
 

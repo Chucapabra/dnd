@@ -1,4 +1,6 @@
-﻿using DNDHelper.Modules.Settings;
+﻿using DNDHelper.Modules.Config;
+using DNDHelper.Modules.Settings;
+using DNDHelper.Modules.Сharacteristics;
 using DNDHelper.Windows;
 using System;
 using System.Collections.Generic;
@@ -23,28 +25,41 @@ namespace DNDHelper.Modules.MagicSpells
     {
 		Main main = Main.Instance;
 		public static ObservableCollection<Cast> AllCasts = new ObservableCollection<Cast>();
-		public static ObservableCollection<Cast> CurrentCasts = new ObservableCollection<Cast>();
-		public MagicSpells() 
+		public static ObservableCollection<string> CurrentCastsNames => DataManager.DataSave.CurrentCastsNames;
+
+        public static ObservableCollection<Cast> CurrentAllCasts = new ObservableCollection<Cast>();
+        public static ObservableCollection<Cast> CurrentCasts = new ObservableCollection<Cast>();
+        public MagicSpells() 
 		{
 			main.AddCustomSpellCurrent.Click += AddCustomSpellCurrent_Click;
 			main.MoveSpellAll.Click += MoveSpellAll_Click;
-			main.DataGridAllSpells.SelectionChanged += DataGridAllSpells_SelectionChanged;
+            main.MoveSpellCurrent.Click += MoveSpellCurrent_Click;
+            main.DataGridAllSpells.SelectionChanged += DataGridAllSpells_SelectionChanged;
 			main.DataGridAllSpells.PreviewMouseLeftButtonDown += DataGridAllSpells_PreviewMouseLeftButtonDown;
 			main.DataGridCurrentSpells.SelectionChanged += DataGridCurrentSpells_SelectionChanged;
 			main.DataGridCurrentSpells.PreviewMouseLeftButtonDown += DataGridCurrentSpells_PreviewMouseLeftButtonDown;
             main.CatalyzerQualitySelect_cb.SelectionChanged += CatalyzerQualitySelect_cb_SelectionChanged;
-            main.CatalyzerSelect_cb.SelectionChanged += CatalyzerSelect_cb_SelectionChanged; 
-            main.DataGridAllSpells.ItemsSource = AllCasts;
+            main.CatalyzerSelect_cb.SelectionChanged += CatalyzerSelect_cb_SelectionChanged;
+            main.SchoolSelect_cb.SelectionChanged += SchoolSelect_cb_SelectionChanged;
+            CurrentCastsNames.CollectionChanged += CurrentCastsNames_CollectionChanged;
+            main.DataGridAllSpells.ItemsSource = CurrentAllCasts;
 			main.DataGridCurrentSpells.ItemsSource = CurrentCasts;
-			
+
+            main.MinusMagicBullet.Click += MinusMagicBullet_Click;
+            main.plusMagicBullet.Click += PlusMagicBullet_Click;
+            main.ResetMagicBullet.Click += ResetMagicBullet_Click;
 		}
+
+
+        private void CurrentCastsNames_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+			DataManager.Save();
+        }
 
         private object _lastSelectedItemAll;
 		private int _clickCountAll = 0;
 		private object _lastSelectedItemCurrent;
 		private int _clickCountCurrent = 0;
-		public static int MagicBulletsCurrent;
-		public static int MagicBulletsMax;
 		private void DataGridCurrentSpells_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
 			var row = ItemsControl.ContainerFromElement((System.Windows.Controls.DataGrid)sender, e.OriginalSource as DependencyObject) as DataGridRow;
@@ -158,14 +173,14 @@ namespace DNDHelper.Modules.MagicSpells
 
 		public static void RepositoryLoad()
 		{
-			string spells = $"Cache/{DataManager.DataSave.SelectedRepository}/Spells.txt";
+			string spells = Main.PathMain + $"Cache/{DataManager.DataSave.SelectedRepository}/Spells.txt";
 			if (!File.Exists(spells))
 				return;
 
 
 			var casts = File.ReadAllLines(spells);
 			AllCasts.Clear();
-			int count = 0;
+            int count = 0;
 			foreach (var line in casts)
 			{
 				try
@@ -188,18 +203,23 @@ namespace DNDHelper.Modules.MagicSpells
 								break;
 						}
 						add = 1;
-					}
+						cast.NumberType = separator[0];
+                    }
 					cast.SpellName = separator[0 + add];
 					//cast.SpellType = separator[1 + add];
 					cast.SpellSchool = NumberToSchool(separator[1 + add].ToString());
 
 					if (cast.SpellName.Contains("@"))
+					{
 						cast.colorbrushnature = Brushes.Green;
+						cast.IsNature = true;
+					}
 
 					cast.SpellDamage = CheckDamageSpell(separator[2 + add]);
-					//cast.SpellRoll = Convert.ToInt32(separator[3 + add]);
+					cast.SpellRoll = CheckRollSpell(separator[1 + add]);
 					cast.SpellLevel = separator[3 + add];
 					cast.SpellDescription = separator[4 + add];
+
 					AllCasts.Add(cast);
 				}
 				catch (Exception error) 
@@ -210,7 +230,9 @@ namespace DNDHelper.Modules.MagicSpells
 
 			}
 			Debug.WriteLine(count.ToString());
-		}
+			MagicSearch.CastsFilter();
+
+        }
 
 
 
@@ -264,12 +286,13 @@ namespace DNDHelper.Modules.MagicSpells
         }
         private static int CheckDamageSpell(string damageString)
         {
-			if (damageString.Contains("*")) return int.Parse(damageString.Replace("*", ""));
-
-			int damage = int.Parse(damageString);
+            int damage = (int)(int.Parse(damageString.Replace("*", "")) * PlayerClass.SelectedClassData.MultiplyMagDamage * DataManager.DataSave.MultiplyMagicDamage); 
+			 
+            if (damageString.Contains("*")) return damage;
+			
             return (int)(damage * muliplyStaff * muliplyTypeStaff);
         }
-		private static string NumberToSchool(string number)
+		public static string NumberToSchool(string number)
 		{
             switch (number)
             {
@@ -297,19 +320,82 @@ namespace DNDHelper.Modules.MagicSpells
                     return   "Нет";                    
             }
 		}
+        
+        private static int[][] Schools = new int[][]
+{
+        // Школы
+        // Нет
+        new int[]  { 0, 0, 0, 0, 0, 0, 0, 0 },
+        // Ограждения 0
+        new int[]  { 0, -5, -2, -2, 1, 0, -5, -2 },
+        // Вызова 1
+        new int[]  { -5, 0, -2, 0, 1, -2, -5, -2 },
+        // Прорицания 2
+        new int[] { -2, -2, 0, 1, -2, 0, -5, -5 },
+        // Очарования 3
+        new int[] { -2, 0, 1, 0, -5, 0, -5, -5 },
+        // Воплощения 4
+        new int[] { 1, 1, -2, -5, 0, -5, -3, -2 },
+        // Иллюзии 5
+        new int[] { 0, -2, 0, 0, -5, 0, -5, 1 },
+        // Некромантии 6
+        new int[] { -5, -5, -5, -5, -3, -5, 0, 3 },
+        // Преобразования 7
+        new int[] { -2, -2, -5, -5, -2, 1, 3, 0 },
+
+};
+        private static int CheckRollSpell(string indexSchool)
+        {
+            int roll = 0;
+			int addRoll = PlayerClass.AddRollMagic;
+			int indexInt = int.Parse(indexSchool);
+			int selectedSchool = Main.Instance.SchoolSelect_cb.SelectedIndex;
+            switch (indexSchool)
+            {
+                case "-1":
+                    roll = addRoll;
+                    break;
+                case "8":
+                    roll = addRoll;
+                    break;
+                default:
+                    roll = addRoll + Schools[selectedSchool][indexInt];
+                    break;
+            }
+            return roll;
+        }
+        private void SchoolSelect_cb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            RepositoryLoad();
+        }
+
 
         private void MoveSpellAll_Click(object sender, RoutedEventArgs e)
 		{
 			if (main.DataGridAllSpells.SelectedIndex == -1)
-			{
 				return;
-			}
-			int indexAllCast = main.DataGridAllSpells.SelectedIndex;
-			CurrentCasts.Add(AllCasts[indexAllCast]);
-			AllCasts.RemoveAt(indexAllCast);
-		}
 
-		private void AddCustomSpellCurrent_Click(object sender, RoutedEventArgs e)
+			int indexAllCast = main.DataGridAllSpells.SelectedIndex;
+			CurrentCastsNames.Add(CurrentAllCasts[indexAllCast].SpellName);
+            CurrentCasts.Add(CurrentAllCasts[indexAllCast]);
+
+            CurrentAllCasts.RemoveAt(indexAllCast);
+        }
+
+        private void MoveSpellCurrent_Click(object sender, RoutedEventArgs e)
+        {
+            if (main.DataGridCurrentSpells.SelectedIndex == -1)
+                return;
+
+            int indexCast = main.DataGridCurrentSpells.SelectedIndex;
+
+            CurrentAllCasts.Add(CurrentCasts[indexCast]);
+
+            CurrentCastsNames.RemoveAt(indexCast);
+            CurrentCasts.RemoveAt(indexCast);
+        }
+
+        private void AddCustomSpellCurrent_Click(object sender, RoutedEventArgs e)
 		{
 			
 			bool isCustomSpellsOpen = Application.Current.Windows.OfType<CustomSpells>().Any();
@@ -324,17 +410,48 @@ namespace DNDHelper.Modules.MagicSpells
 			}
 		}
 
-	}
+
+
+
+		public static int MaxMagicBullet = 0;
+
+        private void ResetMagicBullet_Click(object sender, RoutedEventArgs e)
+        {
+            DataManager.DataSave.SubtractMagicBullet = 0;
+        }
+        private void MinusMagicBullet_Click(object sender, RoutedEventArgs e)
+        {
+			DataManager.DataSave.SubtractMagicBullet++;
+        }
+
+        private void PlusMagicBullet_Click(object sender, RoutedEventArgs e)
+        {
+            DataManager.DataSave.SubtractMagicBullet--;         
+        }
+
+		public static void UpdateMagicBullet()
+		{
+			int wisdom = CharacteristicTable.Buffed(CharacteristicTable.StatName.Wisdom);
+			if (wisdom >= 20)
+				wisdom = 20;
+
+            MaxMagicBullet = PlayerClass.SelectedClassData.AddMagBullet + (int)(wisdom * 0.05);
+
+            Main.Instance.MagicBulletAll_textblock.Text = MaxMagicBullet.ToString();
+            Main.Instance.MagicBulletCurrent_textblock.Text = (MaxMagicBullet - DataManager.DataSave.SubtractMagicBullet).ToString();
+        }
+    }
 	public class Cast
 	{
-		public string SpellName { get; set; }
-		public string SpellType { get; set; }
+		public string SpellName { get; set; }		
 		public string SpellSchool { get; set; }
 		public int SpellDamage { get; set; }
 		public int SpellRoll { get; set; }
 		public string SpellLevel { get; set; }
 		public string SpellDescription { get; set; }
-		public Brush colorbrush { get; set; } = new SolidColorBrush(Settings.Settings.SelectedTheme[1]);
+		public string NumberType { get; set; } = "0";
+		public bool IsNature { get; set; } = false;	
+        public Brush colorbrush { get; set; } = new SolidColorBrush(Settings.Settings.SelectedTheme[1]);
 		public Brush colorbrushnature { get; set; } = new SolidColorBrush(Settings.Settings.SelectedTheme[1]);
 	} 
 }

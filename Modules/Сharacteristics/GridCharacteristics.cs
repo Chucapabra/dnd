@@ -1,6 +1,7 @@
 ﻿using DNDHelper.Modules.Character;
 using DNDHelper.Modules.Config;
 using DNDHelper.Modules.Inventory;
+using DNDHelper.Modules.MagicSpells;
 using DNDHelper.Modules.Settings;
 using DNDHelper.Windows;
 using System;
@@ -244,15 +245,26 @@ namespace DNDHelper.Modules.Сharacteristics
             PointsIntellectSkills = (int)((Base(Intellect) + Race.Stats[7].Value + PlayerClass.Stats[7].Value + TreeSkills.Stats[7].Value) * 6 * 0.75);
 
             KDScript.CountMentalKD();
+
+            if(PlayerClass.SelectedClassData.CharacteristicMagic.ToLower() == "и")
+                PlayerClass.UpdateCharacteristicMagic();
         }
 
         public void WisdomMethod()
         {
             PointsWisdomSkills = (int)((Base(Wisdom) + Race.Stats[14].Value + PlayerClass.Stats[14].Value + TreeSkills.Stats[14].Value) * 5 * 0.75);
+
+
+            MagicSpells.MagicSpells.UpdateMagicBullet();
+            if (PlayerClass.SelectedClassData.CharacteristicMagic.ToLower() == "м")
+                PlayerClass.UpdateCharacteristicMagic();
         }
         public void CharismaMethod()
         {
             PointsCharismaSkills = (int)((Base(Charisma) + Race.Stats[20].Value + PlayerClass.Stats[20].Value + OtherBaff(Charisma) + TreeSkills.Stats[20].Value) * 4 * 0.75);
+
+            if (PlayerClass.SelectedClassData.CharacteristicMagic.ToLower() == "х")
+                PlayerClass.UpdateCharacteristicMagic();
         }
     }
 

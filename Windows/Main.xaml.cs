@@ -1,4 +1,5 @@
-﻿using DNDHelper.Modules;
+﻿using DND;
+using DNDHelper.Modules;
 using DNDHelper.Modules.Character;
 using DNDHelper.Modules.Config;
 using DNDHelper.Modules.Diary;
@@ -14,6 +15,7 @@ using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,10 +44,19 @@ namespace DNDHelper.Windows
 		public static GridCharacteristics Characteristics;
 		public static TreeSkills TreeSkillsScript;
 		public static ItemBaffsListScript ItemBaffsListScript;
+		public static string PathMain = "";       
 
-		public Main()
+
+
+        public Main()
 		{
+			string[] _pathMain = Assembly.GetExecutingAssembly().Location.Split('\\');
+            PathMain = string.Join("\\", _pathMain, 0, _pathMain.Count() - 1) + "\\";
+
+            CheckUpdate.Check();
+			DataManager.FindPathSaves();
 			InitializeComponent();
+
 
 			InitializeClasses();
 			DataManager.ReadSaves();
@@ -135,12 +146,11 @@ namespace DNDHelper.Windows
 				character_race_combobox.Visibility = Visibility.Hidden;
 				character_class_textblock.Visibility = Visibility.Visible;
 				character_class_combobox.Visibility = Visibility.Hidden;
-				Grid.SetColumnSpan(DataGridCurrentSpells, 3);
-				Grid.SetColumnSpan(CurrentSpellDescription, 3);
-				DataGridAllSpells.Visibility = Visibility.Collapsed;
+				Grid.SetColumnSpan(DataGridCurrentSpells, 4);
+				Grid.SetColumnSpan(CurrentSpellDescription, 4);
+                DataGridAllSpells.Visibility = Visibility.Collapsed;
 				AllSpellDescription.Visibility = Visibility.Collapsed;
 				DataGridCurrentSpellsSpellName.Width = 600;
-				DataManager.Save();
 			}
 			else
 			{
@@ -158,8 +168,7 @@ namespace DNDHelper.Windows
 				Grid.SetColumnSpan(CurrentSpellDescription, 2);
 				Grid.SetRowSpan(DataGridAllSpells, 4);
 				DataGridAllSpells.Visibility = Visibility.Visible;
-				AllSpellDescription.Visibility = Visibility.Collapsed;
-				
+				AllSpellDescription.Visibility = Visibility.Collapsed;				
 			}
 		}
 
@@ -393,11 +402,13 @@ namespace DNDHelper.Windows
 					DamageMagic_textbox.Text == "-0,"
 					)
 				{
-					DamageMagic_textbox.Text = "0";
+                    DataManager.DataSave.MultiplyMagicDamage = 0;
 					DamageHealth_textblock.Text = "0";
 				}
-				DamageMagic_textblock.Text = DamageMagic_textbox.Text;
+                DataManager.DataSave.MultiplyMagicDamage = double.Parse(DamageMagic_textbox.Text);
 			}
+
+			MagicSpells.RepositoryLoad();
 		}
 
 		private void character_name_textbox_TextChanged(object sender, TextChangedEventArgs e)
@@ -435,35 +446,14 @@ namespace DNDHelper.Windows
 					Convert.ToInt32(MagicBulletCurrent_textbox.Text) < 0
 					)
 				{
-					MagicBulletCurrent_textbox.Text = "0";
+                    DataManager.DataSave.SubtractMagicBullet = 0;
 					MagicBulletCurrent_textblock.Text = "0";
 				}
-				MagicSpells.MagicBulletsCurrent = Convert.ToInt32(MagicBulletCurrent_textbox.Text);
-				MagicBulletCurrent_textblock.Text = MagicBulletCurrent_textbox.Text;
+				else
+                DataManager.DataSave.SubtractMagicBullet = MagicSpells.MaxMagicBullet - Convert.ToInt32(MagicBulletCurrent_textbox.Text);
 			}
 		}
 
-		private void plusMagicBullet_Click(object sender, RoutedEventArgs e)
-		{
-			MagicSpells.MagicBulletsCurrent++;
-			MagicBulletCurrent_textblock.Text = Convert.ToString(MagicSpells.MagicBulletsCurrent);
-		}
-
-		private void MinusMagicBullet_Click(object sender, RoutedEventArgs e)
-		{
-			if (MagicSpells.MagicBulletsCurrent > 0)
-			{
-				MagicSpells.MagicBulletsCurrent--;
-			}
-			
-			MagicBulletCurrent_textblock.Text = Convert.ToString(MagicSpells.MagicBulletsCurrent);
-		}
-
-		private void ResetMagicBullet_Click(object sender, RoutedEventArgs e)
-		{
-			MagicSpells.MagicBulletsCurrent = Convert.ToUInt16(MagicBulletAll_textblock.Text);
-			MagicBulletCurrent_textblock.Text = Convert.ToString(MagicSpells.MagicBulletsCurrent);
-		}
 
     }
 }

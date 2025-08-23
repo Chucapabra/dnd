@@ -28,7 +28,7 @@ namespace DNDHelper.Modules.Config
 
         public static void Update()
         {
-            string pathFile = $"Cache/{DataManager.DataSave.SelectedRepository}/Race.json";
+            string pathFile = Main.PathMain + $"Cache/{DataManager.DataSave.SelectedRepository}/Race.json";
             if (File.Exists(pathFile))
             {
                 string json = File.ReadAllText(pathFile);
