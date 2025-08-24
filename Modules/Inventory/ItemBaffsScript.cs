@@ -254,3 +254,4 @@ namespace DNDHelper.Modules.Inventory
 //Палка Хода - 34
 //Действие - 35
 //Контрдействие - 36
+//Маг. пули - 37

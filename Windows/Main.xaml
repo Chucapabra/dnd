@@ -397,6 +397,7 @@
 												<ComboBoxItem Content="Палка Хода"/>
 												<ComboBoxItem Content="Действие"/>
 												<ComboBoxItem Content="Контрдействие"/>
+												<ComboBoxItem Content="Маг. пули"/>
 											</ComboBox>
 										</DataTemplate>
 									</DataGridTemplateColumn.CellTemplate>

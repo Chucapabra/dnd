@@ -1,4 +1,5 @@
-﻿using DNDHelper.Modules.Config;
+﻿using DNDHelper.Modules.Character;
+using DNDHelper.Modules.Config;
 using DNDHelper.Modules.Settings;
 using DNDHelper.Modules.Сharacteristics;
 using DNDHelper.Windows;
@@ -436,7 +437,7 @@ namespace DNDHelper.Modules.MagicSpells
 			if (wisdom >= 20)
 				wisdom = 20;
 
-            MaxMagicBullet = PlayerClass.SelectedClassData.AddMagBullet + (int)(wisdom * 0.05);
+            MaxMagicBullet = PlayerClass.SelectedClassData.AddMagBullet + (int)(wisdom * 0.05) + Modules.Inventory.ItemBaffsListScript.ItemBaffs[37][0]+TreeSkills.MagicBullet;
 
             Main.Instance.MagicBulletAll_textblock.Text = MaxMagicBullet.ToString();
             Main.Instance.MagicBulletCurrent_textblock.Text = (MaxMagicBullet - DataManager.DataSave.SubtractMagicBullet).ToString();

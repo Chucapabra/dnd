@@ -19,6 +19,7 @@ namespace DNDHelper.Modules.Character
 
         public static List<string> Skills = new List<string>();
         public static int AddKD = 0;
+        public static int MagicBullet = 0;
 
         public static ObservableCollection<TreeGrid> TreeGrids => DataManager.DataSave.ClassTreeGrid;
 
@@ -83,7 +84,7 @@ namespace DNDHelper.Modules.Character
             ClearStats();
             Skills.Clear();
             AddKD = 0;
-
+            MagicBullet = 0;
             int i = 0;
             if (PlayerClass.SelectedClassData.ClassTrees.Count > 0)
             foreach (var item in PlayerClass.SelectedClassData.ClassTrees[0])
@@ -96,7 +97,7 @@ namespace DNDHelper.Modules.Character
 
             Main.Characteristics.UpdateAllCharacterisitc();
             Character.Skills.ReloadDataGridSkills();
-            DataManager.Save();
+            MagicSpells.MagicSpells.UpdateMagicBullet();
         }
 
         private void FindAddStats(string key, object value)
@@ -136,7 +137,10 @@ namespace DNDHelper.Modules.Character
                 case "множительуронамагии":
                     break;
                 case "дебаф_к_пулям":
-                    break;
+					if (value is JsonElement elementInt1)
+						if (elementInt1.ValueKind == JsonValueKind.Number && elementInt1.TryGetInt32(out int number))
+							MagicBullet += number;
+					break;
             }
 
         }
