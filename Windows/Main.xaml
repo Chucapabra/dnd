@@ -6,11 +6,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DNDHelper.Windows"
 		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+		xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
 		Style="{StaticResource MaterialDesignWindow}"
         mc:Ignorable="d"
         Title="D&amp;DHelper" Height="593" Width="1110" ResizeMode="NoResize" Visibility="Visible">
 	<Window.Resources>
-
 		<Style TargetType="TextBlock">
 			<Setter Property="FontSize" Value="14"/>
 			<Setter Property="FontFamily" Value="Bahnschrift"/>
@@ -50,7 +50,7 @@
 				<MenuItem Header="Настройки" Click="Settings_Click" x:Name="Settings_Button"/>
 				<MenuItem Header="Обновить конфиг" Click="UpdateConfingsInHands_Click"/>
 				<MenuItem Header="Проверить обновления"/>
-				<MenuItem Header="О программе"/>
+				<MenuItem Header="О программе" Click="About_Click"/>
 			</MenuItem>
 			<MenuItem Header="Ссылки">
 				<MenuItem Header="Правила Гюнтера" Click="UrlGunter"/>
@@ -60,9 +60,7 @@
 				<MenuItem Header="Классы Туши" Click="UrlClasses"/>
 			</MenuItem>
 		</Menu>
-
-
-		<StackPanel VerticalAlignment="Center" Margin="10,50,0,0">
+		<StackPanel x:Name="WorkProgam1" Visibility="Hidden" VerticalAlignment="Center" Margin="10,50,0,0">
 			<StackPanel Orientation="Horizontal">
 				<TextBlock Text="Имя:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Width="60" />
 				<TextBlock Text="{Binding Name}" x:Name="character_name_textblock" Width="120" Visibility="Visible" VerticalAlignment="Center" />
@@ -79,12 +77,11 @@
 				<ComboBox SelectedIndex="{Binding SelectedClass}" Width="120" x:Name="character_class_combobox" materialDesign:HintAssist.Hint="Класс" Visibility="Hidden"/>
 			</StackPanel>
 		</StackPanel>
-		<StackPanel>
-			<materialDesign:PackIcon x:Name="ImageIconCharacter" Kind="FileImageAdd" Height="60" Width="60" Margin="200,50,0,0" MouseLeftButtonDown="PackIcon_MouseLeftButtonDown" Visibility="Visible"/>
-			<Image x:Name="ImageCharacter" Height="60" Width="60" Margin="200,50,0,0" MouseLeftButtonDown="PackIcon_MouseLeftButtonDown" Visibility="Hidden"/>
+		<StackPanel x:Name="WorkProgam2" Visibility="Hidden">
+			<materialDesign:PackIcon x:Name="ImageIconCharacter" Kind="FileImageAdd" Height="60" Width="60" Margin="200,50,0,0" Visibility="Visible"/>
+			<Image x:Name="ImageCharacter" Height="60" Width="60" Margin="200,50,0,0" Visibility="Hidden"/>
 		</StackPanel>
-		<StackPanel/>
-		<StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="0,50,0,0">
+		<StackPanel x:Name="WorkProgam3" Visibility="Hidden" Grid.Column="1" HorizontalAlignment="Left" Margin="0,50,0,0">
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 				<TextBlock Width="135" Text="Действия:" TextAlignment="Right"/>
 				<TextBlock x:Name="Actions_textblock" Width="26" Text="0" TextAlignment="Center"/>
@@ -98,7 +95,7 @@
 				<TextBlock x:Name="Movesticks_textblock" Width="26" Text="0" TextAlignment="Center"/>
 			</StackPanel>
 		</StackPanel>
-		<StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="180,50,0,0">
+		<StackPanel x:Name="WorkProgam4" Visibility="Hidden" Grid.Column="1" HorizontalAlignment="Left" Margin="180,50,0,0">
 			<StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,0">
 				<TextBlock x:Name="СriticalRoll_Text_textblock" Width="135" Text="Ролл крит:" TextAlignment="Right" Visibility="Hidden"/>
 				<TextBlock x:Name="СriticalRoll_GreaterOrEqual_textblock"  Width="10" Text=">" TextDecorations="Underline" TextAlignment="Right" Visibility="Hidden"/>
@@ -126,7 +123,7 @@
 				<TextBlock x:Name="KD_TextBlock" Width="40" Text="0" TextAlignment="Center"/>
 			</StackPanel>
 		</StackPanel>
-		<StackPanel Grid.Column="1" Margin="400,10,0,0">
+		<StackPanel x:Name="WorkProgam5" Visibility="Hidden" Grid.Column="1" Margin="400,10,0,0">
 			<StackPanel Orientation="Horizontal" Margin="36,0,0,0">
 				<ComboBox materialDesign:HintAssist.Hint="Тип щита" Width="100">
 					<ComboBoxItem Content="Элементальный"/>
@@ -158,7 +155,7 @@
 				<TextBox materialDesign:HintAssist.Hint="Число" Margin="-68,10,0,0" Height="24" Width="40" x:Name="BaffKD_textbox" PreviewTextInput="BaffKD_textbox_PreviewTextInput"  DataObject.Pasting="BaffKD_textbox_Pasting" TextAlignment="Center"/>
 			</StackPanel>
 		</StackPanel>
-		<StackPanel Grid.Column="1" Margin="668,35,0,0">
+		<StackPanel x:Name="WorkProgam6" Visibility="Hidden" Grid.Column="1" Margin="668,35,0,0">
 			<Border>
 				<DataGrid Width="160" HorizontalAlignment="Left" x:Name="DataGridStatusEffects"
 						  AutoGenerateColumns="False"
@@ -179,10 +176,10 @@
 				</DataGrid>
 			</Border>
 		</StackPanel>
-		<TextBlock x:Name="сharacter_weight_textblock" Text="Вес: 0/0" Grid.Column="1" VerticalAlignment="Bottom" Margin="0,0,0,0"/>
-		<TextBlock Text="13.0  " Height="18" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Margin="0,13,0,89" RenderTransformOrigin="0.457,3.169"/>
+		<TextBlock x:Name="сharacter_weight_textblock" Visibility="Hidden" Text="Вес: 0/0" Grid.Column="1" VerticalAlignment="Bottom" Margin="0,0,0,0"/>
+		<TextBlock Text="13.0  " x:Name="VersionTextBlock" Height="18" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Margin="0,13,0,89" RenderTransformOrigin="0.457,3.169"/>
 
-		<TabControl Grid.Row="1" Grid.Column="1" Width="Auto" Height="Auto" Margin="0,0,0,-304">
+		<TabControl x:Name="WorkProgam7" Visibility="Hidden" Grid.Row="1" Grid.Column="1" Width="Auto" Height="Auto" Margin="0,0,0,-304">
 			<TabItem Header="Инвентарь">
 				<Grid>
 					<Grid.ColumnDefinitions>
@@ -618,7 +615,7 @@
 					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5,0,6,0" Height="36" Grid.ColumnSpan="2">
 						<StackPanel>
 							<TextBlock Text="Школа:"/>
-                            <ComboBox SelectedIndex="{Binding MagicSchool}" x:Name="SchoolSelect_cb" Width="120">
+							<ComboBox SelectedIndex="{Binding MagicSchool}" x:Name="SchoolSelect_cb" Width="120">
 								<ComboBoxItem Content="Отсутствует"/>
 								<ComboBoxItem Content="Ограждения"/>
 								<ComboBoxItem Content="Вызова"/>
@@ -632,7 +629,7 @@
 						</StackPanel>
 						<StackPanel Margin="10,0,0,0">
 							<TextBlock Text="Катализатор:"/>
-                            <ComboBox SelectedIndex="{Binding CatalyzerSelect}" x:Name="CatalyzerSelect_cb">
+							<ComboBox SelectedIndex="{Binding CatalyzerSelect}" x:Name="CatalyzerSelect_cb">
 								<ComboBoxItem Content="Посох"/>
 								<ComboBoxItem Content="Палочка"/>
 								<ComboBoxItem Content="Талисман"/>
@@ -640,7 +637,7 @@
 						</StackPanel>
 						<StackPanel Margin="10,0,0,0">
 							<TextBlock Text="Качество:"/>
-                            <ComboBox SelectedIndex="{Binding CatalyzerQualitySelect}"  x:Name="CatalyzerQualitySelect_cb" Width="100">
+							<ComboBox SelectedIndex="{Binding CatalyzerQualitySelect}"  x:Name="CatalyzerQualitySelect_cb" Width="100">
 								<ComboBoxItem Content="Прото"/>
 								<ComboBoxItem Content="Плохое"/>
 								<ComboBoxItem Content="Стандартное"/>
@@ -670,75 +667,75 @@
 							<materialDesign:PackIcon Kind="Reload" Height="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 						</Button>
 					</StackPanel>
-                    <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="4" Margin="5,0,5,0" VerticalAlignment="Center" Height="42">
-                        <StackPanel>
-                            <TextBlock Text="Поиск"/>
-                            <TextBox materialDesign:HintAssist.Hint="Название" x:Name="CastSearch_textbox" Width="180" MaxLength="255"/>
-                        </StackPanel>
-                        <StackPanel Margin="15,0,0,0">
-                            <TextBlock Text="Вид"/>
-                            <ComboBox Width="120" SelectedIndex="0" x:Name="CastSearch_Type_cb">
-                                <ComboBoxItem Content="Все"/>
-                                <ComboBoxItem Content="Обычные"/>
-                                <ComboBoxItem Content="Запрещённые"/>
-                                <ComboBoxItem Content="Тайные"/>
-                                <ComboBoxItem Content="Проклятые"/>
-                                <ComboBoxItem Content="Созданные"/>
-                            </ComboBox>
-                        </StackPanel>
-                        <StackPanel Margin="15,0,0,0">
-                            <TextBlock Text="Школа"/>
-                            <ComboBox SelectedIndex="0" x:Name="SchoolSelect_Search_cb" Width="130">
-                                <ComboBoxItem Content="Любая"/>
-                                <ComboBoxItem Content="Ограждения"/>
-                                <ComboBoxItem Content="Вызова"/>
-                                <ComboBoxItem Content="Прорицания"/>
-                                <ComboBoxItem Content="Очарования"/>
-                                <ComboBoxItem Content="Воплощения"/>
-                                <ComboBoxItem Content="Иллюзии"/>
-                                <ComboBoxItem Content="Некромантии"/>
-                                <ComboBoxItem Content="Преобразования"/>
-                            </ComboBox>
-                        </StackPanel>
-                        <StackPanel Margin="15,0,0,0">
-                            <TextBlock Text="Урон"/>
-                            <ComboBox SelectedIndex="0" x:Name="Damage_Search_cb" Width="65">
-                                <ComboBoxItem Content="Любой"/>
-                                <ComboBoxItem Content="Есть"/>
-                                <ComboBoxItem Content="Нет"/>
-                            </ComboBox>
-                        </StackPanel>
-                        <StackPanel Margin="15,0,0,0">
-                            <TextBlock Text="Ролл"/>
-                            <ComboBox SelectedIndex="0" x:Name="Roll_Search_cb" Width="60">
-                                <ComboBoxItem Content="Любой"/>
-                                <ComboBoxItem Content="&gt;0"/>
-                                <ComboBoxItem Content="&lt;0"/>
-                                <ComboBoxItem Content="0"/>
-                            </ComboBox>
-                        </StackPanel>
-                        <StackPanel Margin="15,0,0,0">
-                            <TextBlock Text="Уровень"/>
-                            <ComboBox SelectedIndex="0" x:Name="LevelCast_Search_cb" Width="80">
-                                <ComboBoxItem Content="Все"/>
-                                <ComboBoxItem Content="Заговоры"/>
-                                <ComboBoxItem Content="1"/>
-                                <ComboBoxItem Content="2"/>
-                                <ComboBoxItem Content="3"/>
-                                <ComboBoxItem Content="4"/>
-                                <ComboBoxItem Content="5"/>
-                                <ComboBoxItem Content="6"/>
-                                <ComboBoxItem Content="7"/>
-                                <ComboBoxItem Content="8"/>
-                                <ComboBoxItem Content="9"/>
-                                <ComboBoxItem Content="10"/>
-                                <ComboBoxItem Content="11"/>
-                                <ComboBoxItem Content="12"/>
-                            </ComboBox>
-                        </StackPanel>
-                        <CheckBox x:Name="NatureCast_Search_cb" Content="Природное" Margin="10,15,0,0"/>
-                    </StackPanel>
-                    <DataGrid Grid.Row="1" Grid.ColumnSpan="4"
+					<StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="4" Margin="5,0,5,0" VerticalAlignment="Center" Height="42">
+						<StackPanel>
+							<TextBlock Text="Поиск"/>
+							<TextBox materialDesign:HintAssist.Hint="Название" x:Name="CastSearch_textbox" Width="180" MaxLength="255"/>
+						</StackPanel>
+						<StackPanel Margin="15,0,0,0">
+							<TextBlock Text="Вид"/>
+							<ComboBox Width="120" SelectedIndex="0" x:Name="CastSearch_Type_cb">
+								<ComboBoxItem Content="Все"/>
+								<ComboBoxItem Content="Обычные"/>
+								<ComboBoxItem Content="Запрещённые"/>
+								<ComboBoxItem Content="Тайные"/>
+								<ComboBoxItem Content="Проклятые"/>
+								<ComboBoxItem Content="Созданные"/>
+							</ComboBox>
+						</StackPanel>
+						<StackPanel Margin="15,0,0,0">
+							<TextBlock Text="Школа"/>
+							<ComboBox SelectedIndex="0" x:Name="SchoolSelect_Search_cb" Width="130">
+								<ComboBoxItem Content="Любая"/>
+								<ComboBoxItem Content="Ограждения"/>
+								<ComboBoxItem Content="Вызова"/>
+								<ComboBoxItem Content="Прорицания"/>
+								<ComboBoxItem Content="Очарования"/>
+								<ComboBoxItem Content="Воплощения"/>
+								<ComboBoxItem Content="Иллюзии"/>
+								<ComboBoxItem Content="Некромантии"/>
+								<ComboBoxItem Content="Преобразования"/>
+							</ComboBox>
+						</StackPanel>
+						<StackPanel Margin="15,0,0,0">
+							<TextBlock Text="Урон"/>
+							<ComboBox SelectedIndex="0" x:Name="Damage_Search_cb" Width="65">
+								<ComboBoxItem Content="Любой"/>
+								<ComboBoxItem Content="Есть"/>
+								<ComboBoxItem Content="Нет"/>
+							</ComboBox>
+						</StackPanel>
+						<StackPanel Margin="15,0,0,0">
+							<TextBlock Text="Ролл"/>
+							<ComboBox SelectedIndex="0" x:Name="Roll_Search_cb" Width="60">
+								<ComboBoxItem Content="Любой"/>
+								<ComboBoxItem Content="&gt;0"/>
+								<ComboBoxItem Content="&lt;0"/>
+								<ComboBoxItem Content="0"/>
+							</ComboBox>
+						</StackPanel>
+						<StackPanel Margin="15,0,0,0">
+							<TextBlock Text="Уровень"/>
+							<ComboBox SelectedIndex="0" x:Name="LevelCast_Search_cb" Width="80">
+								<ComboBoxItem Content="Все"/>
+								<ComboBoxItem Content="Заговоры"/>
+								<ComboBoxItem Content="1"/>
+								<ComboBoxItem Content="2"/>
+								<ComboBoxItem Content="3"/>
+								<ComboBoxItem Content="4"/>
+								<ComboBoxItem Content="5"/>
+								<ComboBoxItem Content="6"/>
+								<ComboBoxItem Content="7"/>
+								<ComboBoxItem Content="8"/>
+								<ComboBoxItem Content="9"/>
+								<ComboBoxItem Content="10"/>
+								<ComboBoxItem Content="11"/>
+								<ComboBoxItem Content="12"/>
+							</ComboBox>
+						</StackPanel>
+						<CheckBox x:Name="NatureCast_Search_cb" Content="Природное" Margin="10,15,0,0"/>
+					</StackPanel>
+					<DataGrid Grid.Row="1" Grid.ColumnSpan="4"
 							  x:Name="DataGridCurrentSpells" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
 							  AutoGenerateColumns="False"
                               SelectionMode="Single"
@@ -775,6 +772,7 @@
 						</DataGrid.RowStyle>
 
 						<DataGrid.CellStyle>
+
 							<Style TargetType="DataGridCell">
 								<Setter Property="Padding" Value="5,0"/>
 								<Setter Property="Margin" Value="0"/>
@@ -814,6 +812,7 @@
 							  CanUserResizeColumns="False"
 							  CanUserSortColumns="False" Grid.ColumnSpan="2"
 							  IsReadOnly="True"
+							  SelectionUnit="FullRow"
 							  Visibility="{DynamicResource IsEdit}" Margin="0,42,0,0" Grid.RowSpan="2">
 						<DataGrid.ContextMenu>
 							<ContextMenu>
@@ -827,7 +826,7 @@
 							</Style>
 						</DataGrid.ColumnHeaderStyle>
 						<DataGrid.RowStyle>
-							<Style TargetType="DataGridRow" >
+							<Style TargetType="DataGridRow">
 								<Setter Property="Height" Value="20"/>
 								<Setter Property="Margin" Value="0"/>
 								<Setter Property="Padding" Value="0"/>
@@ -837,6 +836,7 @@
 							</Style>
 						</DataGrid.RowStyle>
 						<DataGrid.CellStyle>
+
 							<Style TargetType="DataGridCell">
 								<Setter Property="Padding" Value="5,0"/>
 								<Setter Property="Margin" Value="0"/>
@@ -962,7 +962,7 @@
 					<GridSplitter Grid.RowSpan="3" IsEnabled="False" Grid.Column="1" ShowsPreview="False" Width="3" Height="400" HorizontalAlignment="Left" VerticalAlignment="Top" Cursor="SizeWE" />
 					<TextBox Grid.Row="0" Grid.Column="0" x:Name="NameNote" materialDesign:HintAssist.Hint="Название записи" MaxLength="120"/>
 					<Button Grid.Column="0" Grid.Row="1" x:Name="CreateNote" Content="Создать запись"/>
-					<ListBox x:Name="ListBoxNotes" Grid.Row="2" Grid.Column="0">
+					<ListBox x:Name="ListBoxNotes" Grid.Row="2" Grid.Column="0" SelectionMode="Single">
 						<ListBox.ContextMenu>
 							<ContextMenu>
 								<MenuItem x:Name="DeleteMenuNote" Header="Удалить"/>
@@ -981,9 +981,38 @@
 				</Grid>
 			</TabItem>
 			<TabItem Header="Справочники">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
+						<ColumnDefinition Width="6*"/>
+					</Grid.ColumnDefinitions>
+					<ListBox x:Name="ListBoxUrls" Grid.Row="2" Grid.Column="0"/>
+					<wv2:WebView2 x:Name="ReferenceBook" Grid.Column="1"/>
+					<TextBlock x:Name="LoadinTextUrl" Text="Выберите страницу" Grid.Column="1" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+					<materialDesign:PackIcon Grid.Row="0" Grid.Column="0" Kind="Loading" Width="20" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Visibility="Hidden" x:Name="LoadingIcon">
+						<materialDesign:PackIcon.RenderTransform>
+							<RotateTransform x:Name="RotateTransform" CenterX="10" CenterY="10"/>
+						</materialDesign:PackIcon.RenderTransform>
+						<materialDesign:PackIcon.Triggers>
+							<EventTrigger RoutedEvent="Loaded">
+								<BeginStoryboard>
+									<Storyboard>
+										<DoubleAnimation
+												Storyboard.TargetName="RotateTransform"
+												Storyboard.TargetProperty="Angle"
+												From="0"
+												To="360"
+												Duration="0:0:1"
+												RepeatBehavior="Forever" />
+									</Storyboard>
+								</BeginStoryboard>
+							</EventTrigger>
+						</materialDesign:PackIcon.Triggers>
+					</materialDesign:PackIcon>
+				</Grid>
 			</TabItem>
 		</TabControl>
-		<DataGrid Grid.Row="1" SelectionMode="Single" FontSize="12" x:Name="DataGridCharacterisctics" AutoGenerateColumns="False" Margin="0,0,0,-304" IsReadOnly="True"
+		<DataGrid Visibility="Hidden" Grid.Row="1" Grid.Column="0"  SelectionMode="Single" FontSize="12" x:Name="DataGridCharacterisctics" AutoGenerateColumns="False" Margin="0,0,0,-304" IsReadOnly="True"
               HeadersVisibility="Column"
               RowHeaderWidth="0"
               CanUserAddRows="False"
@@ -1041,5 +1070,6 @@
 				</Style>
 			</DataGrid.CellStyle>
 		</DataGrid>
+		<TextBlock x:Name="WorkProgam8" Visibility="Visible" Text="Выбирите или создайте персонажа." FontSize="30" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 	</Grid>
 </Window>

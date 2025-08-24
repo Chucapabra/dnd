@@ -5,11 +5,13 @@ using DNDHelper.Modules.Inventory;
 using DNDHelper.Modules.Сharacteristics;
 using DNDHelper.Windows;
 using MahApps.Metro.Controls;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.DirectoryServices.ActiveDirectory;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -20,6 +22,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using static DNDHelper.Modules.Character.TreeSkills;
 using static DNDHelper.Modules.Сharacteristics.CharacteristicTable;
 
@@ -30,21 +33,81 @@ namespace DNDHelper.Modules.Settings
         Main main = Main.Instance;
 
         private int SelectedIndex = -1;
-        public SavesMenu()
+
+		public SavesMenu()
         {
             main.AddCharacter.Click += AddCharacter_Click;
+			main.ImageIconCharacter.MouseLeftButtonDown += ImageIconCharacter_MouseLeftButtonDown;
+			main.ImageCharacter.MouseLeftButtonDown += ImageCharacter_MouseLeftButtonDown;
         }
 
+		private void ImageCharacter_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+		{
+            SaveImage();
+		}
 
-        private void AddCharacter_Click(object sender, System.Windows.RoutedEventArgs e)
+		private void SaveImage()
         {
-            DataManager.Create();
+			OpenFileDialog LoadImageCharacter = new()
+			{
+				Filter = "Изображения (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg"
+			};
+
+			if (LoadImageCharacter.ShowDialog() == true)
+			{
+				try
+				{
+					string fileExtension = Path.GetExtension(LoadImageCharacter.FileName).ToLower();
+					var formats = new[] { ".png", ".jpg", ".jpeg" };
+					foreach (var format in formats)
+					{
+						var oldFile = Path.Combine(DataManager.SelectedSave, $"image{format}");
+						if (File.Exists(oldFile))
+							File.Delete(oldFile);
+					}
+					if (!Directory.Exists(DataManager.SelectedSave))
+						Directory.CreateDirectory(DataManager.SelectedSave);
+
+					string destinationPath = Path.Combine(DataManager.SelectedSave, $"image{fileExtension}");
+					File.Copy(LoadImageCharacter.FileName, destinationPath, true);
+
+					byte[] imageBytes = File.ReadAllBytes(destinationPath);
+					using (MemoryStream ms = new(imageBytes))
+					{
+						BitmapImage bitmap = new();
+						bitmap.BeginInit();
+						bitmap.CacheOption = BitmapCacheOption.OnLoad;
+						bitmap.StreamSource = ms;
+						bitmap.EndInit();
+						bitmap.Freeze(); 
+
+						main.ImageCharacter.Source = bitmap;
+					}
+
+					main.ImageIconCharacter.Visibility = Visibility.Collapsed;
+					main.ImageCharacter.Visibility = Visibility.Visible;
+
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show("Ошибка загрузки изображения: " + ex.Message);
+				}
+			}
+		}
+		private void ImageIconCharacter_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+		{
+            SaveImage();
+		}
+
+		private void AddCharacter_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+			DataManager.Create();
         }
 
     }
 
     public static class DataManager
-    {
+    {   
         private static string pathSaves = "Saves/";
 
         public static string SelectedSave = "";
@@ -56,7 +119,19 @@ namespace DNDHelper.Modules.Settings
             string[] path = Assembly.GetExecutingAssembly().Location.Split('\\');
             pathSaves = string.Join("\\", path, 0, path.Count() - 2) + "\\Saves\\";
         }
-
+        public static void WorkinProgram()
+        {
+			Main.Instance.WorkProgam1.Visibility = Visibility.Visible;
+			Main.Instance.WorkProgam2.Visibility = Visibility.Visible;
+			Main.Instance.WorkProgam3.Visibility = Visibility.Visible;
+			Main.Instance.WorkProgam4.Visibility = Visibility.Visible;
+			Main.Instance.WorkProgam5.Visibility = Visibility.Visible;
+			Main.Instance.WorkProgam6.Visibility = Visibility.Visible;
+			Main.Instance.WorkProgam7.Visibility = Visibility.Visible;
+			Main.Instance.сharacter_weight_textblock.Visibility = Visibility.Visible;
+			Main.Instance.DataGridCharacterisctics.Visibility = Visibility.Visible;
+			Main.Instance.WorkProgam8.Visibility = Visibility.Collapsed;
+		}
 
 
         public static void ReadSaves()
@@ -193,7 +268,6 @@ namespace DNDHelper.Modules.Settings
 
             File.WriteAllText($"{SelectedSave}/Config.json", json);    
         }
-
         private static void Load_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             var clickedItem = sender as MenuItem;
@@ -207,7 +281,7 @@ namespace DNDHelper.Modules.Settings
 
             IsLoad = true;
 
-            SelectedSave = path;
+			SelectedSave = path;
 
             var json = File.ReadAllText($"{SelectedSave}/Config.json");
 
@@ -217,8 +291,9 @@ namespace DNDHelper.Modules.Settings
             DataSave.SelectedRepository = dataSave.SelectedRepository;
             SetRepository.UpdateRepository();
 
+            WorkinProgram();
 
-            DataSave.Name = dataSave.Name;
+			DataSave.Name = dataSave.Name;
             DataSave.SelectedRace = dataSave.SelectedRace;
             DataSave.SelectedClass = dataSave.SelectedClass;
             DataSave.AddWeight = dataSave.AddWeight;
@@ -263,7 +338,52 @@ namespace DNDHelper.Modules.Settings
             Level.SetLevel();
             Main.ItemBaffsListScript.UpdateValues();
             DiaryManager.LoadNotes();
-            Main.Instance.diaryTB.Document.Blocks.Clear();
+			//ManagerUrls.LoadUrls();
+			var formats = new[] { ".png", ".jpg", ".jpeg" };
+			string imagePath = null;
+
+			foreach (var format in formats)
+			{
+				var currentPath = Path.Combine(SelectedSave, $"image{format}");
+				if (File.Exists(currentPath))
+				{
+					imagePath = currentPath;
+					break;
+				}
+			}
+
+			if (!string.IsNullOrEmpty(imagePath))
+			{
+				try
+				{
+					byte[] imageBytes = File.ReadAllBytes(imagePath);
+					using (MemoryStream ms = new(imageBytes))
+					{
+						BitmapImage bitmap = new();
+						bitmap.BeginInit();
+						bitmap.CacheOption = BitmapCacheOption.OnLoad;
+						bitmap.StreamSource = ms;
+						bitmap.EndInit();
+						bitmap.Freeze();
+
+						Main.Instance.ImageCharacter.Source = bitmap;
+					}
+
+					Main.Instance.ImageIconCharacter.Visibility = Visibility.Collapsed;
+					Main.Instance.ImageCharacter.Visibility = Visibility.Visible;
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show("Ошибка загрузки изображения: " + ex.Message);
+				}
+			}
+			else
+			{
+				Main.Instance.ImageCharacter.Source = null;
+				Main.Instance.ImageIconCharacter.Visibility = Visibility.Visible;
+				Main.Instance.ImageCharacter.Visibility = Visibility.Collapsed;
+			}
+			Main.Instance.diaryTB.Document.Blocks.Clear();
 
             SetRepository.FileСonnection();
 

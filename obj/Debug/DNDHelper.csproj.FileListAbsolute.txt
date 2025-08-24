@@ -68,3 +68,14 @@ D:\profile\mydocs\GitHub\dnd\obj\Debug\refint\DNDHelper.dll
 D:\profile\mydocs\GitHub\dnd\obj\Debug\DNDHelper.pdb
 D:\profile\mydocs\GitHub\dnd\obj\Debug\DNDHelper.genruntimeconfig.cache
 D:\profile\mydocs\GitHub\dnd\obj\Debug\ref\DNDHelper.dll
+E:\Project\DND-github\dnd-2\dnd\dnd\bin\Debug\Data\runtimes\win-x86\native\WebView2Loader.dll
+E:\Project\DND-github\dnd-2\dnd\dnd\bin\Debug\Data\runtimes\win-x64\native\WebView2Loader.dll
+E:\Project\DND-github\dnd-2\dnd\dnd\bin\Debug\Data\runtimes\win-arm64\native\WebView2Loader.dll
+E:\Project\DND-github\dnd-2\dnd\dnd\bin\Debug\Data\Microsoft.Web.WebView2.Core.dll
+E:\Project\DND-github\dnd-2\dnd\dnd\bin\Debug\Data\Microsoft.Web.WebView2.WinForms.dll
+E:\Project\DND-github\dnd-2\dnd\dnd\bin\Debug\Data\Microsoft.Web.WebView2.Wpf.dll
+E:\Project\DND-github\dnd-2\dnd\dnd\bin\Debug\Data\Microsoft.Web.WebView2.Core.xml
+E:\Project\DND-github\dnd-2\dnd\dnd\bin\Debug\Data\Microsoft.Web.WebView2.WinForms.xml
+E:\Project\DND-github\dnd-2\dnd\dnd\bin\Debug\Data\Microsoft.Web.WebView2.Wpf.xml
+E:\Project\DND-github\dnd-2\dnd\dnd\obj\Debug\Windows\About.g.cs
+E:\Project\DND-github\dnd-2\dnd\dnd\obj\Debug\Windows\About.baml

@@ -218,7 +218,7 @@ namespace DNDHelper.Modules.MagicSpells
 					cast.SpellDamage = CheckDamageSpell(separator[2 + add]);
 					cast.SpellRoll = CheckRollSpell(separator[1 + add]);
 					cast.SpellLevel = separator[3 + add];
-					cast.SpellDescription = separator[4 + add];
+					cast.SpellDescription = separator[4 + add].Replace("\\r\\n", "\r\n   ");
 
 					AllCasts.Add(cast);
 				}
@@ -393,6 +393,7 @@ namespace DNDHelper.Modules.MagicSpells
 
             CurrentCastsNames.RemoveAt(indexCast);
             CurrentCasts.RemoveAt(indexCast);
+			MagicSearch.CastsFilter();
         }
 
         private void AddCustomSpellCurrent_Click(object sender, RoutedEventArgs e)

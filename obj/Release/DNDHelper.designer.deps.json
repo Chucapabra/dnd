@@ -62,6 +62,25 @@
           }
         }
       },
+      "Microsoft.Web.WebView2/1.0.3405.78": {
+        "runtimeTargets": {
+          "runtimes/win-arm64/native/WebView2Loader.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "1.0.3405.78"
+          },
+          "runtimes/win-x64/native/WebView2Loader.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "1.0.3405.78"
+          },
+          "runtimes/win-x86/native/WebView2Loader.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "1.0.3405.78"
+          }
+        }
+      },
       "Microsoft.Xaml.Behaviors.Wpf/1.1.39": {
         "runtime": {
           "lib/net5.0-windows7.0/Microsoft.Xaml.Behaviors.dll": {
@@ -115,6 +134,13 @@
       "sha512": "sha512-8lbnJKQjn3Ri6irNSl797AK3AqgtlYs7NjDsCXPYRhrua2ULb5qX2AY7F7vwpHDPRj8II+auW6trTxS0Im9iEw==",
       "path": "materialdesignthemes.mahapps/5.2.1",
       "hashPath": "materialdesignthemes.mahapps.5.2.1.nupkg.sha512"
+    },
+    "Microsoft.Web.WebView2/1.0.3405.78": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ceiIKuPHnzOf5CUv9nGpIBx0CWCCMWcBdv05QuonmUnpPtm6XDyAh6osgvin7MTpVD5O0+NbS5ts/WU9sgXgvA==",
+      "path": "microsoft.web.webview2/1.0.3405.78",
+      "hashPath": "microsoft.web.webview2.1.0.3405.78.nupkg.sha512"
     },
     "Microsoft.Xaml.Behaviors.Wpf/1.1.39": {
       "type": "package",

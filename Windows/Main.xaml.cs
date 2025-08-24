@@ -5,6 +5,7 @@ using DNDHelper.Modules.Config;
 using DNDHelper.Modules.Diary;
 using DNDHelper.Modules.Inventory;
 using DNDHelper.Modules.MagicSpells;
+using DNDHelper.Modules.ReferenceBooks;
 using DNDHelper.Modules.Settings;
 using DNDHelper.Modules.Сharacteristics;
 using Microsoft.Win32;
@@ -56,14 +57,14 @@ namespace DNDHelper.Windows
             CheckUpdate.Check();
 			DataManager.FindPathSaves();
 			InitializeComponent();
-
+			string pathVersion = string.Join("\\", _pathMain, 0, _pathMain.Count() - 2) + "\\Version.txt";
+			string version = File.ReadAllText(pathVersion);
+			VersionTextBlock.Text = version + "  ";
 
 			InitializeClasses();
 			DataManager.ReadSaves();
 			Resources["StandartBackColor"] = new SolidColorBrush(DarkThem.SelectedTheme[0]);
 			Resources["StandartForeColor"] = new SolidColorBrush(DarkThem.SelectedTheme[1]);
-
-
             Closed += Main_Closed;
 		}
 
@@ -92,6 +93,7 @@ namespace DNDHelper.Windows
 			Characteristics.UpdateAllCharacterisitc();
 			MagicSearch magicSearch = new MagicSearch();
             TypeArmorBaffs typeArmorBaffs = new();
+			LoadingReferenceBook listBoxUrls = new();
 
 
             WeightScript weightScript = new WeightScript();
@@ -109,7 +111,7 @@ namespace DNDHelper.Windows
         // Меню
         private void UpdateConfingsInHands_Click(object sender, RoutedEventArgs e)
         {
-			SetRepository.FileСonnection();
+			SetRepository.FileСonnection(true);
         }
 
         private void UrlTusha(object sender, RoutedEventArgs e)
@@ -132,6 +134,11 @@ namespace DNDHelper.Windows
 		private void UrlClasses(object sender, RoutedEventArgs e)
 		{
 			Process.Start(new ProcessStartInfo("https://docs.google.com/document/d/19zM6JnIa5TNag2Adf22SV7ZI7uZUzzWZLvZbKvLylB0/edit?usp=sharing") { UseShellExecute = true });
+		}
+		private void About_Click(object sender, RoutedEventArgs e)
+		{
+			About about = new();
+			about.ShowDialog();
 		}
 		private void EditMode_click(object sender, RoutedEventArgs e)
 		{
@@ -267,30 +274,7 @@ namespace DNDHelper.Windows
 			e.CancelCommand();
 			e.Handled = true;
 		}
-		// Загрузка изображения
-		private void PackIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-		{
-			OpenFileDialog LoadImageCharacter = new();
-			LoadImageCharacter.Filter = "Изображения (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg";
-			if (LoadImageCharacter.ShowDialog() == true)
-			{
-				try
-				{
-					BitmapImage bitmap = new();
-					bitmap.BeginInit();
-					bitmap.UriSource = new Uri(LoadImageCharacter.FileName);
-					bitmap.EndInit();
-					ImageCharacter.Source = bitmap;
-					ImageIconCharacter.Visibility = Visibility.Collapsed;
-					ImageCharacter.Visibility = Visibility.Visible;
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show("Ошибка загрузки изображения: " + ex.Message);
-				}
 
-			}
-		}
 		// Изменение ХП
 		private void CurrentHealth_tb_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
@@ -320,7 +304,7 @@ namespace DNDHelper.Windows
 		// Счёт урона
 		private void CountDamage_button_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
-			MessageBox.Show("213");
+			MessageBox.Show("Когда-нибудь сделаем...");
 		}
 
 		private void shield_health_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -453,7 +437,5 @@ namespace DNDHelper.Windows
                 DataManager.DataSave.SubtractMagicBullet = MagicSpells.MaxMagicBullet - Convert.ToInt32(MagicBulletCurrent_textbox.Text);
 			}
 		}
-
-
-    }
+	}
 }
