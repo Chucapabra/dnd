@@ -119,19 +119,26 @@ namespace DNDHelper.Modules.Settings
             string[] path = Assembly.GetExecutingAssembly().Location.Split('\\');
             pathSaves = string.Join("\\", path, 0, path.Count() - 2) + "\\Saves\\";
         }
-        public static void WorkinProgram()
+        public static void WorkingProgram(bool visibilityBool)
         {
-			Main.Instance.WorkProgam1.Visibility = Visibility.Visible;
-			Main.Instance.WorkProgam2.Visibility = Visibility.Visible;
-			Main.Instance.WorkProgam3.Visibility = Visibility.Visible;
-			Main.Instance.WorkProgam4.Visibility = Visibility.Visible;
-			Main.Instance.WorkProgam5.Visibility = Visibility.Visible;
-			Main.Instance.WorkProgam6.Visibility = Visibility.Visible;
-			Main.Instance.WorkProgam7.Visibility = Visibility.Visible;
-			Main.Instance.сharacter_weight_textblock.Visibility = Visibility.Visible;
-			Main.Instance.DataGridCharacterisctics.Visibility = Visibility.Visible;
-			Main.Instance.WorkProgam8.Visibility = Visibility.Collapsed;
-		}
+            Visibility visibility = Visibility.Visible;
+            if (!visibilityBool)
+                visibility = Visibility.Hidden;
+
+            Main.Instance.WorkProgam1.Visibility = visibility;
+            Main.Instance.WorkProgam2.Visibility = visibility;
+            Main.Instance.WorkProgam3.Visibility = visibility;
+            Main.Instance.WorkProgam4.Visibility = visibility;
+            Main.Instance.WorkProgam5.Visibility = visibility;
+            Main.Instance.WorkProgam6.Visibility = visibility;
+            Main.Instance.WorkProgam7.Visibility = visibility;
+            Main.Instance.сharacter_weight_textblock.Visibility = visibility;
+            Main.Instance.DataGridCharacterisctics.Visibility = visibility;
+            if (visibilityBool)
+                Main.Instance.WorkProgam8.Visibility = Visibility.Collapsed;
+            else
+                Main.Instance.WorkProgam8.Visibility = Visibility.Visible;
+        }
 
 
         public static void ReadSaves()
@@ -291,7 +298,7 @@ namespace DNDHelper.Modules.Settings
             DataSave.SelectedRepository = dataSave.SelectedRepository;
             SetRepository.UpdateRepository();
 
-            WorkinProgram();
+            WorkingProgram(true);
 
 			DataSave.Name = dataSave.Name;
             DataSave.SelectedRace = dataSave.SelectedRace;

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Project\\DND-github\\dnd-2\\dnd\\dnd\\DNDHelper.csproj": {}
+    "D:\\profile\\mydocs\\GitHub\\dnd\\DNDHelper.csproj": {}
   },
   "projects": {
-    "E:\\Project\\DND-github\\dnd-2\\dnd\\dnd\\DNDHelper.csproj": {
+    "D:\\profile\\mydocs\\GitHub\\dnd\\DNDHelper.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Project\\DND-github\\dnd-2\\dnd\\dnd\\DNDHelper.csproj",
+        "projectUniqueName": "D:\\profile\\mydocs\\GitHub\\dnd\\DNDHelper.csproj",
         "projectName": "DNDHelper",
-        "projectPath": "E:\\Project\\DND-github\\dnd-2\\dnd\\dnd\\DNDHelper.csproj",
-        "packagesPath": "C:\\Users\\Gunter\\.nuget\\packages\\",
-        "outputPath": "E:\\Project\\DND-github\\dnd-2\\dnd\\dnd\\obj\\",
+        "projectPath": "D:\\profile\\mydocs\\GitHub\\dnd\\DNDHelper.csproj",
+        "packagesPath": "C:\\Users\\Denis\\.nuget\\packages\\",
+        "outputPath": "D:\\profile\\mydocs\\GitHub\\dnd\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Gunter\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Denis\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

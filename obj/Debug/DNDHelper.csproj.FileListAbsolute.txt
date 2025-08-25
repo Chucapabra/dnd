@@ -79,3 +79,14 @@ E:\Project\DND-github\dnd-2\dnd\dnd\bin\Debug\Data\Microsoft.Web.WebView2.WinFor
 E:\Project\DND-github\dnd-2\dnd\dnd\bin\Debug\Data\Microsoft.Web.WebView2.Wpf.xml
 E:\Project\DND-github\dnd-2\dnd\dnd\obj\Debug\Windows\About.g.cs
 E:\Project\DND-github\dnd-2\dnd\dnd\obj\Debug\Windows\About.baml
+D:\profile\mydocs\GitHub\dnd\bin\Debug\Data\runtimes\win-x86\native\WebView2Loader.dll
+D:\profile\mydocs\GitHub\dnd\bin\Debug\Data\runtimes\win-x64\native\WebView2Loader.dll
+D:\profile\mydocs\GitHub\dnd\bin\Debug\Data\runtimes\win-arm64\native\WebView2Loader.dll
+D:\profile\mydocs\GitHub\dnd\bin\Debug\Data\Microsoft.Web.WebView2.Core.dll
+D:\profile\mydocs\GitHub\dnd\bin\Debug\Data\Microsoft.Web.WebView2.WinForms.dll
+D:\profile\mydocs\GitHub\dnd\bin\Debug\Data\Microsoft.Web.WebView2.Wpf.dll
+D:\profile\mydocs\GitHub\dnd\bin\Debug\Data\Microsoft.Web.WebView2.Core.xml
+D:\profile\mydocs\GitHub\dnd\bin\Debug\Data\Microsoft.Web.WebView2.WinForms.xml
+D:\profile\mydocs\GitHub\dnd\bin\Debug\Data\Microsoft.Web.WebView2.Wpf.xml
+D:\profile\mydocs\GitHub\dnd\obj\Debug\Windows\About.g.cs
+D:\profile\mydocs\GitHub\dnd\obj\Debug\Windows\About.baml

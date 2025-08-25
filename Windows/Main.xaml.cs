@@ -59,14 +59,16 @@ namespace DNDHelper.Windows
 			InitializeComponent();
 			string pathVersion = string.Join("\\", _pathMain, 0, _pathMain.Count() - 2) + "\\Version.txt";
 			string version = File.ReadAllText(pathVersion);
-			VersionTextBlock.Text = version + "  ";
+			VersionTextBlock.Text = version + "  ";	
 
 			InitializeClasses();
 			DataManager.ReadSaves();
 			Resources["StandartBackColor"] = new SolidColorBrush(DarkThem.SelectedTheme[0]);
 			Resources["StandartForeColor"] = new SolidColorBrush(DarkThem.SelectedTheme[1]);
             Closed += Main_Closed;
-		}
+
+            DataManager.WorkingProgram(false);
+        }
 
         private void Main_Closed(object? sender, EventArgs e)
         {

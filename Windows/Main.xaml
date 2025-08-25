@@ -60,7 +60,7 @@
 				<MenuItem Header="Классы Туши" Click="UrlClasses"/>
 			</MenuItem>
 		</Menu>
-		<StackPanel x:Name="WorkProgam1" Visibility="Hidden" VerticalAlignment="Center" Margin="10,50,0,0">
+		<StackPanel x:Name="WorkProgam1" Visibility="Visible" VerticalAlignment="Center" Margin="10,50,0,0">
 			<StackPanel Orientation="Horizontal">
 				<TextBlock Text="Имя:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0" Width="60" />
 				<TextBlock Text="{Binding Name}" x:Name="character_name_textblock" Width="120" Visibility="Visible" VerticalAlignment="Center" />
@@ -77,11 +77,11 @@
 				<ComboBox SelectedIndex="{Binding SelectedClass}" Width="120" x:Name="character_class_combobox" materialDesign:HintAssist.Hint="Класс" Visibility="Hidden"/>
 			</StackPanel>
 		</StackPanel>
-		<StackPanel x:Name="WorkProgam2" Visibility="Hidden">
+		<StackPanel x:Name="WorkProgam2" Visibility="Visible">
 			<materialDesign:PackIcon x:Name="ImageIconCharacter" Kind="FileImageAdd" Height="60" Width="60" Margin="200,50,0,0" Visibility="Visible"/>
 			<Image x:Name="ImageCharacter" Height="60" Width="60" Margin="200,50,0,0" Visibility="Hidden"/>
 		</StackPanel>
-		<StackPanel x:Name="WorkProgam3" Visibility="Hidden" Grid.Column="1" HorizontalAlignment="Left" Margin="0,50,0,0">
+		<StackPanel x:Name="WorkProgam3" Visibility="Visible" Grid.Column="1" HorizontalAlignment="Left" Margin="0,50,0,0">
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
 				<TextBlock Width="135" Text="Действия:" TextAlignment="Right"/>
 				<TextBlock x:Name="Actions_textblock" Width="26" Text="0" TextAlignment="Center"/>
@@ -95,7 +95,7 @@
 				<TextBlock x:Name="Movesticks_textblock" Width="26" Text="0" TextAlignment="Center"/>
 			</StackPanel>
 		</StackPanel>
-		<StackPanel x:Name="WorkProgam4" Visibility="Hidden" Grid.Column="1" HorizontalAlignment="Left" Margin="180,50,0,0">
+        <StackPanel x:Name="WorkProgam4" Visibility="Visible" Grid.Column="1" HorizontalAlignment="Left" Margin="180,50,0,0">
 			<StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,0">
 				<TextBlock x:Name="СriticalRoll_Text_textblock" Width="135" Text="Ролл крит:" TextAlignment="Right" Visibility="Hidden"/>
 				<TextBlock x:Name="СriticalRoll_GreaterOrEqual_textblock"  Width="10" Text=">" TextDecorations="Underline" TextAlignment="Right" Visibility="Hidden"/>
@@ -123,7 +123,7 @@
 				<TextBlock x:Name="KD_TextBlock" Width="40" Text="0" TextAlignment="Center"/>
 			</StackPanel>
 		</StackPanel>
-		<StackPanel x:Name="WorkProgam5" Visibility="Hidden" Grid.Column="1" Margin="400,10,0,0">
+		<StackPanel x:Name="WorkProgam5" Visibility="Visible" Grid.Column="1" Margin="400,10,0,0">
 			<StackPanel Orientation="Horizontal" Margin="36,0,0,0">
 				<ComboBox materialDesign:HintAssist.Hint="Тип щита" Width="100">
 					<ComboBoxItem Content="Элементальный"/>
@@ -155,7 +155,7 @@
 				<TextBox materialDesign:HintAssist.Hint="Число" Margin="-68,10,0,0" Height="24" Width="40" x:Name="BaffKD_textbox" PreviewTextInput="BaffKD_textbox_PreviewTextInput"  DataObject.Pasting="BaffKD_textbox_Pasting" TextAlignment="Center"/>
 			</StackPanel>
 		</StackPanel>
-		<StackPanel x:Name="WorkProgam6" Visibility="Hidden" Grid.Column="1" Margin="668,35,0,0">
+		<StackPanel x:Name="WorkProgam6" Visibility="Visible" Grid.Column="1" Margin="668,35,0,0">
 			<Border>
 				<DataGrid Width="160" HorizontalAlignment="Left" x:Name="DataGridStatusEffects"
 						  AutoGenerateColumns="False"
@@ -176,10 +176,10 @@
 				</DataGrid>
 			</Border>
 		</StackPanel>
-		<TextBlock x:Name="сharacter_weight_textblock" Visibility="Hidden" Text="Вес: 0/0" Grid.Column="1" VerticalAlignment="Bottom" Margin="0,0,0,0"/>
+        <TextBlock x:Name="сharacter_weight_textblock" Visibility="Visible" Text="Вес: 0/0" Grid.Column="1" VerticalAlignment="Bottom" Margin="0,0,0,0"/>
 		<TextBlock Text="13.0  " x:Name="VersionTextBlock" Height="18" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Margin="0,13,0,89" RenderTransformOrigin="0.457,3.169"/>
 
-		<TabControl x:Name="WorkProgam7" Visibility="Hidden" Grid.Row="1" Grid.Column="1" Width="Auto" Height="Auto" Margin="0,0,0,-304">
+        <TabControl x:Name="WorkProgam7" Visibility="Visible" Grid.Row="1" Grid.Column="1" Width="Auto" Height="Auto" Margin="0,0,0,-304">
 			<TabItem Header="Инвентарь">
 				<Grid>
 					<Grid.ColumnDefinitions>
@@ -1013,7 +1013,7 @@
 				</Grid>
 			</TabItem>
 		</TabControl>
-		<DataGrid Visibility="Hidden" Grid.Row="1" Grid.Column="0"  SelectionMode="Single" FontSize="12" x:Name="DataGridCharacterisctics" AutoGenerateColumns="False" Margin="0,0,0,-304" IsReadOnly="True"
+		<DataGrid Visibility="Visible" Grid.Row="1" Grid.Column="0"  SelectionMode="Single" FontSize="12" x:Name="DataGridCharacterisctics" AutoGenerateColumns="False" Margin="0,0,0,-304" IsReadOnly="True"
               HeadersVisibility="Column"
               RowHeaderWidth="0"
               CanUserAddRows="False"
