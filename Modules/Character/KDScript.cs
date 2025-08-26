@@ -17,6 +17,7 @@ namespace DNDHelper.Modules.Character
         public static int BodyKD = 0;
         public static int ArmorKD = 0;
         public static int HeadKD = 0;
+        public static int DebaffKD = 0;
 
         public static void UpdateAllKD()
         {
@@ -38,8 +39,9 @@ namespace DNDHelper.Modules.Character
             int[] itemsKD = CountItemsKD();
             ArmorKD = itemsKD[0];
             HeadKD = itemsKD[1] + BodyKD;
+            DebaffKD = Effects.EffectBaffs[25][0];
 
-            int generalKD = BodyKD + ArmorKD;
+            int generalKD = BodyKD + ArmorKD + DebaffKD;
             Main.Instance.KD_TextBlock.Text = generalKD.ToString();
             Main.Instance.HeadKD_TextBlock.Text = HeadKD.ToString();
         }

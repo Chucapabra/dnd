@@ -226,11 +226,11 @@ namespace DNDHelper.Modules.MagicSpells
 				catch (Exception error) 
 				{
 					count++;
-					Debug.WriteLine(line);
+			//		Debug.WriteLine(line);
 				}
 
 			}
-			Debug.WriteLine(count.ToString());
+		//	Debug.WriteLine(count.ToString());
 			MagicSearch.CastsFilter();
 
         }

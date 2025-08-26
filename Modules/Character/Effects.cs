@@ -1,5 +1,6 @@
 ﻿using DNDHelper.Modules.Config;
 using DNDHelper.Modules.Settings;
+using DNDHelper.Modules.Сharacteristics;
 using DNDHelper.Windows;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Effects;
 
@@ -22,21 +24,73 @@ namespace DNDHelper.Modules.Character
     {
         public static Dictionary<string, Dictionary<int, List<Effect>>> data;
 
-        private static ObservableCollection<EffectTable> effectsList = new();
-        Main main = Main.Instance;
+        private static ObservableCollection<EffectTable> effectsList => DataManager.DataSave.EffectTables;
+        private static Main main = Main.Instance;
+
+        public static List<int[]> EffectBaffs = new(50);
+        public static string[] StatNameRus = new[]
+        {
+            "сила", "атлетика",
+            "ловкость", "акробатика", "ловкость_рук", "скрытность",
+            "телосложение",
+            "интеллект", "магия", "религия",
+            "природа", "история",
+            "расcледование", "технология",
+            "мудрость", "медецина",
+            "восприятие", "проницательность", "выживание", "обращение_с_животными",
+            "харизма", "обман",
+            "запугивание", "выступление", "убеждение", 
+            "кд", "остальным_роллам", "всем_роллам", "блок", "множитель_палки"
+        };
         public Effects()
         {
             main.DataGridStatusEffects.ItemsSource = effectsList;
+
+            main.AddEffect.Click += AddEffect_Click;
+            main.DeleteEffect.Click += DeleteEffect_Click;
+            main.DataGridStatusEffects.ContextMenuOpening += DataGridStatusEffects_ContextMenuOpening;
+
+            effectsList.CollectionChanged += EffectsList_CollectionChanged;
+
+            ClearItemBaffs();
+            Update();
+        }
+
+        private void EffectsList_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            DataManager.Save();
+        }
+
+        private void DataGridStatusEffects_ContextMenuOpening(object sender, ContextMenuEventArgs e)
+        {
+            int selectedIndex = main.DataGridStatusEffects.SelectedIndex;
+            if (selectedIndex != -1)
+            {
+                main.AddEffect.Visibility = Visibility.Visible;
+                main.DeleteEffect.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                main.AddEffect.Visibility = Visibility.Visible;
+                main.DeleteEffect.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void DeleteEffect_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            int selectedIndex = main.DataGridStatusEffects.SelectedIndex;
+            if (selectedIndex != -1)
+                effectsList.RemoveAt(selectedIndex);
+        }
+
+        private void AddEffect_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
             effectsList.Add(new EffectTable());
-
-
-            //Update();
         }
 
         public static void Update()
         {
-            //   string pathFile = Main.PathMain + $"Cache/{DataManager.DataSave.SelectedRepository}/Effects.json";
-            string pathFile = Main.PathMain + $"Effects.json";
+             string pathFile = Main.PathMain + $"Cache/{DataManager.DataSave.SelectedRepository}/Effects.json";
             if (File.Exists(pathFile))
             {
                 string json = File.ReadAllText(pathFile);
@@ -49,19 +103,68 @@ namespace DNDHelper.Modules.Character
                 try
                 {
                     data = JsonSerializer.Deserialize<Dictionary<string, Dictionary<int, List<Effect>>>>(json, options);
-                    foreach (var item in data.Keys)
-                    {
-
-                    }
                 }
                 catch
                 {
-
+                    data = null;
                 }
             }
-            else
-            {
+        }
 
+        private static void ClearItemBaffs()
+        {
+            EffectBaffs.Clear();
+            for (int i = 0; i < 30; i++)
+                EffectBaffs.Add(new int[] { 0, 0 });
+        }
+
+        public static void UpdateLevelEffect()
+        {
+            if (data == null)
+                return;
+
+            ClearItemBaffs();
+
+            foreach (var item in effectsList)
+            {
+                string nameEffect = item.SelectedEffect;
+                if (nameEffect != null)
+                {
+                    var effect = data[nameEffect];
+                    var levelEffect = effect[item.Level][0];
+                    foreach (var baff in levelEffect.StandartStats[0].Keys)
+                    {
+                        int index = Array.IndexOf(StatNameRus, baff.ToLower());
+                        if (index != -1)
+                        {
+                            if (index < 25)
+                            {
+                                EffectBaffs[index][0] += levelEffect.StandartStats[0][baff][0];
+                                EffectBaffs[index][1] += levelEffect.StandartStats[0][baff][1];
+                            }
+                            else
+                            {
+                                EffectBaffs[index][0] += levelEffect.StandartStats[0][baff][0] + levelEffect.StandartStats[0][baff][1];
+                                if (index == 27)
+                                    EffectBaffs[26][0] += levelEffect.StandartStats[0][baff][0] + levelEffect.StandartStats[0][baff][1];
+                            }
+                        }
+                    }
+                }
+            }
+            Main.Characteristics.UpdateAllCharacterisitc();
+            AttributesCharacter.UpdateRolls();
+            AttributesCharacter.StickMethod();
+            KDScript.CountKD();
+        }
+
+
+        public static void AddingLevelEffect(int number)
+        {
+            int selectedIndex = main.DataGridStatusEffects.SelectedIndex;
+            if(selectedIndex != -1) 
+            {
+                effectsList[selectedIndex].Level += number;
             }
         }
     }
@@ -84,7 +187,8 @@ namespace DNDHelper.Modules.Character
             set
             {
                 _selectedEffect = value;
-                CheckMaxLevel();
+                Level = 0;
+                CheckEffect();
                 OnPropertyChanged();
             }
         }
@@ -95,9 +199,13 @@ namespace DNDHelper.Modules.Character
             get => _level;
             set
             {
-                _level = value;
-                UpdateLevel();
-                OnPropertyChanged();
+                if (value >= 0 && value <= maxLevel || DataManager.IsLoad)
+                {
+                    _level = value;
+                    UpdateLevel();
+                    Effects.UpdateLevelEffect();
+                    OnPropertyChanged();
+                }
             }
         }
 
@@ -112,17 +220,30 @@ namespace DNDHelper.Modules.Character
             }
         }
 
-        public string ToolTip { get; set; } = "";
+        private string _toolTip { get; set; } = "";
+        public string ToolTip
+        {
+            get => _toolTip;
+            set
+            {
+                _toolTip = value;
+                OnPropertyChanged();
+            }
+        }
 
 
-        private void CheckMaxLevel()
+        private void CheckEffect()
         {
             if (_selectedEffect != null)
             {
-                var effect = Effects.data[_selectedEffect];
-                if (effect != null)
+                if (Effects.data != null)
                 {
-                    maxLevel = effect.Count;
+                    var effect = Effects.data[_selectedEffect];
+                    if (effect != null)
+                    {
+                        maxLevel = effect.Count - 1;
+
+                    }
                 }
             }
             else
@@ -133,12 +254,26 @@ namespace DNDHelper.Modules.Character
         private void UpdateLevel()
         {
             LevelString = $"{_level}/{maxLevel}";
+
+            if (_selectedEffect != null)
+            {
+                if (Effects.data != null)
+                {
+                    var effect = Effects.data[_selectedEffect];
+                    if (effect != null)
+                    {
+                        ToolTip = effect[Level][0].ToolTip;
+                    }
+                }
+            }
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            DataManager.Save();
         }
     }
 }

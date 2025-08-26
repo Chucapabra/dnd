@@ -77,6 +77,8 @@ namespace DNDHelper.Modules.Character
         {
             if (main.EditMode_button.IsChecked)
                 main.DataGridTreeDevelopment.Columns[0].Header = "Название Очков: " + points;
+            else
+                main.DataGridTreeDevelopment.Columns[0].Header = "Название";
         }
 
         public void UpdateAddStats()

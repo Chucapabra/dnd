@@ -1,4 +1,5 @@
-﻿using DNDHelper.Modules.Config;
+﻿using DNDHelper.Modules.Character;
+using DNDHelper.Modules.Config;
 using DNDHelper.Modules.Inventory;
 using DNDHelper.Windows;
 using System;
@@ -90,6 +91,7 @@ namespace DNDHelper.Modules.Settings
             Race.Update();
             PlayerClass.Update();
             ManagerUrls.LoadUrls();
+            Effects.Update();
         }
 
 
@@ -100,8 +102,8 @@ namespace DNDHelper.Modules.Settings
         private static string FileTypeDamage = "";
         private static string FileMultiplyGlobal = "";
 		private static string FileGlobalUrls = "";
-
-		public static async Task FileСonnection(bool check = false)
+        private static string FileEffects = "";
+        public static async Task FileСonnection(bool check = false)
         {
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
 
@@ -116,7 +118,8 @@ namespace DNDHelper.Modules.Settings
             string typeDamageFileUrl = $"{Repos}/TypesDamage.json";
             string globalMultiplyUrl = $"{Repos}/GlobalMultiply.json";
 			string globalUrls = $"{Repos}/urls.json";
-			using (HttpClient client = new HttpClient())
+            string effectsUrl = $"{Repos}/Effects.json";
+            using (HttpClient client = new HttpClient())
             {
                 try
                 {
@@ -139,8 +142,9 @@ namespace DNDHelper.Modules.Settings
                         SafeGetAsync(classFileUrl),
                         SafeGetAsync(globalMultiplyUrl),
                         SafeGetAsync(typeDamageFileUrl),
-                        SafeGetAsync(globalUrls)
-					};
+                        SafeGetAsync(globalUrls),
+                        SafeGetAsync(effectsUrl)
+                    };
 
                     await Task.WhenAll(tasks);
 
@@ -150,6 +154,7 @@ namespace DNDHelper.Modules.Settings
                     FileMultiplyGlobal = tasks[3].Result;
                     FileTypeDamage = tasks[4].Result;
                     FileGlobalUrls = tasks[5].Result;
+                    FileEffects = tasks[6].Result;  
                     CheckCacheFiles(check);
                 }
                 catch (HttpRequestException e)
@@ -175,7 +180,8 @@ namespace DNDHelper.Modules.Settings
             var typeDamage_ = CheckCacheFile("TypeDamage.json", FileTypeDamage, path);
             var multiplyGlobal_ = CheckCacheFile("MultiplyGlobal.json", FileMultiplyGlobal, path);
 			var globalUrls_ = CheckCacheFile("urls.json", FileGlobalUrls, path);
-			if (spell_ || race_ || class_ || typeDamage_ || multiplyGlobal_ || globalUrls_)
+            var effects_ = CheckCacheFile("Effects.json", FileEffects, path);
+            if (spell_ || race_ || class_ || typeDamage_ || multiplyGlobal_ || globalUrls_ || effects_)
             {
 				DataManager.Load(DataManager.SelectedSave);
                 MessageBox.Show("Конфиг обновлён.");

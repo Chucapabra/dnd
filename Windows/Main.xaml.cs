@@ -92,7 +92,8 @@ namespace DNDHelper.Windows
 			Race @class = new();
 			PlayerClass playerClass = new();
 			ItemBaffsListScript = new();
-			InventoryLoot inventoryLoot = new();
+            Effects effects = new Effects();
+            InventoryLoot inventoryLoot = new();
 			Skills skills = new();
 			Level level = new();
 			MagicSpells magicSpells = new();
@@ -102,8 +103,7 @@ namespace DNDHelper.Windows
 			Characteristics.UpdateAllCharacterisitc();
 			MagicSearch magicSearch = new MagicSearch();
             TypeArmorBaffs typeArmorBaffs = new();
-			LoadingReferenceBook listBoxUrls = new();
-            Effects effects = new Effects();
+			LoadingReferenceBook listBoxUrls = new();        
 
 
             WeightScript weightScript = new WeightScript();
@@ -447,5 +447,16 @@ namespace DNDHelper.Windows
                 DataManager.DataSave.SubtractMagicBullet = MagicSpells.MaxMagicBullet - Convert.ToInt32(MagicBulletCurrent_textbox.Text);
 			}
 		}
-	}
+
+		// Эффекты
+        private void AddLevelEffect_Click(object sender, RoutedEventArgs e)
+        {
+			Effects.AddingLevelEffect(1);
+        }
+
+        private void SubtractLevelEffect_Click(object sender, RoutedEventArgs e)
+        {
+            Effects.AddingLevelEffect(-1);
+        }
+    }
 }

@@ -153,69 +153,78 @@
 				</DataGrid>
 			</StackPanel>
 		</StackPanel>
-		 <StackPanel x:Name="WorkProgam6" Visibility="Visible" Grid.Column="1" Margin="653,35,0,0">
-     <DataGrid Width="184" HorizontalAlignment="Left" x:Name="DataGridStatusEffects" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Visibility="Hidden"
+		 <StackPanel x:Name="WorkProgam6" Visibility="Visible" Grid.Column="1" Margin="636,35,0,0">
+            <Border>
+                <DataGrid Width="185" HorizontalAlignment="Left" x:Name="DataGridStatusEffects" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
 					  AutoGenerateColumns="False"
 					  CanUserAddRows="False"
 					  CanUserDeleteRows="False"
 					  CanUserReorderColumns="False"
 					  CanUserResizeRows="False"
 					  CanUserResizeColumns="False"
-					  CanUserSortColumns="False" Height="95">
-         <DataGrid.Columns>
-             <DataGridTemplateColumn Width="100" Header=" Эффект">
-                 <DataGridTemplateColumn.CellTemplate>
-                     <DataTemplate>
-                         <ComboBox SelectionChanged="ComboBoxDataGridItemBaffsList_SelectionChanged" Text="{Binding SelectedEffect, UpdateSourceTrigger=PropertyChanged}">
-                             <ComboBoxItem Content="Кровотечение"/>
-                             <ComboBoxItem Content="Оглушение"/>
-                             <ComboBoxItem Content="Горение"/>
-                             <ComboBoxItem Content="Обморожение"/>
-                             <ComboBoxItem Content="Шок"/>
-                             <ComboBoxItem Content="Безумие"/>
-                             <ComboBoxItem Content="Усталость"/>
-                             <ComboBoxItem Content="Яд"/>
-                             <ComboBoxItem Content="Болевой шок"/>
-                             <ComboBoxItem Content="Ярость"/>
-                         </ComboBox>
-                     </DataTemplate>
-                 </DataGridTemplateColumn.CellTemplate>
-             </DataGridTemplateColumn>
-             <DataGridTemplateColumn Header="Уровень" Width="100">
-                 <DataGridTemplateColumn.CellTemplate>
-                     <DataTemplate>
-                         <Grid>
-                             <TextBlock Text="{Binding LevelString}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="-10,0,0,0"/>
-                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,0,0,0">
-                                 <Button Style="{DynamicResource MaterialDesignIconForegroundButton}" Width="12" Height="12" Margin="2" Click="AddCharacteristic_Click">
-                                     <TextBlock Text="+" Margin="0,-5,0,0" FontSize="16" />
-                                 </Button>
-                                 <Button Style="{DynamicResource MaterialDesignIconForegroundButton}" Width="12" Height="12" Margin="2" Click="SubtractCharacteristic_Click">
-                                     <TextBlock Text="-" Margin="0,-8,0,0" FontSize="22" />
-                                 </Button>
-                             </StackPanel>
-                         </Grid>
-                     </DataTemplate>
-                 </DataGridTemplateColumn.CellTemplate>
-             </DataGridTemplateColumn>
-         </DataGrid.Columns>
-         <DataGrid.RowStyle>
-             <Style TargetType="DataGridRow" >
-                 <Setter Property="Height" Value="40"/>
-                 <Setter Property="Margin" Value="0"/>
-                 <Setter Property="Padding" Value="0"/>
-                 <Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
-                 <Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
-             </Style>
-         </DataGrid.RowStyle>
-         <DataGrid.ColumnHeaderStyle>
-             <Style TargetType="DataGridColumnHeader">
-                 <Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
-                 <Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
-             </Style>
-         </DataGrid.ColumnHeaderStyle>
-     </DataGrid>
- </StackPanel>
+					  CanUserSortColumns="False" Height="87">
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem x:Name="AddEffect" Header="Добавить"/>
+                            <MenuItem x:Name="DeleteEffect" Header="Удалить"/>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Width="100" Header=" Эффект">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ComboBox SelectionChanged="ComboBoxDataGridItemBaffsList_SelectionChanged" Text="{Binding SelectedEffect, UpdateSourceTrigger=PropertyChanged}">
+                                        <ComboBoxItem Content="Кровотечение"/>
+                                        <ComboBoxItem Content="Оглушение"/>
+                                        <ComboBoxItem Content="Горение"/>
+                                        <ComboBoxItem Content="Обморожение"/>
+                                        <ComboBoxItem Content="Шок"/>
+                                        <ComboBoxItem Content="Безумие"/>
+                                        <ComboBoxItem Content="Усталость"/>
+                                        <ComboBoxItem Content="Яд"/>
+                                        <ComboBoxItem Content="Болевой шок"/>
+                                        <ComboBoxItem Content="Ярость"/>
+                                    </ComboBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Уровень" Width="100">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <TextBlock Text="{Binding LevelString}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="-10,0,0,0"/>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,0,0,0">
+                                            <Button Style="{DynamicResource MaterialDesignIconForegroundButton}" Width="12" Height="12" Margin="2" Click="AddLevelEffect_Click">
+                                                <TextBlock Text="+" Margin="0,-4,0,0" FontSize="16" />
+                                            </Button>
+                                            <Button Style="{DynamicResource MaterialDesignIconForegroundButton}" Width="12" Height="12" Margin="2" Click='SubtractLevelEffect_Click'>
+                                                <TextBlock Text="-" Margin="0,-8,0,0" FontSize="22" />
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow" >
+                            <Setter Property="Height" Value="37"/>
+                            <Setter Property="Margin" Value="0"/>
+                            <Setter Property="Padding" Value="0"/>
+                            <Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
+                            <Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
+                            <Setter Property="ToolTip" Value="{Binding ToolTip}"/>
+                        </Style>
+                    </DataGrid.RowStyle>
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
+                            <Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                </DataGrid>
+            </Border>
+        </StackPanel>
         <TextBlock x:Name="сharacter_weight_textblock" Visibility="Visible" Text="Вес: 0/0" Grid.Column="1" VerticalAlignment="Bottom" Margin="0,0,0,0"/>
 		<TextBlock Text="13.0  " x:Name="VersionTextBlock" Height="18" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Margin="0,13,0,89" RenderTransformOrigin="0.457,3.169"/>
 
@@ -581,27 +590,27 @@
 							</Button>
 						</StackPanel>
 						<StackPanel Orientation="Horizontal">
-							<TextBlock Text="Ролл атаки:" Width="150" VerticalAlignment="Center"/>
+                            <TextBlock x:Name="character_rollattackname_textblock" Text="Ролл атаки:" Width="150" VerticalAlignment="Center"/>
 							<TextBlock x:Name="character_rollattack_textblock" Width="40" Text="0" TextAlignment="Center"/>
 						</StackPanel>
 						<StackPanel Orientation="Horizontal">
-							<TextBlock Text="Ролл блока:" Width="150" VerticalAlignment="Center"/>
+                            <TextBlock x:Name="character_blockname_textblock" Text="Ролл блока:" Width="150" VerticalAlignment="Center"/>
 							<TextBlock x:Name="character_block_textblock" Width="40" Text="0" TextAlignment="Center"/>
 						</StackPanel>
 						<StackPanel Orientation="Horizontal">
-							<TextBlock Text="Ролл уворота:" Width="150" VerticalAlignment="Center"/>
+                            <TextBlock x:Name="character_dodgename_textblock" Text="Ролл уворота:" Width="150" VerticalAlignment="Center"/>
 							<TextBlock x:Name="character_dodge_textblock" Width="40" Text="0" TextAlignment="Center"/>
 						</StackPanel>
 						<StackPanel Orientation="Horizontal">
-							<TextBlock Text="Ролл контрдействия:" Width="150" VerticalAlignment="Center"/>
+                            <TextBlock x:Name="character_counteractionname_textblock" Text="Ролл контрдействия:" Width="150" VerticalAlignment="Center"/>
 							<TextBlock x:Name="character_counteraction_textblock" Width="40" Text="0" TextAlignment="Center"/>
 						</StackPanel>
 						<StackPanel Orientation="Horizontal">
-							<TextBlock Text="Ролл атаки кулаками:" Width="150" VerticalAlignment="Center"/>
+                            <TextBlock x:Name="character_fistattackname_textblock" Text="Ролл атаки кулаками:" Width="150" VerticalAlignment="Center"/>
 							<TextBlock x:Name="character_fistattack_textblock" Width="40" Text="0" TextAlignment="Center"/>
 						</StackPanel>
 						<StackPanel Orientation="Horizontal">
-							<TextBlock Text="Ролл дальнобойным:" Width="150" VerticalAlignment="Center"/>
+                            <TextBlock x:Name="character_longrangeattackname_textblock" Text="Ролл дальнобойным:" Width="150" VerticalAlignment="Center"/>
 							<TextBlock x:Name="character_longrangeattack_textblock" Width="40" Text="0" TextAlignment="Center"/>
 						</StackPanel>
 					</StackPanel>
@@ -1053,7 +1062,7 @@
 				</Grid>
 			</TabItem>
 		</TabControl>
-		<DataGrid Visibility="Visible" Grid.Row="1" Grid.Column="0"  SelectionMode="Single" FontSize="12" x:Name="DataGridCharacterisctics" AutoGenerateColumns="False" Margin="0,0,0,-304" IsReadOnly="True"
+        <DataGrid Visibility="Visible" Grid.Row="1" Grid.Column="0"  SelectionMode="Single" FontSize="12" x:Name="DataGridCharacterisctics" AutoGenerateColumns="False" Margin="0,0,0,-304" IsReadOnly="True"
               HeadersVisibility="Column"
               RowHeaderWidth="0"
               CanUserAddRows="False"
@@ -1064,9 +1073,10 @@
               CanUserSortColumns="False"
               GridLinesVisibility="None"
               BorderThickness="0">
-			<DataGrid.Columns>
-				<DataGridTextColumn Header=" Навык" Binding="{Binding Name}" Width="150" FontSize="12"/>
-				<DataGridTemplateColumn Header="Значение" Width="70">
+            
+            <DataGrid.Columns>
+                <DataGridTextColumn Header=" Навык" Binding="{Binding Name}" Width="150" FontSize="12"/>
+                <DataGridTemplateColumn Header="Значение" Width="70">
 					<DataGridTemplateColumn.CellTemplate>
 						<DataTemplate>
 							<Grid>
@@ -1098,8 +1108,13 @@
 					<Setter Property="Margin" Value="0"/>
 					<Setter Property="Padding" Value="0"/>
 					<Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
-					<Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
-				</Style>
+                    <Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
+                    <Setter Property="ToolTip">
+                        <Setter.Value>
+                            <TextBlock Text="{Binding ToolTip}" />
+                        </Setter.Value>
+                    </Setter>
+                </Style>
 			</DataGrid.RowStyle>
 
 			<DataGrid.CellStyle>
@@ -1108,6 +1123,7 @@
 					<Setter Property="Margin" Value="0"/>
 					<Setter Property="BorderThickness" Value="0"/>
 					<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+
 				</Style>
 			</DataGrid.CellStyle>
 		</DataGrid>

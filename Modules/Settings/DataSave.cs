@@ -341,6 +341,17 @@ namespace DNDHelper.Modules.Settings
             foreach (var item in dataSave.CurrentCastsNames)
                 DataSave.CurrentCastsNames.Add(item);
 
+            DataSave.EffectTables.Clear();
+            foreach (var item in dataSave.EffectTables)
+            {
+                EffectTable effect = new();
+                effect.SelectedEffect = item.SelectedEffect;
+                effect.Level = item.Level;
+                effect.LevelString = item.LevelString;
+                effect.ToolTip = item.ToolTip;
+                DataSave.EffectTables.Add(effect);
+            }
+
             Character.Skills.ReloadDataGridSkills();
             Level.SetLevel();
             Main.ItemBaffsListScript.UpdateValues();
@@ -353,6 +364,7 @@ namespace DNDHelper.Modules.Settings
 
             PlayerClass.UpdateCharacteristicMagic();
             WeightScript.CountWeightItems();
+            Effects.UpdateLevelEffect();
         }
 
         private static void LoadImage()
@@ -622,6 +634,8 @@ namespace DNDHelper.Modules.Settings
         public ObservableCollection<InventoryLoot.InventoryItem> Inventory { get; set; } = new();
 
         public ObservableCollection<string> CurrentCastsNames { get; set; } = new ObservableCollection<string>();
+
+        public ObservableCollection<EffectTable> EffectTables { get; set; } = new();
 
 
         public event PropertyChangedEventHandler PropertyChanged;

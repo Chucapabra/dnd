@@ -195,15 +195,21 @@ namespace DNDHelper.Modules.Сharacteristics
 
         private void CountCharacterisitc(int index)
         {
-            Buffed(index) = Base(index) + OtherBaff(index) + Race.Stats[index].Value + PlayerClass.Stats[index].Value + TreeSkills.Stats[index].Value + ItemBaffsListScript.ItemBaffs[index][0];
+            Buffed(index) = Base(index) + OtherBaff(index) + Race.Stats[index].Value + PlayerClass.Stats[index].Value + TreeSkills.Stats[index].Value + ItemBaffsListScript.ItemBaffs[index][0] + Effects.EffectBaffs[index][0];
             DataGridChar[index].Value = Buffed(index);
             DataGridChar[index].Roll = CalculateRoll(index);
             FindAVariableCharacteristic(index);
+
+            DataGridChar[index].ToolTip = $"{DataGridChar[index].Name.Replace(" ", "")}:\r\n" +
+                                          $"СТАТ: Базовая:{Base(index)} Раса:{Race.Stats[index].Value} Класс:{PlayerClass.Stats[index].Value} Древо развитие:{TreeSkills.Stats[index].Value} Предметы:{ItemBaffsListScript.ItemBaffs[index][0]} Эффекты:{Effects.EffectBaffs[index][0]} Остальное:{OtherBaff(index)}\r\n" +
+                                          $"РОЛЛ: Базовый:{(int)MathF.Floor((float)((Buffed(index) - 10) * 0.5))} Раса:{Race.Stats[index].Roll} Класс:{PlayerClass.Stats[index].Roll} Древо развитие:{TreeSkills.Stats[index].Roll} Предметы:{ItemBaffsListScript.ItemBaffs[index][1]} Эффекты:{Effects.EffectBaffs[index][1]}";
+
+
         }
 
         static public int CalculateRoll(int setCharIndex)
         {
-            return (int)MathF.Floor((float)((Buffed(setCharIndex) - 10) * 0.5) + Race.Stats[setCharIndex].Roll + PlayerClass.Stats[setCharIndex].Roll + TreeSkills.Stats[setCharIndex].Roll + ItemBaffsListScript.ItemBaffs[setCharIndex][1]);
+            return (int)MathF.Floor((float)((Buffed(setCharIndex) - 10) * 0.5) + Race.Stats[setCharIndex].Roll + PlayerClass.Stats[setCharIndex].Roll + TreeSkills.Stats[setCharIndex].Roll + ItemBaffsListScript.ItemBaffs[setCharIndex][1] + Effects.EffectBaffs[setCharIndex][1] + Effects.EffectBaffs[27][0]);
         }
 
         static public void UpdateOtherDeBaff()
@@ -289,7 +295,7 @@ namespace DNDHelper.Modules.Сharacteristics
         private string _name;
         private int _Value;
         private int _roll;
-
+        private string _toolTip;
         public string Name
         {
             get => _name;
@@ -316,6 +322,16 @@ namespace DNDHelper.Modules.Сharacteristics
             set
             {
                 _roll = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string ToolTip
+        {
+            get => _toolTip;
+            set
+            {
+                _toolTip = value;
                 OnPropertyChanged();
             }
         }

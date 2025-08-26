@@ -116,7 +116,7 @@ namespace DNDHelper.Modules.Config
         [JsonPropertyName("ДопКД")]
         public int AddKD { get; set; } = 0;
         [JsonPropertyName("основная_длина_палки")]
-        public double StandartStickLength { get; set; } = 0;
+        public double StandartStickLength { get; set; } = 1;
         [JsonPropertyName("Множитель_палки")]
         public double MultiplyStickLength { get; set; } = 1;
         [JsonPropertyName("Плюс_веса")]
