@@ -183,6 +183,7 @@
                                         <ComboBoxItem Content="Усталость"/>
                                         <ComboBoxItem Content="Яд"/>
                                         <ComboBoxItem Content="Болевой шок"/>
+                                        <ComboBoxItem Content="Голод"/>
                                         <ComboBoxItem Content="Ярость"/>
                                     </ComboBox>
                                 </DataTemplate>

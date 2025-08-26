@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "D:\\profile\\mydocs\\GitHub\\dnd\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\modules\\character\\effects.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\character\\effects.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\modules\\settings\\datasave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\settings\\datasave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\modules\\\u0441haracteristics\\gridcharacteristics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\\u0441haracteristics\\gridcharacteristics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\modules\\character\\treeskills.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\character\\treeskills.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,16 +23,8 @@
       "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\character\\attributescharacter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\modules\\settings\\datasave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\settings\\datasave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\windows\\main.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:windows\\main.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\modules\\\u0441haracteristics\\gridcharacteristics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|solutionrelative:modules\\\u0441haracteristics\\gridcharacteristics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3120646C-6012-47C4-A6C0-6A869CBB09E1}|DNDHelper.csproj|d:\\profile\\mydocs\\github\\dnd\\modules\\settings\\setrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -58,7 +62,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "Main.xaml.cs",
               "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Windows\\Main.xaml.cs",
               "RelativeDocumentMoniker": "Windows\\Main.xaml.cs",
@@ -72,7 +76,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Main.xaml",
               "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Windows\\Main.xaml",
               "RelativeDocumentMoniker": "Windows\\Main.xaml",
@@ -81,16 +85,30 @@
               "OverriddenGroupName": "Windows",
               "OverriddenToolTip": "Windows/Main.xaml",
               "WhenOpened": "2025-08-24T07:22:48.946Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Effects.cs",
+              "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Character\\Effects.cs",
+              "RelativeDocumentMoniker": "Modules\\Character\\Effects.cs",
+              "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Character\\Effects.cs",
+              "RelativeToolTip": "Modules\\Character\\Effects.cs",
+              "ViewState": "AgIAAIYAAAAAAAAAAAAYwJYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-26T16:04:01.255Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "TreeSkills.cs",
               "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Character\\TreeSkills.cs",
               "RelativeDocumentMoniker": "Modules\\Character\\TreeSkills.cs",
-              "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Character\\TreeSkills.cs*",
-              "RelativeToolTip": "Modules\\Character\\TreeSkills.cs*",
+              "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Character\\TreeSkills.cs",
+              "RelativeToolTip": "Modules\\Character\\TreeSkills.cs",
               "ViewState": "AgIAAD0AAAAAAAAAAAAcwE8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-26T13:29:30.157Z",
@@ -98,7 +116,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "GridCharacteristics.cs",
               "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\\u0421haracteristics\\GridCharacteristics.cs",
               "RelativeDocumentMoniker": "Modules\\\u0421haracteristics\\GridCharacteristics.cs",
@@ -106,36 +124,38 @@
               "RelativeToolTip": "Modules\\\u0421haracteristics\\GridCharacteristics.cs",
               "ViewState": "AgIAAL0AAAAAAAAAAADwv8oAAABYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-26T10:25:25.574Z"
+              "WhenOpened": "2025-08-26T10:25:25.574Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "DataSave.cs",
               "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Settings\\DataSave.cs",
               "RelativeDocumentMoniker": "Modules\\Settings\\DataSave.cs",
               "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Settings\\DataSave.cs",
               "RelativeToolTip": "Modules\\Settings\\DataSave.cs",
-              "ViewState": "AgIAAEcBAAAAAAAAAAAAAF4BAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAFABAAAAAAAAAAAAAGgBAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-24T08:44:17.191Z"
+              "WhenOpened": "2025-08-24T08:44:17.191Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "AttributesCharacter.cs",
               "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Character\\AttributesCharacter.cs",
               "RelativeDocumentMoniker": "Modules\\Character\\AttributesCharacter.cs",
               "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Character\\AttributesCharacter.cs",
               "RelativeToolTip": "Modules\\Character\\AttributesCharacter.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAAACgAAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAgwE4AAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-26T11:50:14.438Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "KDScript.cs",
               "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Character\\KDScript.cs",
               "RelativeDocumentMoniker": "Modules\\Character\\KDScript.cs",
@@ -147,7 +167,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "SetRepository.cs",
               "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Settings\\SetRepository.cs",
               "RelativeDocumentMoniker": "Modules\\Settings\\SetRepository.cs",
@@ -159,7 +179,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "MagicSpells.cs",
               "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\MagicSpells\\MagicSpells.cs",
               "RelativeDocumentMoniker": "Modules\\MagicSpells\\MagicSpells.cs",
@@ -172,7 +192,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "MagicSearch.cs",
               "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\MagicSpells\\MagicSearch.cs",
               "RelativeDocumentMoniker": "Modules\\MagicSpells\\MagicSearch.cs",
@@ -184,7 +204,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "CheckUpdate.cs",
               "DocumentMoniker": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\CheckUpdate.cs",
               "RelativeDocumentMoniker": "Modules\\CheckUpdate.cs",

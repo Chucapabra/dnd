@@ -137,21 +137,30 @@ namespace DNDHelper.Modules.Character
                         int index = Array.IndexOf(StatNameRus, baff.ToLower());
                         if (index != -1)
                         {
+                            int A = levelEffect.StandartStats[0][baff][0];
+                            int B = levelEffect.StandartStats[0][baff][1];
                             if (index < 25)
                             {
-                                EffectBaffs[index][0] += levelEffect.StandartStats[0][baff][0];
-                                EffectBaffs[index][1] += levelEffect.StandartStats[0][baff][1];
+                                EffectBaffs[index][0] += A;
+                                EffectBaffs[index][1] += B;
                             }
-                            else
-                            {
-                                EffectBaffs[index][0] += levelEffect.StandartStats[0][baff][0] + levelEffect.StandartStats[0][baff][1];
-                                if (index == 27)
-                                    EffectBaffs[26][0] += levelEffect.StandartStats[0][baff][0] + levelEffect.StandartStats[0][baff][1];
-                            }
+                            else if (index == 29)
+                                if (A < EffectBaffs[index][0])
+                                {
+                                    EffectBaffs[index][0] = A;
+
+                                }
+                                else
+                                {
+                                    EffectBaffs[index][0] += A + B;
+                                    if (index == 27)
+                                        EffectBaffs[26][0] += A + B;
+                                }
                         }
                     }
                 }
             }
+            Debug.WriteLine(Effects.EffectBaffs[29][0]);
             Main.Characteristics.UpdateAllCharacterisitc();
             AttributesCharacter.UpdateRolls();
             AttributesCharacter.StickMethod();
