@@ -23,36 +23,42 @@ namespace DNDHelper.Modules.Inventory
             SetArmor(main.armor_type_cb.SelectedIndex);
         }
 
+
+        public static int Agility = 0;
+        public static int Attack = 0;
+        public static int Block = 0;
+        public static int Dodge = 0;
+        public static int CounterAction = 0;
+
         public void SetArmor(int index)
         {
-            CharacteristicTable.OtherBaff(CharacteristicTable.StatName.Agility) = 0;
-            CharacteristicTable.OtherBaff(25) = 0;
-            CharacteristicTable.OtherBaff(26) = 0;
-            CharacteristicTable.OtherBaff(27) = 0;
-            CharacteristicTable.OtherBaff(28) = 0;
+            Agility = 0;
+            Attack = 0;
+            Block = 0;
+            Dodge = 0;
+            CounterAction = 0;
 
             switch (index)
             {
                 case 1:
-                    CharacteristicTable.OtherBaff(27) = 2;
+                    Dodge = 2;
                     break;
                 case 2:
-                    CharacteristicTable.OtherBaff(CharacteristicTable.StatName.Agility) = -4;
-                    CharacteristicTable.OtherBaff(25) = -2;
-                    CharacteristicTable.OtherBaff(26) = 2;
-                    CharacteristicTable.OtherBaff(28) = -2;
+                    Agility = -4;
+                    Attack = -2;
+                    Block = 2;
+                    CounterAction = -2;
                     break;
                 case 3:
-                    CharacteristicTable.OtherBaff(CharacteristicTable.StatName.Agility) = -8;
-                    CharacteristicTable.OtherBaff(25) = -4;
-                    CharacteristicTable.OtherBaff(26) = 4;
-                    CharacteristicTable.OtherBaff(27) = -8;
-                    CharacteristicTable.OtherBaff(28) = -4;
+                    Agility = -8;
+                    Attack = -4;
+                    Block = 4;
+                    Dodge = -8;
+                    CounterAction = -4;
                     break;
             }
 
-            AttributesCharacter.UpdateRolls();
-            Main.Characteristics.UpdateAllCharacterisitc();
+            GridCharacteristics.UpdateOtherDeBaff();
         }
     }
 }

@@ -1,6 +1,9 @@
-﻿using DNDHelper.Modules.Config;
+﻿using DNDHelper.Modules.Character;
+using DNDHelper.Modules.Config;
+using DNDHelper.Modules.Settings;
 using DNDHelper.Modules.Сharacteristics;
 using DNDHelper.Windows;
+using System.Windows.Media;
 using static DNDHelper.Modules.Inventory.InventoryLoot;
 
 namespace DNDHelper.Modules.Inventory
@@ -10,6 +13,8 @@ namespace DNDHelper.Modules.Inventory
         Main main = Main.Instance;
         public static int UsedItemWeight = 0;
 
+        public static int Attack = 0;
+        public static int Dodge = 0;
         public WeightScript()
         {
             main.backpack_plus_tb.TextChanged += Backpack_plus_tb_TextChanged;
@@ -50,6 +55,25 @@ namespace DNDHelper.Modules.Inventory
             int MaxWeight = (int)MathF.Round(((CharacteristicTable.Buffed(0) * 30) + Race.SelectedClassData.AddWeight + Backpack.AddWeight) * (float)Race.SelectedClassData.MultiplyWeight + addWeight + ItemBaffsListScript.ItemBaffs[31][0]);
             int remainedWeight = MaxWeight - UsedItemWeight;
             Main.Instance.сharacter_weight_textblock.Text = $"Вес: {remainedWeight}/{MaxWeight}";
+
+            CheckOverWeight(remainedWeight);
+        }
+
+        public static void CheckOverWeight(int remainedWeight)
+        {
+            Attack = 0;
+            Dodge = 0;
+
+            if (remainedWeight < 0)
+            {
+                Attack = -5;
+                Dodge = -5;
+                Main.Instance.сharacter_weight_textblock.Foreground = Brushes.Firebrick;
+            }
+            else
+                Main.Instance.сharacter_weight_textblock.Foreground = new SolidColorBrush(Settings.Settings.SelectedTheme[1]);
+
+            GridCharacteristics.UpdateOtherDeBaff();
         }
     }
 }

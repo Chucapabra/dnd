@@ -49,7 +49,7 @@
 				<MenuItem Header="Режим редактирования" IsCheckable="True" x:Name="EditMode_button" Click="EditMode_click"/>
 				<MenuItem Header="Настройки" Click="Settings_Click" x:Name="Settings_Button"/>
 				<MenuItem Header="Обновить конфиг" Click="UpdateConfingsInHands_Click"/>
-				<MenuItem Header="Проверить обновления"/>
+				<MenuItem Header="Проверить обновления" Click="CheckUpdate_Click"/>
 				<MenuItem Header="О программе" Click="About_Click"/>
 			</MenuItem>
 			<MenuItem Header="Ссылки">
@@ -151,31 +151,71 @@
 						<DataGridTextColumn Header="Урон" Binding="{Binding Damage}"/>
 					</DataGrid.Columns>
 				</DataGrid>
-				<TextBlock Text="Бафф к КД"/>
-				<TextBox materialDesign:HintAssist.Hint="Число" Margin="-68,10,0,0" Height="24" Width="40" x:Name="BaffKD_textbox" PreviewTextInput="BaffKD_textbox_PreviewTextInput"  DataObject.Pasting="BaffKD_textbox_Pasting" TextAlignment="Center"/>
 			</StackPanel>
 		</StackPanel>
-		<StackPanel x:Name="WorkProgam6" Visibility="Visible" Grid.Column="1" Margin="668,35,0,0">
-			<Border>
-				<DataGrid Width="160" HorizontalAlignment="Left" x:Name="DataGridStatusEffects"
-						  AutoGenerateColumns="False"
-						  CanUserAddRows="True"
-						  CanUserDeleteRows="False"
-						  CanUserReorderColumns="False"
-						  CanUserResizeRows="False"
-						  CanUserResizeColumns="False"
-						  CanUserSortColumns="False">
-					<DataGrid.Columns>
-						<DataGridComboBoxColumn Header="Эффект"
-					SelectedItemBinding="{Binding StatusEffect}"
-					x:Name="StatusEffect_column"/>
-						<DataGridComboBoxColumn Header="Уровень"
-					SelectedItemBinding="{Binding LevelEffect}"
-					x:Name="LevelEffect_column"/>
-					</DataGrid.Columns>
-				</DataGrid>
-			</Border>
-		</StackPanel>
+		 <StackPanel x:Name="WorkProgam6" Visibility="Visible" Grid.Column="1" Margin="653,35,0,0">
+     <DataGrid Width="184" HorizontalAlignment="Left" x:Name="DataGridStatusEffects" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Visibility="Hidden"
+					  AutoGenerateColumns="False"
+					  CanUserAddRows="False"
+					  CanUserDeleteRows="False"
+					  CanUserReorderColumns="False"
+					  CanUserResizeRows="False"
+					  CanUserResizeColumns="False"
+					  CanUserSortColumns="False" Height="95">
+         <DataGrid.Columns>
+             <DataGridTemplateColumn Width="100" Header=" Эффект">
+                 <DataGridTemplateColumn.CellTemplate>
+                     <DataTemplate>
+                         <ComboBox SelectionChanged="ComboBoxDataGridItemBaffsList_SelectionChanged" Text="{Binding SelectedEffect, UpdateSourceTrigger=PropertyChanged}">
+                             <ComboBoxItem Content="Кровотечение"/>
+                             <ComboBoxItem Content="Оглушение"/>
+                             <ComboBoxItem Content="Горение"/>
+                             <ComboBoxItem Content="Обморожение"/>
+                             <ComboBoxItem Content="Шок"/>
+                             <ComboBoxItem Content="Безумие"/>
+                             <ComboBoxItem Content="Усталость"/>
+                             <ComboBoxItem Content="Яд"/>
+                             <ComboBoxItem Content="Болевой шок"/>
+                             <ComboBoxItem Content="Ярость"/>
+                         </ComboBox>
+                     </DataTemplate>
+                 </DataGridTemplateColumn.CellTemplate>
+             </DataGridTemplateColumn>
+             <DataGridTemplateColumn Header="Уровень" Width="100">
+                 <DataGridTemplateColumn.CellTemplate>
+                     <DataTemplate>
+                         <Grid>
+                             <TextBlock Text="{Binding LevelString}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="-10,0,0,0"/>
+                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,0,0,0">
+                                 <Button Style="{DynamicResource MaterialDesignIconForegroundButton}" Width="12" Height="12" Margin="2" Click="AddCharacteristic_Click">
+                                     <TextBlock Text="+" Margin="0,-5,0,0" FontSize="16" />
+                                 </Button>
+                                 <Button Style="{DynamicResource MaterialDesignIconForegroundButton}" Width="12" Height="12" Margin="2" Click="SubtractCharacteristic_Click">
+                                     <TextBlock Text="-" Margin="0,-8,0,0" FontSize="22" />
+                                 </Button>
+                             </StackPanel>
+                         </Grid>
+                     </DataTemplate>
+                 </DataGridTemplateColumn.CellTemplate>
+             </DataGridTemplateColumn>
+         </DataGrid.Columns>
+         <DataGrid.RowStyle>
+             <Style TargetType="DataGridRow" >
+                 <Setter Property="Height" Value="40"/>
+                 <Setter Property="Margin" Value="0"/>
+                 <Setter Property="Padding" Value="0"/>
+                 <Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
+                 <Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
+             </Style>
+         </DataGrid.RowStyle>
+         <DataGrid.ColumnHeaderStyle>
+             <Style TargetType="DataGridColumnHeader">
+                 <Setter Property="Foreground" Value="{DynamicResource StandartForeColor}"/>
+                 <Setter Property="Background" Value="{DynamicResource StandartBackColor}"/>
+             </Style>
+         </DataGrid.ColumnHeaderStyle>
+     </DataGrid>
+ </StackPanel>
         <TextBlock x:Name="сharacter_weight_textblock" Visibility="Visible" Text="Вес: 0/0" Grid.Column="1" VerticalAlignment="Bottom" Margin="0,0,0,0"/>
 		<TextBlock Text="13.0  " x:Name="VersionTextBlock" Height="18" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" Margin="0,13,0,89" RenderTransformOrigin="0.457,3.169"/>
 
@@ -337,7 +377,7 @@
 						</DataGrid>
 					</Border>
 					<Border Grid.Row="1">
-						<TextBox x:Name="DescriptionTextBox" materialDesign:HintAssist.Hint="Описание" TextWrapping="Wrap" AcceptsReturn="True" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"/>
+						<TextBox x:Name="DescriptionTextBox" materialDesign:HintAssist.Hint="Описание" TextWrapping="Wrap" AcceptsReturn="True" VerticalContentAlignment="Top" HorizontalContentAlignment="Left" MaxLength="10000"/>
 					</Border>
 					<Border Grid.Row="1" Grid.Column="1">
 						<DataGrid x:Name="DataGridItemBaffsList" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
@@ -750,8 +790,8 @@
 							  CanUserSortColumns="False" Margin="0,42,0,0">
 						<DataGrid.ContextMenu>
 							<ContextMenu>
-								<MenuItem x:Name="AddCustomSpellCurrent" Header="Добавить"/>
-								<MenuItem x:Name="DeleteCustomSpellCurrent" Header="Удалить"/>
+								<MenuItem x:Name="AddCustomSpellCurrent" Header="Добавить" Visibility="Collapsed"/>
+								<MenuItem x:Name="DeleteCustomSpellCurrent" Header="Удалить" Visibility="Collapsed"/>
 								<MenuItem x:Name="MoveSpellCurrent" Header="Переместить вправо"/>
 							</ContextMenu>
 						</DataGrid.ContextMenu>

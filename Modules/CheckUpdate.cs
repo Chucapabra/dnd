@@ -12,7 +12,7 @@ namespace DND
 {
     internal class CheckUpdate
     {
-        public static async Task Check()
+        public static async Task Check(bool check = false)
         {
             string[] path = Assembly.GetExecutingAssembly().Location.Split('\\');
             string PathGlobal = string.Join("\\", path, 0, path.Count() - 2);
@@ -60,10 +60,13 @@ namespace DND
                             MessageBox.Show("Ошибка запуска приложения", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                     }
+                    else if (check)
+                        MessageBox.Show("Уже установлена последняя версия");
                 }
                 catch (HttpRequestException e)
                 {
-
+                    if (check)
+                        MessageBox.Show($"Ошибка подключения: {e}");
                 }
             }
 

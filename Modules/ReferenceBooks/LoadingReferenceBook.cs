@@ -1,4 +1,5 @@
 ﻿using DNDHelper.Windows;
+using Microsoft.Web.WebView2.Core;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -34,6 +35,13 @@ namespace DNDHelper.Modules.ReferenceBooks
 			main.LoadingIcon.Visibility = Visibility.Visible;
 		}
 
+		public async void InitializeWebView()
+		{
+			var options = new CoreWebView2EnvironmentOptions();
+			options.AdditionalBrowserArguments = " --no-proxy-server";
+			CoreWebView2Environment environment = await CoreWebView2Environment.CreateAsync(null, null, options);
+			await main.ReferenceBook.EnsureCoreWebView2Async(environment);
+		}
 
 		private void ListBoxUrls_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{

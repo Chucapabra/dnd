@@ -1,19 +1,26 @@
 ﻿using DNDHelper.Windows;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Media;
+using static DNDHelper.Modules.Character.Skills;
 
 namespace DNDHelper.Modules.MagicSpells
 {
 	internal class MagicSearch
 	{
 		private static Main main = Main.Instance;
+		private static int rollSortState = 0;
+		private static string currentSortMember = null;
 		public MagicSearch()
 		{
 			main.CastSearch_textbox.TextChanged += CastSearch_textbox_TextChanged;
@@ -23,9 +30,42 @@ namespace DNDHelper.Modules.MagicSpells
 			main.Roll_Search_cb.SelectionChanged += SelectionChanged;
 			main.LevelCast_Search_cb.SelectionChanged += SelectionChanged;
             main.NatureCast_Search_cb.Click += NatureCast_Search_cb_Checked;
+			main.DataGridCurrentSpells.Sorting += DataGridCurrentSpells_Sorting;
+			main.DataGridAllSpells.Sorting += DataGridAllSpells_Sorting;
 		}
 
-        private static List<Cast> filtersSpellAll = new List<Cast>();
+		private void DataGridAllSpells_Sorting(object sender, System.Windows.Controls.DataGridSortingEventArgs e)
+		{
+			//e.Handled = true;
+
+			//var grid = (System.Windows.Controls.DataGrid)sender;
+
+
+			//if (currentSortMember != e.Column.SortMemberPath)
+			//{
+			//	currentSortMember = e.Column.SortMemberPath;
+			//	rollSortState = 0;
+			//}
+
+			//rollSortState = (rollSortState == 1) ? 2 : 1;
+
+			//foreach (var c in grid.Columns)
+			//	if (!ReferenceEquals(c, e.Column))
+			//		c.SortDirection = null;
+
+			//e.Column.SortDirection = (rollSortState == 1)
+			//	? ListSortDirection.Ascending
+			//	: ListSortDirection.Descending;
+
+			//CastsFilter();
+		}
+
+		private void DataGridCurrentSpells_Sorting(object sender, System.Windows.Controls.DataGridSortingEventArgs e)
+		{
+			//DataGridAllSpells_Sorting(sender, e);
+		}
+
+		private static List<Cast> filtersSpellAll = new List<Cast>();
 
 		public static void CastsFilter()
 		{
@@ -51,11 +91,21 @@ namespace DNDHelper.Modules.MagicSpells
 					MagicSpells.CurrentCasts.Add(filter);
 				else
 					MagicSpells.CurrentAllCasts.Add(filter);
+
+
 		}
 
 		private static void FilterName()
 		{
 			filtersSpellAll = filtersSpellAll.Where((x) => x.SpellName.ToLower().Contains(main.CastSearch_textbox.Text.ToLower())).ToList();
+		
+			//if (currentSortMember == nameof(Cast.SpellName))
+			//{
+			//	if (rollSortState == 1)
+			//		filtersSpellAll = filtersSpellAll.OrderBy(x => x.SpellName).ToList();
+			//	else if (rollSortState == 2)
+			//		filtersSpellAll = filtersSpellAll.OrderByDescending(x => x.SpellName).ToList();
+			//}
 		}
 		private static void FilterType()
 		{
@@ -64,8 +114,17 @@ namespace DNDHelper.Modules.MagicSpells
 		}
 		private static void FilterSchool()
 		{
+
 			if (main.SchoolSelect_Search_cb.SelectedIndex != 0)
 				filtersSpellAll = filtersSpellAll.Where((x) => x.SpellSchool == MagicSpells.NumberToSchool((main.SchoolSelect_Search_cb.SelectedIndex - 1).ToString())).ToList();
+
+			//if (currentSortMember == nameof(Cast.SpellSchool))
+			//{
+			//	if (rollSortState == 1)
+			//		filtersSpellAll = filtersSpellAll.OrderBy(x => x.SpellSchool).ToList();
+			//	else if (rollSortState == 2)
+			//		filtersSpellAll = filtersSpellAll.OrderByDescending(x => x.SpellSchool).ToList();
+			//}
 		}
 		private static void FilterDamage()
 		{
@@ -73,26 +132,53 @@ namespace DNDHelper.Modules.MagicSpells
 				return;
 
 			if (main.Damage_Search_cb.SelectedIndex == 1)
-				filtersSpellAll = filtersSpellAll.Where((x) => x.SpellDamage > 0).ToList();
+				filtersSpellAll = filtersSpellAll.Where(x => x.SpellDamage > 0).ToList();
 			else if (main.Damage_Search_cb.SelectedIndex == 2)
-				filtersSpellAll = filtersSpellAll.Where((x) => x.SpellDamage == 0).ToList();
+				filtersSpellAll = filtersSpellAll.Where(x => x.SpellDamage == 0).ToList();
+
+			//if (currentSortMember == nameof(Cast.SpellDamage))
+			//{
+			//	if (rollSortState == 1)
+			//		filtersSpellAll = filtersSpellAll.OrderBy(x => x.SpellDamage).ToList();
+			//	else if (rollSortState == 2)
+			//		filtersSpellAll = filtersSpellAll.OrderByDescending(x => x.SpellDamage).ToList();
+			//}
 		}
 		private static void FilterRoll()
 		{
 			if (main.Roll_Search_cb.SelectedIndex != 0)
+			{
 				if (main.Roll_Search_cb.SelectedIndex == 1)
-					filtersSpellAll = filtersSpellAll.Where((x) => 0 < x.SpellRoll).ToList();
+					filtersSpellAll = filtersSpellAll.Where(x => x.SpellRoll > 0).ToList();
 				else if (main.Roll_Search_cb.SelectedIndex == 2)
-					filtersSpellAll = filtersSpellAll.Where((x) => 0 > x.SpellRoll).ToList();
+					filtersSpellAll = filtersSpellAll.Where(x => x.SpellRoll < 0).ToList();
 				else if (main.Roll_Search_cb.SelectedIndex == 3)
-					filtersSpellAll = filtersSpellAll.Where((x) => 0 == x.SpellRoll).ToList();
+					filtersSpellAll = filtersSpellAll.Where(x => x.SpellRoll == 0).ToList();
+			}
+
+			//if (currentSortMember == nameof(Cast.SpellRoll))
+			//{
+			//	if (rollSortState == 1)
+			//		filtersSpellAll = filtersSpellAll.OrderBy(x => x.SpellRoll).ToList();
+			//	else if (rollSortState == 2)
+			//		filtersSpellAll = filtersSpellAll.OrderByDescending(x => x.SpellRoll).ToList();
+			//}
 
 
 		}
 		private static void FilterLevel()
 		{
+
 			if (main.LevelCast_Search_cb.SelectedIndex != 0)
 				filtersSpellAll = filtersSpellAll.Where((x) => x.SpellLevel == (main.LevelCast_Search_cb.SelectedIndex - 1).ToString()).ToList();
+
+			//if (currentSortMember == nameof(Cast.SpellLevel))
+			//{
+			//	if (rollSortState == 1)
+			//		filtersSpellAll = filtersSpellAll.OrderBy(x => x.SpellLevel).ToList();
+			//	else if (rollSortState == 2)
+			//		filtersSpellAll = filtersSpellAll.OrderByDescending(x => x.SpellLevel).ToList();
+			//}
 		}
 
 		private static void FilterNature()

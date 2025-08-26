@@ -54,9 +54,9 @@ namespace DNDHelper.Windows
 			string[] _pathMain = Assembly.GetExecutingAssembly().Location.Split('\\');
             PathMain = string.Join("\\", _pathMain, 0, _pathMain.Count() - 1) + "\\";
 
-            CheckUpdate.Check();
 			DataManager.FindPathSaves();
 			InitializeComponent();
+
 			string pathVersion = string.Join("\\", _pathMain, 0, _pathMain.Count() - 2) + "\\Version.txt";
 			string version = File.ReadAllText(pathVersion);
 			VersionTextBlock.Text = version + "  ";	
@@ -67,10 +67,17 @@ namespace DNDHelper.Windows
 			Resources["StandartForeColor"] = new SolidColorBrush(DarkThem.SelectedTheme[1]);
             Closed += Main_Closed;
 
-            DataManager.WorkingProgram(false);
-        }
+#if !DEBUG
+						            CheckUpdate.Check();
+						DataManager.WorkingProgram(false);
 
-        private void Main_Closed(object? sender, EventArgs e)
+#endif
+#if DEBUG
+			DataManager.WorkingProgram(true);
+			#endif
+		}
+
+		private void Main_Closed(object? sender, EventArgs e)
         {
 			DataManager.Save(true);
         }
@@ -80,8 +87,8 @@ namespace DNDHelper.Windows
 			Instance = this;
 			SavesMenu savesMenu = new SavesMenu();
 			DataContext = DataManager.DataSave;
-
-			
+			LoadingReferenceBook referenceBook = new LoadingReferenceBook();
+			referenceBook.InitializeWebView();
 			Race @class = new();
 			PlayerClass playerClass = new();
 			ItemBaffsListScript = new();
@@ -96,6 +103,7 @@ namespace DNDHelper.Windows
 			MagicSearch magicSearch = new MagicSearch();
             TypeArmorBaffs typeArmorBaffs = new();
 			LoadingReferenceBook listBoxUrls = new();
+            Effects effects = new Effects();
 
 
             WeightScript weightScript = new WeightScript();
@@ -111,6 +119,10 @@ namespace DNDHelper.Windows
 			Resources["StandartForeColor"] = new SolidColorBrush(Foreground);
 		}
         // Меню
+        private void CheckUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            CheckUpdate.Check(true);
+        }
         private void UpdateConfingsInHands_Click(object sender, RoutedEventArgs e)
         {
 			SetRepository.FileСonnection(true);
@@ -319,10 +331,6 @@ namespace DNDHelper.Windows
 			e.Handled = true;
 		}
 
-		private void BaffKD_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
-		{
-			TextboxProcessing.WholeNumbersOnly(BaffKD_textbox, e);
-		}
 		private void BaffKD_textbox_Pasting(object sender, DataObjectPastingEventArgs e)
 		{
 			e.CancelCommand();

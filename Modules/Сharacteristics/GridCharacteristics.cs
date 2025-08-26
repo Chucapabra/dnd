@@ -200,10 +200,22 @@ namespace DNDHelper.Modules.Сharacteristics
             DataGridChar[index].Roll = CalculateRoll(index);
             FindAVariableCharacteristic(index);
         }
-       
+
         static public int CalculateRoll(int setCharIndex)
         {
             return (int)MathF.Floor((float)((Buffed(setCharIndex) - 10) * 0.5) + Race.Stats[setCharIndex].Roll + PlayerClass.Stats[setCharIndex].Roll + TreeSkills.Stats[setCharIndex].Roll + ItemBaffsListScript.ItemBaffs[setCharIndex][1]);
+        }
+
+        static public void UpdateOtherDeBaff()
+        {
+            OtherBaff(Agility) = TypeArmorBaffs.Agility;
+            OtherBaff(25) = TypeArmorBaffs.Attack + WeightScript.Attack;
+            OtherBaff(26) = TypeArmorBaffs.Block;
+            OtherBaff(27) = TypeArmorBaffs.Dodge + WeightScript.Dodge;
+            OtherBaff(28) = TypeArmorBaffs.CounterAction;
+
+            AttributesCharacter.UpdateRolls();
+            Main.Characteristics.UpdateCharacterisitc(Agility);
         }
 
         // Методы характеристик
@@ -246,7 +258,7 @@ namespace DNDHelper.Modules.Сharacteristics
 
             KDScript.CountMentalKD();
 
-            if(PlayerClass.SelectedClassData.CharacteristicMagic.ToLower() == "и")
+            if (PlayerClass.SelectedClassData.CharacteristicMagic.ToLower() == "и")
                 PlayerClass.UpdateCharacteristicMagic();
         }
 

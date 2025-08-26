@@ -1,0 +1,334 @@
+{
+  "Кровотечение": {
+    "0": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "647"
+      }
+    ],
+    "1": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "207"
+      }
+    ],
+    "2": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "445"
+      }
+    ]
+  },
+  "Оглушение": {
+    "0": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "611"
+      }
+    ],
+    "1": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "18"
+      }
+    ],
+    "2": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "840"
+      }
+    ],
+    "3": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "827"
+      }
+    ]
+  },
+  "Горение": {
+    "0": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "364"
+      }
+    ],
+    "1": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "204"
+      }
+    ],
+    "2": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "392"
+      }
+    ],
+    "3": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "2"
+      }
+    ]
+  },
+  "Обморожение": {
+    "0": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "765"
+      }
+    ],
+    "1": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "438"
+      }
+    ],
+    "2": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "640"
+      }
+    ],
+    "3": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "718"
+      }
+    ]
+  },
+  "Шок": {
+    "0": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "905"
+      }
+    ],
+    "1": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "950"
+      }
+    ],
+    "2": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "135"
+      }
+    ],
+    "3": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "496"
+      }
+    ]
+  },
+  "Безумие": {
+    "0": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "676"
+      }
+    ],
+    "1": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "109"
+      }
+    ],
+    "2": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "565"
+      }
+    ],
+    "3": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "667"
+      }
+    ]
+  },
+  "Усталость": {
+    "0": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "363"
+      }
+    ],
+    "1": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "378"
+      }
+    ],
+    "2": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "247"
+      }
+    ],
+    "3": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "301"
+      }
+    ]
+  },
+  "Яд": {
+    "0": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "927"
+      }
+    ],
+    "1": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "592"
+      }
+    ],
+    "2": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "566"
+      }
+    ],
+    "3": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "806"
+      }
+    ]
+  },
+  "Болевой шок": {
+    "0": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "974"
+      }
+    ],
+    "1": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "25"
+      }
+    ],
+    "2": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "550"
+      }
+    ],
+    "3": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "462"
+      }
+    ]
+  },
+  "Ярость": {
+    "0": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "727"
+      }
+    ],
+    "1": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "900"
+      }
+    ],
+    "2": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "517"
+      }
+    ],
+    "3": [
+      {
+        "StandartStats": [
+          {}
+        ],
+        "ToolTip": "958"
+      }
+    ]
+  }
+}

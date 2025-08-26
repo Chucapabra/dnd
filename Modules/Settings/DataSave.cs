@@ -34,80 +34,80 @@ namespace DNDHelper.Modules.Settings
 
         private int SelectedIndex = -1;
 
-		public SavesMenu()
+        public SavesMenu()
         {
             main.AddCharacter.Click += AddCharacter_Click;
-			main.ImageIconCharacter.MouseLeftButtonDown += ImageIconCharacter_MouseLeftButtonDown;
-			main.ImageCharacter.MouseLeftButtonDown += ImageCharacter_MouseLeftButtonDown;
+            main.ImageIconCharacter.MouseLeftButtonDown += ImageIconCharacter_MouseLeftButtonDown;
+            main.ImageCharacter.MouseLeftButtonDown += ImageCharacter_MouseLeftButtonDown;
         }
 
-		private void ImageCharacter_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-		{
-            SaveImage();
-		}
-
-		private void SaveImage()
+        private void ImageCharacter_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-			OpenFileDialog LoadImageCharacter = new()
-			{
-				Filter = "Изображения (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg"
-			};
-
-			if (LoadImageCharacter.ShowDialog() == true)
-			{
-				try
-				{
-					string fileExtension = Path.GetExtension(LoadImageCharacter.FileName).ToLower();
-					var formats = new[] { ".png", ".jpg", ".jpeg" };
-					foreach (var format in formats)
-					{
-						var oldFile = Path.Combine(DataManager.SelectedSave, $"image{format}");
-						if (File.Exists(oldFile))
-							File.Delete(oldFile);
-					}
-					if (!Directory.Exists(DataManager.SelectedSave))
-						Directory.CreateDirectory(DataManager.SelectedSave);
-
-					string destinationPath = Path.Combine(DataManager.SelectedSave, $"image{fileExtension}");
-					File.Copy(LoadImageCharacter.FileName, destinationPath, true);
-
-					byte[] imageBytes = File.ReadAllBytes(destinationPath);
-					using (MemoryStream ms = new(imageBytes))
-					{
-						BitmapImage bitmap = new();
-						bitmap.BeginInit();
-						bitmap.CacheOption = BitmapCacheOption.OnLoad;
-						bitmap.StreamSource = ms;
-						bitmap.EndInit();
-						bitmap.Freeze(); 
-
-						main.ImageCharacter.Source = bitmap;
-					}
-
-					main.ImageIconCharacter.Visibility = Visibility.Collapsed;
-					main.ImageCharacter.Visibility = Visibility.Visible;
-
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show("Ошибка загрузки изображения: " + ex.Message);
-				}
-			}
-		}
-		private void ImageIconCharacter_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-		{
             SaveImage();
-		}
+        }
 
-		private void AddCharacter_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void SaveImage()
         {
-			DataManager.Create();
+            OpenFileDialog LoadImageCharacter = new()
+            {
+                Filter = "Изображения (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg"
+            };
+
+            if (LoadImageCharacter.ShowDialog() == true)
+            {
+                try
+                {
+                    string fileExtension = Path.GetExtension(LoadImageCharacter.FileName).ToLower();
+                    var formats = new[] { ".png", ".jpg", ".jpeg" };
+                    foreach (var format in formats)
+                    {
+                        var oldFile = Path.Combine(DataManager.SelectedSave, $"image{format}");
+                        if (File.Exists(oldFile))
+                            File.Delete(oldFile);
+                    }
+                    if (!Directory.Exists(DataManager.SelectedSave))
+                        Directory.CreateDirectory(DataManager.SelectedSave);
+
+                    string destinationPath = Path.Combine(DataManager.SelectedSave, $"image{fileExtension}");
+                    File.Copy(LoadImageCharacter.FileName, destinationPath, true);
+
+                    byte[] imageBytes = File.ReadAllBytes(destinationPath);
+                    using (MemoryStream ms = new(imageBytes))
+                    {
+                        BitmapImage bitmap = new();
+                        bitmap.BeginInit();
+                        bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                        bitmap.StreamSource = ms;
+                        bitmap.EndInit();
+                        bitmap.Freeze();
+
+                        main.ImageCharacter.Source = bitmap;
+                    }
+
+                    main.ImageIconCharacter.Visibility = Visibility.Collapsed;
+                    main.ImageCharacter.Visibility = Visibility.Visible;
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка загрузки изображения: " + ex.Message);
+                }
+            }
+        }
+        private void ImageIconCharacter_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            SaveImage();
+        }
+
+        private void AddCharacter_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            DataManager.Create();
         }
 
     }
 
     public static class DataManager
-    {   
+    {
         private static string pathSaves = "Saves/";
 
         public static string SelectedSave = "";
@@ -143,9 +143,9 @@ namespace DNDHelper.Modules.Settings
 
         public static void ReadSaves()
         {
-			if (!Directory.Exists(pathSaves))
-				Directory.CreateDirectory(pathSaves);
-			string[] allfolders = Directory.GetDirectories(pathSaves);
+            if (!Directory.Exists(pathSaves))
+                Directory.CreateDirectory(pathSaves);
+            string[] allfolders = Directory.GetDirectories(pathSaves);
             List<string> savefolders = new();
             foreach (string folder in allfolders)
             {
@@ -245,12 +245,12 @@ namespace DNDHelper.Modules.Settings
             if (SelectedSave.Length == 0 || IsLoad)
                 return;
 
-            if(!Force)
-            _debouncer.ExecuteDebounced(async () =>
-            {
-                save();
-                ReadSaves();
-            });
+            if (!Force)
+                _debouncer.ExecuteDebounced(async () =>
+                {
+                    save();
+                    ReadSaves();
+                });
             else
                 ForceSaveDataAsync();
         }
@@ -258,7 +258,7 @@ namespace DNDHelper.Modules.Settings
         private static void ForceSaveDataAsync()
         {
             _debouncer.Reset();
-            save();        
+            save();
         }
 
         private static void save()
@@ -273,7 +273,7 @@ namespace DNDHelper.Modules.Settings
             Debug.WriteLine($"{SelectedSave}/Config.json");
             var json = JsonSerializer.Serialize(DataSave, options);
 
-            File.WriteAllText($"{SelectedSave}/Config.json", json);    
+            File.WriteAllText($"{SelectedSave}/Config.json", json);
         }
         private static void Load_Click(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -283,12 +283,12 @@ namespace DNDHelper.Modules.Settings
 
         public static void Load(string path)
         {
-            if(SelectedSave.Length > 0) Save(true);
+            if (SelectedSave.Length > 0) Save(true);
 
 
             IsLoad = true;
 
-			SelectedSave = path;
+            SelectedSave = path;
 
             var json = File.ReadAllText($"{SelectedSave}/Config.json");
 
@@ -300,7 +300,7 @@ namespace DNDHelper.Modules.Settings
 
             WorkingProgram(true);
 
-			DataSave.Name = dataSave.Name;
+            DataSave.Name = dataSave.Name;
             DataSave.SelectedRace = dataSave.SelectedRace;
             DataSave.SelectedClass = dataSave.SelectedClass;
             DataSave.AddWeight = dataSave.AddWeight;
@@ -345,58 +345,62 @@ namespace DNDHelper.Modules.Settings
             Level.SetLevel();
             Main.ItemBaffsListScript.UpdateValues();
             DiaryManager.LoadNotes();
-			//ManagerUrls.LoadUrls();
-			var formats = new[] { ".png", ".jpg", ".jpeg" };
-			string imagePath = null;
-
-			foreach (var format in formats)
-			{
-				var currentPath = Path.Combine(SelectedSave, $"image{format}");
-				if (File.Exists(currentPath))
-				{
-					imagePath = currentPath;
-					break;
-				}
-			}
-
-			if (!string.IsNullOrEmpty(imagePath))
-			{
-				try
-				{
-					byte[] imageBytes = File.ReadAllBytes(imagePath);
-					using (MemoryStream ms = new(imageBytes))
-					{
-						BitmapImage bitmap = new();
-						bitmap.BeginInit();
-						bitmap.CacheOption = BitmapCacheOption.OnLoad;
-						bitmap.StreamSource = ms;
-						bitmap.EndInit();
-						bitmap.Freeze();
-
-						Main.Instance.ImageCharacter.Source = bitmap;
-					}
-
-					Main.Instance.ImageIconCharacter.Visibility = Visibility.Collapsed;
-					Main.Instance.ImageCharacter.Visibility = Visibility.Visible;
-				}
-				catch (Exception ex)
-				{
-					MessageBox.Show("Ошибка загрузки изображения: " + ex.Message);
-				}
-			}
-			else
-			{
-				Main.Instance.ImageCharacter.Source = null;
-				Main.Instance.ImageIconCharacter.Visibility = Visibility.Visible;
-				Main.Instance.ImageCharacter.Visibility = Visibility.Collapsed;
-			}
-			Main.Instance.diaryTB.Document.Blocks.Clear();
-
+            LoadImage();
+            Main.Instance.diaryTB.Document.Blocks.Clear();
             SetRepository.FileСonnection();
 
             IsLoad = false;
 
             PlayerClass.UpdateCharacteristicMagic();
+            WeightScript.CountWeightItems();
+        }
+
+        private static void LoadImage()
+        {
+            var formats = new[] { ".png", ".jpg", ".jpeg" };
+            string imagePath = null;
+
+            foreach (var format in formats)
+            {
+                var currentPath = Path.Combine(SelectedSave, $"image{format}");
+                if (File.Exists(currentPath))
+                {
+                    imagePath = currentPath;
+                    break;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(imagePath))
+            {
+                try
+                {
+                    byte[] imageBytes = File.ReadAllBytes(imagePath);
+                    using (MemoryStream ms = new(imageBytes))
+                    {
+                        BitmapImage bitmap = new();
+                        bitmap.BeginInit();
+                        bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                        bitmap.StreamSource = ms;
+                        bitmap.EndInit();
+                        bitmap.Freeze();
+
+                        Main.Instance.ImageCharacter.Source = bitmap;
+                    }
+
+                    Main.Instance.ImageIconCharacter.Visibility = Visibility.Collapsed;
+                    Main.Instance.ImageCharacter.Visibility = Visibility.Visible;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка загрузки изображения: " + ex.Message);
+                }
+            }
+            else
+            {
+                Main.Instance.ImageCharacter.Source = null;
+                Main.Instance.ImageIconCharacter.Visibility = Visibility.Visible;
+                Main.Instance.ImageCharacter.Visibility = Visibility.Collapsed;
+            }
         }
 
     }
@@ -410,7 +414,7 @@ namespace DNDHelper.Modules.Settings
             get => _selectedRepository;
             set
             {
-                _selectedRepository = value;     
+                _selectedRepository = value;
                 OnPropertyChanged();
             }
         }
