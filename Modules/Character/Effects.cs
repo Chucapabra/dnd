@@ -144,18 +144,15 @@ namespace DNDHelper.Modules.Character
                                 EffectBaffs[index][0] += A;
                                 EffectBaffs[index][1] += B;
                             }
-                            else if (index == 29)
-                                if (A < EffectBaffs[index][0])
-                                {
-                                    EffectBaffs[index][0] = A;
-
-                                }
-                                else
-                                {
-                                    EffectBaffs[index][0] += A + B;
-                                    if (index == 27)
-                                        EffectBaffs[26][0] += A + B;
-                                }
+                            else if (index != 29)
+                            {
+                                EffectBaffs[index][0] += A + B;
+                                if (index == 27)
+                                    EffectBaffs[26][0] += A + B;
+                            }
+                            else
+                                if (A < EffectBaffs[index][0] || EffectBaffs[index][0] == 0)
+                                EffectBaffs[index][0] = A;
                         }
                     }
                 }

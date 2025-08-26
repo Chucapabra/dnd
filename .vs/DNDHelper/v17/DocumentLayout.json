@@ -85,8 +85,7 @@
               "OverriddenGroupName": "Windows",
               "OverriddenToolTip": "Windows/Main.xaml",
               "WhenOpened": "2025-08-24T07:22:48.946Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -96,7 +95,7 @@
               "RelativeDocumentMoniker": "Modules\\Character\\Effects.cs",
               "ToolTip": "D:\\profile\\mydocs\\GitHub\\dnd\\Modules\\Character\\Effects.cs",
               "RelativeToolTip": "Modules\\Character\\Effects.cs",
-              "ViewState": "AgIAAIYAAAAAAAAAAAAYwJYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAIYAAAAAAAAAAAAYwJsAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-26T16:04:01.255Z",
               "EditorCaption": ""
@@ -111,8 +110,7 @@
               "RelativeToolTip": "Modules\\Character\\TreeSkills.cs",
               "ViewState": "AgIAAD0AAAAAAAAAAAAcwE8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-26T13:29:30.157Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-26T13:29:30.157Z"
             },
             {
               "$type": "Document",
@@ -124,8 +122,7 @@
               "RelativeToolTip": "Modules\\\u0421haracteristics\\GridCharacteristics.cs",
               "ViewState": "AgIAAL0AAAAAAAAAAADwv8oAAABYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-26T10:25:25.574Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-26T10:25:25.574Z"
             },
             {
               "$type": "Document",
@@ -137,8 +134,7 @@
               "RelativeToolTip": "Modules\\Settings\\DataSave.cs",
               "ViewState": "AgIAAFABAAAAAAAAAAAAAGgBAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-24T08:44:17.191Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-24T08:44:17.191Z"
             },
             {
               "$type": "Document",
@@ -150,8 +146,7 @@
               "RelativeToolTip": "Modules\\Character\\AttributesCharacter.cs",
               "ViewState": "AgIAAD4AAAAAAAAAAAAgwE4AAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-26T11:50:14.438Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-26T11:50:14.438Z"
             },
             {
               "$type": "Document",
