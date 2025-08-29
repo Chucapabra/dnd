@@ -80,7 +80,10 @@ namespace DNDHelper.Modules.Character
         {
             int selectedIndex = main.DataGridStatusEffects.SelectedIndex;
             if (selectedIndex != -1)
+            {
                 effectsList.RemoveAt(selectedIndex);
+                UpdateLevelEffect();
+            }
         }
 
         private void AddEffect_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -120,44 +123,42 @@ namespace DNDHelper.Modules.Character
 
         public static void UpdateLevelEffect()
         {
-            if (data == null)
-                return;
-
             ClearItemBaffs();
 
-            foreach (var item in effectsList)
-            {
-                string nameEffect = item.SelectedEffect;
-                if (nameEffect != null)
+            if (data != null)
+                foreach (var item in effectsList)
                 {
-                    var effect = data[nameEffect];
-                    var levelEffect = effect[item.Level][0];
-                    foreach (var baff in levelEffect.StandartStats[0].Keys)
+                    string nameEffect = item.SelectedEffect;
+                    if (nameEffect != null)
                     {
-                        int index = Array.IndexOf(StatNameRus, baff.ToLower());
-                        if (index != -1)
+                        var effect = data[nameEffect];
+                        var levelEffect = effect[item.Level][0];
+                        foreach (var baff in levelEffect.StandartStats[0].Keys)
                         {
-                            int A = levelEffect.StandartStats[0][baff][0];
-                            int B = levelEffect.StandartStats[0][baff][1];
-                            if (index < 25)
+                            int index = Array.IndexOf(StatNameRus, baff.ToLower());
+                            if (index != -1)
                             {
-                                EffectBaffs[index][0] += A;
-                                EffectBaffs[index][1] += B;
+                                int A = levelEffect.StandartStats[0][baff][0];
+                                int B = levelEffect.StandartStats[0][baff][1];
+                                if (index < 25)
+                                {
+                                    EffectBaffs[index][0] += A;
+                                    EffectBaffs[index][1] += B;
+                                }
+                                else if (index != 29)
+                                {
+                                    EffectBaffs[index][0] += A + B;
+                                    if (index == 27)
+                                        EffectBaffs[26][0] += A + B;
+                                }
+                                else
+                                    if (A < EffectBaffs[index][0] || EffectBaffs[index][0] == 0)
+                                    EffectBaffs[index][0] = A;
                             }
-                            else if (index != 29)
-                            {
-                                EffectBaffs[index][0] += A + B;
-                                if (index == 27)
-                                    EffectBaffs[26][0] += A + B;
-                            }
-                            else
-                                if (A < EffectBaffs[index][0] || EffectBaffs[index][0] == 0)
-                                EffectBaffs[index][0] = A;
                         }
                     }
                 }
-            }
-            Debug.WriteLine(Effects.EffectBaffs[29][0]);
+            Debug.WriteLine(EffectBaffs[29][0]);
             Main.Characteristics.UpdateAllCharacterisitc();
             AttributesCharacter.UpdateRolls();
             AttributesCharacter.StickMethod();

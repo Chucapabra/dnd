@@ -797,7 +797,7 @@
 							  CanUserResizeColumns="False"
 							  IsReadOnly="True"
 							  Grid.RowSpan="3"
-							  CanUserSortColumns="False" Margin="0,42,0,0">
+							  CanUserSortColumns="True" Margin="0,42,0,0">
 						<DataGrid.ContextMenu>
 							<ContextMenu>
 								<MenuItem x:Name="AddCustomSpellCurrent" Header="Добавить" Visibility="Collapsed"/>
@@ -861,7 +861,7 @@
 							  CanUserReorderColumns="False"
 							  CanUserResizeRows="False"
 							  CanUserResizeColumns="False"
-							  CanUserSortColumns="False" Grid.ColumnSpan="2"
+							  CanUserSortColumns="True" Grid.ColumnSpan="2"
 							  IsReadOnly="True"
 							  SelectionUnit="FullRow"
 							  Visibility="{DynamicResource IsEdit}" Margin="0,42,0,0" Grid.RowSpan="2">

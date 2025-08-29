@@ -377,10 +377,14 @@ namespace DNDHelper.Modules.MagicSpells
 				return;
 
 			int indexAllCast = main.DataGridAllSpells.SelectedIndex;
-			CurrentCastsNames.Add(CurrentAllCasts[indexAllCast].SpellName);
-            CurrentCasts.Add(CurrentAllCasts[indexAllCast]);
+            var cast = main.DataGridAllSpells.Items[indexAllCast] as Cast;
 
-            CurrentAllCasts.RemoveAt(indexAllCast);
+            CurrentCastsNames.Add(cast.SpellName);
+            CurrentCasts.Add(cast);
+
+            CurrentAllCasts.Remove(cast);
+
+            MagicSearch.CastsFilter();
         }
 
         private void MoveSpellCurrent_Click(object sender, RoutedEventArgs e)
@@ -389,11 +393,13 @@ namespace DNDHelper.Modules.MagicSpells
                 return;
 
             int indexCast = main.DataGridCurrentSpells.SelectedIndex;
+			var cast = main.DataGridCurrentSpells.Items[indexCast] as Cast;
 
-            CurrentAllCasts.Add(CurrentCasts[indexCast]);
+            CurrentAllCasts.Add(cast);
 
-            CurrentCastsNames.RemoveAt(indexCast);
-            CurrentCasts.RemoveAt(indexCast);
+            CurrentCastsNames.Remove(cast.SpellName);
+            CurrentCasts.Remove(cast);
+
 			MagicSearch.CastsFilter();
         }
 
