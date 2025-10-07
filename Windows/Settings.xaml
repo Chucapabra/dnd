@@ -43,7 +43,7 @@
 			</TabItem>
 			<TabItem Header="Программа">
 				<StackPanel>
-					<CheckBox Content="Движение текста при переполнении." Margin="5,5,0,5"/>
+					<CheckBox Content="Движение текста при переполнении." Margin="5,5,0,5" Visibility="Collapsed"/>
 					<StackPanel Orientation="Horizontal" Margin="5">
 						<TextBlock Text="Тема: " Margin="0,5,5,5"/>
 						<ComboBox Width="100" Height="30" x:Name="ComboBoxTheme" SelectionChanged="ComboBoxTheme_SelectionChanged">

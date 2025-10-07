@@ -59,6 +59,9 @@
 				<MenuItem Header="Расы Туши" Click="UrlRaces"/>
 				<MenuItem Header="Классы Туши" Click="UrlClasses"/>
 			</MenuItem>
+			<MenuItem x:Name="Magic_menuitem" Header="Магия" Visibility="Collapsed">
+				<MenuItem Header="Проклятая магия" x:Name="Cursemagic_menuitem" Click="Cursemagic_menuitem_Click"/>
+			</MenuItem>
 		</Menu>
 		<StackPanel x:Name="WorkProgam1" Visibility="Visible" VerticalAlignment="Center" Margin="10,50,0,0">
 			<StackPanel Orientation="Horizontal">

@@ -105,7 +105,6 @@ namespace DNDHelper.Windows
             TypeArmorBaffs typeArmorBaffs = new();
 			LoadingReferenceBook listBoxUrls = new();        
 
-
             WeightScript weightScript = new WeightScript();
 			Health health = new Health();
 
@@ -458,5 +457,19 @@ namespace DNDHelper.Windows
         {
             Effects.AddingLevelEffect(-1);
         }
-    }
+		private Windows.CurseMagic? _curseMagicWindow;
+		private void Cursemagic_menuitem_Click(object sender, RoutedEventArgs e)
+		{
+			if (_curseMagicWindow != null)
+			{
+				_curseMagicWindow.Activate();
+			}
+			else
+			{
+				_curseMagicWindow = new Windows.CurseMagic();
+				_curseMagicWindow.Closed += (s, args) => _curseMagicWindow = null;
+				_curseMagicWindow.Show();
+			}
+		}
+	}
 }

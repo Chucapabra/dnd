@@ -183,7 +183,7 @@ namespace DNDHelper.Modules.Inventory
                 main.kdhelmet_count_checkbox.IsChecked = false;
                 main.equipped_checkbox.IsChecked = false;
             }
-        }
+		}
 
         private void DataGridInventory_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -246,7 +246,6 @@ namespace DNDHelper.Modules.Inventory
 
                 ShowBaffValue(e.Column.DisplayIndex, e.Row.GetIndex(), newValue);
             }
-
         }
 
         private void ShowOriginalValue(int indexColumn, int indexRow)
@@ -296,7 +295,8 @@ namespace DNDHelper.Modules.Inventory
                         KDScript.CountKD();
                         break;
                 }
-        }
+
+		}
 
         public static double QualityToDouble(string quality)
         {
@@ -418,7 +418,8 @@ namespace DNDHelper.Modules.Inventory
                     SetQualityBaffs(1, _quality);
                     KDScript.CountKD();
                     OnPropertyChanged();
-                }
+
+				}
             }
 
 

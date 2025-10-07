@@ -5,6 +5,9 @@
     <Compile Update="Windows\About.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Windows\CurseMagic.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\CustomSpells.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

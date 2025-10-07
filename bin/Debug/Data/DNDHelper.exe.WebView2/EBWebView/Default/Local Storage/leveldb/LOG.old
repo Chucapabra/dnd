@@ -1,3 +1,2 @@
-2025/08/24-20:17:54.858 4b1c Reusing MANIFEST E:\Project\DND-github\dnd-2\dnd\dnd\bin\Debug\Data\DNDHelper.exe.WebView2\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
-2025/08/24-20:17:54.864 4b1c Recovering log #3
-2025/08/24-20:17:54.865 4b1c Reusing old log E:\Project\DND-github\dnd-2\dnd\dnd\bin\Debug\Data\DNDHelper.exe.WebView2\EBWebView\Default\Local Storage\leveldb/000003.log 
+2025/09/15-21:49:01.052 4f1c Creating DB E:\Project\DND-github\dnd-2\dnd\dnd\dnd\bin\Debug\Data\DNDHelper.exe.WebView2\EBWebView\Default\Local Storage\leveldb since it was missing.
+2025/09/15-21:49:01.067 4f1c Reusing MANIFEST E:\Project\DND-github\dnd-2\dnd\dnd\dnd\bin\Debug\Data\DNDHelper.exe.WebView2\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001

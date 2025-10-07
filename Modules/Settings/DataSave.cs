@@ -124,8 +124,8 @@ namespace DNDHelper.Modules.Settings
             Visibility visibility = Visibility.Visible;
             if (!visibilityBool)
                 visibility = Visibility.Hidden;
-
-            Main.Instance.WorkProgam1.Visibility = visibility;
+			Main.Instance.Magic_menuitem.Visibility = visibility;
+			Main.Instance.WorkProgam1.Visibility = visibility;
             Main.Instance.WorkProgam2.Visibility = visibility;
             Main.Instance.WorkProgam3.Visibility = visibility;
             Main.Instance.WorkProgam4.Visibility = visibility;
@@ -143,7 +143,7 @@ namespace DNDHelper.Modules.Settings
 
         public static void ReadSaves()
         {
-            if (!Directory.Exists(pathSaves))
+			if (!Directory.Exists(pathSaves))
                 Directory.CreateDirectory(pathSaves);
             string[] allfolders = Directory.GetDirectories(pathSaves);
             List<string> savefolders = new();
@@ -172,7 +172,7 @@ namespace DNDHelper.Modules.Settings
                     var newMenuItem = new MenuItem { Header = dataSave.Name, ContextMenu = deleteContextMenu, Tag = folder };
                     newMenuItem.Click += Load_Click;
                     Main.Instance.CharactersMenu.Items.Add(newMenuItem);
-                }
+				}
             }
 
         }
@@ -207,7 +207,7 @@ namespace DNDHelper.Modules.Settings
 
             ReadSaves();
             Load(newDirectory);
-        }
+		}
 
         private static void DeleteItem_Click(object sender, RoutedEventArgs e)
         {

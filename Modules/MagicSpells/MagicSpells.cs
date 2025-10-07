@@ -237,8 +237,8 @@ namespace DNDHelper.Modules.MagicSpells
 
 
 
-		private static float muliplyStaff;
-        private static float muliplyTypeStaff;
+		public static float muliplyStaff;
+        public static float muliplyTypeStaff;
         private void CatalyzerQualitySelect_cb_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             switch (main.CatalyzerQualitySelect_cb.SelectedIndex)
@@ -405,7 +405,6 @@ namespace DNDHelper.Modules.MagicSpells
 
         private void AddCustomSpellCurrent_Click(object sender, RoutedEventArgs e)
 		{
-			
 			bool isCustomSpellsOpen = Application.Current.Windows.OfType<CustomSpells>().Any();
 			if (isCustomSpellsOpen)
 			{

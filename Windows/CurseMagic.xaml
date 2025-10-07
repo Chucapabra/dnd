@@ -1,0 +1,70 @@
+﻿<Window x:Class="DNDHelper.Windows.CurseMagic"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DNDHelper.Windows"
+		xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+		Style="{StaticResource MaterialDesignWindow}"
+        mc:Ignorable="d"
+        Title="Проклятая магия" Height="200" Width="800" ResizeMode="NoResize">
+    <Grid>
+		<TabControl TabStripPlacement="Left" HorizontalAlignment="Left" Width="Auto">
+			<TabItem Header="Холодное усиление">
+				<StackPanel Margin="0,15,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+					<StackPanel Orientation="Horizontal">
+						<ComboBox x:Name="ColdBoosting_SpellName_cb" IsEditable="True" Width="200" materialDesign:HintAssist.Hint="Заклинанание" Margin="10,0,0,0" SelectionChanged="ColdBoosting_SpellName_cb_SelectionChanged"/>
+						<TextBox x:Name="ColdBoosting_DammageSpell_textbox" Width="60"  materialDesign:HintAssist.Hint="Урон" Margin="10,0,0,0" DataObject.Pasting="DammageSpell_textbox_Pasting" PreviewTextInput="DammageSpell_textbox_PreviewTextInput" TextChanged="DammageSpell_textbox_TextChanged" />
+						<TextBlock Text="×" VerticalAlignment="Center" Margin="10,0,0,0"/>
+						<ComboBox x:Name="ColdBoosting_Consumables_cb" Width="150" Margin="10,0,0,0" materialDesign:HintAssist.Hint="Расходник" SelectedIndex="0" SelectionChanged="Consumables_cb_SelectionChanged">
+							<ComboBoxItem Content="Кровь [1.41]"/>
+							<ComboBoxItem Content="Души [2.03]"/>
+							<ComboBoxItem Content="Страдания [2.29]"/>
+							<ComboBoxItem Content="Самоистязание [2.81]"/>
+						</ComboBox>
+						<TextBlock Text="× 0.89 = " Margin="10,0,0,0" VerticalAlignment="Center"/>
+						<TextBlock x:Name="ColdBoosting_totaldammage_textblock" Text="[Итого]" Margin="10,0,0,0" VerticalAlignment="Center"/>
+					</StackPanel>
+				</StackPanel>
+			</TabItem>
+			<TabItem Header="Дар лечения">
+				<StackPanel Margin="0,15,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="22 ×" Margin="10,0,0,0" VerticalAlignment="Center" TextAlignment="Center"/>
+						<TextBlock Text="(" Margin="5,0,0,0" VerticalAlignment="Center"/>
+						<TextBox x:Name="GiftOfHealing_quantity_textbox" Width="42" TextAlignment="Center" materialDesign:HintAssist.Hint="Кол-во" Margin="10,0,0,0" DataObject.Pasting="GiftOfHealing_quantity_textbox_Pasting" PreviewTextInput="GiftOfHealing_quantity_textbox_PreviewTextInput" TextChanged="GiftOfHealing_quantity_textbox_TextChanged"/>
+						<TextBlock Text="+ 1 )" Margin="10,0,0,0" VerticalAlignment="Center"/>
+						<TextBlock Text="×" VerticalAlignment="Center" Margin="10,0,0,0"/>
+						<ComboBox x:Name="GiftOfHealing_Consumables_cb" Width="150" Margin="10,0,0,0" materialDesign:HintAssist.Hint="Расходник" SelectedIndex="0" SelectionChanged="GiftOfHealing_Consumables_cb_SelectionChanged">
+							<ComboBoxItem Content="Кровь [1.41]"/>
+							<ComboBoxItem Content="Души [2.03]"/>
+							<ComboBoxItem Content="Страдания [2.29]"/>
+							<ComboBoxItem Content="Самоистязание [2.81]"/>
+						</ComboBox>
+						<TextBlock Text="=" Margin="10,0,0,0" VerticalAlignment="Center"/>
+						<TextBlock x:Name="GiftOfHealing_total_textblock" Text="[Итого]" Margin="10,0,0,0" VerticalAlignment="Center"/>
+					</StackPanel>
+				</StackPanel>
+			</TabItem>
+			<TabItem Header="Щит тьмы">
+				<StackPanel Margin="0,15,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="30 ×" Margin="10,0,0,0" VerticalAlignment="Center" TextAlignment="Center"/>
+						<TextBlock Text="(" Margin="5,0,0,0" VerticalAlignment="Center"/>
+						<TextBox x:Name="GiftOfDark_quantity_textbox" Width="42" TextAlignment="Center" materialDesign:HintAssist.Hint="Кол-во" Margin="10,0,0,0" PreviewTextInput="GiftOfDark_quantity_textbox_PreviewTextInput" DataObject.Pasting="GiftOfDark_quantity_textbox_Pasting" TextChanged="GiftOfDark_quantity_textbox_TextChanged"/>
+						<TextBlock Text="+ 1 )" Margin="10,0,0,0" VerticalAlignment="Center"/>
+						<TextBlock Text="×" VerticalAlignment="Center" Margin="10,0,0,0"/>
+						<ComboBox x:Name="GiftOfDark_Consumables_cb" Width="150" Margin="10,0,0,0" materialDesign:HintAssist.Hint="Расходник" SelectedIndex="0" SelectionChanged="GiftOfDark_Consumables_cb_SelectionChanged">
+							<ComboBoxItem Content="Кровь [1.41]"/>
+							<ComboBoxItem Content="Души [2.03]"/>
+							<ComboBoxItem Content="Страдания [2.29]"/>
+							<ComboBoxItem Content="Самоистязание [2.81]"/>
+						</ComboBox>
+						<TextBlock Text="=" Margin="10,0,0,0" VerticalAlignment="Center"/>
+						<TextBlock x:Name="GiftOfDark_total_textblock" Text="[Итого]" Margin="10,0,0,0" VerticalAlignment="Center"/>
+					</StackPanel>
+				</StackPanel>
+			</TabItem>
+		</TabControl>
+	</Grid>
+</Window>
