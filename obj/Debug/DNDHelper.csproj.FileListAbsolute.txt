@@ -138,3 +138,5 @@ E:\Project\DND-github\dnd-2\dnd\dnd\dnd\obj\Debug\DNDHelper.genruntimeconfig.cac
 E:\Project\DND-github\dnd-2\dnd\dnd\dnd\obj\Debug\ref\DNDHelper.dll
 E:\Project\DND-github\dnd-2\dnd\dnd\dnd\obj\Debug\Windows\CurseMagic.g.cs
 E:\Project\DND-github\dnd-2\dnd\dnd\dnd\obj\Debug\Windows\CurseMagic.baml
+D:\profile\mydocs\GitHub\dnd\obj\Debug\Windows\CurseMagic.g.cs
+D:\profile\mydocs\GitHub\dnd\obj\Debug\Windows\CurseMagic.baml

@@ -86,12 +86,13 @@ namespace DNDHelper.Modules.Settings
         }
 
         public static void UpdateRepository()
-        {
+        {           
             MagicSpells.MagicSpells.RepositoryLoad();
             Race.Update();
             PlayerClass.Update();
             ManagerUrls.LoadUrls();
             Effects.Update();
+            GlobalMultiply.Update();
         }
 
 

@@ -25,7 +25,7 @@ namespace DNDHelper.Modules.Character
         }
         public static void CountMentalKD()
         {
-            int intellectBaff = (int)((CharacteristicTable.Buffed(CharacteristicTable.StatName.Intellect) * 2) * GlobalMultiply.Multiply);
+            int intellectBaff = (int)((CharacteristicTable.Buffed(CharacteristicTable.StatName.Intellect) * 2) * GlobalMultiply.data.MultiplyMentKD);
 
             MentalKD = intellectBaff + ItemBaffsListScript.ItemBaffs[33][0];
 
@@ -34,7 +34,7 @@ namespace DNDHelper.Modules.Character
 
         public static void CountKD()
         {
-            BodyKD = (int)(CharacteristicTable.Buffed(CharacteristicTable.StatName.Body) * GlobalMultiply.Multiply);
+            BodyKD = (int)(CharacteristicTable.Buffed(CharacteristicTable.StatName.Body) * GlobalMultiply.data.GlobalMultiply);
 
             int[] itemsKD = CountItemsKD();
             ArmorKD = itemsKD[0];

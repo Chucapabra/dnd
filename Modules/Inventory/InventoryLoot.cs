@@ -337,7 +337,7 @@ namespace DNDHelper.Modules.Inventory
             return Baff;
         }
 
-        public static int CalculateHeavinessDamage(int HeavinessNumber, string Quality, double GlobalMultiply)
+        public static int CalculateHeavinessDamage(int HeavinessNumber, string Quality)
         {
             decimal Baff = 0;
             switch (Quality)
@@ -375,7 +375,7 @@ namespace DNDHelper.Modules.Inventory
                     break;
             }
 
-            int HeavinessDamage = (int)((double)(5 * Baff * HeavinessNumber) * GlobalMultiply);
+            int HeavinessDamage = (int)((double)(5 * Baff * HeavinessNumber) * GlobalMultiply.data.GlobalMultiply);
             return HeavinessDamage;
         }
 
@@ -501,7 +501,7 @@ namespace DNDHelper.Modules.Inventory
                 {
                     _crushing = (_crushing - DamageSeverity) / QualityToDouble(_quality);
                     _severity = value;
-                    DamageSeverity = CalculateHeavinessDamage(_severity, _quality, GlobalMultiply.Multiply);
+                    DamageSeverity = CalculateHeavinessDamage(_severity, _quality);
                     Crushing = _crushing * QualityToDouble(_quality) + DamageSeverity;
                     OnPropertyChanged();
                 }
@@ -671,7 +671,7 @@ namespace DNDHelper.Modules.Inventory
             }
             private void UpdateAllValue()
             {
-                DamageSeverity = CalculateHeavinessDamage(_severity, _quality, GlobalMultiply.Multiply);
+                DamageSeverity = CalculateHeavinessDamage(_severity, _quality);
                 if (_chopping != 0)
                     Chopping = _chopping * QualityToDouble(_quality);
                 if (_stabbing != 0)
