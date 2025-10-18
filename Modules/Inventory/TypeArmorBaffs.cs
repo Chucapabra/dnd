@@ -1,4 +1,5 @@
 ﻿using DNDHelper.Modules.Character;
+using DNDHelper.Modules.Settings;
 using DNDHelper.Modules.Сharacteristics;
 using DNDHelper.Windows;
 using System;
@@ -30,7 +31,7 @@ namespace DNDHelper.Modules.Inventory
         public static int Dodge = 0;
         public static int CounterAction = 0;
 
-        public void SetArmor(int index)
+        public static void SetArmor(int index)
         {
             Agility = 0;
             Attack = 0;
@@ -45,14 +46,18 @@ namespace DNDHelper.Modules.Inventory
                     break;
                 case 2:
                     Agility = -4;
-                    Attack = -2;
-                    Block = 2;
+                    Attack = -2;                  
                     CounterAction = -2;
+
+                    if(DataManager.DataSave.SelectedRepository == SetRepository.repositories[0].Name)
+                        Block = 2;
+                    else
+                        Block = 1;
                     break;
                 case 3:
                     Agility = -8;
                     Attack = -4;
-                    Block = 4;
+                    Block = 2;
                     Dodge = -8;
                     CounterAction = -4;
                     break;

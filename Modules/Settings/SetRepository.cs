@@ -31,7 +31,7 @@ namespace DNDHelper.Modules.Settings
             }
         }
 
-        private static List<Repository> repositories = new()
+        public static List<Repository> repositories = new()
         {
             new Repository { Name = "Санекхуек", Link = "https://raw.githubusercontent.com/Chucapabra/dnd/refs/heads/Settings"  },
             new Repository { Name = "Гунер", Link = "https://raw.githubusercontent.com/GunterSuperPenguin/dnd-configs-gunter/refs/heads/main"  },
@@ -86,13 +86,14 @@ namespace DNDHelper.Modules.Settings
         }
 
         public static void UpdateRepository()
-        {           
+        {
             MagicSpells.MagicSpells.RepositoryLoad();
             Race.Update();
             PlayerClass.Update();
             ManagerUrls.LoadUrls();
             Effects.Update();
             GlobalMultiply.Update();
+            TypeArmorBaffs.SetArmor(Main.Instance.armor_type_cb.SelectedIndex);
         }
 
 
