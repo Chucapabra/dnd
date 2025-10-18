@@ -375,7 +375,12 @@ namespace DNDHelper.Modules.Inventory
                     break;
             }
 
-            int HeavinessDamage = (int)((double)(5 * Baff * HeavinessNumber) * GlobalMultiply.data.GlobalMultiply);
+            int HeavinessDamage = 0;
+
+            if (DataManager.DataSave.SelectedRepository == SetRepository.repositories[0].Name)
+                HeavinessDamage = (int)(Baff * HeavinessNumber);
+            else
+                HeavinessDamage = (int)((double)(5 * Baff * HeavinessNumber));  
             return HeavinessDamage;
         }
 

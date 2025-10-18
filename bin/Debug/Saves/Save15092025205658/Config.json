@@ -1,5 +1,5 @@
 {
-  "SelectedRepository": "\u0413\u0443\u043D\u0435\u0440",
+  "SelectedRepository": "\u0421\u0430\u043D\u0435\u043A\u0445\u0443\u0435\u043A",
   "Name": "\u0418\u043C\u044F",
   "SelectedClass": 0,
   "SelectedRace": 0,
@@ -59,7 +59,30 @@
     3
   ],
   "CustomSkills": [],
-  "Inventory": [],
+  "Inventory": [
+    {
+      "Name": "",
+      "Weight": 0,
+      "Quality": "\u041F\u043B\u043E\u0445\u043E\u0435",
+      "WholeChopping": 0,
+      "Chopping": 0,
+      "WholeStabbing": 0,
+      "Stabbing": 0,
+      "WholeCrushing": 2,
+      "Crushing": 2,
+      "DamageSeverity": 2,
+      "Severity": 1,
+      "WholeKD": 0,
+      "KD": 0,
+      "Count": 1,
+      "CountWeight": true,
+      "Description": null,
+      "CountKD": true,
+      "CountKDHelmet": false,
+      "Equipped": true,
+      "Baffs": []
+    }
+  ],
   "CurrentCastsNames": [],
   "EffectTables": []
 }
