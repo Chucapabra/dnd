@@ -24,6 +24,7 @@ namespace DNDHelper.Modules.Inventory
             SetArmor(main.armor_type_cb.SelectedIndex);
         }
 
+        public static int SelectedArmor = 0;
 
         public static int Agility = 0;
         public static int Attack = 0;
@@ -33,6 +34,8 @@ namespace DNDHelper.Modules.Inventory
 
         public static void SetArmor(int index)
         {
+            SelectedArmor = index;
+
             Agility = 0;
             Attack = 0;
             Block = 0;

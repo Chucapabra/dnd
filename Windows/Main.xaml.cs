@@ -45,7 +45,8 @@ namespace DNDHelper.Windows
 		public static GridCharacteristics Characteristics;
 		public static TreeSkills TreeSkillsScript;
 		public static ItemBaffsListScript ItemBaffsListScript;
-		public static string PathMain = "";       
+		public static DamageCalculator DamageCalculator;
+        public static string PathMain = "";       
 
 
 
@@ -103,7 +104,8 @@ namespace DNDHelper.Windows
 			Characteristics.UpdateAllCharacterisitc();
 			MagicSearch magicSearch = new MagicSearch();
             TypeArmorBaffs typeArmorBaffs = new();
-			LoadingReferenceBook listBoxUrls = new();        
+			LoadingReferenceBook listBoxUrls = new();
+            DamageCalculator = new();
 
             WeightScript weightScript = new WeightScript();
 			Health health = new Health();
@@ -300,25 +302,8 @@ namespace DNDHelper.Windows
 		}
 
 
-		private void ResetHealth_Click(object sender, RoutedEventArgs e)
-		{
-			СriticalRoll_Text_textblock.Visibility = Visibility.Hidden;
-			СriticalRoll_GreaterOrEqual_textblock.Visibility = Visibility.Hidden;
-			СriticalRoll_Number_textblock.Visibility = Visibility.Hidden;
-			CurrentHealth_textblock.Text = MaxHealth_textblock.Text;
-			CurrentHealth_textbox.Text = MaxHealth_textblock.Text;
-			if (CurrentHealth_textbox.Focus())
-			{
-				CurrentHealth_textbox.Text = MaxHealth_textblock.Text;
-			}
 
-
-		}
 		// Счёт урона
-		private void CountDamage_button_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-		{
-			MessageBox.Show("Когда-нибудь сделаем...");
-		}
 
 		private void shield_health_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
@@ -336,8 +321,20 @@ namespace DNDHelper.Windows
 			e.Handled = true;
 		}
 
-		// Инвентарь
-		private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void DamageTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            TextboxProcessing.WholeNumbersOnly(sender, e);
+        }
+
+        private void DamageTextBox_Pasting(object sender, DataObjectPastingEventArgs e)
+        {
+            e.CancelCommand();
+            e.Handled = true;
+        }
+
+
+        // Инвентарь
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
 			TextboxProcessing.WholeNumbersOnly(sender, e);
 		}
@@ -404,10 +401,11 @@ namespace DNDHelper.Windows
 			MagicSpells.RepositoryLoad();
 		}
 
-		private void character_name_textbox_TextChanged(object sender, TextChangedEventArgs e)
+        private static readonly SmartDebouncer _debouncer = new();
+        private void character_name_textbox_TextChanged(object sender, TextChangedEventArgs e)
 		{
 			character_name_textblock.Text = character_name_textbox.Text;
-            DataManager.ReadSaves();
+			DataManager.Save();
         }
 		// Магические пули
 		private void MagicBulletCurrent_textbox_Pasting(object sender, DataObjectPastingEventArgs e)
@@ -471,5 +469,10 @@ namespace DNDHelper.Windows
 				_curseMagicWindow.Show();
 			}
 		}
-	}
+
+        private void Gold_tb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+    }
 }

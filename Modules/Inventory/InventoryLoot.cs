@@ -298,43 +298,52 @@ namespace DNDHelper.Modules.Inventory
 
 		}
 
-        public static double QualityToDouble(string quality)
+        public static double QualityToDouble(string quality, bool IsDebaff = false)
         {
             float Baff = 1f;
+            float Debaff = 1f;
             switch (quality)
             {
                 case "Прото":
                     Baff = 0.5f;
+                    Debaff = 1.5f;
                     break;
 
                 case "Плохое":
                     Baff = 0.75f;
+                    Debaff = 1.25f;
                     break;
 
                 case "Стандартное":
                     Baff = 1.0f;
+                    Debaff = 1.0f;
                     break;
 
                 case "Высокое":
                     Baff = 1.25f;
+                    Debaff = 0.75f;
                     break;
 
                 case "Великолепное":
                     Baff = 1.5f;
+                    Debaff = 0.5f;
                     break;
 
                 case "Мастерское":
                     Baff = 2.0f;
+                    Debaff = 0.25f;
                     break;
 
                 case "Мифическое":
                     Baff = 3.0f;
+                    Debaff = 0f;
                     break;
 
                 default:
                     break;
             }
-            return Baff;
+            if(!IsDebaff) return Baff;
+            else return Debaff;
         }
 
         public static int CalculateHeavinessDamage(int HeavinessNumber, string Quality)

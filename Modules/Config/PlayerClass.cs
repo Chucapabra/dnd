@@ -49,7 +49,7 @@ namespace DNDHelper.Modules.Config
                 }
                 catch
                 {
-
+                    data = new();
                 }
 
                 

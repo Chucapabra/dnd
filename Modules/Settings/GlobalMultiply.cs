@@ -36,9 +36,11 @@ namespace DNDHelper.Modules.Settings
                 }
                 catch
                 {
-
+                    data = new();
                 }
             }
+            else
+                data = new();
             Health.HealthUpdate();
         }
 

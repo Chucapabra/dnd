@@ -25,11 +25,6 @@
 						<ColumnDefinition Width="Auto"/>
 					</Grid.ColumnDefinitions>
                     <ListBox x:Name="ListProfiles" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-                        <ListBox.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem x:Name="SelectedRepository" Header="Выбрать"/>
-                            </ContextMenu>
-                        </ListBox.ContextMenu>
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                                 <Setter Property="Height" Value="45"/>

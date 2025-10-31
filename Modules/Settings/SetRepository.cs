@@ -35,12 +35,12 @@ namespace DNDHelper.Modules.Settings
         {
             new Repository { Name = "Санекхуек", Link = "https://raw.githubusercontent.com/Chucapabra/dnd/refs/heads/Settings"  },
             new Repository { Name = "Гунер", Link = "https://raw.githubusercontent.com/GunterSuperPenguin/dnd-configs-gunter/refs/heads/main"  },
-            new Repository { Name = "Раб", Link = "https://raw.githubusercontent.com/Chucapabra/dnd/refs/heads/wh40k"  }
+            new Repository { Name = "Жирный", Link = "https://raw.githubusercontent.com/Chucapabra/dnd/refs/heads/wh40k"  }
         };
 
         public SetRepository()
         {
-            settings.SelectedRepository.Click += SelectedRepository_Click;
+            settings.ListProfiles.SelectionChanged += SelectedRepository_Click;
 
             foreach (Repository repository in repositories)
                 settings.ListProfiles.Items.Add(repository.Name);
@@ -94,6 +94,7 @@ namespace DNDHelper.Modules.Settings
             Effects.Update();
             GlobalMultiply.Update();
             TypeArmorBaffs.SetArmor(Main.Instance.armor_type_cb.SelectedIndex);
+            DamageCalculator.Update();
         }
 
 

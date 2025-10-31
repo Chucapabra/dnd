@@ -48,37 +48,7 @@ namespace DNDHelper.Modules.Inventory
             }
         }
 
-        private void ShowOriginalValue(int indexColumn, int indexRow)
-        {
-            int selectedIndex = main.DataGridInventory.SelectedIndex;
-            switch (indexColumn)
-            {
-                case 1:
-                    ItemBaffsList[indexRow].AddValue = ItemBaffsList[indexRow].AddValue / (float)QualityToDouble(InventoryItems[selectedIndex].Quality);
-                    break;
-                case 2:
-                    ItemBaffsList[indexRow].AddRoll = ItemBaffsList[indexRow].AddRoll / (float)QualityToDouble(InventoryItems[selectedIndex].Quality);
-                    break;
-            }
-        }
 
-        private void ShowBaffValue(int indexColumn, int indexRow, string newValue)
-        {
-            int selectedIndex = main.DataGridInventory.SelectedIndex;
-            newValue = newValue.Replace(" ", "");
-            if (newValue != "" && newValue != "-")
-                switch (indexColumn)
-                {
-                    case 1:
-                        ItemBaffsList[indexRow].AddValue = int.Parse(newValue) * (float)QualityToDouble(InventoryItems[selectedIndex].Quality);
-                        break;
-                    case 2:
-                        ItemBaffsList[indexRow].AddRoll = int.Parse(newValue) * (float)QualityToDouble(InventoryItems[selectedIndex].Quality);
-                        break;
-
-                }
-            UpdateValues();
-        }
 
         private void DataGridItemBaffsList_PreviewMouseButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
@@ -169,19 +139,59 @@ namespace DNDHelper.Modules.Inventory
                 ItemBaffs.Add(new int[] {0, 0});
         }
 
+        private void ShowOriginalValue(int indexColumn, int indexRow)
+        {
+            int selectedIndex = main.DataGridInventory.SelectedIndex;
+            double value = 0;
+            switch (indexColumn)
+            {
+                case 1:
+                    value = ItemBaffsList[indexRow].AddValue;
+                    ItemBaffsList[indexRow].AddValue = value / (float)QualityToDouble(InventoryItems[selectedIndex].Quality, value < 0);
+                    break;
+                case 2:
+                    value = ItemBaffsList[indexRow].AddRoll;
+                    ItemBaffsList[indexRow].AddRoll = value / (float)QualityToDouble(InventoryItems[selectedIndex].Quality, value < 0);
+                    break;
+            }
+        }
+
+        private void ShowBaffValue(int indexColumn, int indexRow, string newValue)
+        {
+            int selectedIndex = main.DataGridInventory.SelectedIndex;
+            newValue = newValue.Replace(" ", "");
+            double value = 0;
+            if (newValue != "" && newValue != "-")
+                switch (indexColumn)
+                {
+                    case 1:
+                        value = ItemBaffsList[indexRow].AddValue;
+                        value = int.Parse(newValue) * (float)QualityToDouble(InventoryItems[selectedIndex].Quality, value < 0);
+                        ItemBaffsList[indexRow].AddValue = value;
+                        break;
+                    case 2:
+                        value = ItemBaffsList[indexRow].AddRoll;
+                        value = int.Parse(newValue) * (float)QualityToDouble(InventoryItems[selectedIndex].Quality, value < 0);
+                        ItemBaffsList[indexRow].AddRoll = value;
+                        break;
+
+                }
+            UpdateValues();
+        }
+
         public static void SetQualityBaffs(int Stage, string Quality)
         {
             if(Stage == 0)
                 foreach(var baff in ItemBaffsList)
                 {
-                    baff.AddValue = baff.AddValue / (float)QualityToDouble(Quality);
-                    baff.AddRoll = baff.AddRoll / (float)QualityToDouble(Quality);
+                    baff.AddValue = baff.AddValue / (float)QualityToDouble(Quality, baff.AddValue < 0);
+                    baff.AddRoll = baff.AddRoll / (float)QualityToDouble(Quality, baff.AddRoll < 0);
                 }
             else
                 foreach (var baff in ItemBaffsList)
                 {
-                    baff.AddValue = baff.AddValue * (float)QualityToDouble(Quality);
-                    baff.AddRoll = baff.AddRoll / (float)QualityToDouble(Quality);
+                    baff.AddValue = baff.AddValue * (float)QualityToDouble(Quality, baff.AddValue < 0);
+                    baff.AddRoll = baff.AddRoll / (float)QualityToDouble(Quality, baff.AddRoll < 0);
                 }
         }
 

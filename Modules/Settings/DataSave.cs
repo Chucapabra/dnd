@@ -306,7 +306,10 @@ namespace DNDHelper.Modules.Settings
             DataSave.AddWeight = dataSave.AddWeight;
             DataSave.Level = dataSave.Level;
             DataSave.Damage = dataSave.Damage;
+            DataSave.DamageMagicShield = dataSave.DamageMagicShield;
+            DataSave.SelectedTypeMagicShield = dataSave.SelectedTypeMagicShield;
             DataSave.SelectedQualityArmor = dataSave.SelectedQualityArmor;
+            DataSave.MaxMagicShield = dataSave.MaxMagicShield;
             DataSave.Copper = dataSave.Copper;
             DataSave.Silver = dataSave.Silver;
             DataSave.Gold = dataSave.Gold;
@@ -559,6 +562,44 @@ namespace DNDHelper.Modules.Settings
             set
             {
                 _damage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _damageMagicShield = 0;
+        public int DamageMagicShield
+        {
+            get => _damageMagicShield;
+            set
+            {
+                _damageMagicShield = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _selectedTypeMagicShield = 0;
+        public int SelectedTypeMagicShield
+        {
+            get => _selectedTypeMagicShield;
+            set
+            {
+                _selectedTypeMagicShield = value;
+                Health.HealthUpdate();
+                OnPropertyChanged();
+            }
+        }
+
+        private string _maxMagicShield = "0";
+        public string MaxMagicShield
+        {
+            get => _maxMagicShield;
+            set
+            {
+                if (value.Length == 0)
+                    _maxMagicShield = "0";
+                else
+                    _maxMagicShield = value;
+                Health.HealthUpdate();
                 OnPropertyChanged();
             }
         }

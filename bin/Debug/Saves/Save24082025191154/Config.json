@@ -1,5 +1,5 @@
 {
-  "SelectedRepository": "",
+  "SelectedRepository": "\u0416\u0438\u0440\u043D\u044B",
   "Name": "\u0418\u043Casdasda\u044F",
   "SelectedClass": 0,
   "SelectedRace": 0,
@@ -12,6 +12,9 @@
   "Gold": "0",
   "Level": 1,
   "Damage": 0,
+  "DamageMagicShield": 0,
+  "SelectedTypeMagicShield": 0,
+  "MaxMagicShield": "0",
   "SubtractMagicBullet": 0,
   "MultiplyMagicDamage": 1,
   "MagicSchool": 0,

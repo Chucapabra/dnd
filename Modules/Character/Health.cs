@@ -3,9 +3,11 @@ using DNDHelper.Modules.Inventory;
 using DNDHelper.Modules.Settings;
 using DNDHelper.Modules.Сharacteristics;
 using DNDHelper.Windows;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace DNDHelper.Modules.Character
 {
@@ -21,12 +23,40 @@ namespace DNDHelper.Modules.Character
         }
         public static int MaxHealth = 0;
         Main main = Main.Instance;
+
+
+        public static int DamageMagicShield
+        {
+            get => DataManager.DataSave.DamageMagicShield;
+            set
+            {
+                DataManager.DataSave.DamageMagicShield = value;
+            }
+        }
+
+        public static int MaxMagicShield
+        {
+            get => int.Parse(DataManager.DataSave.MaxMagicShield);
+            set
+            {
+                DataManager.DataSave.MaxMagicShield = value.ToString();
+            }
+        }
+
         public Health() 
         {
             HealthUpdate();
             main.CurrentHealth_textblock.MouseLeftButtonDown += CurrentHealth_textblock_MouseLeftButtonDown;
             main.CurrentHealth_textbox.KeyDown += CurrentHealth_textblock_KeyDown;
             main.CurrentHealth_textbox.PreviewTextInput += CurrentHealth_textbox_PreviewTextInput;
+            main.ResetHealth.Click += ResetHealth_Click;
+        }
+
+        private void ResetHealth_Click(object sender, RoutedEventArgs e)
+        {
+            Damage = 0;
+            DamageMagicShield = 0;
+            HealthUpdate();
         }
 
         private void CurrentHealth_textbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -90,8 +120,41 @@ namespace DNDHelper.Modules.Character
             int currentHealth = MaxHealth - Damage;
             CountCriticalRoll(currentHealth, MaxHealth);
 
-            Main.Instance.CurrentHealth_textblock.Text = currentHealth.ToString();
-            Main.Instance.MaxHealth_textblock.Text = MaxHealth.ToString();
+            string currentMagicShield = "";
+            string maxMagicShield = "";
+            if(Main.Instance.shield_health_textbox.Text != "" && MaxMagicShield != 0 && DataManager.DataSave.SelectedTypeMagicShield != -1)
+            {
+                maxMagicShield = $" {MaxMagicShield}"; ;
+                currentMagicShield = $" {MaxMagicShield - DamageMagicShield}";
+
+                Main.Instance.CurrentShieldHealth_textblock.Text = currentMagicShield;
+                Main.Instance.MaxShieldHealth_textblock.Text = maxMagicShield;
+                
+                Brush colorFore = Brushes.White;
+                switch (DataManager.DataSave.SelectedTypeMagicShield)
+                {
+                    case 0:
+                        colorFore = Brushes.LightBlue;
+                        break;
+                    case 1:
+                        colorFore = Brushes.Orange;
+                        break;
+                    case 2:
+                        colorFore = Brushes.ForestGreen;
+                        break;
+                }
+
+                Main.Instance.CurrentShieldHealth_textblock.Foreground = colorFore;
+                Main.Instance.MaxShieldHealth_textblock.Foreground = colorFore;
+            }
+            else
+            {
+                Main.Instance.CurrentShieldHealth_textblock.Text = "";
+                Main.Instance.MaxShieldHealth_textblock.Text = "";
+            }
+
+            Main.Instance.CurrentHealth_textblock.Text = currentHealth.ToString();        
+            Main.Instance.MaxHealth_textblock.Text = MaxHealth.ToString();  
         }
     }
 }
