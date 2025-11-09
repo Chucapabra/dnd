@@ -158,7 +158,6 @@ namespace DNDHelper.Modules.Character
                         }
                     }
                 }
-            Debug.WriteLine(EffectBaffs[29][0]);
             Main.Characteristics.UpdateAllCharacterisitc();
             AttributesCharacter.UpdateRolls();
             AttributesCharacter.StickMethod();

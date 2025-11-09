@@ -35,7 +35,7 @@ namespace DNDHelper.Modules.Settings
         {
             new Repository { Name = "Санекхуек", Link = "https://raw.githubusercontent.com/Chucapabra/dnd/refs/heads/Settings"  },
             new Repository { Name = "Гунер", Link = "https://raw.githubusercontent.com/GunterSuperPenguin/dnd-configs-gunter/refs/heads/main"  },
-            new Repository { Name = "Жирный", Link = "https://raw.githubusercontent.com/Chucapabra/dnd/refs/heads/wh40k"  }
+            new Repository { Name = "Жирный", Link = "https://raw.githubusercontent.com/Chucapabra/dnd/refs/heads/wh40k", Height = 60, FontSize = 25, FontWeight = FontWeights.Bold  }
         };
 
         public SetRepository()
@@ -44,9 +44,6 @@ namespace DNDHelper.Modules.Settings
 
             foreach (Repository repository in repositories)
                 settings.ListProfiles.Items.Add(repository.Name);
-
-
-
         }
 
         public static void UpdateListBox()
@@ -55,12 +52,17 @@ namespace DNDHelper.Modules.Settings
             {            
                 var container = Windows.Settings.Instance.ListProfiles.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem;
                 if (container != null)
+                {
+                    container.Height = repositories[i].Height;
+                    container.FontSize = repositories[i].FontSize;
+                    container.FontWeight = repositories[i].FontWeight;
                     if (container.Content.ToString() == SelectedRepository)
                     {
                         container.Foreground = Brushes.Green;
                     }
                     else if (container != null)
                         container.Foreground = new SolidColorBrush(Settings.SelectedTheme[1]);
+                }
             }
         }
 
@@ -228,5 +230,12 @@ namespace DNDHelper.Modules.Settings
         public string Link { get; set; }
 
         public Brush Foreground { get; set; }
+
+        public int Height { get; set; } = 45;
+
+        public int FontSize { get; set; } = 20;
+
+        public FontWeight FontWeight { get; set; } = FontWeights.Normal;
+
     }
 }

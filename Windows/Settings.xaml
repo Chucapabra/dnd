@@ -27,8 +27,8 @@
                     <ListBox x:Name="ListProfiles" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
-                                <Setter Property="Height" Value="45"/>
-                                <Setter Property="FontSize" Value="20"/>
+                                <Setter Property="Height" Value="{Binding Height}"/>
+                                <Setter Property="FontSize" Value="{Binding FontSize}"/>
                                 <Setter Property="FontFamily" Value="Bahnschrift"/>
                                 <Setter Property="Foreground" Value="{Binding Foreground}"/>
                             </Style>

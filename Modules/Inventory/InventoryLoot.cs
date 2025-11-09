@@ -3,17 +3,15 @@ using DNDHelper.Modules.Settings;
 using DNDHelper.Windows;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using static DNDHelper.Modules.Inventory.ItemBaffsListScript;
-using static MaterialDesignThemes.Wpf.Theme;
-using static MaterialDesignThemes.Wpf.Theme.ToolBar;
 
 namespace DNDHelper.Modules.Inventory
 {
@@ -37,6 +35,8 @@ namespace DNDHelper.Modules.Inventory
             main.DataGridInventory.ContextMenuOpening += DataGridInventory_ContextMenuOpening;
             main.AddMenuItem.Click += AddMenuItem_Click;
             main.DeleteMenuItem.Click += DeleteMenuItem_Click;
+            main.CopyMenuItem.Click += CopyMenuItem_Click;
+            main.PasteMenuItem.Click += PasteMenuItem_Click;
             main.weight_count_checkbox.Click += Weight_count_checkbox_Checked; ;
             main.kd_count_checkbox.Click += Kd_count_checkbox_Checked; ;
             main.kdhelmet_count_checkbox.Click += Kdhelmet_count_checkbox_Checked;
@@ -57,11 +57,13 @@ namespace DNDHelper.Modules.Inventory
             {
                 main.AddMenuItem.Visibility = Visibility.Visible;
                 main.DeleteMenuItem.Visibility = Visibility.Visible;
+                main.CopyMenuItem.Visibility = Visibility.Visible;
             }
             else
             {
                 main.AddMenuItem.Visibility = Visibility.Visible;
                 main.DeleteMenuItem.Visibility = Visibility.Collapsed;
+                main.CopyMenuItem.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -87,6 +89,43 @@ namespace DNDHelper.Modules.Inventory
         private void AddMenuItem_Click(object sender, RoutedEventArgs e)
         {
             InventoryItems.Add(new InventoryItem());
+        }
+
+        private void CopyMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            int selectedIndex = main.DataGridInventory.SelectedIndex;
+            List<InventoryItem> selectedItems = new();
+            if (selectedIndex != -1)
+            {
+                int selectedCount = main.DataGridInventory.SelectedItems.Count;
+                foreach (var selectedItem in main.DataGridInventory.SelectedItems)
+                {
+                    int index = main.DataGridInventory.Items.IndexOf(selectedItem);
+                    var item = InventoryItems[index];
+                    selectedItems.Add(item);
+                }
+            }
+
+            string jsontext = JsonSerializer.Serialize(selectedItems);
+            Clipboard.SetText(jsontext);
+        }
+
+        private void PasteMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            string pasteText = Clipboard.GetText();
+            try
+            {
+                var pasteItems = JsonSerializer.Deserialize<List<InventoryItem>>(pasteText);
+                pasteItems.Reverse();
+                foreach (var item in pasteItems)
+                {
+                    item.Weight /= item.Count;
+                    InventoryItems.Add(item);
+                }
+            }
+            catch { }
+            ;
+
         }
 
         private void DescriptionTextBox_TextChanged(object sender, TextChangedEventArgs e)

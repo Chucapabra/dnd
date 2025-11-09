@@ -316,13 +316,10 @@ ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                 <ContextMenu>
                                     <MenuItem x:Name="AddMenuItem" Header="Добавить"/>
                                     <MenuItem x:Name="DeleteMenuItem" Header="Удалить"/>
+                                    <MenuItem x:Name="CopyMenuItem" Header="Копировать"/>
+                                    <MenuItem x:Name="PasteMenuItem" Header="Вставить"/>
                                 </ContextMenu>
                             </DataGrid.ContextMenu>
-                            <!--<DataGrid.RowStyle>
-								<Style TargetType="DataGridRow">
-									<Setter Property="ToolTip" Value="{Binding Name}"/>
-								</Style>
-							</DataGrid.RowStyle>-->
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="140">
                                     <DataGridTextColumn.ElementStyle>

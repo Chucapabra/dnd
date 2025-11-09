@@ -32,8 +32,8 @@ namespace DNDHelper.Modules.Сharacteristics
                 new Characteristic { Name = "     Религия", Value = Buffed(Religion), Roll = CalculateRoll(9) },
                 new Characteristic { Name = "     Природа", Value = Buffed(Nature), Roll = CalculateRoll(10) },
                 new Characteristic { Name = "     История", Value = Buffed(History), Roll = CalculateRoll(11)},
-                new Characteristic { Name = "     Расследовие", Value = Buffed(Investigation), Roll = CalculateRoll(12)},
-                new Characteristic { Name = "     Технолония", Value = Buffed(Technology), Roll = CalculateRoll(13) },
+                new Characteristic { Name = "     Расследование", Value = Buffed(Investigation), Roll = CalculateRoll(12)},
+                new Characteristic { Name = "     Технология", Value = Buffed(Technology), Roll = CalculateRoll(13) },
                 new Characteristic { Name = " Мудрость", Value = Buffed(Wisdom), Roll = CalculateRoll(14)},
                 new Characteristic { Name = "     Медицина", Value = Buffed(Medicine), Roll = CalculateRoll(15)},
                 new Characteristic { Name = "     Восприятие", Value = Buffed(Perception), Roll = CalculateRoll(16) },
@@ -209,7 +209,11 @@ namespace DNDHelper.Modules.Сharacteristics
 
         static public int CalculateRoll(int setCharIndex)
         {
-            return (int)MathF.Floor((float)((Buffed(setCharIndex) - 10) * 0.5) + Race.Stats[setCharIndex].Roll + PlayerClass.Stats[setCharIndex].Roll + TreeSkills.Stats[setCharIndex].Roll + ItemBaffsListScript.ItemBaffs[setCharIndex][1] + Effects.EffectBaffs[setCharIndex][1] + Effects.EffectBaffs[27][0]);
+            int baffEffect = Effects.EffectBaffs[setCharIndex][1];
+            if (baffEffect == 0)
+                baffEffect = Effects.EffectBaffs[27][0];
+
+            return (int)MathF.Floor((float)((Buffed(setCharIndex) - 10) * 0.5) + Race.Stats[setCharIndex].Roll + PlayerClass.Stats[setCharIndex].Roll + TreeSkills.Stats[setCharIndex].Roll + ItemBaffsListScript.ItemBaffs[setCharIndex][1] + baffEffect);
         }
 
         static public void UpdateOtherDeBaff()
