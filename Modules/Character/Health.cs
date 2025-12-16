@@ -116,7 +116,13 @@ namespace DNDHelper.Modules.Character
         public static void HealthUpdate()
         {
             int body = CharacteristicTable.Buffed(CharacteristicTable.StatName.Body);
-            MaxHealth = (int)Math.Floor(((body * 10 * GlobalMultiply.data.GlobalMultiply) * PlayerClass.SelectedClassData.MultiplyHealth) + ItemBaffsListScript.ItemBaffs[32][0]);
+            MaxHealth = (int)Math.Floor((body * 10 * GlobalMultiply.data.GlobalMultiply) * PlayerClass.SelectedClassData.MultiplyHealth);
+            if (DataManager.DataSave.SelectedRepository != SetRepository.repositories[1].Name)
+            {
+                int addАfromTheLevel = (int)Math.Floor(MaxHealth * 0.1) * DataManager.DataSave.Level;
+                MaxHealth += addАfromTheLevel;
+            }
+            MaxHealth += ItemBaffsListScript.ItemBaffs[32][0];
             int currentHealth = MaxHealth - Damage;
             CountCriticalRoll(currentHealth, MaxHealth);
 

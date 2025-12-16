@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DNDHelper.Modules.Config;
 using DNDHelper.Modules.Inventory;
 using DNDHelper.Modules.Settings;
 using DNDHelper.Modules.Сharacteristics;
@@ -34,7 +36,8 @@ namespace DNDHelper.Modules.Character
 
         public static void CountKD()
         {
-            BodyKD = (int)(CharacteristicTable.Buffed(CharacteristicTable.StatName.Body) * GlobalMultiply.data.GlobalMultiply);
+            BodyKD = (int)(CharacteristicTable.Buffed(CharacteristicTable.StatName.Body) * GlobalMultiply.data.GlobalMultiply) + Race.SelectedClassData.AddKD;
+
 
             int[] itemsKD = CountItemsKD();
             ArmorKD = itemsKD[0];

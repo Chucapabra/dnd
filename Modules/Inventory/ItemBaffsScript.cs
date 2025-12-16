@@ -166,12 +166,12 @@ namespace DNDHelper.Modules.Inventory
                 {
                     case 1:
                         value = ItemBaffsList[indexRow].AddValue;
-                        value = int.Parse(newValue) * (float)QualityToDouble(InventoryItems[selectedIndex].Quality, value < 0);
+                        value = int.Parse(newValue) * (float)QualityToDouble(InventoryItems[selectedIndex].Quality, int.Parse(newValue) < 0);
                         ItemBaffsList[indexRow].AddValue = value;
                         break;
                     case 2:
                         value = ItemBaffsList[indexRow].AddRoll;
-                        value = int.Parse(newValue) * (float)QualityToDouble(InventoryItems[selectedIndex].Quality, value < 0);
+                        value = int.Parse(newValue) * (float)QualityToDouble(InventoryItems[selectedIndex].Quality, int.Parse(newValue) < 0);
                         ItemBaffsList[indexRow].AddRoll = value;
                         break;
 
@@ -216,6 +216,7 @@ namespace DNDHelper.Modules.Inventory
                 set
                 {
                     _addValue = value;
+
                     _wholeAddValue = (int)_addValue;
                     OnPropertyChanged();
                 }
@@ -237,6 +238,7 @@ namespace DNDHelper.Modules.Inventory
                 set
                 {
                     _addRoll = value;
+
                     _wholeAddRoll = (int)_addRoll;
                     OnPropertyChanged();
                 }

@@ -89,7 +89,7 @@ namespace DNDHelper.Modules.Character
                     main.Ability_TextBox.IsReadOnly = false;
             }
             else          
-                main.Ability_TextBox.Text = "Выбирите способность";
+                main.Ability_TextBox.Text = "Выберите способность";
         }
 
         private void DataGridChartherCharacterAbilities_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

@@ -1,4 +1,5 @@
-﻿using DNDHelper.Windows;
+﻿using DNDHelper.Modules.Settings;
+using DNDHelper.Windows;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,68 +44,131 @@ namespace DNDHelper.Modules.Inventory
         int divideItemWeight = 1;
 
         public void ChangeComboBoxQuantity()
-		{
-			switch (main.backpack_cb.SelectedIndex)
-			{
-                case 0:
-                    divideItemWeight = 1;
-                    IsDivideArmorWeight = false;
-                    addBackpackWeight = 0;
-                    main.backpack_quantity_cb.ItemsSource = new int[0];
-                    main.backpack_quantity_cb.SelectedIndex = 0;
-                    break;
-                case 1:
-                    divideItemWeight = 1;
-                    IsDivideArmorWeight = false;
-                    addBackpackWeight = 30;
-                    main.backpack_quantity_cb.ItemsSource = quantitymax3;
-					main.backpack_quantity_cb.SelectedIndex = 0;
-					break;
-				case 2:
-                    divideItemWeight = 1;
-                    IsDivideArmorWeight = false;
-                    addBackpackWeight = 60;
-                    main.backpack_quantity_cb.ItemsSource = quantitymax2;
-					main.backpack_quantity_cb.SelectedIndex = 0;
-                    break;
-				case 3:
-                    divideItemWeight = 2;
-                    IsDivideArmorWeight = false;
-                    addBackpackWeight = 0;
-                    main.backpack_quantity_cb.ItemsSource = quantitymax1;
-					main.backpack_quantity_cb.SelectedIndex = 0;
-                    break;
-				case 4:
-                    divideItemWeight = 2;
-                    IsDivideArmorWeight = false;
-                    addBackpackWeight = 30;
-                    main.backpack_quantity_cb.ItemsSource = quantitymax3;
-					main.backpack_quantity_cb.SelectedIndex = 0;
-                    break;
-				case 5:
-                    divideItemWeight = 2;
-                    IsDivideArmorWeight = false;
-                    addBackpackWeight = 60;
-                    main.backpack_quantity_cb.ItemsSource = quantitymax2;
-					main.backpack_quantity_cb.SelectedIndex = 0;
-                    break;
-				case 6:
-                    divideItemWeight = 2;
-                    IsDivideArmorWeight = true;
-                    addBackpackWeight = 100;
-                    main.backpack_quantity_cb.ItemsSource = quantitymax2;
-					main.backpack_quantity_cb.SelectedIndex = 0;
-                    break;
-				case 7:
-                    divideItemWeight = 3;
-                    IsDivideArmorWeight = true;
-                    addBackpackWeight = 150;
-                    main.backpack_quantity_cb.ItemsSource = quantitymax2;
-					main.backpack_quantity_cb.SelectedIndex = 0;
-                    break;
-				default:
-					break;
-			}
+        {
+            if (DataManager.DataSave.SelectedRepository != "Жирный")
+                switch (main.backpack_cb.SelectedIndex)
+                {
+                    case 0:
+                        divideItemWeight = 1;
+                        IsDivideArmorWeight = false;
+                        addBackpackWeight = 0;
+                        main.backpack_quantity_cb.ItemsSource = new int[0];
+                        main.backpack_quantity_cb.SelectedIndex = 0;
+                        break;
+                    case 1:
+                        divideItemWeight = 1;
+                        IsDivideArmorWeight = false;
+                        addBackpackWeight = 30;
+                        main.backpack_quantity_cb.ItemsSource = quantitymax3;
+                        main.backpack_quantity_cb.SelectedIndex = 0;
+                        break;
+                    case 2:
+                        divideItemWeight = 1;
+                        IsDivideArmorWeight = false;
+                        addBackpackWeight = 60;
+                        main.backpack_quantity_cb.ItemsSource = quantitymax2;
+                        main.backpack_quantity_cb.SelectedIndex = 0;
+                        break;
+                    case 3:
+                        divideItemWeight = 2;
+                        IsDivideArmorWeight = false;
+                        addBackpackWeight = 0;
+                        main.backpack_quantity_cb.ItemsSource = quantitymax1;
+                        main.backpack_quantity_cb.SelectedIndex = 0;
+                        break;
+                    case 4:
+                        divideItemWeight = 2;
+                        IsDivideArmorWeight = false;
+                        addBackpackWeight = 30;
+                        main.backpack_quantity_cb.ItemsSource = quantitymax3;
+                        main.backpack_quantity_cb.SelectedIndex = 0;
+                        break;
+                    case 5:
+                        divideItemWeight = 2;
+                        IsDivideArmorWeight = false;
+                        addBackpackWeight = 60;
+                        main.backpack_quantity_cb.ItemsSource = quantitymax2;
+                        main.backpack_quantity_cb.SelectedIndex = 0;
+                        break;
+                    case 6:
+                        divideItemWeight = 2;
+                        IsDivideArmorWeight = true;
+                        addBackpackWeight = 100;
+                        main.backpack_quantity_cb.ItemsSource = quantitymax2;
+                        main.backpack_quantity_cb.SelectedIndex = 0;
+                        break;
+                    case 7:
+                        divideItemWeight = 3;
+                        IsDivideArmorWeight = true;
+                        addBackpackWeight = 150;
+                        main.backpack_quantity_cb.ItemsSource = quantitymax2;
+                        main.backpack_quantity_cb.SelectedIndex = 0;
+                        break;
+                    default:
+                        break;
+                }
+            else
+                switch (main.backpack_cb.SelectedIndex)
+                {
+                    case 0:
+                        divideItemWeight = 1;
+                        IsDivideArmorWeight = false;
+                        addBackpackWeight = 0;
+                        main.backpack_quantity_cb.ItemsSource = new int[0];
+                        main.backpack_quantity_cb.SelectedIndex = 0;
+                        break;
+                    case 1:
+                        divideItemWeight = 1;
+                        IsDivideArmorWeight = false;
+                        addBackpackWeight = 30;
+                        main.backpack_quantity_cb.ItemsSource = quantitymax3;
+                        main.backpack_quantity_cb.SelectedIndex = 0;
+                        break;
+                    case 2:
+                        divideItemWeight = 1;
+                        IsDivideArmorWeight = false;
+                        addBackpackWeight = 60;
+                        main.backpack_quantity_cb.ItemsSource = quantitymax2;
+                        main.backpack_quantity_cb.SelectedIndex = 0;
+                        break;
+                    case 3:
+                        divideItemWeight = 2;
+                        IsDivideArmorWeight = false;
+                        addBackpackWeight = 0;
+                        main.backpack_quantity_cb.ItemsSource = quantitymax1;
+                        main.backpack_quantity_cb.SelectedIndex = 0;
+                        break;
+                    case 4:
+                        divideItemWeight = 2;
+                        IsDivideArmorWeight = false;
+                        addBackpackWeight = 30;
+                        main.backpack_quantity_cb.ItemsSource = quantitymax3;
+                        main.backpack_quantity_cb.SelectedIndex = 0;
+                        break;
+                    case 5:
+                        divideItemWeight = 2;
+                        IsDivideArmorWeight = false;
+                        addBackpackWeight = 60;
+                        main.backpack_quantity_cb.ItemsSource = quantitymax2;
+                        main.backpack_quantity_cb.SelectedIndex = 0;
+                        break;
+                    case 6:
+                        divideItemWeight = 2;
+                        IsDivideArmorWeight = true;
+                        addBackpackWeight = 120;
+                        main.backpack_quantity_cb.ItemsSource = quantitymax2;
+                        main.backpack_quantity_cb.SelectedIndex = 0;
+                        break;
+                    case 7:
+                        divideItemWeight = 3;
+                        IsDivideArmorWeight = true;
+                        addBackpackWeight = 300;
+                        main.backpack_quantity_cb.ItemsSource = quantitymax2;
+                        main.backpack_quantity_cb.SelectedIndex = 0;
+                        break;
+                    default:
+                        break;
+                }
 
         }
 	}

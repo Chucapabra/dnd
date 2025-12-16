@@ -1,1 +1,6 @@
-2025/09/15-21:49:01.015 1bfc Reusing MANIFEST E:\Project\DND-github\dnd-2\dnd\dnd\dnd\bin\Debug\Data\DNDHelper.exe.WebView2\EBWebView\Default\Site Characteristics Database/MANIFEST-000001
+2025/12/16-12:22:19.472 1ba4 Log #6: 2 ops saved to Table #7 OK
+2025/12/16-12:22:19.477 1ba4 Archiving D:\profile\mydocs\GitHub\dnd\bin\Debug\Data\DNDHelper.exe.WebView2\EBWebView\Default\Site Characteristics Database/000006.log: OK
+2025/12/16-12:22:19.478 1ba4 Table #4: 22 entries OK
+2025/12/16-12:22:19.479 1ba4 Table #7: 2 entries OK
+2025/12/16-12:22:19.529 1ba4 Archiving D:\profile\mydocs\GitHub\dnd\bin\Debug\Data\DNDHelper.exe.WebView2\EBWebView\Default\Site Characteristics Database/MANIFEST-000001: OK
+2025/12/16-12:22:19.878 1ba4 **** Repaired leveldb D:\profile\mydocs\GitHub\dnd\bin\Debug\Data\DNDHelper.exe.WebView2\EBWebView\Default\Site Characteristics Database; recovered 2 files; 661 bytes. Some data may have been lost. ****

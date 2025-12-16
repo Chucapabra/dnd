@@ -52,7 +52,7 @@ namespace DNDHelper.Modules.Inventory
             int addWeight = 0;
             if (Main.Instance.backpack_plus_tb.Text != "")
                 addWeight = int.Parse(Main.Instance.backpack_plus_tb.Text);
-            int MaxWeight = (int)MathF.Round(((CharacteristicTable.Buffed(0) * 30) + Race.SelectedClassData.AddWeight + Backpack.AddWeight) * (float)Race.SelectedClassData.MultiplyWeight + addWeight + ItemBaffsListScript.ItemBaffs[31][0]);
+            int MaxWeight = (int)MathF.Round((CharacteristicTable.Buffed(0) * 30 * (float)Race.SelectedClassData.MultiplyWeight)  + Race.SelectedClassData.AddWeight + Backpack.AddWeight + addWeight + ItemBaffsListScript.ItemBaffs[31][0]);
             int remainedWeight = MaxWeight - UsedItemWeight;
             Main.Instance.сharacter_weight_textblock.Text = $"Вес: {remainedWeight}/{MaxWeight}";
 

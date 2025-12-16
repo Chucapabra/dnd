@@ -381,7 +381,7 @@ namespace DNDHelper.Modules.Inventory
                 default:
                     break;
             }
-            if(!IsDebaff) return Baff;
+            if (!IsDebaff) return Baff;
             else return Debaff;
         }
 

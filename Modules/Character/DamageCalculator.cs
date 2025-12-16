@@ -196,7 +196,7 @@ namespace DNDHelper.Modules.Character
                             if (UsedKDArmor == KDArmor)
                                 multiplyOther = 1;
                             calculateDamage(ref damage, ref UsedKDArmor, (int)_kd);
-                            if (DataManager.DataSave.SelectedRepository != "Жирный")
+                            if (DataManager.DataSave.SelectedRepository != SetRepository.repositories[2].Name)
                                 damage *= multiplyOther;
 
 

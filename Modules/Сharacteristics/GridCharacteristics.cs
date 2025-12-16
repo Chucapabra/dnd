@@ -200,7 +200,7 @@ namespace DNDHelper.Modules.Сharacteristics
             DataGridChar[index].Roll = CalculateRoll(index);
             FindAVariableCharacteristic(index);
 
-            DataGridChar[index].ToolTip = $"{DataGridChar[index].Name.Replace(" ", "")}:\r\n" +
+            DataGridChar[index].ToolTip = $"{DataGridChar[index].Name.Replace(" ", "")}:  Пассивная:{10 + DataGridChar[index].Roll}\r\n" +
                                           $"СТАТ: Базовая:{Base(index)} Раса:{Race.Stats[index].Value} Класс:{PlayerClass.Stats[index].Value} Древо развитие:{TreeSkills.Stats[index].Value} Предметы:{ItemBaffsListScript.ItemBaffs[index][0]} Эффекты:{Effects.EffectBaffs[index][0]} Остальное:{OtherBaff(index)}\r\n" +
                                           $"РОЛЛ: Базовый:{(int)MathF.Floor((float)((Buffed(index) - 10) * 0.5))} Раса:{Race.Stats[index].Roll} Класс:{PlayerClass.Stats[index].Roll} Древо развитие:{TreeSkills.Stats[index].Roll} Предметы:{ItemBaffsListScript.ItemBaffs[index][1]} Эффекты:{Effects.EffectBaffs[index][1] + Effects.EffectBaffs[27][0]}";
 

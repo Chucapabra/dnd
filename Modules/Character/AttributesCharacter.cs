@@ -68,12 +68,13 @@ namespace DNDHelper.Modules.Character
         public static void StickMethod()
         {
             double lengthStick = Race.SelectedClassData.StandartStickLength;
+            double multiplyLength = Race.SelectedClassData.MultiplyStickLength;
 
             int Agility = CharacteristicTable.Buffed(CharacteristicTable.StatName.Agility);
             double addStick = 0;
             if ((Agility - 10) >= 5)
                 addStick = (int)((Agility - 10) / 5) * 0.5;
-
+            lengthStick *= multiplyLength;
 
             lengthStick += addStick + ItemBaffsListScript.ItemBaffs[34][0];
             double multiplyEffect = Effects.EffectBaffs[29][0] * 0.01;

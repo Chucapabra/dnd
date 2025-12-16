@@ -32,9 +32,12 @@ namespace DNDHelper.Modules.MagicSpells
             main.NatureCast_Search_cb.Click += NatureCast_Search_cb_Checked;
 			main.DataGridCurrentSpells.Sorting += DataGridCurrentSpells_Sorting;
 			main.DataGridAllSpells.Sorting += DataGridAllSpells_Sorting;
-		}
+            main.PackCast_Search_cb.Click += PackCast_Search_cb_Click;
 
-		private void DataGridAllSpells_Sorting(object sender, System.Windows.Controls.DataGridSortingEventArgs e)
+        }
+
+
+        private void DataGridAllSpells_Sorting(object sender, System.Windows.Controls.DataGridSortingEventArgs e)
 		{
 			e.Handled = true;
 
@@ -82,9 +85,11 @@ namespace DNDHelper.Modules.MagicSpells
 			FilterRoll();
 			FilterLevel();
 			FilterNature();
+			FilterPack();
 
 
-			MagicSpells.CurrentCasts.Clear();
+
+            MagicSpells.CurrentCasts.Clear();
 		    MagicSpells.CurrentAllCasts.Clear();
 			foreach (var filter in filtersSpellAll)
 				if (MagicSpells.CurrentCastsNames.Contains(filter.SpellName))
@@ -188,7 +193,13 @@ namespace DNDHelper.Modules.MagicSpells
 				filtersSpellAll = filtersSpellAll.Where((x) => x.IsNature).ToList();
 		}
 
-		private void SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private static void FilterPack()
+        {
+            if (main.PackCast_Search_cb.IsChecked.Value)
+                filtersSpellAll = filtersSpellAll.Where((x) => x.IsPack).ToList();
+        }
+
+        private void SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
 		{
 			CastsFilter();
 		}
@@ -198,7 +209,12 @@ namespace DNDHelper.Modules.MagicSpells
 			CastsFilter();
 		}
 
-		private void NatureCast_Search_cb_Checked(object sender, RoutedEventArgs e)
+        private void PackCast_Search_cb_Click(object sender, RoutedEventArgs e)
+        {
+            CastsFilter();
+        }
+
+        private void NatureCast_Search_cb_Checked(object sender, RoutedEventArgs e)
 		{
 			CastsFilter();
 		}

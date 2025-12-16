@@ -49,8 +49,49 @@ namespace DNDHelper.Modules.MagicSpells
             main.MinusMagicBullet.Click += MinusMagicBullet_Click;
             main.plusMagicBullet.Click += PlusMagicBullet_Click;
             main.ResetMagicBullet.Click += ResetMagicBullet_Click;
+
+            main.DataGridCurrentSpells.ContextMenuOpening += DataGridCurrentSpells_ContextMenuOpening;
+            main.AddInPackSpellCurrent.Click += AddInPackSpellCurrent_Click;
+        }
+
+		private void AddInPackSpellCurrent_Click(object sender, RoutedEventArgs e)
+		{
+			int selected = main.DataGridCurrentSpells.SelectedIndex;
+			if (selected != -1)
+			{
+                int indexCast = main.DataGridCurrentSpells.SelectedIndex;
+                var cast = main.DataGridCurrentSpells.Items[indexCast] as Cast;
+				cast.IsPack = !cast.IsPack;
+
+				if (cast.IsPack)
+					CurrentCasts[selected].colorbrushPack = Brushes.SkyBlue;
+				else
+					CurrentCasts[selected].colorbrushPack = new SolidColorBrush(Settings.Settings.SelectedTheme[1]);
+                MagicSearch.CastsFilter();
+            }
 		}
 
+        private void DataGridCurrentSpells_ContextMenuOpening(object sender, System.Windows.Controls.ContextMenuEventArgs e)
+        {
+            int selected = main.DataGridCurrentSpells.SelectedIndex;
+            if (selected != -1)
+            {
+                int indexCast = main.DataGridCurrentSpells.SelectedIndex;
+                var cast = main.DataGridCurrentSpells.Items[indexCast] as Cast;
+
+                main.AddInPackSpellCurrent.Visibility = Visibility.Visible;
+                if (cast.IsPack)
+				{
+					main.AddInPackSpellCurrent.Header = "Из колоду";
+                }
+				else
+				{
+                    main.AddInPackSpellCurrent.Header = "В колоду";
+                }
+            }
+			else
+                main.AddInPackSpellCurrent.Visibility = Visibility.Collapsed;
+        }
 
         private void CurrentCastsNames_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
@@ -277,6 +318,8 @@ namespace DNDHelper.Modules.MagicSpells
             {
                 case 0:
                     muliplyTypeStaff = 1.5f;
+                    if (DataManager.DataSave.SelectedRepository == SetRepository.repositories[2].Name)
+                        muliplyTypeStaff = 1.25f;
                     break;
                 default:
                     muliplyTypeStaff = 1;
@@ -460,5 +503,7 @@ namespace DNDHelper.Modules.MagicSpells
 		public bool IsNature { get; set; } = false;	
         public Brush colorbrush { get; set; } = new SolidColorBrush(Settings.Settings.SelectedTheme[1]);
 		public Brush colorbrushnature { get; set; } = new SolidColorBrush(Settings.Settings.SelectedTheme[1]);
+        public Brush colorbrushPack { get; set; } = new SolidColorBrush(Settings.Settings.SelectedTheme[1]);
+        public bool IsPack { get; set; } = false;
 	} 
 }
