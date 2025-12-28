@@ -122,7 +122,7 @@ namespace DNDHelper.Modules.Character
                 int addАfromTheLevel = (int)Math.Floor(MaxHealth * 0.1) * DataManager.DataSave.Level;
                 MaxHealth += addАfromTheLevel;
             }
-            MaxHealth += ItemBaffsListScript.ItemBaffs[32][0];
+            MaxHealth += ItemBaffsListScript.ItemBaffs[37][0];
             int currentHealth = MaxHealth - Damage;
             CountCriticalRoll(currentHealth, MaxHealth);
 

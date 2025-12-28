@@ -1,0 +1,68 @@
+{
+  "SelectedRepository": "\u0416\u0438\u0440\u043D\u044B\u0439",
+  "Name": "\u0418\u043C\u044F",
+  "SelectedClass": 11,
+  "SelectedRace": 15,
+  "SelectedBackpack": 0,
+  "BackpackQuantity": 0,
+  "AddWeight": "0",
+  "SelectedQualityArmor": 0,
+  "Copper": "0",
+  "Silver": "0",
+  "Gold": "0",
+  "Level": 1,
+  "Damage": 0,
+  "DamageMagicShield": 0,
+  "SelectedTypeMagicShield": 0,
+  "MaxMagicShield": "0",
+  "SubtractMagicBullet": 0,
+  "MultiplyMagicDamage": 1,
+  "MagicSchool": 0,
+  "CatalyzerSelect": 1,
+  "CatalyzerQualitySelect": 2,
+  "ClassTreeGrid": [
+    {
+      "TreeName": "\u0421\u043B\u0435\u043F\u043E\u0439 \u0433\u043D\u0435\u0432",
+      "TreeLevel": 0
+    },
+    {
+      "TreeName": "\u0411\u0443\u0440\u0435\u0432\u0435\u0441\u0442\u043D\u0438\u043A",
+      "TreeLevel": 0
+    },
+    {
+      "TreeName": "\u0421\u043B\u0438\u0448\u043A\u043E\u043C \u0437\u043B\u043E\u0439, \u0447\u0442\u043E\u0431\u044B \u0443\u043C\u0438\u0440\u0430\u0442\u044C",
+      "TreeLevel": 0
+    }
+  ],
+  "Characterisitics": [
+    20,
+    20,
+    18,
+    30,
+    3,
+    12,
+    11,
+    10,
+    3,
+    3,
+    30,
+    3,
+    3,
+    3,
+    5,
+    3,
+    3,
+    3,
+    6,
+    3,
+    8,
+    3,
+    21,
+    3,
+    3
+  ],
+  "CustomSkills": [],
+  "Inventory": [],
+  "CurrentCastsNames": [],
+  "EffectTables": []
+}

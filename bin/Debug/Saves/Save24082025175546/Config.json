@@ -83,7 +83,22 @@
       "CountKD": true,
       "CountKDHelmet": false,
       "Equipped": true,
-      "Baffs": []
+      "Baffs": [
+        {
+          "SelectedIndex": 38,
+          "WholeAddValue": 5,
+          "AddValue": 5,
+          "WholeAddRoll": 0,
+          "AddRoll": 0
+        },
+        {
+          "SelectedIndex": 2,
+          "WholeAddValue": 12,
+          "AddValue": 12,
+          "WholeAddRoll": 0,
+          "AddRoll": 0
+        }
+      ]
     },
     {
       "Name": "543h",

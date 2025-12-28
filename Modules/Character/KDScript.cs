@@ -29,7 +29,7 @@ namespace DNDHelper.Modules.Character
         {
             int intellectBaff = (int)((CharacteristicTable.Buffed(CharacteristicTable.StatName.Intellect) * 2) * GlobalMultiply.data.MultiplyMentKD);
 
-            MentalKD = intellectBaff + ItemBaffsListScript.ItemBaffs[33][0];
+            MentalKD = intellectBaff + ItemBaffsListScript.ItemBaffs[38][0];
 
             Main.Instance.MentalKD_TextBlock.Text = MentalKD.ToString();
         }
@@ -42,7 +42,7 @@ namespace DNDHelper.Modules.Character
             int[] itemsKD = CountItemsKD();
             ArmorKD = itemsKD[0];
             HeadKD = itemsKD[1] + BodyKD;
-            DebaffKD = Effects.EffectBaffs[25][0];
+            DebaffKD = Effects.EffectBaffs[30][0];
 
             int generalKD = BodyKD + ArmorKD + DebaffKD;
             Main.Instance.KD_TextBlock.Text = generalKD.ToString();

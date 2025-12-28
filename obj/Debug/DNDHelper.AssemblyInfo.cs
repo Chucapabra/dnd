@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DNDHelper")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d1156005f8c383398ddf45d17512425be5bde199")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a9a651c50c564225c2f22f834d472bf455559fca")]
 [assembly: System.Reflection.AssemblyProductAttribute("DNDHelper")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DNDHelper")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,0 +1,104 @@
+{
+  "SelectedRepository": "\u0416\u0438\u0440\u043D\u044B\u0439",
+  "Name": "\u0418\u0440\u0438\u0441 \u0410\u043C\u0430\u0440\u0438\u043B\u043B\u0438\u0442",
+  "SelectedClass": 4,
+  "SelectedRace": 20,
+  "SelectedBackpack": 0,
+  "BackpackQuantity": 0,
+  "AddWeight": "0",
+  "SelectedQualityArmor": 2,
+  "Copper": "0",
+  "Silver": "0",
+  "Gold": "0",
+  "Level": 2,
+  "Damage": 0,
+  "DamageMagicShield": 0,
+  "SelectedTypeMagicShield": 0,
+  "MaxMagicShield": "0",
+  "SubtractMagicBullet": 0,
+  "MultiplyMagicDamage": 1,
+  "MagicSchool": 0,
+  "CatalyzerSelect": 1,
+  "CatalyzerQualitySelect": 2,
+  "ClassTreeGrid": [
+    {
+      "TreeName": "\u0424\u0430\u043D\u0430\u0442\u0438\u043A",
+      "TreeLevel": 0
+    },
+    {
+      "TreeName": "\u0413\u043B\u0430\u0448\u0430\u0442\u0430\u0439",
+      "TreeLevel": 0
+    },
+    {
+      "TreeName": "\u0410\u043F\u043E\u0441\u0442\u043E\u043B",
+      "TreeLevel": 0
+    }
+  ],
+  "Characterisitics": [
+    21,
+    21,
+    9,
+    3,
+    14,
+    3,
+    11,
+    6,
+    3,
+    3,
+    12,
+    3,
+    3,
+    3,
+    20,
+    3,
+    30,
+    30,
+    20,
+    3,
+    6,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3
+  ],
+  "CustomSkills": [],
+  "Inventory": [
+    {
+      "Name": "\u0422\u044F\u0436\u0451\u043B\u044B\u0439 \u043A\u0430\u0441\u0442\u0435\u0442",
+      "Weight": 10,
+      "Quality": "\u041F\u043B\u043E\u0445\u043E\u0435",
+      "WholeChopping": 0,
+      "Chopping": 0,
+      "WholeStabbing": 0,
+      "Stabbing": 0,
+      "WholeCrushing": 26,
+      "Crushing": 26.25,
+      "DamageSeverity": 0,
+      "Severity": 0,
+      "WholeKD": 0,
+      "KD": 0,
+      "Count": 2,
+      "CountWeight": true,
+      "Description": null,
+      "CountKD": true,
+      "CountKDHelmet": false,
+      "Equipped": true,
+      "Baffs": [
+        {
+          "SelectedIndex": 2,
+          "WholeAddValue": 0,
+          "AddValue": 0,
+          "WholeAddRoll": 75,
+          "AddRoll": 75
+        }
+      ]
+    }
+  ],
+  "CurrentCastsNames": [],
+  "EffectTables": []
+}

@@ -482,16 +482,21 @@ ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                                 <ComboBoxItem Content="Расследование"/>
                                                 <ComboBoxItem Content="Технология"/>
                                                 <ComboBoxItem Content="Мудрость"/>
-                                                <ComboBoxItem Content="Медецина"/>
+                                                <ComboBoxItem Content="Медицина"/>
                                                 <ComboBoxItem Content="Восприятие"/>
                                                 <ComboBoxItem Content="Проницательность"/>
                                                 <ComboBoxItem Content="Выживание"/>
-                                                <ComboBoxItem Content="Обращение с животными"/>
+                                                <ComboBoxItem Content="Уход за животными"/>
                                                 <ComboBoxItem Content="Харизма"/>
                                                 <ComboBoxItem Content="Обман"/>
                                                 <ComboBoxItem Content="Запугивание"/>
                                                 <ComboBoxItem Content="Выступление"/>
                                                 <ComboBoxItem Content="Убеждение"/>
+                                                <ComboBoxItem Content="Очарование"/>
+                                                <ComboBoxItem Content="Иммунитет"/>
+                                                <ComboBoxItem Content="Баланс"/>
+                                                <ComboBoxItem Content="Стойкость"/>
+                                                <ComboBoxItem Content="Закалка"/>
                                                 <ComboBoxItem Content="Ролл атаки"/>
                                                 <ComboBoxItem Content="Ролл блока"/>
                                                 <ComboBoxItem Content="Ролл уворота"/>
@@ -505,11 +510,12 @@ ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                                 <ComboBoxItem Content="Действие"/>
                                                 <ComboBoxItem Content="Контрдействие"/>
                                                 <ComboBoxItem Content="Маг. пули"/>
+                                                <ComboBoxItem Content="Маг. ролл"/>
                                             </ComboBox>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
-                                <DataGridTextColumn Width="75" Header="Значение" Binding="{Binding WholeAddValue, UpdateSourceTrigger=PropertyChanged}" >
+                                <DataGridTextColumn Width="60" Header="Значение" Binding="{Binding WholeAddValue, UpdateSourceTrigger=PropertyChanged}" >
                                     <DataGridTextColumn.EditingElementStyle>
                                         <Style TargetType="TextBox">
                                             <EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
@@ -1128,8 +1134,8 @@ ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                 </Grid>
             </TabItem>
         </TabControl>
-        <DataGrid Visibility="Visible" Grid.Row="1" Grid.Column="0"  SelectionMode="Single" FontSize="12" x:Name="DataGridCharacterisctics" AutoGenerateColumns="False" Margin="0,0,0,-304" IsReadOnly="True"
-              HeadersVisibility="Column"
+        <DataGrid ScrollViewer.HorizontalScrollBarVisibility="Disabled" Visibility="Visible" Grid.Row="1" Grid.Column="0"  SelectionMode="Single" FontSize="12" x:Name="DataGridCharacterisctics" AutoGenerateColumns="False" Margin="0,0,0,-304" IsReadOnly="True"
+                  HeadersVisibility="Column"
               RowHeaderWidth="0"
               CanUserAddRows="False"
               CanUserDeleteRows="False"

@@ -60,7 +60,7 @@ namespace DNDHelper.Modules.Config
         private static void ClearStats() 
         {
             Stats.Clear();
-            for (int i = 0; i < 26; i++)
+            for (int i = 0; i < 30; i++)
             {
                 Stats.Add(new Stat { Value = 0, Roll = 0 });
             }

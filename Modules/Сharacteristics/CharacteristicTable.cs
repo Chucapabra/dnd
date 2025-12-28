@@ -23,6 +23,9 @@ namespace DNDHelper.Modules.Сharacteristics
         public static int PointsAgilitySkills = 0;
         public static int PointsAgilitySkillsNow = 0;
 
+        public static int PointsBodySkills = 0;
+        public static int PointsBodySkillsNow = 0;
+
         public static int PointsIntellectSkills = 0;
         public static int PointsIntellectSkillsNow = 0;
 
@@ -49,7 +52,7 @@ namespace DNDHelper.Modules.Сharacteristics
             Perception, Insight, Survival, TOAnimals,
 
             Charisma, Deception,
-            Intimidation, Speech, Persuasion
+            Intimidation, Speech, Persuasion, Charm, Immunity, Balance, Resistance, Tempering
         }
 
         public static string[] StatNameRus = new[]
@@ -63,12 +66,12 @@ namespace DNDHelper.Modules.Сharacteristics
             "мудрость", "медецина",
             "восприятие", "проницательность", "выживание", "обращение_с_животными",
             "харизма", "обман",
-            "запугивание", "выступление", "убеждение"
+            "запугивание", "выступление", "убеждение", "очарование", "иммунитет", "баланс", "стойкость", "закалка"
         };
 
         public static int[] _baseStats => DataManager.DataSave.Characterisitics;
         private static readonly int[] _buffedStats = new int[_baseStats.Length];
-        private static readonly int[] _OtherBaffStats = new int[37];
+        private static readonly int[] _OtherBaffStats = new int[50];
 
         // === Доступ по имени ===
         private static ref int GetBase(StatName name) => ref _baseStats[(int)name];

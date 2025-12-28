@@ -154,21 +154,34 @@ namespace DNDHelper.Modules.Character
 
             if (Main.Instance.character_class_combobox.SelectedIndex != -1)
             {
+                var NameClass = Main.Instance.character_class_combobox.SelectedValue.ToString();
                 var ClassSkills = PlayerClass.SelectedClassData.Skills;
+                for (int i = 0; i < ClassSkills.Count; i++)
+                    ClassSkills[i] = $"{ClassSkills[i]}|{NameClass}";
                 var ClassTreesSkills = TreeSkills.Skills;
                 ClassTreesSkills.Reverse();
-                var NameClass = Main.Instance.character_class_combobox.SelectedValue.ToString();
                 // объединение скиллов
                 foreach (var skill in ClassSkills)
                     ClassTreesSkills.Add(skill);
-                foreach (var skill in ClassTreesSkills)
+
+                List<string> endListSkills = new List<string>();
+                foreach(var skill in ClassTreesSkills)
+                {
+                    int index = endListSkills.ToList().FindIndex(x => { var X = x.Split('|');
+                                                                        var S = skill.Split('|');
+                                                                        return (X[0] == S[0]) && (S[2] == X[2]); });
+                    if (index == -1) 
+                        endListSkills.Add(skill);
+                }
+                endListSkills.Reverse();
+                foreach (var skill in endListSkills)
                 {
                     int index = ListSkills.ToList().FindIndex(x => { return x.Name == skill.Split('|')[0]; });
-                    if (index == -1)
-                    {
-                        string[] sk = skill.Split('|');
-                        ListSkills.Add(new Skill { Name = sk[0], Origin = NameClass, Description = sk[1] });
-                    }
+                    string[] sk = skill.Split('|');
+                    if (index == -1)                   
+                        ListSkills.Add(new Skill { Name = sk[0], Origin = sk[2], Description = $"  {sk[1]}" });
+                    else
+                        ListSkills[index].Description += $"\r\n({sk[2].Trim(' ')}):\r\n  {sk[1]}";
                 }
 
             }

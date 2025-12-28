@@ -32,7 +32,7 @@ namespace DNDHelper.Modules.Character
         private void ClearStats()
         {
             Stats.Clear();
-            for (int i = 0; i < 26; i++)
+            for (int i = 0; i < 30; i++)
             {
                 Stats.Add(new Stat { Value = 0, Roll = 0 });
             }           
@@ -93,7 +93,7 @@ namespace DNDHelper.Modules.Character
             {
                     for (int j = 0; j < TreeGrids[i].TreeLevel; j++)
                         foreach (var stage in PlayerClass.SelectedClassData.ClassTrees[0][item.Key][0][j][0])
-                            FindAddStats(stage.Key, stage.Value);
+                            FindAddStats(stage.Key, stage.Value, TreeGrids[i].TreeName);
                 i++;
             }
 
@@ -102,7 +102,7 @@ namespace DNDHelper.Modules.Character
             MagicSpells.MagicSpells.UpdateMagicBullet();
         }
 
-        private void FindAddStats(string key, object value)
+        private void FindAddStats(string key, object value, string treeName)
         {
             int index = Array.IndexOf(CharacteristicTable.StatNameRus, key.ToLower());
             if (index != -1)
@@ -128,7 +128,7 @@ namespace DNDHelper.Modules.Character
                         var array = element.Deserialize<string[]>();
                         if (array != null)
                             foreach (var item in array)
-                                Skills.Add(item);
+                                Skills.Add($"{item}|{treeName}");
                     }
                     break;
                 case "допкд":

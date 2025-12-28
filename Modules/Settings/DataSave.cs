@@ -15,6 +15,7 @@ using System.DirectoryServices.ActiveDirectory;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.PortableExecutable;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
@@ -162,16 +163,25 @@ namespace DNDHelper.Modules.Settings
                 var json = File.ReadAllText($"{folder}/Config.json");
                 if (json != null)
                 {
-                    var deleteItem = new MenuItem { Header = "Удалить", Tag = folder };
-                    deleteItem.Click += DeleteItem_Click;
-                    var deleteContextMenu = new ContextMenu();
-                    deleteContextMenu.Items.Add(deleteItem);
+                    try
+                    {
+                        var deleteItem = new MenuItem { Header = "Удалить", Tag = folder };
+                        deleteItem.Click += DeleteItem_Click;
+                        var deleteContextMenu = new ContextMenu();
+                        deleteContextMenu.Items.Add(deleteItem);
 
 
-                    var dataSave = JsonSerializer.Deserialize<DataSaveEmpty>(json);
-                    var newMenuItem = new MenuItem { Header = dataSave.Name, ContextMenu = deleteContextMenu, Tag = folder };
-                    newMenuItem.Click += Load_Click;
-                    Main.Instance.CharactersMenu.Items.Add(newMenuItem);
+                        var dataSave = JsonSerializer.Deserialize<DataSaveEmpty>(json);
+                        var newMenuItem = new MenuItem { Header = dataSave.Name, ContextMenu = deleteContextMenu, Tag = folder };
+                        newMenuItem.Click += Load_Click;
+                        Main.Instance.CharactersMenu.Items.Add(newMenuItem);
+                    }
+                    catch (Exception ex)
+                    {
+                        var messagebox = MessageBox.Show($"У тебя наебнулось сохранения\r\nПуть: {folder}\r\nУДАЛИТЬ?УДАЛИТЬ?УДАЛИТЬ?УДАЛИТЬ?УДАЛИТЬ?УДАЛИТЬ?", "Лошара", MessageBoxButton.YesNo, MessageBoxImage.Error);
+                        if (messagebox == MessageBoxResult.Yes)
+                            Directory.Delete(folder, true);
+                    }
 				}
             }
 
@@ -298,6 +308,13 @@ namespace DNDHelper.Modules.Settings
             DataSave.SelectedRepository = dataSave.SelectedRepository;
             SetRepository.UpdateRepository();
 
+            if (DataSave.SelectedRepository == SetRepository.repositories[2].Name)
+                GridCharacteristics.DataGridChar = GridCharacteristics.DataGridCharNew;
+            else
+                GridCharacteristics.DataGridChar = GridCharacteristics.DataGridCharOld;
+            Main.Instance.DataGridCharacterisctics.ItemsSource = GridCharacteristics.DataGridChar;
+
+
             WorkingProgram(true);
 
             DataSave.Name = dataSave.Name;
@@ -313,7 +330,17 @@ namespace DNDHelper.Modules.Settings
             DataSave.Copper = dataSave.Copper;
             DataSave.Silver = dataSave.Silver;
             DataSave.Gold = dataSave.Gold;
-            DataSave.Characterisitics = dataSave.Characterisitics;
+
+            int[] characterisitics = new int[30];
+            for ( int i=0; i <= 29; i++)
+            {
+                if (dataSave.Characterisitics.Length-1 > i)
+                    characterisitics[i] = dataSave.Characterisitics[i];
+                else
+                    characterisitics[i] = 3;
+            }
+
+            DataSave.Characterisitics = characterisitics;
             DataSave.SubtractMagicBullet = dataSave.SubtractMagicBullet;
             DataSave.MultiplyMagicDamage = dataSave.MultiplyMagicDamage;
             DataSave.CatalyzerSelect = dataSave.CatalyzerSelect;
@@ -668,7 +695,7 @@ namespace DNDHelper.Modules.Settings
             new TreeGrid { TreeName = "", TreeLevel = 0 }
             };
 
-        public int[] Characterisitics { get; set; } = { 5, 5, 5, 3, 3, 3, 5, 5, 3, 3, 3, 3, 3, 3, 5, 3, 3, 3, 3, 3, 5, 3, 3, 3, 3 };
+        public int[] Characterisitics { get; set; } = { 5, 5, 5, 3, 3, 3, 5, 5, 3, 3, 3, 3, 3, 3, 5, 3, 3, 3, 3, 3, 5, 3, 3, 3, 3, 3, 3, 3, 3, 3 };
 
         public ObservableCollection<Skills.Skill> CustomSkills { get; set; } = new();
 

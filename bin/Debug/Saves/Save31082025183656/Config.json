@@ -1,0 +1,109 @@
+{
+  "Name": "\u041A\u0440\u043E\u043A\u0441\r\n\r\n",
+  "SelectedRace": 22,
+  "SelectedClass": 7,
+  "SelectedBackpack": 0,
+  "BackpackQuantity": 0,
+  "AddWeight": "0",
+  "SelectedQualityArmor": 0,
+  "Copper": "0",
+  "Silver": "0",
+  "Gold": "0",
+  "Level": 3,
+  "Damage": 0,
+  "ClassTreeGrid": [
+    {
+      "TreeName": "",
+      "TreeLevel": 0
+    },
+    {
+      "TreeName": "",
+      "TreeLevel": 0
+    },
+    {
+      "TreeName": "",
+      "TreeLevel": 0
+    }
+  ],
+  "Characterisitics": [
+    10,
+    0,
+    19,
+    5,
+    23,
+    17,
+    9,
+    7,
+    3,
+    3,
+    6,
+    3,
+    13,
+    3,
+    20,
+    8,
+    30,
+    25,
+    9,
+    3,
+    8,
+    18,
+    3,
+    3,
+    3
+  ],
+  "CustomSkills": [],
+  "Inventory": [
+    {
+      "Name": "\u0421\u0410\u0411\u041B\u0418",
+      "Weight": 30,
+      "Quality": "\u041F\u043B\u043E\u0445\u043E\u0435",
+      "Chopping": 105,
+      "Stabbing": 0,
+      "Crushing": 0,
+      "Severity": 0,
+      "KD": 0,
+      "Count": 2,
+      "CountWeight": true,
+      "Description": "",
+      "CountKD": true,
+      "CountKDHelmet": false,
+      "Equipped": true,
+      "Baffs": []
+    },
+    {
+      "Name": "\u0440\u0430\u043F\u0438\u0440\u0430",
+      "Weight": 10,
+      "Quality": "\u041F\u043B\u043E\u0445\u043E\u0435",
+      "Chopping": 0,
+      "Stabbing": 63.75,
+      "Crushing": 0,
+      "Severity": 0,
+      "KD": 0,
+      "Count": 1,
+      "CountWeight": true,
+      "Description": "",
+      "CountKD": true,
+      "CountKDHelmet": false,
+      "Equipped": true,
+      "Baffs": []
+    },
+    {
+      "Name": "\u043A\u0430\u0440\u0430\u0442\u0438\u0441\u0442\u043E",
+      "Weight": 5,
+      "Quality": "\u041F\u043B\u043E\u0445\u043E\u0435",
+      "Chopping": 0,
+      "Stabbing": 0,
+      "Crushing": 0,
+      "Severity": 0,
+      "KD": 3.75,
+      "Count": 1,
+      "CountWeight": true,
+      "Description": "",
+      "CountKD": true,
+      "CountKDHelmet": false,
+      "Equipped": true,
+      "Baffs": []
+    }
+  ]
+}
